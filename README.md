@@ -1,0 +1,2 @@
+# puma
+puma = PlantUML Manager
