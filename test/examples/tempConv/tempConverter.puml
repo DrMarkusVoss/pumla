@@ -1,0 +1,25 @@
+@startuml
+
+!startsub showWithInterfaces
+temp_dC <-- comp_TC
+temp_dF )--> comp_TC
+!endsub
+
+!startsub showOnlyBlock
+component "tempConverter" <<block>> as comp_TC {
+
+[conversionModule]
+[formulaLib]
+
+}
+!endsub
+
+!startsub showDescription
+note bottom of comp_TC
+    Perform a conversion from
+    degree Fahrenheit to degree
+    Celsius.
+end note
+!endsub
+
+@enduml
