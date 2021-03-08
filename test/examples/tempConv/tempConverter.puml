@@ -1,11 +1,11 @@
 @startuml
 
-!startsub showWithInterfaces
+!startsub showInterfaces
 temp_dC <-- comp_TC
 temp_dF )--> comp_TC
 !endsub
 
-!startsub showOnlyBlock
+!startsub showBlock
 component "tempConverter" <<block>> as comp_TC {
 
 [conversionModule]

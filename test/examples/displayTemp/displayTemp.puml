@@ -1,0 +1,27 @@
+@startuml
+
+!startsub showInterfaces
+temp_dF )--> comp_DisplayTemp
+temp_dC )--> comp_DisplayTemp
+!endsub
+
+!startsub showBlock
+component "displayTemp" <<block>> as comp_DisplayTemp {
+
+[display]
+[conversion]
+
+}
+!endsub
+
+!startsub showDescription
+note bottom of comp_DisplayTemp
+    Gets as input a temperature in
+    degree Celsius or Fahrenheit, or both.
+    Displays both temperature values.
+    Calls the tempConverter for conversion if
+    only one value is given as input.
+end note
+!endsub
+
+@enduml

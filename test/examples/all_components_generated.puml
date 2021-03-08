@@ -2,4 +2,8 @@
 'tempConv/tempConverter
 !includesub tempConv/tempConverter.puml!showOnlyBlock
 !includesub tempConv/tempConverter.puml!showDescription
+
+'displayTemp/displayTemp.puml
+!includesub displayTemp/displayTemp.puml!showOnlyBlock
+!includesub displayTemp/displayTemp.puml!showDescription
 @enduml

@@ -1,6 +1,8 @@
 @startuml
 !include all_components_generated.puml
 
+title Overview all components
+
 [huhu]
 
 @enduml
