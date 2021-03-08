@@ -1,4 +1,4 @@
-# puma
+# pumla
 pumla = PlantUML Manager
 
 ## Idea
