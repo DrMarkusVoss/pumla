@@ -1,0 +1,73 @@
+@startuml
+
+skinparam componentStyle uml2
+
+title pumla Simple Context Diagram
+
+
+:Software Architect: as swac
+:Developer: as dev
+
+
+rectangle "pumla" <<application>> as pumla {
+
+}
+
+rectangle "project git-repo" <<source code>> as pgr {
+rectangle "puml-files" <<arch>>  as pumlf {
+}
+rectangle "pumla-files" <<arch>> as pumlaf {
+}
+rectangle "Programming Language \nCodeSource Code files" {
+}
+rectangle "Build Tool Configuration" as btc {
+}
+}
+
+note top of pumla
+    Extension to PlantUML to
+    organize re-use of architecture
+    model elements.
+end note
+
+
+node "Some Computer" as sco {
+cloud "Java SE RTE" as Java {
+}
+ note left of Java : version >= 10.14.6
+
+cloud Python {
+ }
+ note left of Python: version >= 3.8.2
+
+cloud PlantUML as puml {
+
+ }
+ note left of puml: version >= 1.2021.x
+
+}
+
+cloud "Some Cloud" as cloud {
+ rectangle "CI/CT environment" as cict {
+ }
+}
+
+Java -[hidden]-> Python
+Python -[hidden]-> puml
+
+pumla -down-> sco: runs on
+
+swac-->pumla: create architecture & rules
+dev-->pumla: create & maintain architecture
+swac-->pgr: work on
+dev-->pgr: work on
+pumla --> pgr: execute on
+pumla ..> btc: integrate into
+pumla ..> pumlaf: generate
+pumla ..> pumlf: find and enlist
+dev --> pumlf : create and maintain
+swac --> pumlf: create and maintain
+pgr --> cict : gets build and tested completely in
+pgr --> sco : gets build and tested reduced locally
+
+@enduml

@@ -17,3 +17,6 @@ The following concepts are to be implemented:
 - file manager, gathering all modelling PlantUML files from a repository
 - instantiation mechanism, which allows to instantiate the model elements in different diagrams
 - arc42 template with arc42 generator
+
+### Context Diagram
+![](./arch/01_context/pumla_context.png)
