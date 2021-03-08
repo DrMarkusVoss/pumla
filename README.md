@@ -1,5 +1,5 @@
 # puma
-puma = PlantUML Manager
+pumla = PlantUML Manager
 
 ## Idea
 In order to enable systematic re-use for architecture models with PlantUML, 
