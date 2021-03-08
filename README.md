@@ -3,7 +3,7 @@ pumla = PlantUML Manager
 
 ## Idea
 In order to enable systematic re-use for architecture models with PlantUML, 
-*puma* is intended to be an extension around PlantUML to organize this systematic re-use.
+*pumla* is intended to be an extension around PlantUML to organize this systematic re-use.
 
 ### Use Cases
 - Architecture Modelling of a bigger solution using PlantUML
