@@ -2,10 +2,10 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
 
 ' default header Property, Value
-AddProperty("Name", "Flash")
-AddProperty("Organization", "Zootopia")
-AddProperty("Tool", "Internet Explorer 7.0")
-Person(personAlias, "Label", "Optional Description (with default property header)")
+AddProperty("Name", "Max Mustermann")
+AddProperty("Organization", "RealBigCompany")
+AddProperty("Date of Birth", "22.06.1966")
+Person(personAlias, "mamu2206", "Optional Description (with default property header)")
 
 SetPropertyHeader("Property","Value", "Description")
 AddProperty("Prop1", "Value1", "Details1")
