@@ -1,0 +1,24 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+' default header Property, Value
+AddProperty("Name", "Flash")
+AddProperty("Organization", "Zootopia")
+AddProperty("Tool", "Internet Explorer 7.0")
+Person(personAlias, "Label", "Optional Description (with default property header)")
+
+SetPropertyHeader("Property","Value", "Description")
+AddProperty("Prop1", "Value1", "Details1")
+AddProperty("Prop2", "Value2", "Details2")
+Deployment_Node_L(nodeAlias, "Label", "Optional Type", "Optional Description (with custom property header)") {
+
+  WithoutPropertyHeader()
+  AddProperty("PropC1", "ValueC1")
+  AddProperty("PropC2", "ValueC2")
+  Container(containerAlias, "Label", "Technology", "Optional Description (without property header)")
+}
+
+System(systemAlias, "Label", "Optional Description (without properties)")
+
+Rel(personAlias, containerAlias, "Label", "Optional Technology")
+@enduml
