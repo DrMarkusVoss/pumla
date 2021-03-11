@@ -1,5 +1,7 @@
 @startuml
 ' an example on how to use C4 model in plantuml
+' from here: https://github.com/plantuml-stdlib/C4-PlantUML
+
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 AddTagSupport("v1.0", $borderColor="#d73027")
