@@ -1,0 +1,53 @@
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+
+' --------------------------------------------
+' get an element referenced by Coding Rule
+'
+!unquoted procedure PUMPutElement($compname)
+!includesub $compname/$compname.puml!showBody
+!if ($PUMVarShowInterfaces)
+!includesub $compname/$compname.puml!showInterfaces
+!endif
+!if ($PUMVarShowDescr)
+!includesub $compname/$compname.puml!showDescription
+!endif
+!endprocedure
+' ---------------------------------------------
+
+' ############################################
+' --------------------------------------------
+' get an element referenced by path and filename name
+'
+!unquoted procedure _PUMPutElement($filename, $folderpath)
+!includesub $folderpath/$filename!showBody
+!if ($PUMVarShowInterfaces)
+!includesub $folderpath/$filename!showInterfaces
+!endif
+!if ($PUMVarShowDescr)
+!includesub $folderpath/$filename!showDescription
+!endif
+!endprocedure
+' ---------------------------------------------
+
+' ############################################
+
+' ---------------------------------------------
+' get an element referenced by JSON puml file
+'
+!unquoted procedure PUMJPutElement($alias, $description="", $label="", $technology="", $size=12, $colour="green")
+
+!foreach $emp in allelems.elements
+!if ($emp.name == $alias)
+ !$alias = $emp.salary
+!endif
+!endfor
+
+rectangle $alias as "
+<color:$colour><<$alias>></color>
+==$label==
+//<size:$size>[$technology]</size>//
+
+  $description"
+!endprocedure
+' --------------------------------------------

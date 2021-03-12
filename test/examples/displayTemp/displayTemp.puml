@@ -1,12 +1,12 @@
 @startuml
 
 !startsub showInterfaces
-temp_dF )--> comp_DisplayTemp
-temp_dC )--> comp_DisplayTemp
+temp_dF )--> displayTemp
+temp_dC )--> displayTemp
 !endsub
 
-!startsub showBlock
-component "displayTemp" <<block>> as comp_DisplayTemp {
+!startsub showBody
+component displayTemp <<block>>  {
 
 [display]
 [conversion]
@@ -15,7 +15,7 @@ component "displayTemp" <<block>> as comp_DisplayTemp {
 !endsub
 
 !startsub showDescription
-note bottom of comp_DisplayTemp
+note bottom of displayTemp
     Gets as input a temperature in
     degree Celsius or Fahrenheit, or both.
     Displays both temperature values.

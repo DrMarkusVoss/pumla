@@ -1,6 +1,6 @@
 @startuml
 
-!startsub showBlock
+!startsub showBody
 'add block definition with internals here, e.g.:
 'component "displayTemp" <<block>> as comp_DisplayTemp {
 '

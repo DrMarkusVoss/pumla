@@ -5,7 +5,7 @@ temp_dC <-- comp_TC
 temp_dF )--> comp_TC
 !endsub
 
-!startsub showBlock
+!startsub showBody
 component "tempConverter" <<block>> as comp_TC {
 
 [conversionModule]
