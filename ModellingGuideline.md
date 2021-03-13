@@ -8,15 +8,20 @@ Why do we need a modelling guideline giving us rules to follow?
 In order to make re-use of single-source PlantUML models, it is necessary to
 follow some modelling rules in order to be easily able to create a tool that
 enables the re-use. So these rules and guidelines help us to keep the re-use
-tooling *pumla* simple in it's implementation. Without these rules, a lot 
+tooling *pumla* simple in its implementation. Without these rules, a lot 
 more effort would need to go into the tooling to allow the same 
 functionality.
 
+### Rule: *pumla* files are valid PlantUML files 
+We only use PlantUML language in the *pumla* architecture descriptions.
 
-### Rule: Atomicity
+####*Rationale*
+That way, we can re-use the *pumla* model elements in each and every PlantUML diagram.
+
+### Rule: Atomicity of Model Element descriptions
 In the model files where the re-usable elements are modelled, do 
-not model dependencies to other elements. Therefore, do not include other
-model files from here.
+not model other model elements or dependencies to other elements. Therefore, do not include other
+model files from here. You should have one file per model element.
 
 ####*Rationale*
 
@@ -84,6 +89,7 @@ in your repository. Developers might use other diagrams for e.g.
 planning or discussion purposes that should not be part of the re-usable
 model. *pumla* will only consider files that are marked like that for the
 re-use. There may exist PlantUML diagrams within the repo, where you do 
-not want the restrictions of *pumla* and the other files would otherwise
+not want the restrictions of *pumla*, and the other files would otherwise
 possibly disturb the model-re-use. Still, you can include *pumla* files
-into any other *non-pumla* PlantUML diagram file.
+into any other *non-pumla* PlantUML diagram file, as it only contains and
+includes PlantUML compatible language.
