@@ -1,14 +1,15 @@
 import sys
 import os
-sys.path.append(os.curdir + "/../../")
-
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
+#print(os.path.dirname(os.path.abspath(__file__)) + "/../../../")
 from modules.control.cmd_utils import *
 
 class TestPumlaCmdUtils:
     def __init__(self):
         self.oldpath = os.path.abspath(os.curdir)
         mypath = os.path.dirname(__file__)
-        os.chdir(mypath)
+        if (not(mypath == "")):
+            os.chdir(mypath)
         pass
 
     def printSeparation(self):
