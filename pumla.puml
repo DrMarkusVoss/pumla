@@ -35,6 +35,8 @@
 ' JSON puml file
 ' TODO: a recursion is needed here to go through
 ' all scopes and elements
+' Addendum: no recursion needed, json list will not
+' be nested but a linked list by "parent".
 '
 !unquoted procedure PUMLAPutElement($elem)
 !foreach $scp in $allelems.scopes

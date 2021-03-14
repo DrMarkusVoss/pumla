@@ -1,9 +1,9 @@
 @startuml
 !$allelems = { "scopes": [
-{ "name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "elements" : [
-  {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml" },
-  {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml"},
-  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml"}]
+{ "name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "parent" : "", "elements" : [
+  {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml", "parent": "tempSys" },
+  {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml", "parent": "tempSys"},
+  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"}]
  }]
 }
 
