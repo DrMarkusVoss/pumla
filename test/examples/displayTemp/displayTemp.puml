@@ -1,21 +1,21 @@
 'PUMLAMR
 @startuml
 
-!startsub showInterfaces
+!if ($PUMVarShowInterfaces)
 temp_dF )--> displayTemp
 temp_dC )--> displayTemp
-!endsub
+!endif
 
-!startsub showBody
+!if ($PUMVarShowBody)
 component displayTemp <<block>>  {
-
+!if ($PUMVarShowBodyInternals)
 [display]
 [conversion]
-
+!endif
 }
-!endsub
+!endif
 
-!startsub showDescription
+!if ($PUMVarShowDescr)
 note bottom of displayTemp
     Gets as input a temperature in
     degree Celsius or Fahrenheit, or both.
@@ -23,6 +23,6 @@ note bottom of displayTemp
     Calls the tempConverter for conversion if
     only one value is given as input.
 end note
-!endsub
+!endif
 
 @enduml

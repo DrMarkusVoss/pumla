@@ -1,26 +1,26 @@
 'PUMLAMR
 @startuml
 
-!startsub showInterfaces
+!if ($PUMVarShowInterfaces)
 temp_dC <-- comp_TC
 temp_dF )--> comp_TC
-!endsub
+!endif
 
-!startsub showBody
+!if ($PUMVarShowBody)
 component "tempConverter" <<block>> as comp_TC {
-
+!if ($PUMVarShowBodyInternals)
 [conversionModule]
 [formulaLib]
-
+!endif
 }
-!endsub
+!endif
 
-!startsub showDescription
+!if ($PUMVarShowDescr)
 note bottom of comp_TC
     Perform a conversion from
     degree Fahrenheit to degree
     Celsius.
 end note
-!endsub
+!endif
 
 @enduml

@@ -1,9 +1,7 @@
 @startuml
 'tempConv/tempConverter
-!includesub tempConv/tempConverter.puml!showBlock
-!includesub tempConv/tempConverter.puml!showDescription
+!include tempConv/tempConverter.puml
 
 'displayTemp/displayTemp.puml
-!includesub displayTemp/displayTemp.puml!showBlock
-!includesub displayTemp/displayTemp.puml!showDescription
+!include displayTemp/displayTemp.puml
 @enduml

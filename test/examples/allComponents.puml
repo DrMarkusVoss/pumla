@@ -6,6 +6,8 @@
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %true()
 
 
 title Overview all components

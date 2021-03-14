@@ -1,29 +1,29 @@
 'PUMLAMR
 @startuml
 
-!startsub showBody
+!if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 'component "displayTemp" <<block>> as comp_DisplayTemp {
-'
+!if ($PUMVarShowBodyInternals)
 '[display]
 '[conversion]
+!endif
 '}
+!endif
 
-!endsub
-
-!startsub showInterfaces
+!if ($PUMVarShowInterfaces)
 'add interface connections here
 ' e.g.: temp_dC )--> comp_DisplayTemp
 
-!endsub
+!endif
 
-!startsub showDescription
+!if ($PUMVarShowDescr)
 'add description note to the block here, e.g.
 'note bottom of comp_DisplayTemp
 '    Gets as input a temperature in
 '    degree Celsius or Fahrenheit, or both.
 'end note
 
-!endsub
+!endif
 
 @enduml
