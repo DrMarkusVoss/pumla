@@ -11,28 +11,6 @@
 !endprocedure
 ' ---------------------------------------------
 
-' ############################################
-
-' ---------------------------------------------
-' get an element referenced by JSON puml file
-'
-!unquoted procedure PUMJPutElement($alias, $description="", $label="", $technology="", $size=12, $colour="green")
-
-!foreach $emp in allelems.elements
-!if ($emp.name == $alias)
- !$alias = $emp.salary
-!endif
-!endfor
-
-rectangle $alias as "
-<color:$colour><<$alias>></color>
-==$label==
-//<size:$size>[$technology]</size>//
-
-  $description"
-!endprocedure
-' --------------------------------------------
-
 
 ' ############################################
 

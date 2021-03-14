@@ -1,4 +1,5 @@
 'PUMLAMR
+'PUMLASCOPE: tempSys
 @startuml
 
 !if ($PUMVarShowInterfaces)

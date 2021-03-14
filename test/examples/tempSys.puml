@@ -1,7 +1,6 @@
 'PUMLAMR
 @startuml
 !include ./../../pumla.puml
-'!include repo_json.puml
 
 !if ($PUMVarShowBody)
 node "Temperature System" as tempSys {

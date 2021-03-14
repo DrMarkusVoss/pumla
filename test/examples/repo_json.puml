@@ -2,7 +2,8 @@
 !$allelems = { "scopes": [
 { "name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "elements" : [
   {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml" },
-  {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml"} ]
+  {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml"},
+  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml"}]
  }]
 }
 

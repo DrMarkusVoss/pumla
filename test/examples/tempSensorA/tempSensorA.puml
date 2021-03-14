@@ -1,0 +1,31 @@
+'PUMLAMR
+'PUMLASCOPE: tempSys
+@startuml
+!include ./../../../pumla.puml
+!if ($PUMVarShowBody)
+'add block definition with internals here, e.g.:
+component "Temperature Sensor A" <<block>> as tempSensorA {
+!if ($PUMVarShowBodyInternals)
+
+[getSignal]
+[AD conversion]
+[signal processing]
+
+!endif
+}
+!endif
+
+!if ($PUMVarShowInterfaces)
+temp_dC <-- tempSensorA
+!endif
+
+!if ($PUMVarShowDescr)
+note bottom of tempSensorA
+    Temperature Sensor of company A.
+    Provides the temperatur in degree
+    celsius.
+end note
+
+!endif
+
+@enduml

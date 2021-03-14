@@ -1,9 +1,8 @@
 @startuml
 !include repo_json.puml
-:hu:
 
 !foreach $scp in $allelems.scopes
-!if ($scp.name == "Skynet")
+!if ($scp.name == "tempSys")
 !foreach $emp in $scp.elements
 :$emp.name:
 !endfor

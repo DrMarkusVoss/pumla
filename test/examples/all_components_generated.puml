@@ -1,7 +1,0 @@
-@startuml
-'tempConv/tempConverter
-!include tempConv/tempConverter.puml
-
-'displayTemp/displayTemp.puml
-!include displayTemp/displayTemp.puml
-@enduml
