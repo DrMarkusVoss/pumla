@@ -1,19 +1,12 @@
-!$PUMVarShowDescr = %false()
-!$PUMVarShowInterfaces = %false()
+!$PUMVarShowDescr = %true()
+!$PUMVarShowInterfaces = %true()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %true()
 
-' --------------------------------------------
-' get an element referenced by Coding Rule
-'
-!unquoted procedure PUMPutElement($compname)
-!include $compname/$compname.puml
-!endprocedure
-' ---------------------------------------------
-
-' ############################################
 ' --------------------------------------------
 ' get an element referenced by path and filename name
 '
-!unquoted procedure _PUMPutElement($filename, $folderpath)
+!unquoted procedure _PUMPutElement($folderpath,$filename)
 !include $folderpath/$filename
 !endprocedure
 ' ---------------------------------------------
@@ -39,3 +32,42 @@ rectangle $alias as "
   $description"
 !endprocedure
 ' --------------------------------------------
+
+
+' ############################################
+
+' ---------------------------------------------
+' get all elements for given scope out of
+' JSON puml file
+'
+!unquoted procedure PUMLAElementsForScope($scope)
+!foreach $scp in $allelems.scopes
+!if ($scp.name == $scope)
+!foreach $emp in $scp.elements
+!include $emp.path/$emp.filename
+!endfor
+!endif
+!endfor
+!endprocedure
+
+' ############################################
+
+' ---------------------------------------------
+' get all elements for given scope out of
+' JSON puml file
+' TODO: a recursion is needed here to go through
+' all scopes and elements
+'
+!unquoted procedure PUMLAPutElement($elem)
+!foreach $scp in $allelems.scopes
+    !if ($scp.name == $elem)
+        _PUMPutElement($scp.path,$scp.filename)
+    !else
+        !foreach $emp in $scp.elements
+            !if ($emp.name == $elem)
+                _PUMPutElement($emp.path,$emp.filename)
+            !endif
+        !endfor
+    !endif
+!endfor
+!endprocedure

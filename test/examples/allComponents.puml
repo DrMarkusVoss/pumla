@@ -4,28 +4,22 @@
 '!include all_components_generated.puml
 !include ./../../pumla.puml
 
+
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 
+'!include tempSys.puml
 
 title Overview all components
 
-[huhu]
-note top of huhu
-    The salary of <u>$foo.employees[0].name</u> is <u>$foo.employees[0].salary</u>.
-end note
-
-!foreach $emp in $foo.employees
-  node $emp.name <<employee>> {
-  [salary = $emp.salary,- USD]
-  }
-!endfor
 
 PUMJPutElement(trara, "This description is %newline()on several lines", $size=10, $technology="Java")
 
-PUMPutElement(displayTemp)
+'PUMLAPutElement(displayTemp)
+PUMLAPutElement(tempSys)
+'PUMLAPutElement(displayTemp)
 
 note bottom of displayTemp
 this is a note to the imported displayTemp

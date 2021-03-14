@@ -1,0 +1,22 @@
+'PUMLAMR
+@startuml
+!include ./../../pumla.puml
+'!include repo_json.puml
+
+!if ($PUMVarShowBody)
+node "Temperature System" as tempSys {
+
+!if ($PUMVarShowBodyInternals)
+PUMLAElementsForScope(tempSys)
+!endif
+
+}
+!endif
+
+!if ($PUMVarShowDescr)
+note bottom of tempSys
+    a temperature measurement and
+    displaying system
+end note
+!endif
+@enduml

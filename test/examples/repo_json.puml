@@ -1,13 +1,17 @@
 @startuml
-!$allelems = { "Scope": "Skynet", "elements" : [
+!$allelems = { "scopes": [
+{ "name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "elements" : [
   {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml" },
   {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml"} ]
+ }]
 }
 
 
-!$foo = { "company": "Skynet", "employees" : [
+!$foo = { "scopes" : [
+{"name": "Skynet", "employees" : [
   {"name" : "alice", "salary": 100 },
   {"name" : "bob", "salary": 50} ]
+ }]
 }
 
 @enduml
