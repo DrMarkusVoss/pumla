@@ -93,3 +93,20 @@ not want the restrictions of *pumla*, and the other files would otherwise
 possibly disturb the model-re-use. Still, you can include *pumla* files
 into any other *non-pumla* PlantUML diagram file, as it only contains and
 includes PlantUML compatible language.
+
+### Rule: PUMLA files end with ".puml"
+Each valid PUMLA file is a valid PlantUML file, and it shall end with ".puml".
+
+####*Rationale*
+This is used as simplification to scan and parse through the source code repo.
+This restriction is not important for the concept or design, but just simplifies
+parsing and scanning. Therefore, it might be removed later.
+
+### Rule: Each PUMLA file should have the name of the alias of the model element.
+Each PUMLA file should have the name of the alias of the model element it is describing.
+If in an PUMLA file the model element has no alias, then it should have no whitespaces 
+or special characters in it and therefore the name can and should be used as filename.
+
+#####*Rationale*
+Same as previous rule, it simplifies the implementation of the parser and file
+scanner and it makes sense as a naming convention anyway.

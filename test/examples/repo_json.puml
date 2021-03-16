@@ -1,18 +1,11 @@
 @startuml
-!$allelems = { "scopes": [
-{ "name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "parent" : "", "elements" : [
+!$allelems = { "elements": [
+  {"name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "parent" : ""},
   {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml", "parent": "tempSys" },
   {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml", "parent": "tempSys"},
-  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"}]
- }]
+  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"}
+  ]
 }
 
-
-!$foo = { "scopes" : [
-{"name": "Skynet", "employees" : [
-  {"name" : "alice", "salary": 100 },
-  {"name" : "bob", "salary": 50} ]
- }]
-}
 
 @enduml

@@ -1,14 +1,14 @@
 'PUMLAMR
-'PUMLASCOPE: tempSys
+'PUMLAPARENT: tempSys
 @startuml
 
 !if ($PUMVarShowInterfaces)
-temp_dC <-- comp_TC
-temp_dF )--> comp_TC
+temp_dC <-- tempConverter
+temp_dF )--> tempConverter
 !endif
 
 !if ($PUMVarShowBody)
-component "tempConverter" <<block>> as comp_TC {
+component "Temp. Converter" <<block>> as tempConverter {
 !if ($PUMVarShowBodyInternals)
 [conversionModule]
 [formulaLib]
@@ -17,7 +17,7 @@ component "tempConverter" <<block>> as comp_TC {
 !endif
 
 !if ($PUMVarShowDescr)
-note bottom of comp_TC
+note bottom of tempConverter
     Perform a conversion from
     degree Fahrenheit to degree
     Celsius.

@@ -1,5 +1,5 @@
 'PUMLAMR
-'PUMLASCOPE: tempSys
+'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla.puml
 !if ($PUMVarShowBody)

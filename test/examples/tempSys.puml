@@ -6,7 +6,7 @@
 node "Temperature System" as tempSys {
 
 !if ($PUMVarShowBodyInternals)
-PUMLAElementsForScope(tempSys)
+PUMLAInjectChildElements(tempSys)
 !endif
 
 }

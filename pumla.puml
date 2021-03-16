@@ -18,13 +18,11 @@
 ' get all elements for given scope out of
 ' JSON puml file
 '
-!unquoted procedure PUMLAElementsForScope($scope)
-!foreach $scp in $allelems.scopes
-!if ($scp.name == $scope)
-!foreach $emp in $scp.elements
-!include $emp.path/$emp.filename
-!endfor
-!endif
+!unquoted procedure PUMLAInjectChildElements($scope)
+!foreach $el in $allelems.elements
+    !if ($el.parent == $scope)
+        !include $el.path/$el.filename
+    !endif
 !endfor
 !endprocedure
 
@@ -39,6 +37,27 @@
 ' be nested but a linked list by "parent".
 '
 !unquoted procedure PUMLAPutElement($elem)
+!foreach $el in $allelems.elements
+    !if ($el.name == $elem)
+        _PUMPutElement($el.path,$el.filename)
+'    !else
+'        !foreach $emp in $scp.elements
+'            !if ($emp.name == $elem)
+'                _PUMPutElement($emp.path,$emp.filename)
+'            !endif
+'        !endfor
+    !endif
+!endfor
+!endprocedure
+
+' ############################################
+
+' ---------------------------------------------
+' get all elements for given scope out of
+' JSON puml file with given level of depth (lod) do
+' be visualized
+
+!unquoted procedure PUMLAPutElement($elem, $lod)
 !foreach $scp in $allelems.scopes
     !if ($scp.name == $elem)
         _PUMPutElement($scp.path,$scp.filename)
@@ -51,3 +70,10 @@
     !endif
 !endfor
 !endprocedure
+
+' ############################################
+
+' ---------------------------------------------
+' all elements with attributes
+' diagram creator based on json repo.
+' TODO

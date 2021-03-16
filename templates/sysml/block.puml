@@ -1,4 +1,5 @@
-'PUMLAMR
+''PUMLAMR
+''PUMLAPARENT:
 @startuml
 '!include pumpla.puml
 !if ($PUMVarShowBody)
@@ -16,7 +17,7 @@
 ' then, the following line must be inserted/uncommented
 ' (the name in the brackets must of course be adapted
 '  to the name of the real component/block)
-'PUMLAElementsForScope(comp_DisplayTemp)
+'PUMLAInjectChildElements(comp_DisplayTemp)
 !endif
 '}
 !endif

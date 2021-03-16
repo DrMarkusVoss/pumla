@@ -1,11 +1,9 @@
 @startuml
 !include repo_json.puml
 
-!foreach $scp in $allelems.scopes
+!foreach $scp in $allelems.elements
 !if ($scp.name == "tempSys")
-!foreach $emp in $scp.elements
-:$emp.name:
-!endfor
+:$scp.name:
 !endif
 !endfor
 
