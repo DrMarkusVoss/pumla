@@ -3,7 +3,8 @@
   {"name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "parent" : ""},
   {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml", "parent": "tempSys" },
   {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml", "parent": "tempSys"},
-  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"}
+  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"},
+  {"name" : "wirelessUnit", "type": "component", "path": "./wirelessUnit", "filename": "wirelessUnit.puml", "parent": ""}
   ]
 }
 

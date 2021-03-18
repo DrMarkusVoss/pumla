@@ -1,5 +1,5 @@
 @startuml
-!include repo_json.puml
+!include modelrepo_json.puml
 
 !foreach $scp in $allelems.elements
 !if ($scp.name == "tempSys")

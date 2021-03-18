@@ -1,0 +1,5 @@
+@startuml
+skinparam component {
+    backgroundColor<<external System>> LightGrey
+}
+@enduml

@@ -77,3 +77,8 @@
 ' all elements with attributes
 ' diagram creator based on json repo.
 ' TODO
+!unquoted procedure PUMLAPutAllElements()
+!foreach $el in $allelems.elements
+    _PUMPutElement($el.path,$el.filename)
+!endfor
+!endprocedure

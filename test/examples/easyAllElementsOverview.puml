@@ -1,27 +1,17 @@
 @startuml
 !include modelrepo_json.puml
 !include ./../../pumla_macros.puml
+!include ./../../templates/sysml/skin.puml
+!include ./../../pumla_tagged_values.puml
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 
-title Overview all components
-
-'PUMLAPutElement(displayTemp)
-
-'put a dedicated model element on the diagram
-'PUMLAPutElement(tempSys)
-
-'PUMLAPutElement(displayTemp)
+'title Overview on all model elements in repository
 
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
-
-note bottom of displayTemp
-    this is an additional note to
-    the imported displayTemp
-end note
 
 @enduml

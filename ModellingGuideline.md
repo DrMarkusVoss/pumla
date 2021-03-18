@@ -20,11 +20,10 @@ That way, we can re-use the *pumla* model elements in each and every PlantUML di
 
 ### Rule: Atomicity of Model Element descriptions
 In the model files where the re-usable elements are modelled, do 
-not model other model elements or dependencies to other elements. Therefore, do not include other
+model only one element, do not model further other model elements or dependencies to other elements. Therefore, do not include other
 model files from here. You should have one file per model element.
 
 ####*Rationale*
-
 When we want to re-use a model element in a diagram, we need to include
 it's *.puml file into our diagram puml file. If another file is included 
 by the model element file of the element we want to have on our
@@ -110,3 +109,9 @@ or special characters in it and therefore the name can and should be used as fil
 #####*Rationale*
 Same as previous rule, it simplifies the implementation of the parser and file
 scanner and it makes sense as a naming convention anyway.
+
+### Rule: No layout adoptions in atomic PUMLA files
+PUMLA files for atomic model elements should not contain layout, coloring and skin definitions.
+####*Rationale*
+In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
+should not be included in the atomic model element definitions.
