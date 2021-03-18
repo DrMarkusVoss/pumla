@@ -1,4 +1,4 @@
-# `pumla` Users Guide
+# `pumla` User's Guide
 This guide shall explain how to use `pumla`. As it is an extension to PlantUML,
 it is assumed that PlantUML is known well enough. If not, please refer to the 
 online available documentation on PlantUML.
