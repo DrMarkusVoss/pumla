@@ -3,22 +3,23 @@
 !include ./../../../pumla_macros.puml
 !include ./../../../pumla_tagged_values.puml
 
-!if ($PUMVarShowProperties)
-'SetPropertyHeader("Tag","Value", "Description")
-' default header Property, Value
-AddProperty("Vendor", "XY")
-AddProperty("SecurityClass", "Alpha")
-AddProperty("Frequency Range", "5 GHz")
+!if ($PUMVarShowTaggedValues)
+AddTaggedValue("Vendor", "XY")
+AddTaggedValue("SecurityClass", "Alpha")
+AddTaggedValue("Frequency Range", "5 GHz")
 !endif
 
 !if ($PUMVarShowBody)
 
-'add block definition with internals here, e.g.:
-component "==Wireless Unit\nPUMLAPutTagTable()" <<block>> <<external System>>  as wirelessUnit {
+component "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
+
+PUMLAPutTaggedValues()
+
 !if ($PUMVarShowBodyInternals)
 [transmitter]
 [receiver]
 !endif
+
 }
 !endif
 
@@ -29,6 +30,7 @@ internet <--> wirelessUnit
 !endif
 
 !if ($PUMVarShowDescr)
+
 note bottom of wirelessUnit
     provide a wireless connection
     to the internet.

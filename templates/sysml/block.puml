@@ -2,9 +2,24 @@
 ''PUMLAPARENT:
 @startuml
 '!include pumpla.puml
+
+' if you want to add tagged values,
+' just uncomment the following lines
+' and adopt the tags and values:
+'!if ($PUMVarShowTaggedValues)
+'AddProperty("Vendor", "XY")
+'AddProperty("SecurityClass", "Alpha")
+'AddProperty("Frequency Range", "5 GHz")
+'!endif
+
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 'component "displayTemp" <<block>> as comp_DisplayTemp {
+
+'if the element has tagged values defined above, just uncomment
+'the following line:
+'PUMLAPutTaggedValues()
+
 !if ($PUMVarShowBodyInternals)
 ' add some internal elements here, if the block is
 ' "non-aggregating", meaning all of its description

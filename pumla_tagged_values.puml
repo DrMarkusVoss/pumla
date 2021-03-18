@@ -3,7 +3,8 @@
 '            extension for PlantUML from here:
 '            https://github.com/plantuml-stdlib/C4-PlantUML
 '
-'The original code in 'C4.puml' is licensed under this
+'The original code in 'C4.puml' is licensed under this:
+'
 'MIT License
 '
 'Copyright (c) 2018 Ricardo Niepel
@@ -29,61 +30,70 @@
 ' Element tags
 ' ##################################
 
-!global $propTable = ""
-!global $propTableCaption = ""
-!global $propColCaption = "="
+!global tvTable = ""
+!global $tvTableCaption = ""
+!global $tvColCaption = "="
 
-!unquoted function SetPropertyHeader($col1Name, $col2Name, $col3Name = "", $col4Name = "")
-  !$propColCaption = ""
-  !$propTableCaption = "|= <size: 10>" + $col1Name + " |= <size: 10>" + $col2Name + " |"
+' kept preparation for up to 4 columns
+!unquoted function SetTaggedValuesHeader($col1Name, $col2Name, $col3Name = "", $col4Name = "")
+  !$tvColCaption = ""
+  !$tvTableCaption = "|= <size: 10>" + $col1Name + " |= <size: 10>" + $col2Name + " |"
   !if ($col3Name != "")
-    !$propTableCaption = $propTableCaption + "= " + $col3Name + " |"
+    !$tvTableCaption = $tvTableCaption + "= " + $col3Name + " |"
   !endif
   !if ($col4Name != "")
-    !$propTableCaption = $propTableCaption + "= " + $col4Name + " |"
+    !$tvTableCaption = $tvTableCaption + "= " + $col4Name + " |"
   !endif
   !return ""
 !endfunction
 
-!unquoted function WithoutPropertyHeader()
-  !$propTableCaption = ""
-  !$propColCaption = "="
+!unquoted function WithoutTaggedValuesHeader()
+  !$tvTableCaption = ""
+  !$tvColCaption = "="
   !return ""
 !endfunction
 
-!unquoted function AddProperty($col1, $col2, $col3 = "", $col4 = "")
+' add a tag/value pair to the table
+!unquoted function AddTaggedValue($col1, $col2, $col3 = "", $col4 = "")
   !if ($propTable == "")
     !if ($propTableCaption != "")
-      !$propTable = $propTableCaption + "\n"
+      !tvTable = $tvTableCaption + "\n"
     !endif
   !else
-    !$propTable = $propTable + "\n"
+    !tvTable = tvTable + "\n"
   !endif
-  !$propTable = $propTable + "| <size: 8>" + $col1 + " |" + $propColCaption + " <size: 8>" + $col2 + " |"
+  !tvTable = tvTable + "| <size: 8>" + $col1 + " |" + $tvColCaption + " <size: 8>" + $col2 + " |"
   !if ($col3 != "")
-    !$propTable = $propTable + " " + $col3 + " |"
+    !tvTable = tvTable + " " + $col3 + " |"
   !endif
   !if ($col4 != "")
-    !$propTable = $propTable + " " + $col4 + " |"
+    !tvTable = tvTable + " " + $col4 + " |"
   !endif
   !return ""
 !endfunction
 
+' this returns the text for the tagged value table.
+' works only in quoted areas, not where real linebreaks
+' are expected like in "note as xy [lines with line breaks...] end note".
 !unquoted function PUMLAPutTagTable()
   !if ($propTable != "")
-    !$retTable = "\n" + $propTable
-    !$propTable = ""
+    !$retTable = "\n" + tvTable
+    !tvTable = ""
     !return $retTable
   !endif
   !return ""
 !endfunction
-'
-'!unquoted function $getProps_L()
-'  !return $getProps("\l")
-'!endfunction
-'
-'!unquoted function $getProps_R()
-'  !return $getProps("\r")
-'!endfunction
 
-SetPropertyHeader("Tag","Value")
+' set standard property header for tagged values
+SetTaggedValuesHeader("Tag","Value")
+
+' put the tagged value table into a rectangle.
+' so it is not necessarily exactly below the name
+' of the surrounding element.
+!unquoted procedure PUMLAPutTaggedValues()
+!if ($PUMVarShowTaggedValues)
+rectangle "Tagged Values PUMLAPutTagTable()" {
+}
+!endif
+!endprocedure
+

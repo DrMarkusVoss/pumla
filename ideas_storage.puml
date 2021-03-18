@@ -58,7 +58,8 @@ note as n5
 end note
 
 note as n6
-**Idea:** Provide templates for atomic model element descriptions
+**Idea:** Provide templates for atomic model element
+descriptions
 
 This may require to provide different templates for e.g. for
 - SysML
@@ -73,6 +74,13 @@ note as n7
 and a common dynamic behaviour descriptions.
 Also define how the relations are managed...
 ... yet unclear.
+end note
+
+note as n8
+**Idea:** Macro to gather all repo-diagrams and put them
+into one single MD as overview. Repo-diagrams with 'PUMLADR.
+That separation between diagram and model element description
+is important as in PlantUML everything is a diagram.
 end note
 }
 @enduml

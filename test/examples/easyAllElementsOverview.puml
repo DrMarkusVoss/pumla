@@ -2,16 +2,16 @@
 !include modelrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
-!include ./../../pumla_tagged_values.puml
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
-!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowTaggedValues = %true()
 
-'title Overview on all model elements in repository
+title Overview on all model elements in repository
 
-'put all elements of json-repo onto the diagram
+'put all elements of json-modelrepo onto the diagram
 PUMLAPutAllElements()
 
 @enduml

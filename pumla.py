@@ -12,11 +12,11 @@ def parseSysArg(sysarg):
     # no parameter - default behaviour: show all pumla files in subdirs
     if (len(sysarg) == 1):
         print("all pumla files in subdirs:")
-        pfls = findAllPumlaFiles(os.path.curdir)
+        pfls = findAllPUMLAFiles(os.path.curdir)
         for e in pfls:
             print(e)
     else:
-        if (sysarg[1] == "showelements"):
+        if (sysarg[1] == "listelements"):
             print("PUMLA elements:\n")
             # pfls = list of PUMLA files
             pfls = findAllPUMLAFiles(os.path.curdir)
@@ -36,6 +36,9 @@ def parseSysArg(sysarg):
             for e in pelems:
                 e.printMe()
                 print("")
+        elif (sysarg[1] == "update"):
+            print("update... work in progress")
+            print("no functionality yet... sorry.")
 
 if __name__ == "__main__":
     identifyMe()
