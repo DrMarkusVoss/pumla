@@ -4,8 +4,8 @@ it is assumed that PlantUML is known well enough. If not, please refer to the
 online available documentation on PlantUML.
 
 ## The `pumla` Concept
-- Re-use by describing atomic model elements in single PlantUML file/diagram.
-- Introduction of Global Variables to control what parts of a model element are
+- Re-use by describing single atomic model elements in PlantUML file/diagram.
+- Introduction of special Global Variables to control what parts of a model element are
   shown on a diagram.
 - Modelling guideline to enable re-use and simplify scanning and parsing.
 - Scanning and parsing of `pumla` files, storing the contents in a JSON-based
@@ -37,7 +37,7 @@ at the current folder location and traverses from here through all underlying
 folders for all `.puml` files. The .puml files will be parsed and if they are 
 pumla files, their relevant content will be extracted and stored in the 
 `modelrepo_json.puml` and `diagramrepo_json.puml` files. Each call will overwrite
-the existing `*_json.puml` files, therefore they should not be modified by hand,
+the existing `{modelrepo | diagramrepo}_json.puml` files, therefore they should not be modified by hand,
 because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
@@ -46,8 +46,7 @@ way.
 ---
 
 ## PlantUML Extension
-The following special comments (file markings), macros and global variables are made as extension to PlantUML. These
-can be used within each PlantUML file by including `pumla_macros.puml`.
+The following special comments (file markings), macros and global variables are made as extension to PlantUML. 
 
 ### File Markings
 
@@ -71,6 +70,8 @@ then this element will appear inside the parent element.
 ---
 
 ### Extension Macros
+These macros (that are PlantUML unquoted functions and procedures) can be
+used within each PlantUML file by including `pumla_macros.puml`.
 
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
@@ -109,34 +110,56 @@ Requires including `pumla_tagged_values.puml`.
 These following global variables have an impact on the visualization 
 of all pumla model elements that are put onto the diagram.
 
-### `PUMVarShowDescr : boolean` 
+### `$PUMVarShowDescr : boolean` 
 Defines whether the model elements descriptions are shown on
 the diagram or not. 
 
-### `PUMVarShowInterfaces : boolean`
+### `$PUMVarShowInterfaces : boolean`
 Defines whether the interfaces of the model elements are shown
 on the diagram or not.
 
-### `PUMVarShowBody : boolean`
+### `$PUMVarShowBody : boolean`
 Defines whether the model elements body is shown on the diagram
 or not. The body is the main model element. In most cases it 
 does not make sense to hide the body, so this will be most
 likely almost on every diagram true. But there may be some 
 rare exceptions where you want it. ;-)
 
-### `PUMVarShowBodyInternals : boolean`
+### `$PUMVarShowBodyInternals : boolean`
 Defines whether the internals of the model elements are shown.
 Internals can be elements directly modelled into the body or
 elements belonging inside indirectly, by using the
 `'PUMLAPARENT` marking.
 
-### `PUMVarShowTaggedValues : boolean`
+### `$PUMVarShowTaggedValues : boolean`
 Defines whether the tagged values table of the model element
 are shown within the model elements body or not.
 
 ### TODO
 - global level of detail for internals
 
+### Example
+```PlantUML
+file: ./test/examples/easyAllElementsOverview.puml
+
+@startuml
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %true()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowTaggedValues = %true()
+
+title Overview on all model elements in repository
+
+'put all elements of json-modelrepo onto the diagram
+PUMLAPutAllElements()
+
+@enduml
+```
 ---
 
 ### Files to be included

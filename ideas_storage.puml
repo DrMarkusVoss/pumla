@@ -82,5 +82,11 @@ into one single MD as overview. Repo-diagrams with 'PUMLADR.
 That separation between diagram and model element description
 is important as in PlantUML everything is a diagram.
 end note
+
+note as n9
+**Idea:** Make the python script generate a frame for an arc42
+report in which diagrams from the model and diagram repo are included
+automatically.
+end note
 }
 @enduml

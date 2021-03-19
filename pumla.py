@@ -17,7 +17,7 @@ def parseSysArg(sysarg):
             print(e)
     else:
         if (sysarg[1] == "listelements"):
-            print("PUMLA elements:\n")
+            print("\nPUMLA elements:\n")
             # pfls = list of PUMLA files
             pfls = findAllPUMLAFiles(os.path.curdir)
 
@@ -36,6 +36,7 @@ def parseSysArg(sysarg):
             for e in pelems:
                 e.printMe()
                 print("")
+
         elif (sysarg[1] == "update"):
             print("update... work in progress")
             print("no functionality yet... sorry.")

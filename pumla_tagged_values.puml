@@ -30,7 +30,7 @@
 ' Element tags
 ' ##################################
 
-!global tvTable = ""
+!global $tvTable = ""
 !global $tvTableCaption = ""
 !global $tvColCaption = "="
 
@@ -57,17 +57,17 @@
 !unquoted function AddTaggedValue($col1, $col2, $col3 = "", $col4 = "")
   !if ($propTable == "")
     !if ($propTableCaption != "")
-      !tvTable = $tvTableCaption + "\n"
+      !$tvTable = $tvTableCaption + "\n"
     !endif
   !else
-    !tvTable = tvTable + "\n"
+    !$tvTable = $tvTable + "\n"
   !endif
-  !tvTable = tvTable + "| <size: 8>" + $col1 + " |" + $tvColCaption + " <size: 8>" + $col2 + " |"
+  !$tvTable = $tvTable + "| <size: 8>" + $col1 + " |" + $tvColCaption + " <size: 8>" + $col2 + " |"
   !if ($col3 != "")
-    !tvTable = tvTable + " " + $col3 + " |"
+    !tvTable = $tvTable + " " + $col3 + " |"
   !endif
   !if ($col4 != "")
-    !tvTable = tvTable + " " + $col4 + " |"
+    !$tvTable = $tvTable + " " + $col4 + " |"
   !endif
   !return ""
 !endfunction
@@ -77,7 +77,7 @@
 ' are expected like in "note as xy [lines with line breaks...] end note".
 !unquoted function PUMLAPutTagTable()
   !if ($propTable != "")
-    !$retTable = "\n" + tvTable
+    !$retTable = "\n" + $tvTableCaption + $tvTable
     !tvTable = ""
     !return $retTable
   !endif
