@@ -7,6 +7,8 @@
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
 !if ($PUMVarShowBodyInternals)
+' the elements put here should have no or
+' no other parent
 PUMLAPutElement(tempSensorB)
 PUMLAPutElement(tempConverter)
 !endif

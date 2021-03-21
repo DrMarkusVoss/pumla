@@ -1,5 +1,9 @@
 @startuml
+
+
+
 rectangle "== Ideas Storage for **pumla**\n <i>-sticky note board- " {
+
 note as n1
    **Idea:** handle tagged values to model
    elements as a table in a note like this:
@@ -11,6 +15,8 @@ note as n1
   Tagged values with macros like
   done in C4model extension
 end note
+
+note right of n1 #back:lightGreen : **DONE**
 
 note as n2
 **Idea:** show "parent" structure as tree
@@ -46,6 +52,8 @@ python script that scans and parses the
 complete source code repo for pumla files.
 end note
 
+note right of n4 #back:lightGreen : **DONE**
+
 note as n5
 **Idea:** Use modelling guidelines for
 - enabling the possibility of single source usage
@@ -56,6 +64,8 @@ note as n5
 - simplifying the scanning through the source code
   repository and parsing the pumla files
 end note
+
+note right of n5 #back:lightGreen : **DONE**
 
 note as n6
 **Idea:** Provide templates for atomic model element
@@ -93,6 +103,22 @@ note as n10
 **Idea:** Make an "InjectIntoElement(elem, targetParenteElem)" so
 that you can later decide when deploying how things are embedded.
 So modularity on nesting/embedding elements.
+end note
+
+note as n11
+**Idea:** Create instantiation mechanism for pumla model repo
+elements, so the same element can appear as 2 instances
+on the same diagram.
+end note
+
+note as n12
+**Idea:** Hide/Remove macros for elements
+- with defined tag/value pair
+- with defined stereotype
+
+PutAllElementsWith property for
+- defined tag/value pair
+- defined stereotype
 end note
 }
 @enduml

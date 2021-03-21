@@ -11,13 +11,6 @@
 
 title Overview all components
 
-'PUMLAPutElement(displayTemp)
-
-'put a dedicated model element on the diagram
-'PUMLAPutElement(tempSys)
-
-'PUMLAPutElement(displayTemp)
-
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
 
@@ -25,5 +18,4 @@ note bottom of displayTemp
     this is an additional note to
     the imported displayTemp
 end note
-
 @enduml
