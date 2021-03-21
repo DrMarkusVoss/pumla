@@ -25,9 +25,15 @@ unclear, but it evolves.
 ## Getting Started
 
 ### Simple example
-See this example:
+See this example diagram description, putting
+all elements of the example model repository onto the
+diagram...
+
 [./test/examples/easyAllElementsOverview.puml](./test/examples/easyAllElementsOverview.puml)
 
+... leading to this diagram:
+
+![](./test/examples/pics/easyAllElementsOverview.png)
 
 ### User's Guide
 You can directly dive into the details by taking a look
