@@ -25,6 +25,9 @@ unclear, but it evolves.
 ## Getting Started
 
 ### Simple example
+See this example:
+[./test/examples/easyAllElementsOverview.puml](./test/examples/easyAllElementsOverview.puml)
+
 
 ### User's Guide
 You can directly dive into the details by taking a look
