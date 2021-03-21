@@ -3,19 +3,24 @@
 !include ./../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
-node "Temperature System" as tempSys {
+    node "Temperature System" as tempSys {
 
-!if ($PUMVarShowBodyInternals)
-PUMLAInjectChildElements(tempSys)
+        !if ($PUMVarShowBodyInternals)
+            PUMLAInjectChildElements(tempSys)
+        !endif
+
+    }
 !endif
 
-}
+!if ($PUMVarShowInterfaces)
+interface "internet" as internet_tempSys
+internet_tempSys <--> tempSys
 !endif
 
 !if ($PUMVarShowDescr)
-note bottom of tempSys
-    a temperature measurement and
-    displaying system
-end note
+    note bottom of tempSys
+        a temperature measurement and
+        displaying system
+    end note
 !endif
 @enduml

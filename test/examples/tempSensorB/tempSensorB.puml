@@ -1,31 +1,25 @@
 'PUMLAMR
-'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
-
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
-component "Temperature Sensor A" <<block>> as tempSensorA {
+component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 !if ($PUMVarShowBodyInternals)
-
-[getSignal]
-[AD conversion]
-[signal processing]
-
+[unknown internals]
 !endif
 }
 !endif
 
 !if ($PUMVarShowInterfaces)
-interface "temp_dC" as temp_dC_tempSensorA
-temp_dC_tempSensorA <-- tempSensorA
+interface "temp_dF" as temp_dF_tempSensorB
+temp_dF_tempSensorB <-- tempSensorB
 !endif
 
 !if ($PUMVarShowDescr)
-note bottom of tempSensorA
-    Temperature Sensor of company A.
+note bottom of tempSensorB
+    Temperature Sensor of company B.
     Provides the temperatur in degree
-    Celsius.
+    Fahrenheit.
 end note
 
 !endif

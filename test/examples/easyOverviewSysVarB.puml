@@ -14,7 +14,10 @@
 title Overview on all model elements in repository
 
 'put all elements of json-modelrepo onto the diagram
-PUMLAPutAllElements()
+PUMLAPutElement(tempSys)
+PUMLAPutElement(tempSensorBdC)
+PUMLAPutElement(wirelessUnit)
+
 
 '!include ./relations/relations_tempSys_Var_A.puml
 '!include ./relations/relations_tempSys_Var_B.puml
@@ -22,4 +25,8 @@ PUMLAPutAllElements()
 
 internet_tempSys -- internet_wirelessUnit
 
+' TODO: make a macro to remove all things from an
+'       unwanted element
+remove tempSensorA
+remove temp_dC_tempSensorA
 @enduml

@@ -21,6 +21,11 @@ unclear, but it evolves.
 
 ![](./arch/01_context/pumla_context.png)
 
+---
+## Getting Started
+
+### Simple example
+
 ### User's Guide
 You can directly dive into the details by taking a look
 into the User's Guide:

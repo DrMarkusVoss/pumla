@@ -1,15 +1,18 @@
-''PUMLAMR
-''PUMLAPARENT:
+'PUMLAMR
+'PUMLAPARENT:
 @startuml
-'!include pumpla.puml
+' adopt path if necesary or put the path to pumla
+' into your include path
+!include pumpla.puml
 
-' if you want to add tagged values,
+' tagged values are optional.
+' if you want to have and add tagged values,
 ' just uncomment the following lines
 ' and adopt the tags and values:
 '!if ($PUMVarShowTaggedValues)
-'AddProperty("Vendor", "XY")
-'AddProperty("SecurityClass", "Alpha")
-'AddProperty("Frequency Range", "5 GHz")
+'AddTaggedValue("Vendor", "XY")
+'AddTaggedValue("SecurityClass", "Alpha")
+'AddTaggedValue("Frequency Range", "5 GHz")
 '!endif
 
 !if ($PUMVarShowBody)

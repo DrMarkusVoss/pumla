@@ -1,0 +1,32 @@
+'PUMLAMR
+'PUMLAPARENT: tempSys
+@startuml
+!include ./../../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+'add block definition with internals here, e.g.:
+component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
+!if ($PUMVarShowBodyInternals)
+PUMLAPutElement(tempSensorB)
+PUMLAPutElement(tempConverter)
+!endif
+}
+!endif
+
+!if ($PUMVarShowInterfaces)
+interface "temp_dC" as temp_dC_tempSensorBdC
+temp_dC_tempSensorBdC <-- tempSensorBdC
+temp_dC_tempConverter -- temp_dC_tempSensorBdC
+temp_dF_tempSensorB -- temp_dF_tempConverter
+!endif
+
+!if ($PUMVarShowDescr)
+note bottom of tempSensorBdC
+    Temperature Sensor of company B
+    combined with the converter to
+    provide the temperature in degree
+    Celsius.
+end note
+
+!endif
+@enduml

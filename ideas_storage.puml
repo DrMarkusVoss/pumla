@@ -88,5 +88,11 @@ note as n9
 report in which diagrams from the model and diagram repo are included
 automatically.
 end note
+
+note as n10
+**Idea:** Make an "InjectIntoElement(elem, targetParenteElem)" so
+that you can later decide when deploying how things are embedded.
+So modularity on nesting/embedding elements.
+end note
 }
 @enduml

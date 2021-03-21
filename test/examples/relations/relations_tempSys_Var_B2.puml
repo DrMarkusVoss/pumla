@@ -1,0 +1,11 @@
+'PUMLAMR
+@startuml
+
+!include ./../displayTemp/displayTemp.puml
+!include ./../tempSensorBdC/tempSensorBdC.puml
+
+!if ($PUMVarShowInterfaces)
+temp_dC_tempSensorBdC--temp_dC_displayTemp
+!endif
+
+@enduml

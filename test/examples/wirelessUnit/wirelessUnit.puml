@@ -11,7 +11,7 @@ AddTaggedValue("Frequency Range", "5 GHz")
 
 !if ($PUMVarShowBody)
 
-component "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
+rectangle "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
 
 PUMLAPutTaggedValues()
 
@@ -24,9 +24,8 @@ PUMLAPutTaggedValues()
 !endif
 
 !if ($PUMVarShowInterfaces)
-
-internet <--> wirelessUnit
-
+interface "internet" as internet_wirelessUnit
+internet_wirelessUnit <--> wirelessUnit
 !endif
 
 !if ($PUMVarShowDescr)

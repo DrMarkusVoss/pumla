@@ -1,0 +1,67 @@
+'PUMLAMR
+'PUMLAPARENT: -
+' in the line above, replace the "-" with a
+' parent alias if this es a child element that
+' shall be nested into the parent.
+
+@startuml
+' adopt path if necesary or put the path to pumla
+' into your include path
+!include ./../../pumla_macros.puml
+
+' following include only needed if tagged values
+' are used
+!include ./../../pumla_tagged_values.puml
+
+' tagged values are optional.
+' if you want do not need tagged values,
+' just delete the following lines:
+!if ($PUMVarShowTaggedValues)
+AddTaggedValue("Vendor", "XY")
+AddTaggedValue("SecurityClass", "Alpha")
+AddTaggedValue("Frequency Range", "5 GHz")
+!endif
+
+!if ($PUMVarShowBody)
+' add atomic model element definition with
+' internals here, e.g.:
+rectangle "Temp. Display" <<block>> as displayTemp {
+
+'if the element has tagged values defined above, just uncomment
+'the following line:
+PUMLAPutTaggedValues()
+
+!if ($PUMVarShowBodyInternals)
+' add some internal elements here, like this:
+[display]
+[conversion]
+
+' "aggregating" its children, meaning others
+' can add internals without changing this definition
+' then.
+' if that kind of aggregation is not used
+' the following line can be deleted
+' (the name in the brackets must of course be adapted
+'  to the alias of the real element)
+PUMLAInjectChildElements( displayTemp )
+
+!endif
+}
+!endif
+
+!if ($PUMVarShowInterfaces)
+'add interface connections here
+temp_dC )--> displayTemp
+
+!endif
+
+!if ($PUMVarShowDescr)
+'add description note to the block here, e.g.
+note bottom of displayTemp
+    Gets as input a temperature in
+    degree Celsius or Fahrenheit, or both.
+end note
+
+!endif
+
+@enduml

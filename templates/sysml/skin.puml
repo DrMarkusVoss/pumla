@@ -1,5 +1,10 @@
 @startuml
+skinparam rectangle {
+    backgroundColor<<external System>> LightGrey
+    roundCorner<<block>> 15
+}
 skinparam component {
     backgroundColor<<external System>> LightGrey
+    roundCorner<<block>> 15
 }
 @enduml
