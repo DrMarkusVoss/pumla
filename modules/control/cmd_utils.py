@@ -1,4 +1,5 @@
 import os
+import json
 from modules.model.PUMLAElement import PUMLAElement
 
 def findAllPUMLAFiles(path):
@@ -79,3 +80,40 @@ def parsePUMLAFile(filename):
 
     # return the PUMLA Element
     return pel
+
+def updatePUMLAMR(path):
+    """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
+    pumlafiles = findAllPUMLAFiles(path)
+    pumlaelements = []
+    mrfilename = path + "/mrtest_json.puml"
+    jsondict = {"elements": []}
+
+    for f in pumlafiles:
+        pel = parsePUMLAFile(f)
+        pumlaelements.append(pel)
+
+
+    for e in pumlaelements:
+        tmpdict = {}
+        tmpdict["name"] = e.getName()
+        tmpdict["alias"] = e.getAlias()
+        tmpdict["type"] = e.getType()
+        tmpdict["parent"] = e.getParent()
+        tmpdict["path"] = e.getPath()
+        tmpdict["filename"] = e.getFilename()
+        jsondict["elements"].append(tmpdict)
+    #print(json.dumps(jsondict))
+
+    jsontxt = "!$allelems = " + json.dumps(jsondict)
+    txt = jsontxt.split("},")
+
+    with open(mrfilename, "w") as fil:
+        fil.write("@startuml\n")
+        for i in range(len(txt)-1):
+            fil.write(txt[i] + "},\n")
+        fil.write(txt[len(txt)-1] + "\n")
+        fil.write("@enduml\n")
+
+    fil.close()
+
+    return (True, mrfilename)

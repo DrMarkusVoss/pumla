@@ -1,11 +1,11 @@
 #!/usr/bin/python
 import sys
 import os
-from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile
+from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
 def identifyMe():
     """ information about the executed command """
-    print("pumla v0.1 - by Dr. Markus Voss")
+    print("pumla v0.2 - by Dr. Markus Voss")
 
 def parseSysArg(sysarg):
     """ parses the given command line arguments """
@@ -38,8 +38,14 @@ def parseSysArg(sysarg):
                 print("")
 
         elif (sysarg[1] == "update"):
-            print("update... work in progress")
-            print("no functionality yet... sorry.")
+            print("updating...")
+            (success, fn) = updatePUMLAMR(os.path.curdir)
+            if (success):
+                print("file: " + fn)
+                print("done.")
+            else:
+                print("failed.")
+
 
 if __name__ == "__main__":
     identifyMe()

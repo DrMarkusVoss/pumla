@@ -6,6 +6,7 @@ class PUMLAElement:
         """ init every attribute with '-' as default, nothing more """
         self.name = "-"
         self.alias = "-"
+        self.type = "-"
         self.parent = "-"
         self.filename = "-"
         self.path = "-"
@@ -13,6 +14,9 @@ class PUMLAElement:
     def setName(self, name):
         """ setter for 'name' """
         self.name = name
+
+    def setType(self, type):
+        self.type = type
 
     def setFilename(self, filename):
         """ setter for 'filename' """
@@ -29,6 +33,24 @@ class PUMLAElement:
     def setPath(self, path):
         """ setter for 'path' """
         self.path = path
+
+    def getName(self):
+        return self.name
+
+    def getType(self):
+        return self.type
+
+    def getAlias(self):
+        return self.alias
+
+    def getParent(self):
+        return self.parent
+
+    def getPath(self):
+        return self.path
+
+    def getFilename(self):
+        return self.filename
 
     def printMe(self):
         """ command line print out of the model element attributes """

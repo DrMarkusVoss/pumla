@@ -120,5 +120,10 @@ PutAllElementsWith property for
 - defined tag/value pair
 - defined stereotype
 end note
+
+note as n13
+**Idea:** Blacklist of directories that shall not be scanned by pumla,
+e.g. where templates are stored.
+end note
 }
 @enduml
