@@ -48,6 +48,7 @@ def parsePUMLAFile(filename):
     file = open(filename)
     text = file.read()
     file.close()
+    
     # split the file content per line
     # into a list of lines
     lines = text.split("\n")
@@ -81,19 +82,14 @@ def parsePUMLAFile(filename):
     # return the PUMLA Element
     return pel
 
-def updatePUMLAMR(path):
-    """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
-    pumlafiles = findAllPUMLAFiles(path)
-    pumlaelements = []
-    mrfilename = path + "/mrtest_json.puml"
-    jsondict = {"elements": []}
+def serializePUMLAElementsToDict(pumla_elements):
+    '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
+    dict = {"elements": []}
 
-    for f in pumlafiles:
-        pel = parsePUMLAFile(f)
-        pumlaelements.append(pel)
-
-
-    for e in pumlaelements:
+    # put the relevant information from each pumla element
+    # into a temp dict. put all temp dicts into a
+    # dict for all the elements
+    for e in pumla_elements:
         tmpdict = {}
         tmpdict["name"] = e.getName()
         tmpdict["alias"] = e.getAlias()
@@ -101,19 +97,47 @@ def updatePUMLAMR(path):
         tmpdict["parent"] = e.getParent()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
-        jsondict["elements"].append(tmpdict)
-    #print(json.dumps(jsondict))
+        dict["elements"].append(tmpdict)
 
+    return dict
+
+def updatePUMLAMR(path):
+    """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
+    # traverse down the path and find all
+    # pumla files.
+    pumlafiles = findAllPUMLAFiles(path)
+
+    # setup the filename to store the JSON model repo
+    mrfilename = path + "/mrtest_json.puml"
+
+    # parse each pumla file and create
+    # a PUMLA Element out of it, that
+    # gets put into a list.
+    pumlaelements = []
+    for f in pumlafiles:
+        pel = parsePUMLAFile(f)
+        pumlaelements.append(pel)
+
+    # put the elements into a dictionary that can be easily
+    # transformed into a JSON representation.
+    jsondict = serializePUMLAElementsToDict(pumlaelements)
+
+    # make it accessible from within PlantUML.
+    # $allelemens is the preprocessor variable that
+    # allows access by PlantUML pumla marcros.
     jsontxt = "!$allelems = " + json.dumps(jsondict)
-    txt = jsontxt.split("},")
 
+    # split text to make the resulting file more readable;
+    # one element definition per line.
+    txt_lines = jsontxt.split("},")
+
+    # write the lines to the model repo file
     with open(mrfilename, "w") as fil:
         fil.write("@startuml\n")
-        for i in range(len(txt)-1):
-            fil.write(txt[i] + "},\n")
-        fil.write(txt[len(txt)-1] + "\n")
+        for i in range(len(txt_lines)-1):
+            fil.write(txt_lines[i] + "},\n")
+        fil.write(txt_lines[len(txt_lines)-1] + "\n")
         fil.write("@enduml\n")
-
     fil.close()
 
-    return (True, mrfilename)
+    return True, mrfilename
