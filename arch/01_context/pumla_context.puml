@@ -17,6 +17,13 @@ rectangle "pumla_macros.puml" <<PlantUML Extension>> as pmac {
 rectangle "PlantUML" <<application>> as plantuml {
 }
 
+note top of pmac
+    Extension of PlantUML.
+    Macros to make re-use of
+    the model elements within
+    the JSON model repository.
+end note
+
 rectangle "project git-repo" <<source code>> as pgr {
 rectangle "puml-files" <<arch>>  as pumlf {
 }
@@ -30,9 +37,10 @@ rectangle "Build Tool Configuration" as btc {
 }
 
 note top of pumla
-    Extension to PlantUML to
-    organize re-use of architecture
-    model elements.
+    Scans for and parses PUMLA
+    marked PlantUML files, creates a
+    model-repository JSON file accessible
+    by PlantUML.
 end note
 
 
