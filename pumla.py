@@ -39,11 +39,13 @@ def parseSysArg(sysarg):
 
         elif (sysarg[1] == "update"):
             print("updating...")
+            # if there is another command line argument after the update command...
             if (len(sysarg) > 2):
+                # take 3rd command line argument as filename for model repo JSON file
                 mrfilename = sysarg[2]
             else:
-                # setup the filename to store the JSON model repo
-                mrfilename = os.path.curdir + "/mrtest_json.puml"
+                # setup the default filename to store the JSON model repo
+                mrfilename = os.path.curdir + "/modelrepo_json.puml"
             # create/update/overwrite the pumla model repository
             (success, fn) = updatePUMLAMR(os.path.curdir, mrfilename)
             if (success):

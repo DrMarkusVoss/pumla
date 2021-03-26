@@ -5,6 +5,7 @@ __pycache__/
 
 # testfile
 mrtest_json.puml
+./modelrepo_json.puml
 
 # C extensions
 *.so
