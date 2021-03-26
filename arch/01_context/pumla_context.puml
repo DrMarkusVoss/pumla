@@ -68,11 +68,10 @@ cloud "Some Cloud" as cloud {
 Java -[hidden]-> Python
 Python -[hidden]-> puml
 
-pumla -down-> sco: runs on
+pumla --> sco: runs on
 
 dev-->pumla: create & maintain architecture
 dev-->pgr: work on
-pumla --> pgr: execute on
 pumla ..> btc: integrate into
 pumla ..> pumlamr: generate
 pumla ..> pumlf: find and enlist
