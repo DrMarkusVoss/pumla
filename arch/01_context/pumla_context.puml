@@ -25,15 +25,23 @@ note top of pmac
 end note
 
 rectangle "project git-repo" <<source code>> as pgr {
-rectangle "puml-files" <<arch>>  as pumlf {
+rectangle "PUMLA Model Element description" <<PlantUML *.puml>>  as pumlf {
 }
-rectangle "pumla model repo file" <<arch>> as pumlamr {
+rectangle "Architecture Diagrams \ndescribing \nSource Code Solution" <<PlantUML *.puml>>  as archdiags {
+}
+rectangle "pumla model repo file" <<JSON PlantUML file>> as pumlamr {
 }
 
 rectangle "Programming Language \nCodeSource Code files" {
 }
 rectangle "Build Tool Configuration" as btc {
 }
+}
+
+rectangle "Modelling Guideline" <<markdown document>> as modguid {
+}
+
+rectangle "Model Element templates" <<PlantUML  template>> as templ {
 }
 
 note top of pumla
@@ -67,13 +75,23 @@ cloud "Some Cloud" as cloud {
 
 Java -[hidden]-> Python
 Python -[hidden]-> puml
+pumlamr -[hidden]-> sco
+pumlamr -[hidden]-> cloud
 
 pumla --> sco: runs on
 
-dev-->pumla: create & maintain architecture
+dev-->pumla: use
 dev-->pgr: work on
+dev-->modguid: follow
+dev-->templ : use
+dev --> archdiags : model architecture\nusing model repo
+templ-->pmac :use
+modguid--> pmac: proposes usage of
+modguid--> templ: proposes usage of
+archdiags-->pmac : include
+archdiags-->pumlamr : include
 pumla ..> btc: integrate into
-pumla ..> pumlamr: generate
+pumla ..> pumlamr: generate/update
 pumla ..> pumlf: find and enlist
 pumlf ..> pumlamr: include
 pumlf ..> pmac : include
