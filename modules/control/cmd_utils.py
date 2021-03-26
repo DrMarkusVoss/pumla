@@ -48,7 +48,7 @@ def parsePUMLAFile(filename):
     file = open(filename)
     text = file.read()
     file.close()
-    
+
     # split the file content per line
     # into a list of lines
     lines = text.split("\n")
@@ -101,14 +101,11 @@ def serializePUMLAElementsToDict(pumla_elements):
 
     return dict
 
-def updatePUMLAMR(path):
+def updatePUMLAMR(path, mrfilename):
     """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
     pumlafiles = findAllPUMLAFiles(path)
-
-    # setup the filename to store the JSON model repo
-    mrfilename = path + "/mrtest_json.puml"
 
     # parse each pumla file and create
     # a PUMLA Element out of it, that
