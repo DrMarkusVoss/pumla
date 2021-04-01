@@ -9,6 +9,8 @@
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowTaggedValues = %true()
 
+scale 0.5
+
 title Overview of all elements of the model repo
 
 'put all elements of json-repo onto the diagram

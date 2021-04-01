@@ -10,7 +10,7 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 
-title Overview on all model elements in repository
+title Overview Temperature System Variant B
 
 ' put the elements of interest onto the diagrams
 ' by naming them by their alias.

@@ -35,6 +35,11 @@ diagram...
 
 ![](./test/examples/pics/easyAllElementsOverview.png)
 
+### Further examples
+For more examples showing off the functionality and magic of `pumla` please...
+
+[follow this link to more examples](./Examples.md)
+
 ### User's Guide
 You can directly dive into the details by taking a look
 into the User's Guide:
