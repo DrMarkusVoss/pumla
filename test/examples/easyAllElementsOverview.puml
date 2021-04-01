@@ -6,6 +6,10 @@
 
 
 !$PUMVarShowDescr = %false()
+' by default the global variables are "true",
+' so the following lines could also be removed.
+' they are just there so that you can toggle them
+' and try out the effect it has.
 !$PUMVarShowInterfaces = %true()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()

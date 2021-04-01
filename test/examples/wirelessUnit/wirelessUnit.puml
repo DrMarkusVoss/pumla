@@ -13,12 +13,12 @@ AddTaggedValue("Frequency Range", "5 GHz")
 
 rectangle "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
 
-PUMLAPutTaggedValues()
+    PUMLAPutTaggedValues()
 
-!if ($PUMVarShowBodyInternals)
-[transmitter]
-[receiver]
-!endif
+    !if ($PUMVarShowBodyInternals)
+    [transmitter]
+    [receiver]
+    !endif
 
 }
 !endif

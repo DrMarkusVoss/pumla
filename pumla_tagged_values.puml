@@ -64,7 +64,7 @@
   !endif
   !$tvTable = $tvTable + "| <size: 8>" + $col1 + " |" + $tvColCaption + " <size: 8>" + $col2 + " |"
   !if ($col3 != "")
-    !tvTable = $tvTable + " " + $col3 + " |"
+    !$tvTable = $tvTable + " " + $col3 + " |"
   !endif
   !if ($col4 != "")
     !$tvTable = $tvTable + " " + $col4 + " |"
@@ -78,7 +78,7 @@
 !unquoted function PUMLAPutTagTable()
   !if ($propTable != "")
     !$retTable = "\n" + $tvTableCaption + $tvTable
-    !tvTable = ""
+    !$tvTable = ""
     !return $retTable
   !endif
   !return ""

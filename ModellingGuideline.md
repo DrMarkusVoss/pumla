@@ -12,19 +12,19 @@ tooling `pumla` simple in its implementation. Without these rules, a lot
 more effort would need to go into the tooling to allow the same 
 functionality.
 
-### Rule: `pumla` files are valid PlantUML files 
+## Rule: `pumla` files are valid PlantUML files 
 We only use PlantUML language in the `pumla` architecture descriptions.
 
-####*Rationale*
+###*Rationale*
 That way, we can re-use the `pumla` model elements in each and every PlantUML diagram.
 
-### Rule: Atomicity of Model Element descriptions
+## Rule: Atomicity of Model Element descriptions
 In the model files where the re-usable elements are modelled, do 
 model only one element, do not model further other model elements
 or dependencies to other elements. Therefore, do not include other
 model files from here. You should have one file per model element.
 
-####*Rationale*
+###*Rationale*
 When we want to re-use a model element in a diagram, we need to include
 it's *.puml file into our diagram puml file. If another file is included 
 by the model element file of the element we want to have on our
@@ -35,8 +35,9 @@ describing/modelling the elements should be atomic, meaning no other files
 are included. Dependencies of this element to other elements are to be
 modelled in a separate file, therefore.
 
-####*Example*
-#####Wrong:
+###*Example*
+
+Wrong:
 ```PlantUML
 file: helloworld.puml
 @startuml
@@ -52,9 +53,8 @@ helloworld-->displayText : uses
 Problem here: *displayText* is included in the definition
 of the helloWorld component.
 
-
-#####Right:
-```
+Right:
+```PlantUML
 file: helloworld.puml
 
 @startuml
@@ -73,7 +73,7 @@ file: helloworld_rel.puml
 helloworld-->displayText : uses
 @enduml
 ```
-### Rule: Mark your model repository
+## Rule: Mark your model repository
 The files that form your re-usable model repository shall be explicitly
 marked with the following first line in the puml file:
 ```
@@ -82,7 +82,7 @@ marked with the following first line in the puml file:
 This PlantUML comment line exposes the following PlantUML description as
 a re-usable asset of the model repository.
 
-####*Rationale*
+###*Rationale*
 This explicit marking as a re-usable artefact is needed in order to be
 able to separate your re-usable model from other PlantUML diagram files
 in your repository. Developers might use other diagrams for e.g.
@@ -94,25 +94,25 @@ possibly disturb the model-re-use. Still, you can include `pumla` files
 into any other *non-pumla* PlantUML diagram file, as it only contains and
 includes PlantUML compatible language.
 
-### Rule: `pumla` files end with ".puml"
+## Rule: `pumla` files end with ".puml"
 Each valid `pumla` file is a valid PlantUML file, and it shall end with ".puml".
 
-####*Rationale*
+###*Rationale*
 This is used as simplification to scan and parse through the source code repo.
 This restriction is not important for the concept or design, but just simplifies
 parsing and scanning. Therefore, it might be removed later.
 
-### Rule: Each `pumla` file should have the name of the alias of the model element.
+## Rule: Each `pumla` file should have the name of the alias of the model element.
 Each `pumla` file should have the name of the alias of the model element it is describing.
 If in an `pumla` file the model element has no alias, then it should have no whitespaces 
 or special characters in it and therefore the name can and should be used as filename.
 
-#####*Rationale*
+###*Rationale*
 Same as previous rule, it simplifies the implementation of the parser and file
 scanner and it makes sense as a naming convention anyway.
 
-### Rule: No layout adoptions in atomic `pumla` files
+## Rule: No layout adoptions in atomic `pumla` files
 `pumla` files for atomic model elements should not contain layout, coloring and skin definitions.
-####*Rationale*
+###*Rationale*
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
 should not be included in the atomic model element definitions.

@@ -11,10 +11,10 @@ temp_dF_tempConverter )--> tempConverter
 
 !if ($PUMVarShowBody)
 component "Temp. Converter" <<block>> as tempConverter {
-!if ($PUMVarShowBodyInternals)
-[conversionModule]
-[formulaLib]
-!endif
+    !if ($PUMVarShowBodyInternals)
+    [conversionModule]
+    [formulaLib]
+    !endif
 }
 !endif
 

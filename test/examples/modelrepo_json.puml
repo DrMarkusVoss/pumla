@@ -1,14 +1,7 @@
-@startuml
-!$allelems = { "elements": [
-  {"name": "tempSys", "type" : "node", "path" : "." , "filename" : "tempSys.puml", "parent" : ""},
-  {"name" : "displayTemp", "type" : "component", "path": "./displayTemp", "filename": "displayTemp.puml", "parent": "tempSys" },
-  {"name" : "tempConverter", "type": "component", "path": "./tempConv", "filename": "tempConverter.puml", "parent": ""},
-  {"name" : "tempSensorA", "type": "component", "path": "./tempSensorA", "filename": "tempSensorA.puml", "parent": "tempSys"},
-  {"name" : "tempSensorB", "type": "component", "path": "./tempSensorB", "filename": "tempSensorB.puml", "parent": ""},
-  {"name" : "tempSensorBdC", "type": "component", "path": "./tempSensorBdC", "filename": "tempSensorBdC.puml", "parent": "tempSys"},
-  {"name" : "wirelessUnit", "type": "component", "path": "./wirelessUnit", "filename": "wirelessUnit.puml", "parent": ""}
-  ]
-}
-
-
-@enduml
+!$allelems = {"elements": [{"name": "Temperature System", "alias": "tempSys", "type": "node", "parent": "-", "path": "./", "filename": "tempSys.puml"},
+ {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "parent": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml"},
+ {"name": "Wireless Unit", "alias": "wirelessUnit", "type": "rectangle", "parent": "-", "path": "./wirelessUnit/", "filename": "wirelessUnit.puml"},
+ {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "parent": "tempSys", "path": "./tempSensorA/", "filename": "tempSensorA.puml"},
+ {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "parent": "tempSys", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
+ {"name": "displayTemp", "alias": "displayTemp", "type": "-", "parent": "tempSys", "path": "./displayTemp/", "filename": "displayTemp.puml"},
+ {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "parent": "tempSys", "path": "./tempConv/", "filename": "tempConverter.puml"}]}

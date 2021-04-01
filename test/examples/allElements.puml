@@ -6,16 +6,21 @@
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
-!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternals = %false()
 !$PUMVarShowTaggedValues = %true()
 
-title Overview all components
+title Overview of all elements of the model repo
 
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
 
 note bottom of displayTemp
     this is an additional note to
-    the imported displayTemp
+    the imported "displayTemp".
+    Wanna know how to know the name
+    "displayTemp"? Use the
+    **"PUMLACheatSheet"** command,
+    see separate example.
 end note
+
 @enduml

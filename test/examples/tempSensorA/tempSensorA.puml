@@ -6,13 +6,13 @@
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor A" <<block>> as tempSensorA {
-!if ($PUMVarShowBodyInternals)
+    !if ($PUMVarShowBodyInternals)
 
-[getSignal]
-[AD conversion]
-[signal processing]
+    [getSignal]
+    [AD conversion]
+    [signal processing]
 
-!endif
+    !endif
 }
 !endif
 

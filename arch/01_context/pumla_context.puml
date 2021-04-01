@@ -100,4 +100,5 @@ dev --> pumlf : create and maintain
 pgr --> cict : gets build and tested completely in
 pgr --> sco : gets build and tested reduced locally
 pumlf --> plantuml: use to create diagrams
+archdiags -->plantuml: use to create diagrams
 @enduml

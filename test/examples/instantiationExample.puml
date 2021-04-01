@@ -1,0 +1,29 @@
+@startuml
+' the following file gets generated when you call
+' "python pumla.py update" in this directory
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+' this template skin colors instances for some
+' types in LightYellow
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %false()
+
+' this following flag allows to show/not show the automatically
+' created relation between the instance and its "class"
+!$PUMVarShowInstantiationRel = %true()
+
+title Example for creating an instance of an \n element from the model repository
+
+' create the instance "ts1" of model element with alias "tempSys"
+PUMLACreateInstanceOf(tempSys, ts1)
+
+' create another instance "ts2" from same model element
+PUMLACreateInstanceOf(tempSys, ts2)
+
+' put the "tempSys" also on the diagram
+PUMLAPutElement(tempSys)
+
+@enduml

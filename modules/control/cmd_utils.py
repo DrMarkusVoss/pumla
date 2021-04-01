@@ -23,10 +23,11 @@ def findAllPUMLAFiles(path):
     return pumlafiles
 
 
-def findElementNameInText(lines, alias):
+def findElementNameAndTypeInText(lines, alias):
     """ find the real name of the model element with given alias in given line """
     # return value with '-' as default
     elem_name = "-"
+    elem_type = "-"
     # search term definition
     findit = " as " + alias
     for e in lines:
@@ -39,8 +40,9 @@ def findElementNameInText(lines, alias):
                 if (len(splt) == 3):
                     # element name is the second item, list starts at 0
                     elem_name = splt[1]
+                    elem_type = splt[0].strip()
     # return the found element name
-    return elem_name
+    return elem_name, elem_type
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -73,11 +75,12 @@ def parsePUMLAFile(filename):
         pel.setAlias(el_alias)
         el_path = filename.rstrip(el_fn)
         pel.setPath(el_path)
-        el_name = findElementNameInText(lines, el_alias)
+        el_name, el_type = findElementNameAndTypeInText(lines, el_alias)
         if (el_name == "-"):
             pel.setName(el_alias)
         else:
             pel.setName(el_name)
+        pel.setType(el_type)
 
     # return the PUMLA Element
     return pel
@@ -130,11 +133,9 @@ def updatePUMLAMR(path, mrfilename):
 
     # write the lines to the model repo file
     with open(mrfilename, "w") as fil:
-        fil.write("@startuml\n")
         for i in range(len(txt_lines)-1):
             fil.write(txt_lines[i] + "},\n")
         fil.write(txt_lines[len(txt_lines)-1] + "\n")
-        fil.write("@enduml\n")
     fil.close()
 
     return True, mrfilename

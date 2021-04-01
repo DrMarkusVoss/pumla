@@ -39,6 +39,7 @@ was the developers and architects can
 easily use **pumla** to create themselves
 **cheat-sheets**.
 end note
+note right of n3 #back:lightGreen : **DONE**
 
 note as n4
 **Idea:** Use the possibility to read JSON
@@ -110,6 +111,7 @@ note as n11
 elements, so the same element can appear as 2 instances
 on the same diagram.
 end note
+note right of n11 #back:lightGreen : **DONE**
 
 note as n12
 **Idea:** Hide/Remove macros for elements

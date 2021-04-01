@@ -31,13 +31,14 @@ Writes out to the console all `pumla` model elements and diagrams of
 the model repository and diagram repository, with all their relevant 
 attributes.
 
-### `pumla update`
+### `pumla update <filename optional>`
 This is the most important command. It scans the source code repository starting
 at the current folder location and traverses from here through all underlying
 folders for all `.puml` files. The .puml files will be parsed and if they are 
 pumla files, their relevant content will be extracted and stored in the 
-`modelrepo_json.puml` and `diagramrepo_json.puml` files. Each call will overwrite
-the existing `{modelrepo | diagramrepo}_json.puml` files, therefore they should not be modified by hand,
+`modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the the given
+filename. Each call will overwrite the existing `{modelrepo | diagramrepo}_json.puml`
+files, therefore they should not be modified by hand,
 because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
@@ -73,6 +74,12 @@ then this element will appear inside the parent element.
 These macros (that are PlantUML unquoted functions and procedures) can be
 used within each PlantUML file by including `pumla_macros.puml`.
 
+### `PUMLACheatSheet()`
+This macro creates a note with a table that shows the contents of the model
+repository, the names and aliases of all model elements. That way you easily
+can see which model elements you can re-use and what their alias to access it
+is.
+
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
 The referenced element must exist somewhere in the source tree as a model element
@@ -87,6 +94,14 @@ referenced element will be shown with the defined levels of nested internals.
 ### `PUMLAPutAllElements()`
 Puts all elements from the model repository on the diagram. Useful to get an
 overview on all elements inside the source tree.
+
+### `PUMLACreateInstanceOf( model_elem_alias : string, inst_name : string)`
+Creates an instance of a model element with alias `model_elem_alias` that is
+inside the model repository and names the instances `inst_name`. The instance
+gets the same type as the model element from the repository but gets in
+addition the stereotype `<<instance>>`. On diagrams that do not show
+the `instance of` relation to the model element, the name of the instance will
+be extended by `::<model element name>`.
 
 ### `AddTaggedValue( tag : string, value : string )`
 Adds a tag/value pair to the tagged value table of the
@@ -135,6 +150,13 @@ elements belonging inside indirectly, by using the
 Defines whether the tagged values table of the model element
 are shown within the model elements body or not.
 
+### `$PUMVarShowInstantiationRel : boolean`
+Defines whether the `instance of` relation created by the 
+macro `PUMLACreateInstanceOf(...)` is shown on the diagram 
+or not. Furthermore it influences the shown name of the 
+instance. When set to "false", the instance name is enhanced
+by the model element that it is instantiated from.
+
 ### TODO
 - global level of detail for internals
 
@@ -152,6 +174,7 @@ file: ./test/examples/easyAllElementsOverview.puml
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowTaggedValues = %true()
+!$PUMVarShowInstantiationRel = %true()
 
 title Overview on all model elements in repository
 

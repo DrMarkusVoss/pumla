@@ -1,8 +1,12 @@
+!include pumla_global_cfg.puml
+
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %true()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
+!$PUMVarShowInstantiationRel = %true()
+
 
 ' --------------------------------------------
 ' get an element referenced by path and filename name
@@ -39,14 +43,8 @@
 '
 !unquoted procedure PUMLAPutElement($elem)
 !foreach $el in $allelems.elements
-    !if ($el.name == $elem)
+    !if ($el.alias == $elem)
         _PUMPutElement($el.path,$el.filename)
-'    !else
-'        !foreach $emp in $scp.elements
-'            !if ($emp.name == $elem)
-'                _PUMPutElement($emp.path,$emp.filename)
-'            !endif
-'        !endfor
     !endif
 !endfor
 !endprocedure
@@ -60,11 +58,11 @@
 
 !unquoted procedure PUMLAPutElement($elem, $lod)
 !foreach $scp in $allelems.scopes
-    !if ($scp.name == $elem)
+    !if ($scp.alias == $elem)
         _PUMPutElement($scp.path,$scp.filename)
     !else
         !foreach $emp in $scp.elements
-            !if ($emp.name == $elem)
+            !if ($emp.alias == $elem)
                 _PUMPutElement($emp.path,$emp.filename)
             !endif
         !endfor
@@ -83,3 +81,63 @@
     _PUMPutElement($el.path,$el.filename)
 !endfor
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' create an instance of an element that exists
+' in the json model repo. Internal txt creation.
+!unquoted function _PUMLACreateInstanceOf($elemalias, $instname)
+!$retval = "[**ERROR:** Element **" + $elemalias + "** not in model repository!]"
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !if ($PUMVarShowInstantiationRel)
+            !$iname = $instname
+        !else
+            !$iname = $instname + "::" + $el.name
+        !endif
+        $elt = "ERROR - no valid type"
+        !if (($el.type  == "-") || ($el.type  == ""))
+            !$elt = "rectangle"
+        !els
+        !else
+            !$elt = $el.type
+        !endif
+        !$retval = $elt + ' "' + $iname + '" <<instance>> as ' + $instname
+    !endif
+!endfor
+!return $retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' create an instance of an element that exists
+' in the json model repo.
+!unquoted procedure PUMLACreateInstanceOf($elemalias, $instname)
+_PUMLACreateInstanceOf($elemalias,$instname)
+!if ($PUMVarShowInstantiationRel)
+$instname ..> $elemalias : instance of
+!endif
+!endprocedure
+
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the model repository
+' along with the alias names that you can
+' use to access/re-use the elements.
+!unquoted procedure PUMLACheatSheet()
+note as PUMLAUPCheatSheet
+    **PUMLA Cheat Sheet**
+
+    **Model Repository contents:**
+    |= name |= alias |
+!foreach $el in $allelems.elements
+    | $el.name | $el.alias |
+!endfor
+end note
+!endprocedure
+
+!if ($PUMVarShowPUMLAFooterNote)
+center footer created with help of **pumla**: https://github.com/DrMarkusVoss/pumla
+!endif

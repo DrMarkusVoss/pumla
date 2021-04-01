@@ -4,7 +4,6 @@
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
-
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %true()
 !$PUMVarShowBody = %true()
@@ -13,20 +12,30 @@
 
 title Overview on all model elements in repository
 
-'put all elements of json-modelrepo onto the diagram
+' put the elements of interest onto the diagrams
+' by naming them by their alias.
+' Not sure what elements you want and what their
+' alias is? Use the "PUMLACheatSheet" command...
 PUMLAPutElement(tempSys)
 PUMLAPutElement(tempSensorBdC)
 PUMLAPutElement(wirelessUnit)
 
-
+' here are different variants of how the overall
+' system is connected. Uncomment the one you
+' like to see. Adopt the removal of not used
+' or unwanted elements at the bottom of the file.
 '!include ./relations/relations_tempSys_Var_A.puml
 '!include ./relations/relations_tempSys_Var_B.puml
 !include ./relations/relations_tempSys_Var_B2.puml
 
 internet_tempSys -- internet_wirelessUnit
 
-' TODO: make a macro to remove all things from an
-'       unwanted element
+' remove the elements you do not want to see.
+' the following are included as internal parts
+' of the "tempSys". But in Variant B2 they are
+' not connected and therefore not needed.
+' You can remove them by their alias.
 remove tempSensorA
 remove temp_dC_tempSensorA
+
 @enduml
