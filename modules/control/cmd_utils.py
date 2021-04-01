@@ -41,6 +41,9 @@ def findElementNameAndTypeInText(lines, alias):
                     # element name is the second item, list starts at 0
                     elem_name = splt[1]
                     elem_type = splt[0].strip()
+        elif ((alias in e) and (not("'" in e)) and(("component" in e) or ("rectangle" in e) or ("node" in e))):
+            splt = e.rsplit(alias)
+            elem_type = splt[0].strip()
     # return the found element name
     return elem_name, elem_type
 

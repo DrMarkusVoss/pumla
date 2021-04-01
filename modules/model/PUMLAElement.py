@@ -56,6 +56,7 @@ class PUMLAElement:
         """ command line print out of the model element attributes """
         print("name: " + self.name)
         print("alias: " + self.alias)
+        print("type: " + self.type)
         print("parent: " + self.parent)
         print("path: " + self.path)
         print("filename: " + self.filename)

@@ -1,7 +1,7 @@
-!$allelems = {"elements": [{"name": "Temperature System", "alias": "tempSys", "type": "node", "parent": "-", "path": "./", "filename": "tempSys.puml"},
- {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "parent": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml"},
- {"name": "Wireless Unit", "alias": "wirelessUnit", "type": "rectangle", "parent": "-", "path": "./wirelessUnit/", "filename": "wirelessUnit.puml"},
- {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "parent": "tempSys", "path": "./tempSensorA/", "filename": "tempSensorA.puml"},
- {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "parent": "tempSys", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
- {"name": "displayTemp", "alias": "displayTemp", "type": "-", "parent": "tempSys", "path": "./displayTemp/", "filename": "displayTemp.puml"},
- {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "parent": "tempSys", "path": "./tempConv/", "filename": "tempConverter.puml"}]}
+!$allelems = {"elements": [{"name": "Temperature System", "parent": "-", "filename": "tempSys.puml", "alias": "tempSys", "path": "./", "type": "node"},
+ {"name": "Temperature Sensor B", "parent": "-", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./tempSensorB/", "type": "component"},
+ {"name": "Wireless Unit", "parent": "-", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./wirelessUnit/", "type": "rectangle"},
+ {"name": "Temperature Sensor A", "parent": "tempSys", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "type": "component"},
+ {"name": "Temperature Sensor B (dC)", "parent": "tempSys", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "type": "component"},
+ {"name": "displayTemp", "parent": "tempSys", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "type": "component"},
+ {"name": "Temp. Converter", "parent": "tempSys", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "type": "component"}]}
