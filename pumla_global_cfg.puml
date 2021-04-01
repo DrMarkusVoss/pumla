@@ -1,2 +1,7 @@
 ' modify this to how you like it.
+
+' turn on (true) or off (false) the default
+' pumla advertising footer. Can also be
+' overwritten in each diagram with own
+' footer.
 !$PUMVarShowPUMLAFooterNote = %true()

@@ -139,6 +139,11 @@ note as PUMLAUPCheatSheet
 end note
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' default footer with pumla git repo reference.
+' can be overwritten or turned off with the
+' global variable.
 !if ($PUMVarShowPUMLAFooterNote)
 center footer created with help of **pumla**: https://github.com/DrMarkusVoss/pumla
 !endif
