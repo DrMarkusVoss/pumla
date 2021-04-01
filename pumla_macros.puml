@@ -115,6 +115,7 @@
 !unquoted procedure PUMLACreateInstanceOf($elemalias, $instname)
 _PUMLACreateInstanceOf($elemalias,$instname)
 !if ($PUMVarShowInstantiationRel)
+PUMLAPutElement($elemalias)
 $instname ..> $elemalias : instance of
 !endif
 !endprocedure

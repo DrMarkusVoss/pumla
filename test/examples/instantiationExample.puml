@@ -23,7 +23,5 @@ PUMLACreateInstanceOf(tempSys, ts1)
 ' create another instance "ts2" from same model element
 PUMLACreateInstanceOf(tempSys, ts2)
 
-' put the "tempSys" also on the diagram
-PUMLAPutElement(tempSys)
 
 @enduml
