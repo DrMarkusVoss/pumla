@@ -44,7 +44,7 @@ there.
 ![](./test/examples/pics/wirelessUnit.png)
 
 ### E#6: Element injection
-Only element "tempSys" is put in the diagram, but internals are shown.
+Only element "tempSys" is put on the diagram, but internals are shown.
 If you look at the definition of the "tempSys" model element, you do not see the internals
 defined. They are injected via the "PUMLAInjectChildElements" macro. this tells
 pumla to insert into this element all other elements that call "tempSys" their parent in

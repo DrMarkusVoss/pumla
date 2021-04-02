@@ -14,7 +14,7 @@ scale 0.8
 
 title Element injection example
 
-' only element "tempSys" is put in the diagram,
+' only element "tempSys" is put on the diagram,
 ' but internals are shown.
 ' if you look at the definition of the "tempSys"
 ' model element, you do not see the internals
