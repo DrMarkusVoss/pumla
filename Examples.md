@@ -9,10 +9,18 @@ there.
 ![](./test/examples/pics/allElements.png)
 
 ## E#2: Cheat Sheet
+### E#2.1: Simple Cheat Sheet
 [./test/examples/cheatSheet.puml](./test/examples/cheatSheet.puml)
 
 
 ![](./test/examples/pics/cheatSheet.png)
+
+### E#2.2: Cheat Sheet with all attributes
+[./test/examples/cheatSheetAdvanced.puml](./test/examples/cheatSheetAdvanced.puml)
+
+
+![](./test/examples/pics/cheatSheetAdvanced.png)
+
 
 ## E#3: Instantiation
 

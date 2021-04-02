@@ -141,6 +141,25 @@ end note
 
 ' ############################################
 ' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the model repository.
+' It puts all elements with all attributes into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLACheatSheetAllAttributes()
+note as PUMLAUPCheatSheet
+    **PUMLA Cheat Sheet**
+
+    **Model Repository contents:**
+    |= name |= alias |= type |= parent |= filename |= path |
+!foreach $el in $allelems.elements
+    | $el.name | $el.alias | $el.type | $el.parent | $el.filename | $el.path |
+!endfor
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
 ' default footer with pumla git repo reference.
 ' can be overwritten or turned off with the
 ' global variable.

@@ -80,6 +80,11 @@ repository, the names and aliases of all model elements. That way you easily
 can see which model elements you can re-use and what their alias to access it
 is.
 
+### `PUMLACheatSheetAllAttributes()`
+This macro creates a note with a table that shows the contents of the model
+repository. It puts all elements with all attributes into a table to help
+you manage your architecture artefacts.
+
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
 The referenced element must exist somewhere in the source tree as a model element
