@@ -27,10 +27,13 @@ there.
 [./test/examples/instantiationExample.puml](./test/examples/instantiationExample.puml)
 
 ### E#3.1: `$PUMVarShowInstantiationRel = %true()`
-![](./test/examples/pics/instantiationExample_true.png)
+[comment]: <> (![](./test/examples/pics/instantiationExample_true.png))
+
+<img src="./test/examples/pics/instantiationExample_true.png" width="50%"/>
+
 
 ### E#3.2: `$PUMVarShowInstantiationRel = %false()`
-![](./test/examples/pics/instantiationExample_false.png)
+[comment]: <> (![](./test/examples/pics/instantiationExample_false.png))
 
 <img src="./test/examples/pics/instantiationExample_false.png" width="50%"/>
 
