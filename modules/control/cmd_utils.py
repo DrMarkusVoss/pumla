@@ -22,16 +22,33 @@ def findAllPUMLAFiles(path):
     #return the list of PUMLA files found
     return pumlafiles
 
+def findStereoTypesInLine(line):
+    e = line
+    stypes = []
+    tempstr = e
+    for c in range(e.count("<<")):
+        st = tempstr[tempstr.find("<<") + 2:tempstr.find(">>")]
+        stypes.append(st)
+        tempstr = tempstr.replace("<<" + st + ">>", "")
+
+    return stypes
 
 def findElementNameAndTypeInText(lines, alias):
     """ find the real name of the model element with given alias in given line """
     # return value with '-' as default
     elem_name = "-"
     elem_type = "-"
+    elem_stereotypes = []
     # search term definition
     findit = " as " + alias
     for e in lines:
         if (findit in e):
+            stypes = findStereoTypesInLine(e)
+
+            for sts in stypes:
+                elem_stereotypes.append(sts)
+
+
             # a definition of a name that needs an alias is put in '"',
             # therefore there must be two '"' and the name is in between
             if ('"' in e):
@@ -42,10 +59,14 @@ def findElementNameAndTypeInText(lines, alias):
                     elem_name = splt[1]
                     elem_type = splt[0].strip()
         elif ((alias in e) and (not("'" in e)) and(("component" in e) or ("rectangle" in e) or ("node" in e))):
+            stypes = findStereoTypesInLine(e)
+
+            for sts in stypes:
+                elem_stereotypes.append(sts)
             splt = e.rsplit(alias)
             elem_type = splt[0].strip()
     # return the found element name
-    return elem_name, elem_type
+    return elem_name, elem_type, elem_stereotypes
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -78,12 +99,14 @@ def parsePUMLAFile(filename):
         pel.setAlias(el_alias)
         el_path = filename.rstrip(el_fn)
         pel.setPath(el_path)
-        el_name, el_type = findElementNameAndTypeInText(lines, el_alias)
+        el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
         if (el_name == "-"):
             pel.setName(el_alias)
         else:
             pel.setName(el_name)
         pel.setType(el_type)
+        for st in el_stereotypes:
+            pel.stereotypes.append(st)
 
     # return the PUMLA Element
     return pel
@@ -100,6 +123,7 @@ def serializePUMLAElementsToDict(pumla_elements):
         tmpdict["name"] = e.getName()
         tmpdict["alias"] = e.getAlias()
         tmpdict["type"] = e.getType()
+        tmpdict["stereotypes"] = e.getStereotypes()
         tmpdict["parent"] = e.getParent()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()

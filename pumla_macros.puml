@@ -155,9 +155,25 @@ note as PUMLAUPCheatSheet
     **PUMLA Cheat Sheet**
 
     **Model Repository contents:**
-    |= name |= alias |= type |= parent |= filename |= path |
+    |= name |= alias |= type |= stereotypes |= parent |= filename |= path |
 !foreach $el in $allelems.elements
-    | $el.name | $el.alias | $el.type | $el.parent | $el.filename | $el.path |
+    !$sts = ""
+    !$lmax = 0
+    !foreach $st in $el.stereotypes
+        !$lmax = $lmax + 1
+    !endfor
+    !$l = 0
+    !foreach $st in $el.stereotypes
+        !$sts = $sts + $st
+        !$l = $l + 1
+        !if ($l < $lmax)
+            !$sts = $sts + ", "
+        !endif
+    !endfor
+    !if ($sts=="")
+        !$sts="-"
+    !endif
+    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.filename | $el.path |
 !endfor
 end note
 !endprocedure

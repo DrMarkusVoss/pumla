@@ -27,5 +27,13 @@ PUMLACreateInstanceOf(tempSys, ts1, "ts1 professional")
 ' allowed to contain whitespaces.
 PUMLACreateInstanceOf(tempSys, ts2)
 
+note left of ts1
+    you can attach notes
+    to the instance or use
+    it in any other way by
+    referring to the alias.
+end note
+
+ts1 <..> ts2 : some interaction
 
 @enduml

@@ -10,6 +10,7 @@ class PUMLAElement:
         self.parent = "-"
         self.filename = "-"
         self.path = "-"
+        self.stereotypes = []
 
     def setName(self, name):
         """ setter for 'name' """
@@ -34,6 +35,9 @@ class PUMLAElement:
         """ setter for 'path' """
         self.path = path
 
+    def addStereotype(self, st):
+        self.stereotypes.append(st)
+
     def getName(self):
         return self.name
 
@@ -52,11 +56,21 @@ class PUMLAElement:
     def getFilename(self):
         return self.filename
 
+    def getStereotypes(self):
+        return self.stereotypes
+
     def printMe(self):
         """ command line print out of the model element attributes """
         print("name: " + self.name)
         print("alias: " + self.alias)
         print("type: " + self.type)
+        sts = "-"
+        if (len(self.stereotypes) > 0):
+            sts = "" + self.stereotypes[0]
+            for i in range(len(self.stereotypes)-1):
+                sts = sts + ", " + self.stereotypes[i+1]
+
+        print("stereotypes: " + sts)
         print("parent: " + self.parent)
         print("path: " + self.path)
         print("filename: " + self.filename)
