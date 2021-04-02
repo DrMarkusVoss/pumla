@@ -13,7 +13,7 @@
 
 ' this following flag allows to show/not show the automatically
 ' created relation between the instance and its "class"
-!$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowInstantiationRel = %false()
 
 title Example for creating an instance of an \n element from the model repository
 
