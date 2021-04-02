@@ -1,9 +1,0 @@
-!$allelems = {"elements": [{"name": "Temperature System", "parent": "-", "type": "node", "filename": "tempSys.puml", "alias": "tempSys", "path": "./test/examples/", "stereotypes": []},
- {"name": "Temperature Sensor B", "parent": "-", "type": "component", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./test/examples/tempSensorB/", "stereotypes": ["block", "external System"]},
- {"name": "Wireless Unit", "parent": "-", "type": "rectangle", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./test/examples/wirelessUnit/", "stereotypes": ["block", "external System"]},
- {"name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./test/examples/tempSensorA/", "stereotypes": ["block"]},
- {"name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./test/examples/tempSensorBdC/", "stereotypes": ["block"]},
- {"name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./test/examples/displayTemp/", "stereotypes": ["block"]},
- {"name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./test/examples/tempConv/", "stereotypes": ["block"]},
- {"name": "atomic_element", "parent": "-", "type": "-", "filename": "atomic_element.puml", "alias": "atomic_element", "path": "./templates/generic/", "stereotypes": []},
- {"name": "atomic_element_with_comments", "parent": "-", "type": "-", "filename": "atomic_element_with_comments.puml", "alias": "atomic_element_with_comments", "path": "./templates/generic/", "stereotypes": []}]}

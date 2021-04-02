@@ -111,9 +111,9 @@ def parsePUMLAFile(filename):
     # return the PUMLA Element
     return pel
 
-def serializePUMLAElementsToDict(pumla_elements):
+def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
-    dict = {"elements": []}
+    dict = {"path" : os.path.abspath(path), "modelrepofile" : mrfilename, "elements": []}
 
     # put the relevant information from each pumla element
     # into a temp dict. put all temp dicts into a
@@ -147,7 +147,7 @@ def updatePUMLAMR(path, mrfilename):
 
     # put the elements into a dictionary that can be easily
     # transformed into a JSON representation.
-    jsondict = serializePUMLAElementsToDict(pumlaelements)
+    jsondict = serializePUMLAElementsToDict(pumlaelements, path, mrfilename)
 
     # make it accessible from within PlantUML.
     # $allelemens is the preprocessor variable that

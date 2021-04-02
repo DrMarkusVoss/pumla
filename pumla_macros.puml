@@ -155,7 +155,10 @@ end note
 ' artefacts.
 !unquoted procedure PUMLACheatSheetAllAttributes()
 note as PUMLAUPCheatSheet
-    **PUMLA Cheat Sheet**
+    **PUMLA Cheat Sheet with all attributes**
+
+    Model Repository Path: $allelems.path
+    Model Repository File: $allelems.modelrepofile
 
     **Model Repository contents:**
     |= name |= alias |= type |= stereotypes |= parent |= filename |= path |
