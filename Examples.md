@@ -57,7 +57,9 @@ See the "PUMLAInjectChildElements" macro call in this file:
 [./test/examples/tempSys.puml](./test/examples/tempSys.puml)
 
 See the reference to the parent element "tempSys" in the
-second line of this file:
+second line of this file. That makes it appear as part
+within the "tempSys" element when the internals of "tempSys"
+are shown:
 
 [./test/examples/displayTemp/displayTemp.puml](./test/examples/displayTemp/displayTemp.puml)
 
