@@ -27,10 +27,12 @@ there.
 [./test/examples/instantiationExample.puml](./test/examples/instantiationExample.puml)
 
 ### E#3.1: `$PUMVarShowInstantiationRel = %true()`
-![](./test/examples/pics/instantiationExample_true.png){ width=50% }
+![](./test/examples/pics/instantiationExample_true.png)
 
 ### E#3.2: `$PUMVarShowInstantiationRel = %false()`
-![](./test/examples/pics/instantiationExample_false.png){ width=50% }
+![](./test/examples/pics/instantiationExample_false.png)
+
+<img src="./test/examples/pics/instantiationExample_false.png" width="50%"/>
 
 ### E#4: Show dedicated elements, hide some unwanted internal ones
 [./test/examples/easyOverviewSysVarB.puml](./test/examples/easyOverviewSysVarB.puml)
