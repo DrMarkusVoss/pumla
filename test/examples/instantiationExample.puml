@@ -17,10 +17,14 @@
 
 title Example for creating an instance of an \n element from the model repository
 
-' create the instance "ts1" of model element with alias "tempSys"
-PUMLACreateInstanceOf(tempSys, ts1)
+' create the instance "ts1" of model element with alias "tempSys".
+' the name contains whitespaces, therefore name and alias are
+' not equal and this version of the macro is called.
+PUMLACreateInstanceOf(tempSys, ts1, "ts1 professional")
 
-' create another instance "ts2" from same model element
+' create another instance "ts2" from same model element.
+' the instance name equals the alias, therefore is not
+' allowed to contain whitespaces.
 PUMLACreateInstanceOf(tempSys, ts2)
 
 

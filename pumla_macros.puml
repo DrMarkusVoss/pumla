@@ -86,7 +86,7 @@
 ' ---------------------------------------------
 ' create an instance of an element that exists
 ' in the json model repo. Internal txt creation.
-!unquoted function _PUMLACreateInstanceOf($elemalias, $instname)
+!unquoted function _PUMLACreateInstanceOf($elemalias, $instalias, $instname)
 !$retval = "[**ERROR:** Element **" + $elemalias + "** not in model repository!]"
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
@@ -102,21 +102,25 @@
         !else
             !$elt = $el.type
         !endif
-        !$retval = $elt + ' "' + $iname + '" <<instance>> as ' + $instname
+        !$retval = $elt + ' "' + $iname + '" <<instance>> as ' + $instalias
     !endif
 !endfor
 !return $retval
 !endfunction
 
+
 ' ############################################
 ' ---------------------------------------------
 ' create an instance of an element that exists
 ' in the json model repo.
-!unquoted procedure PUMLACreateInstanceOf($elemalias, $instname)
-_PUMLACreateInstanceOf($elemalias,$instname)
+!unquoted procedure PUMLACreateInstanceOf($elemalias, $instalias, $instname="")
+!if ($instname == "")
+!$instname = $instalias
+!endif
+_PUMLACreateInstanceOf($elemalias,$instalias, $instname)
 !if ($PUMVarShowInstantiationRel)
 PUMLAPutElement($elemalias)
-$instname ..> $elemalias : instance of
+$instalias ..> $elemalias : instance of
 !endif
 !endprocedure
 
