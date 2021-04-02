@@ -113,7 +113,7 @@ def parsePUMLAFile(filename):
 
 def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
-    dict = {"path" : os.path.abspath(path), "modelrepofile" : mrfilename, "elements": []}
+    dict = {"modelrepopath" : os.path.abspath(path), "modelrepofile" : mrfilename, "elements": []}
 
     # put the relevant information from each pumla element
     # into a temp dict. put all temp dicts into a

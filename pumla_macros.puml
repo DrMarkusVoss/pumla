@@ -157,7 +157,7 @@ end note
 note as PUMLAUPCheatSheet
     **PUMLA Cheat Sheet with all attributes**
 
-    Model Repository Path: $allelems.path
+    Model Repository Path: $allelems.modelrepopath
     Model Repository File: $allelems.modelrepofile
 
     **Model Repository contents:**
