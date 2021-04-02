@@ -106,7 +106,7 @@ inside the model repository and names the instances `inst_name` with the alias
 `inst_alias`. The name can have whitespaces, it will be but in '"', for the alias
 the same rules apply as to PlantUML alias. If no name is provided, then
 the name will be the same as the alias. The instance
-gets the same type as the model element from the repository but gets in
+gets the same type and stereotype(s) as the model element from the repository but gets in
 addition the stereotype `<<instance>>`. On diagrams that do not show
 the `instance of` relation to the model element, the name of the instance will
 be extended by `::<model element name>`.

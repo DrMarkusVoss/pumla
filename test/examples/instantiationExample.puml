@@ -13,7 +13,7 @@
 
 ' this following flag allows to show/not show the automatically
 ' created relation between the instance and its "class"
-!$PUMVarShowInstantiationRel = %false()
+!$PUMVarShowInstantiationRel = %true()
 
 title Example for creating an instance of an \n element from the model repository
 
@@ -26,6 +26,10 @@ PUMLACreateInstanceOf(tempSys, ts1, "ts1 professional")
 ' the instance name equals the alias, therefore is not
 ' allowed to contain whitespaces.
 PUMLACreateInstanceOf(tempSys, ts2)
+
+' the instance inherits the stereotypes of the
+' model element it is derived from.
+PUMLACreateInstanceOf(wirelessUnit, wu1)
 
 note left of ts1
     you can attach notes

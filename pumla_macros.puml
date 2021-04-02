@@ -98,11 +98,14 @@
         $elt = "ERROR - no valid type"
         !if (($el.type  == "-") || ($el.type  == ""))
             !$elt = "rectangle"
-        !els
         !else
             !$elt = $el.type
         !endif
-        !$retval = $elt + ' "' + $iname + '" <<instance>> as ' + $instalias
+        !$sts = ""
+        !foreach $st in $el.stereotypes
+            !$sts = $sts + " <<" + $st + ">>"
+        !endfor
+        !$retval = $elt + ' "' + $iname + '"' + $sts + ' <<instance>> as ' + $instalias
     !endif
 !endfor
 !return $retval
