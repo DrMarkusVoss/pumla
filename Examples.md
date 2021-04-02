@@ -42,3 +42,29 @@ there.
 [./test/examples/wirelessUnit/wirelessUnit.puml](./test/examples/wirelessUnit/wirelessUnit.puml)
 
 ![](./test/examples/pics/wirelessUnit.png)
+
+### E#6: Element injection
+Only element "tempSys" is put in the diagram, but internals are shown.
+If you look at the definition of the "tempSys" model element, you do not see the internals
+defined. They are injected via the "PUMLAInjectChildElements" macro. this tells
+pumla to insert into this element all other elements that call "tempSys" their parent in
+the second line of the .puml file. That way, the parent element definition does
+not need to be changed when another child has been created. the children themselves are
+designed for usage in the parent context, so they should not be used without their parent.
+
+See that there is only one element put onto the diagram of this file:
+
+[./test/examples/injectedElementsExample.puml](./test/examples/injectedElementsExample.puml)
+
+See the "PUMLAInjectChildElements" macro call in this file:
+
+[./test/examples/tempSys.puml](./test/examples/tempSys.puml)
+
+See the reference to the parent element "tempSys" in the
+second line of this file:
+
+[./test/examples/displayTemp/displayTemp.puml](./test/examples/displayTemp/displayTemp.puml)
+
+See the resulting diagram:
+
+![](./test/examples/pics/injectedElementsExample.png)
