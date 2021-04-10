@@ -249,7 +249,7 @@ PUMLAPutInternalElement($elemalias)
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable relation
-!unquoted procedure PUMLAPutRelation($startalias, $endalias, $rel, $reltxt="")
+!unquoted procedure PUMLAPutRelation_depr($startalias, $endalias, $rel, $reltxt="")
 !if ($reltxt == "")
 !$reladder = ""
 !else
@@ -308,3 +308,15 @@ interface $ifname as $ifalias
 !unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt, $relid)
 
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable interface
+!unquoted procedure PUMLAPutRelation($relid)
+!foreach $el in $allrelations.relations
+    !if ($el.id == $relid)
+        $el.start $el.reltype $el.end : $el.reltxt
+    !endif
+!endfor
+!endprocedure
+
