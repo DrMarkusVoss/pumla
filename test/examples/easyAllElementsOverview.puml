@@ -14,6 +14,7 @@
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
+!$PUMVarShowImplicitRels = %false()
 
 title Overview on all model elements in repository
 

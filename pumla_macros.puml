@@ -6,7 +6,11 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowImplicitRels = %true()
+!$PUMVarShowRelations = %true()
+!$PUMVarShowConnections = %true()
 
+!$internal_finalize_string = ""
 
 ' --------------------------------------------
 ' get an element referenced by path and filename name
@@ -192,3 +196,85 @@ end note
 !if ($PUMVarShowPUMLAFooterNote)
 center footer created with help of **pumla**: https://github.com/DrMarkusVoss/pumla
 !endif
+
+' ############################################
+' ---------------------------------------------
+' internal use of an existing model repo element.
+!unquoted procedure PUMLAPutInternalElement($elemalias)
+!if ($PUMVarShowBodyInternals)
+PUMLAPutElement($elemalias)
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' internal use of an existing model repo element.
+!unquoted procedure PUMLAPutInternalElementWithRel($parent, $elemalias, $rel, $reltxt="")
+PUMLAPutInternalElement($elemalias)
+!if ($reltxt == "")
+!$reladder = ""
+!else
+!$reladder = ": " + $reltxt
+!endif
+
+!$internal_finalize_string = $internal_finalize_string + %newline() + $parent + $rel + $elemalias + $reladder
+'!if ($PUMVarShowImplicitRels)
+'$parent $rel $elemalias : $reltxt
+'!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable relation
+!unquoted procedure PUMLAPutRelation($startalias, $endalias, $rel, $reltxt="")
+!if ($reltxt == "")
+!$reladder = ""
+!else
+!$reladder = ": " + $reltxt
+!endif
+
+!if ($PUMVarShowRelations)
+$startalias $rel $endalias $reladder
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put this after the definition of a re-usable
+' model element. it adds things that refer to
+' internal elements but must be stated outside
+!unquoted procedure PUMLAFinalizeElement()
+!if ($PUMVarShowImplicitRels)
+$internal_finalize_string
+!endif
+!$internal_finalize_string = ""
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable connection.
+' connections only exist between interfaces.
+' otherwise it is a relation, not a connection.
+' therefore, if interfaces are not shown, also
+' the connections cannot be shown.
+!unquoted procedure PUMLAPutConnection($startalias, $endalias, $con, $contxt="")
+!if ($contxt == "")
+!$conadder = ""
+!else
+!$conadder = ": " + $contxt
+!endif
+!if ($PUMVarShowInterfaces)
+!if ($PUMVarShowConnections)
+$startalias $con $endalias $conadder
+!endif
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable interface
+!unquoted procedure PUMLAPutInterface($ifname, $ifalias)
+!if ($PUMVarShowInterfaces)
+interface $ifname as $ifalias
+!endif
+!endprocedure

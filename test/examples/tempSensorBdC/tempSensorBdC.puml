@@ -6,21 +6,33 @@
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
-    !if ($PUMVarShowBodyInternals)
+
     ' the elements put here should have no or
     ' no other parent
-    PUMLAPutElement(tempSensorB)
-    PUMLAPutElement(tempConverter)
-    !endif
+
+    ' this automatically puts the ShowBodyInternals global variable
+    ' check around.
+    PUMLAPutInternalElementWithRel(tempSensorBdC, tempSensorB, "..>", "use")
+    PUMLAPutInternalElementWithRel(tempSensorBdC, tempConverter, "..>", "use")
+
+    ' if you do not need the relation you could also do it with this:
+    'PUMLAPutInternalElement(tempSensorB)
 }
 !endif
+' necessary to call when "PUMLAPutInternalElementWithRel" has been used
+' inside the re-usable element definition
+PUMLAFinalizeElement()
 
-!if ($PUMVarShowInterfaces)
-interface "temp_dC" as temp_dC_tempSensorBdC
-temp_dC_tempSensorBdC <-- tempSensorBdC
-temp_dC_tempConverter -- temp_dC_tempSensorBdC
-temp_dF_tempSensorB -- temp_dF_tempConverter
-!endif
+' define an interface
+PUMLAPutInterface("temp_DC", temp_dC_tempSensorBdC)
+
+' define the connection between interface and element
+PUMLAPutConnection(temp_dC_tempSensorBdC, tempSensorBdC, "<--")
+' define connection between the internal elements interface and
+' this element
+PUMLAPutConnection(temp_dC_tempConverter, temp_dC_tempSensorBdC, "--")
+' define connection between both internal elements (their interfaces)
+PUMLAPutConnection(temp_dF_tempSensorB, temp_dF_tempConverter, "--")
 
 !if ($PUMVarShowDescr)
 note bottom of tempSensorBdC

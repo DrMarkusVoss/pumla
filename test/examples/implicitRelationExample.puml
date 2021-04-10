@@ -1,0 +1,27 @@
+@startuml
+' the following file gets generated when you call
+' "python pumla.py update" in this directory
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+' this template skin colors instances for some
+' types in LightYellow
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %false()
+
+' this following flag allows to show/not show the automatically
+' created relation between the instance and its "class"
+!$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowImplicitRels = %true()
+
+title Example showing implicit relations of the model repository
+
+PUMLAPutElement(tempSensorB)
+
+PUMLAPutElement(tempSensorBdC)
+
+remove tempConverter
+
+@enduml

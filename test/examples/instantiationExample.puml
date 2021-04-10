@@ -17,6 +17,7 @@
 
 title Example for creating an instance of an \n element from the model repository
 
+
 ' create the instance "ts1" of model element with alias "tempSys".
 ' the name contains whitespaces, therefore name and alias are
 ' not equal and this version of the macro is called.
@@ -31,6 +32,10 @@ PUMLACreateInstanceOf(tempSys, ts2)
 ' model element it is derived from.
 PUMLACreateInstanceOf(wirelessUnit, wu1)
 
+PUMLAPutElement(tempSensorB)
+
+PUMLAPutElement(tempSensorBdC)
+
 note left of ts1
     you can attach notes
     to the instance or use
@@ -39,5 +44,6 @@ note left of ts1
 end note
 
 ts1 <..> ts2 : some interaction
+
 
 @enduml

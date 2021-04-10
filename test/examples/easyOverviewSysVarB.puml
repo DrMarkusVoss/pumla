@@ -9,6 +9,9 @@
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
+!$PUMVarShowImplicitRels = %false()
+!$PUMVarShowRelations = %true()
+!$PUMVarShowConnections = %true()
 
 title Overview Temperature System Variant B
 
