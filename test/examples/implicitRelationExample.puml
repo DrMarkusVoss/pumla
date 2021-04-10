@@ -2,14 +2,16 @@
 ' the following file gets generated when you call
 ' "python pumla.py update" in this directory
 !include modelrepo_json.puml
+!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
-!include ./../../templates/sysml/skin.puml
+'!include ./../../templates/sysml/skin.puml
 
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBody = %true()
 
 ' this following flag allows to show/not show the automatically
 ' created relation between the instance and its "class"
@@ -21,7 +23,8 @@ title Example showing implicit relations of the model repository
 PUMLAPutElement(tempSensorB)
 
 PUMLAPutElement(tempSensorBdC)
+PUMLARelCheatSheetAllAttributes()
 
-remove tempConverter
+'remove tempConverter
 
 @enduml

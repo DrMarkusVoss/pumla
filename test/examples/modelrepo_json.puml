@@ -4,4 +4,4 @@
  {"name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "stereotypes": ["block"]},
  {"name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
  {"name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "stereotypes": ["block"]},
- {"name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "stereotypes": ["block"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/xyz/Desktop/git/github/pumla/test/examples"}
+ {"name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "stereotypes": ["block"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples"}

@@ -158,7 +158,7 @@ end note
 ' a table to help you manage your architecture
 ' artefacts.
 !unquoted procedure PUMLACheatSheetAllAttributes()
-note as PUMLAUPCheatSheet
+note as PUMLAUPCheatSheetAllAttributes
     **PUMLA Cheat Sheet with all attributes**
 
     Model Repository Path: $allelems.modelrepopath
@@ -187,6 +187,29 @@ note as PUMLAUPCheatSheet
 !endfor
 end note
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the model repository.
+' It puts all elements with all attributes into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLARelCheatSheetAllAttributes()
+note as PUMLAUPRelCheatSheetAllAttributes
+    **PUMLA Relations Cheat Sheet with all attributes**
+
+    Model Relations Repository Path: $allrelations.modelrelationrepopath
+    Model Relations Repository File: $allrelations.modelrelationrepofile
+
+    **Model Relations Repository contents:**
+    |= id |= start |= end |= type |= text |= filename |= path |
+!foreach $el in $allrelations.relations
+    | $el.id | $el.start | $el.end | $el.reltype | $el.reltxt | $el.filename | $el.path |
+!endfor
+end note
+!endprocedure
+
 
 ' ############################################
 ' ---------------------------------------------
@@ -277,4 +300,11 @@ $startalias $con $endalias $conadder
 !if ($PUMVarShowInterfaces)
 interface $ifname as $ifalias
 !endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable interface
+!unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt, $relid)
+
 !endprocedure

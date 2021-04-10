@@ -12,16 +12,17 @@ component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
 
     ' this automatically puts the ShowBodyInternals global variable
     ' check around.
-    PUMLAPutInternalElementWithRel(tempSensorBdC, tempSensorB, "..>", "use")
+    'PUMLAPutInternalElementWithRel(tempSensorBdC, tempSensorB, "..>", "use")
     PUMLAPutInternalElementWithRel(tempSensorBdC, tempConverter, "..>", "use")
 
     ' if you do not need the relation you could also do it with this:
-    'PUMLAPutInternalElement(tempSensorB)
+    PUMLAPutInternalElement(tempSensorB)
 }
 !endif
 ' necessary to call when "PUMLAPutInternalElementWithRel" has been used
 ' inside the re-usable element definition
 PUMLAFinalizeElement()
+PUMLARelation(tempSensorBdC, tempSensorB, "..>", "use", "R#1")
 
 ' define an interface
 PUMLAPutInterface("temp_DC", temp_dC_tempSensorBdC)

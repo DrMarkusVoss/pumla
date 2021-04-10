@@ -1,6 +1,7 @@
 import os
 import json
 from modules.model.PUMLAElement import PUMLAElement
+from modules.model.PUMLARelation import PUMLARelation
 
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
@@ -68,6 +69,26 @@ def findElementNameAndTypeInText(lines, alias):
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
+def findRelations(lines, path, filename):
+    ret_rels = []
+    for e in lines:
+        if ("PUMLARelation" in e):
+            s1 = e.replace("PUMLARelation", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s4)>4):
+                pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_rels.append(pr)
+
+    return ret_rels
+
+
+
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
     # read contents of file at once
@@ -100,6 +121,7 @@ def parsePUMLAFile(filename):
         el_path = filename.rstrip(el_fn)
         pel.setPath(el_path)
         el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+        rels = findRelations(lines, el_path, el_fn)
         if (el_name == "-"):
             pel.setName(el_alias)
         else:
@@ -109,7 +131,7 @@ def parsePUMLAFile(filename):
             pel.stereotypes.append(st)
 
     # return the PUMLA Element
-    return pel
+    return pel, rels
 
 def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
@@ -131,7 +153,28 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
 
     return dict
 
-def updatePUMLAMR(path, mrfilename):
+def serializePUMLARelationsToDict(rels, mrpath, mrfilename):
+    '''create a dict from the list of pumla relations from which easily a JSON definition can be created'''
+    dict = {"modelrelationrepopath" : os.path.abspath(mrpath), "modelrelationrepofile" : mrfilename, "relations": []}
+
+    # put the relevant information from each pumla element
+    # into a temp dict. put all temp dicts into a
+    # dict for all the elements
+    for e in rels:
+        tmpdict = {}
+        tmpdict["id"] = e.getID()
+        tmpdict["start"] = e.getStart()
+        tmpdict["end"] = e.getEnd()
+        tmpdict["reltype"] = e.getRelType()
+        tmpdict["reltxt"] = e.getRelTxt()
+        tmpdict["path"] = e.getPath()
+        tmpdict["filename"] = e.getFilename()
+        dict["relations"].append(tmpdict)
+
+    return dict
+
+
+def updatePUMLAMR(path, mrefilename, mrrfilename):
     """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
@@ -141,28 +184,54 @@ def updatePUMLAMR(path, mrfilename):
     # a PUMLA Element out of it, that
     # gets put into a list.
     pumlaelements = []
+    pumlarelations = []
+
     for f in pumlafiles:
-        pel = parsePUMLAFile(f)
+        pel, rels = parsePUMLAFile(f)
         pumlaelements.append(pel)
+        for r in rels:
+            pumlarelations.append(r)
+
+
 
     # put the elements into a dictionary that can be easily
     # transformed into a JSON representation.
-    jsondict = serializePUMLAElementsToDict(pumlaelements, path, mrfilename)
+    jsondict = serializePUMLAElementsToDict(pumlaelements, path, mrefilename)
+
+    # put the relations into a dictionary that can be easily
+    # transformed into a JSON representation.
+    jsonreldict = serializePUMLARelationsToDict(pumlarelations, path, mrrfilename)
 
     # make it accessible from within PlantUML.
     # $allelemens is the preprocessor variable that
     # allows access by PlantUML pumla marcros.
     jsontxt = "!$allelems = " + json.dumps(jsondict)
 
+    # make it accessible from within PlantUML.
+    # $allrelations is the preprocessor variable that
+    # allows access by PlantUML pumla marcros.
+    jsonreltxt = "!$allrelations = " + json.dumps(jsonreldict)
+
     # split text to make the resulting file more readable;
     # one element definition per line.
     txt_lines = jsontxt.split("},")
 
-    # write the lines to the model repo file
-    with open(mrfilename, "w") as fil:
+    # split text to make the resulting file more readable;
+    # one element definition per line.
+    txtrel_lines = jsonreltxt.split("},")
+
+    # write the lines to the model element repo file
+    with open(mrefilename, "w") as fil:
         for i in range(len(txt_lines)-1):
             fil.write(txt_lines[i] + "},\n")
         fil.write(txt_lines[len(txt_lines)-1] + "\n")
     fil.close()
 
-    return True, mrfilename
+    # write the lines to the model relations repo file
+    with open(mrrfilename, "w") as rfil:
+        for i in range(len(txtrel_lines)-1):
+            rfil.write(txtrel_lines[i] + "},\n")
+        rfil.write(txtrel_lines[len(txtrel_lines)-1] + "\n")
+    fil.close()
+
+    return True, mrefilename, mrrfilename

@@ -9,7 +9,7 @@
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %false()
-!$PUMVarShowImplicitRels = %false()
+!$PUMVarShowImplicitRels = %true()
 
 scale 0.5
 
