@@ -11,6 +11,7 @@
 !$PUMVarShowConnections = %true()
 
 !$internal_finalize_string = ""
+!$internal_relations_on_diagram = ""
 
 ' --------------------------------------------
 ' get an element referenced by path and filename name
@@ -311,11 +312,34 @@ interface $ifname as $ifalias
 
 ' ############################################
 ' ---------------------------------------------
-' define a re-usable interface
+' put a relation with given id onto the diagram
 !unquoted procedure PUMLAPutRelation($relid)
 !foreach $el in $allrelations.relations
     !if ($el.id == $relid)
-        $el.start $el.reltype $el.end : $el.reltxt
+        !if (%not(%variable_exists($$el.id)))
+            $el.start $el.reltype $el.end : $el.reltxt
+            ' set global variable to indicate that the relation
+            ' is already put onto the diagram
+            %set_variable_value($$el.id, "%true()")
+        !endif
+    !endif
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put all relations related to given element alias
+' to the diagram
+!unquoted procedure PUMLAPutRelationsForElement($elemalias)
+!foreach $el in $allrelations.relations
+    !if (($el.start == $elemalias) || ($el.end == $elemalias))
+        ' make sure to not put the same relation twice
+        !if (%not(%variable_exists($$el.id)))
+            $el.start $el.reltype $el.end : $el.reltxt
+            ' set global variable to indicate that the relation
+            ' is already put onto the diagram
+            %set_variable_value($$el.id, "%true()")
+        !endif
     !endif
 !endfor
 !endprocedure

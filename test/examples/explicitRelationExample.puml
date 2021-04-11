@@ -26,8 +26,11 @@ PUMLAPutElement(tempSensorBdC)
 PUMLAPutElement(tempSensorB)
 PUMLAPutElement(tempConverter)
 
-PUMLAPutRelation("tempSensorBdCRel#1")
-PUMLAPutRelation("tempSensorBdCRel#2")
+'PUMLAPutRelation("tempSensorBdCRel#1")
+'PUMLAPutRelation("tempSensorBdCRel#2")
+
+PUMLAPutRelationsForElement(tempSensorBdC)
+'PUMLAPutRelationsForElement(tempSensorB)
 
 PUMLARelCheatSheetAllAttributes()
 
