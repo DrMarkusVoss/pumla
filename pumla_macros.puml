@@ -121,7 +121,7 @@
 ' ---------------------------------------------
 ' create an instance of an element that exists
 ' in the json model repo.
-!unquoted procedure PUMLACreateInstanceOf($elemalias, $instalias, $instname="")
+!unquoted procedure PUMLACreateAndPutInstanceOf($elemalias, $instalias, $instname="")
 !if ($instname == "")
 !$instname = $instalias
 !endif
@@ -132,6 +132,16 @@ $instalias ..> $elemalias : instance of
 !endif
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' create an instance of an element that exists
+' in the json model repo.
+!unquoted procedure PUMLAInstanceOf($elemalias, $instalias, $instname="")
+!if ($instname == "")
+!$instname = $instalias
+!endif
+_PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!endprocedure
 
 ' ############################################
 ' ---------------------------------------------
@@ -166,7 +176,7 @@ note as PUMLAUPCheatSheetAllAttributes
     Model Repository File: $allelems.modelrepofile
 
     **Model Repository contents:**
-    |= name |= alias |= type |= stereotypes |= parent |= filename |= path |
+    |= name |= alias |= type |= stereotypes |= parent |= instclass |= filename |= path |
 !foreach $el in $allelems.elements
     !$sts = ""
     !$lmax = 0
@@ -184,7 +194,7 @@ note as PUMLAUPCheatSheetAllAttributes
     !if ($sts=="")
         !$sts="-"
     !endif
-    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.filename | $el.path |
+    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.filename | $el.path |
 !endfor
 end note
 !endprocedure
@@ -204,9 +214,9 @@ note as PUMLAUPRelCheatSheetAllAttributes
     Model Relations Repository File: $allrelations.modelrelationrepofile
 
     **Model Relations Repository contents:**
-    |= id |= start |= end |= type |= text |= filename |= path |
+    |= id |= start |= type |= end |= text |= filename |= path |
 !foreach $el in $allrelations.relations
-    | $el.id | $el.start | $el.end | $el.reltype | $el.reltxt | $el.filename | $el.path |
+    | $el.id | $el.start | $el.reltype | $el.end | $el.reltxt | $el.filename | $el.path |
 !endfor
 end note
 !endprocedure
@@ -330,9 +340,12 @@ interface $ifname as $ifalias
 ' ---------------------------------------------
 ' put all relations related to given element alias
 ' to the diagram
-!unquoted procedure PUMLAPutRelationsForElement($elemalias)
+!unquoted procedure PUMLAPutRelationsForElement($elemalias, $reltype="")
 !foreach $el in $allrelations.relations
-    !if (($el.start == $elemalias) || ($el.end == $elemalias))
+    !if ($reltype == "")
+        !$reltype = $el.reltype
+    !endif
+    !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
             $el.start $el.reltype $el.end : $el.reltxt

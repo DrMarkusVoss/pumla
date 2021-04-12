@@ -2,6 +2,7 @@
 ' the following file gets generated when you call
 ' "python pumla.py update" in this directory
 !include modelrepo_json.puml
+!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
@@ -18,23 +19,38 @@
 title Example for creating an instance of an \n element from the model repository
 
 
+
 ' create the instance "ts1" of model element with alias "tempSys".
 ' the name contains whitespaces, therefore name and alias are
 ' not equal and this version of the macro is called.
-PUMLACreateInstanceOf(tempSys, ts1, "ts1 professional")
+PUMLACreateAndPutInstanceOf(tempSys, ts1, "ts1 professional")
 
 ' create another instance "ts2" from same model element.
 ' the instance name equals the alias, therefore is not
 ' allowed to contain whitespaces.
-PUMLACreateInstanceOf(tempSys, ts2)
+PUMLACreateAndPutInstanceOf(tempSys, ts2)
 
 ' the instance inherits the stereotypes of the
 ' model element it is derived from.
-PUMLACreateInstanceOf(wirelessUnit, wu1)
+PUMLACreateAndPutInstanceOf(wirelessUnit, wu1)
 
 PUMLAPutElement(tempSensorB)
 
 PUMLAPutElement(tempSensorBdC)
+PUMLAPutElement(tSys1)
+PUMLAPutElement(tempSys)
+
+'PUMLAPutRelationsForElement(tSys1)
+'PUMLAPutRelation(REL#tSys2tempSys)
+PUMLAPutRelationsForElement(tempSys)
+
+note left of ts2
+    Toggle the **PUMVarShowInstantiationRel**
+    variable ($) to **true/false** to see the
+    difference between the two kinds of
+    instantiation mechanism.
+end note
+
 
 note left of ts1
     you can attach notes

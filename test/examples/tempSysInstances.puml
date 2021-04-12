@@ -1,0 +1,17 @@
+'PUMLAMR
+'PUMLAINSTANCES
+@startuml
+!include ./../../pumla_macros.puml
+'!include modelrepo_json.puml
+
+' create the instance "ts1" of model element with alias "tempSys".
+' the name contains whitespaces, therefore name and alias are
+' not equal and this version of the macro is called.
+PUMLAInstanceOf(tempSys, tSys1, "tSys1 professional")
+
+' create another instance "ts2" from same model element.
+' the instance name equals the alias, therefore is not
+' allowed to contain whitespaces.
+PUMLAInstanceOf(tempSys, tSys2)
+
+@enduml

@@ -88,6 +88,37 @@ def findRelations(lines, path, filename):
     return ret_rels
 
 
+def findInstances(lines, path, filename):
+    ret_instances = []
+    for e in lines:
+        if ("PUMLAInstanceOf(" in e):
+            s1 = e.replace("PUMLAInstanceOf", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s5) > 1):
+                pr = PUMLAElement()
+                pr.setInstance()
+                pr.addStereotype("instance")
+                pr.setInstanceClassAlias(s5[0])
+                pr.setAlias(s5[1])
+                if (len(s5) > 2):
+                    pr.setName(s5[2])
+                else:
+                    pr.setName(s5[1])
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_instances.append(pr)
+
+    return ret_instances
+
+def createInstanceRelation(inst, path, fn):
+    pr = PUMLARelation(("REL#" + inst.getAlias() + inst.getInstanceClassAlias()), inst.getAlias(), inst.getInstanceClassAlias(), "..>", "instance of")
+    pr.setPath(path)
+    pr.setFilename(fn)
+    return pr
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -103,35 +134,49 @@ def parsePUMLAFile(filename):
     # this element will be filled with information
     # of the file and returned
     pel = PUMLAElement()
+    pels = []
+    rels = []
     # check if it is a PUMLA file
     if ("'PUMLAMR" in lines[0]):
-        # parent is defined by second line comment like below
-        if ("'PUMLAPARENT:" in lines[1]):
-            par = lines[1].lstrip("'PUMLAPARENT: ")
-            parent = par.strip(" ")
-            pel.setParent(parent)
-        # all other information can be found in filename (Modelling Guideline)
-        # and file contents.
         fns = filename.split("/")
-        el_fn = fns[len(fns)-1]
-        pel.setFilename(el_fn)
-        el_alias_s = el_fn.split(".")
-        el_alias = el_alias_s[0]
-        pel.setAlias(el_alias)
+        el_fn = fns[len(fns) - 1]
         el_path = filename.rstrip(el_fn)
-        pel.setPath(el_path)
-        el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
-        rels = findRelations(lines, el_path, el_fn)
-        if (el_name == "-"):
-            pel.setName(el_alias)
+        # instance definition is defined by second line comment
+        if ("'PUMLAINSTANCES" in lines[1]):
+            ri = findInstances(lines, el_path, el_fn)
+            for i in ri:
+                pels.append(i)
+                instrel = createInstanceRelation(i, el_path, el_fn)
+                rels.append(instrel)
+
+                #i.printMe()
+            pass
+        # parent is defined by second line comment like below
         else:
-            pel.setName(el_name)
-        pel.setType(el_type)
-        for st in el_stereotypes:
-            pel.stereotypes.append(st)
+            if ("'PUMLAPARENT:" in lines[1]):
+                par = lines[1].lstrip("'PUMLAPARENT: ")
+                parent = par.strip(" ")
+                pel.setParent(parent)
+            # all other information can be found in filename (Modelling Guideline)
+            # and file contents.
+            pel.setFilename(el_fn)
+            el_alias_s = el_fn.split(".")
+            el_alias = el_alias_s[0]
+            pel.setAlias(el_alias)
+            pel.setPath(el_path)
+            el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+            rels = findRelations(lines, el_path, el_fn)
+            if (el_name == "-"):
+                pel.setName(el_alias)
+            else:
+                pel.setName(el_name)
+            pel.setType(el_type)
+            for st in el_stereotypes:
+                pel.stereotypes.append(st)
+            pels.append(pel)
 
     # return the PUMLA Element
-    return pel, rels
+    return pels, rels
 
 def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
@@ -147,6 +192,7 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
         tmpdict["type"] = e.getType()
         tmpdict["stereotypes"] = e.getStereotypes()
         tmpdict["parent"] = e.getParent()
+        tmpdict["instclassalias"] = e.getInstanceClassAlias()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
         dict["elements"].append(tmpdict)
@@ -187,8 +233,9 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
     pumlarelations = []
 
     for f in pumlafiles:
-        pel, rels = parsePUMLAFile(f)
-        pumlaelements.append(pel)
+        pels, rels = parsePUMLAFile(f)
+        for p in pels:
+            pumlaelements.append(p)
         for r in rels:
             pumlarelations.append(r)
 

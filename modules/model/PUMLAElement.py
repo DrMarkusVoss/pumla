@@ -11,6 +11,17 @@ class PUMLAElement:
         self.filename = "-"
         self.path = "-"
         self.stereotypes = []
+        self.isInstance = False
+        self.instance_class_alias = "-"
+
+    def setInstance(self):
+        self.isInstance = True
+
+    def setInstanceClassAlias(self, ic):
+        self.instance_class_alias = ic
+
+    def getInstanceClassAlias(self):
+        return self.instance_class_alias
 
     def setName(self, name):
         """ setter for 'name' """

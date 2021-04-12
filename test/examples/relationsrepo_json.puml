@@ -1,2 +1,4 @@
-!$allrelations = {"modelrelationrepofile": "./relationsrepo_json.puml", "modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "relations": [{"end": "tempSensorB", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#1"},
+!$allrelations = {"modelrelationrepofile": "./relationsrepo_json.puml", "modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "relations": [{"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys1", "reltxt": "instance of", "path": "./", "id": "REL#tSys1tempSys"},
+ {"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys2", "reltxt": "instance of", "path": "./", "id": "REL#tSys2tempSys"},
+ {"end": "tempSensorB", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#1"},
  {"end": "tempConverter", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#2"}]}

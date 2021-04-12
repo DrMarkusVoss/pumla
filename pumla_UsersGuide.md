@@ -100,16 +100,26 @@ referenced element will be shown with the defined levels of nested internals.
 Puts all elements from the model repository on the diagram. Useful to get an
 overview on all elements inside the source tree.
 
-### `PUMLACreateInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
+### `PUMLACreateAndPutInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
+This macro is intented to be called outside of the model repository, meaning on diagrams
+that use re-usable elements but a diagram that is not a re-usable element
+itself. 
+
 Creates an instance of a model element with alias `model_elem_alias` that is
 inside the model repository and names the instances `inst_name` with the alias
-`inst_alias`. The name can have whitespaces, it will be but in '"', for the alias
+`inst_alias`. Then this instance is put on the diagram.
+The name can have whitespaces, it will be but in '"', for the alias
 the same rules apply as to PlantUML alias. If no name is provided, then
 the name will be the same as the alias. The instance
 gets the same type and stereotype(s) as the model element from the repository but gets in
 addition the stereotype `<<instance>>`. On diagrams that do not show
 the `instance of` relation to the model element, the name of the instance will
-be extended by `::<model element name>`.
+be extended by `::<model element name>`. The `instance of` relation
+will not appear in the model relation repository, as this method is
+not intended to create a re-usable element but to create a 
+non-re-usable instance of a re-usable element. So it is a convencience function
+simplifying the instantiation process with at the same time creating
+the proper relation between instance and class element.
 
 ### `AddTaggedValue( tag : string, value : string )`
 Adds a tag/value pair to the tagged value table of the

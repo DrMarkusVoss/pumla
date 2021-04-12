@@ -1,7 +1,9 @@
-!$allelems = {"elements": [{"name": "Temperature System", "parent": "-", "type": "node", "filename": "tempSys.puml", "alias": "tempSys", "path": "./", "stereotypes": []},
- {"name": "Temperature Sensor B", "parent": "-", "type": "component", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./tempSensorB/", "stereotypes": ["block", "external System"]},
- {"name": "Wireless Unit", "parent": "-", "type": "rectangle", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./wirelessUnit/", "stereotypes": ["block", "external System"]},
- {"name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "stereotypes": ["block"]},
- {"name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
- {"name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "stereotypes": ["block"]},
- {"name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "stereotypes": ["block"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples"}
+!$allelems = {"elements": [{"instclassalias": "-", "name": "Temperature System", "parent": "-", "type": "node", "filename": "tempSys.puml", "alias": "tempSys", "path": "./", "stereotypes": []},
+ {"instclassalias": "tempSys", "name": "tSys1 professional", "parent": "-", "type": "-", "filename": "tempSysInstances.puml", "alias": "tSys1", "path": "./", "stereotypes": ["instance"]},
+ {"instclassalias": "tempSys", "name": "tSys2", "parent": "-", "type": "-", "filename": "tempSysInstances.puml", "alias": "tSys2", "path": "./", "stereotypes": ["instance"]},
+ {"instclassalias": "-", "name": "Temperature Sensor B", "parent": "-", "type": "component", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./tempSensorB/", "stereotypes": ["block", "external System"]},
+ {"instclassalias": "-", "name": "Wireless Unit", "parent": "-", "type": "rectangle", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./wirelessUnit/", "stereotypes": ["block", "external System"]},
+ {"instclassalias": "-", "name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "stereotypes": ["block"]},
+ {"instclassalias": "-", "name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
+ {"instclassalias": "-", "name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "stereotypes": ["block"]},
+ {"instclassalias": "-", "name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "stereotypes": ["block"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples"}
