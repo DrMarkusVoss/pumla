@@ -18,7 +18,7 @@
 
 title Example for creating an instance of an \n element from the model repository
 
-
+scale 0.8
 
 ' create the instance "ts1" of model element with alias "tempSys".
 ' the name contains whitespaces, therefore name and alias are
