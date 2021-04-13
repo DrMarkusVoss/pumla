@@ -420,3 +420,26 @@ $ifalias $constr $elemalias
 !endfor
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' put all connections related to given element alias
+' to the diagram
+!unquoted procedure PUMLAPutConnectionsForElement($elemalias)
+!foreach $el in $allconnections.connections
+    !if ($el.contxt == "")
+        !$conadder = ""
+    !else
+        !$conadder = " : " + $el.contxt
+    !endif
+    !if ((%strpos($el.start, $elemalias) > 0) || (%strpos($el.end, $elemalias) >0))
+        ' make sure to not put the same relation twice
+        !if (%not(%variable_exists($$el.id)))
+            $el.start $el.contype $el.end $conadder
+            ' set global variable to indicate that the relation
+            ' is already put onto the diagram
+            %set_variable_value($$el.id, "%true()")
+        !endif
+    !endif
+!endfor
+!endprocedure
+

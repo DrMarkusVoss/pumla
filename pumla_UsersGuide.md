@@ -173,7 +173,7 @@ filled with a text drawing the relation when put onto a diagram with `PUMLAPutCo
 Puts the relation with the given ID onto the diagram. The ID must refer to a relation
 in the relations repository.
 
-### `PUMLAPutRelationsForElement(elemalias, "reltype" : string (optional)`
+### `PUMLAPutRelationsForElement(elemalias : string, "reltype" : string (optional))`
 Puts all relations from the relations repository onto the diagram, that are associated
 with the model element with the given `elemalias`, meaning it starts or ends at that element.
 If also a relation type is given with `reltype`, then only the relations of that type
@@ -185,6 +185,11 @@ Puts all relations from the relations repository onto the diagram.
 ### `PUMLAPutConnection("conid" : string)`
 Puts the connection with the given ID onto the diagram. The ID must refer to a relation
 in the connections repository.
+
+### `PUMLAPutConnectionsForElement(elemalias : string)`
+Puts all connections from the connections repository onto the diagram, that are associated
+with the model element with the given `elemalias`, meaning it starts or ends with an interface
+of that element. 
 
 ### `PUMLAPutAllConnections()`
 Puts all connections from the connections repository onto the diagram.
