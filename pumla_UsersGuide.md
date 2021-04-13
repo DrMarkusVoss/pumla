@@ -68,6 +68,13 @@ referenced to by its alias `elem_alias`. So, when the parent element
 is put onto a diagram and the internals are configured to be shown, 
 then this element will appear inside the parent element.
 
+### `'PUMLAINSTANCES`
+This comment in the second line under the `'PUMLAMR` marks that this
+file contains definitions of re-usable instances of re-usable elements.
+Other than model elements, it is allowed to define multiple instances
+in one file. That is why there is a dedicated marking for such a file.
+
+
 ---
 
 ### Extension Macros
@@ -83,7 +90,18 @@ is.
 ### `PUMLACheatSheetAllAttributes()`
 This macro creates a note with a table that shows the contents of the model
 repository. It puts all elements with all attributes into a table to help
-you manage your architecture artefacts.
+you manage your architecture elements and artefacts.
+
+### `PUMLARelCheatSheetAllAttributes()`
+This macro creates a note with a table that shows the contents of the relations
+repository. It puts all relations with all attributes into a table to help
+you manage your architecture relations and artefacts.
+
+### `PUMLAConCheatSheetAllAttributes()`
+This macro creates a note with a table that shows the contents of the connections
+repository. It puts all relations with all attributes into a table to help
+you manage your architecture relations and artefacts.
+
 
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
@@ -120,6 +138,57 @@ not intended to create a re-usable element but to create a
 non-re-usable instance of a re-usable element. So it is a convencience function
 simplifying the instantiation process with at the same time creating
 the proper relation between instance and class element.
+
+### `PUMLAInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
+Creates a re-usable instance of a model element with alias `model_elem_alias` that is
+inside the model repository and names the instances `inst_name` with the alias.
+This is only allowed to be called within an instance definition file (marked with
+`'PUMLAINSTANCES` in the second line of the file.
+
+### `PUMLAPutInterface( "ifname": string, ifalias : string, elemalias : string, $type="":string)`
+Creates an interface with name and alias that belongs to element referenced by
+`elem_alias`. `type` is the kind of connection between the interface and
+the model element and can be `in`, `out`, `inout` or empty which translates to
+a non-directional connections ("--").
+
+### `PUMLARelation(startalias : string, endalias : string, "reltype" : string, "reltxt" : string (optional), "relid" : string (optional))`
+Creates a re-usable relation between the two elements starting at element with alias
+`startalias` and end at element with alias `endalias`. The type of relation can be any PlantUML
+compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
+will be put next to the relation when put on a diagram. `relid` can be used as
+unique identifier to reference to the relation. If not given, `pumla` automatically creates the
+id by combining start and end alias. This relation is created only in the relations repo and will be
+filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
+
+### `PUMLAConnection(startalias : string, endalias : string, "contype" : string, "contxt" : string (optional), "conid" : string (optional))`
+Creates a connection between the two interfaces starting at interface with alias
+`startalias` and end at interface with alias `endalias`. The type of connection can be any PlantUML
+compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
+will be put next to the relation when put on a diagram. `conid` can be used as
+unique identifier to reference to the connection. If not given, `pumla` automatically creates the
+id by combining start and end alias. This connection is created only in the connections repo and will be
+filled with a text drawing the relation when put onto a diagram with `PUMLAPutConnection(...)` (or PutAll...). 
+
+### `PUMLAPutRelation("relid" : string)`
+Puts the relation with the given ID onto the diagram. The ID must refer to a relation
+in the relations repository.
+
+### `PUMLAPutRelationsForElement(elemalias, "reltype" : string (optional)`
+Puts all relations from the relations repository onto the diagram, that are associated
+with the model element with the given `elemalias`, meaning it starts or ends at that element.
+If also a relation type is given with `reltype`, then only the relations of that type
+will be put onto the diagram.
+
+### `PUMLAPutAllRelations()`
+Puts all relations from the relations repository onto the diagram.
+
+### `PUMLAPutConnection("conid" : string)`
+Puts the connection with the given ID onto the diagram. The ID must refer to a relation
+in the connections repository.
+
+### `PUMLAPutAllConnections()`
+Puts all connections from the connections repository onto the diagram.
+
 
 ### `AddTaggedValue( tag : string, value : string )`
 Adds a tag/value pair to the tagged value table of the

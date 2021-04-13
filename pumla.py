@@ -5,7 +5,7 @@ from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updateP
 
 def identifyMe():
     """ information about the executed command """
-    print("pumla v0.3 - by Dr. Markus Voss")
+    print("pumla v0.4 - by Dr. Markus Voss")
 
 def parseSysArg(sysarg):
     """ parses the given command line arguments """

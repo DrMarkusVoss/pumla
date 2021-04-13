@@ -16,7 +16,6 @@
 ' this following flag allows to show/not show the automatically
 ' created relation between the instance and its "class"
 !$PUMVarShowInstantiationRel = %true()
-!$PUMVarShowImplicitRels = %true()
 
 title Example showing explicit relations of the model repository
 

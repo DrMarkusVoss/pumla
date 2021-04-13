@@ -6,7 +6,6 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %true()
-!$PUMVarShowImplicitRels = %true()
 !$PUMVarShowRelations = %true()
 !$PUMVarShowConnections = %true()
 
@@ -228,7 +227,7 @@ end note
 ' ############################################
 ' ---------------------------------------------
 ' this commands gives you an overview
-' on the contents of the model repository.
+' on the contents of the relations repository.
 ' It puts all elements with all attributes into
 ' a table to help you manage your architecture
 ' artefacts.
@@ -247,6 +246,27 @@ note as PUMLAUPRelCheatSheetAllAttributes
 end note
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the connections repository.
+' It puts all elements with all attributes into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLAConCheatSheetAllAttributes()
+note as PUMLAUPConCheatSheetAllAttributes
+    **PUMLA Connections Cheat Sheet with all attributes**
+
+    Model Connections Repository Path: $allconnections.modelconnectionrepopath
+    Model Connections Repository File: $allconnections.modelconnectionrepofile
+
+    **Model Connections Repository contents:**
+    |= id |= start |= type |= end |= text |= filename |= path |
+!foreach $el in $allconnections.connections
+    | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $el.filename | $el.path |
+!endfor
+end note
+!endprocedure
 
 ' ############################################
 ' ---------------------------------------------
@@ -269,34 +289,34 @@ PUMLAPutElement($elemalias)
 ' ############################################
 ' ---------------------------------------------
 ' internal use of an existing model repo element.
-!unquoted procedure PUMLAPutInternalElementWithRel($parent, $elemalias, $rel, $reltxt="")
-PUMLAPutInternalElement($elemalias)
-!if ($reltxt == "")
-!$reladder = ""
-!else
-!$reladder = ": " + $reltxt
-!endif
-
-!$internal_finalize_string = $internal_finalize_string + %newline() + $parent + $rel + $elemalias + $reladder
-'!if ($PUMVarShowImplicitRels)
-'$parent $rel $elemalias : $reltxt
+'!unquoted procedure PUMLAPutInternalElementWithRel($parent, $elemalias, $rel, $reltxt="")
+'PUMLAPutInternalElement($elemalias)
+'!if ($reltxt == "")
+'!$reladder = ""
+'!else
+'!$reladder = ": " + $reltxt
 '!endif
-!endprocedure
+'
+'!$internal_finalize_string = $internal_finalize_string + %newline() + $parent + $rel + $elemalias + $reladder
+''!if ($PUMVarShowImplicitRels)
+''$parent $rel $elemalias : $reltxt
+''!endif
+'!endprocedure
 
-' ############################################
-' ---------------------------------------------
-' define a re-usable relation
-!unquoted procedure PUMLAPutRelation_depr($startalias, $endalias, $rel, $reltxt="")
-!if ($reltxt == "")
-!$reladder = ""
-!else
-!$reladder = ": " + $reltxt
-!endif
-
-!if ($PUMVarShowRelations)
-$startalias $rel $endalias $reladder
-!endif
-!endprocedure
+'' ############################################
+'' ---------------------------------------------
+'' define a re-usable relation
+'!unquoted procedure PUMLAPutRelation_depr($startalias, $endalias, $rel, $reltxt="")
+'!if ($reltxt == "")
+'!$reladder = ""
+'!else
+'!$reladder = ": " + $reltxt
+'!endif
+'
+'!if ($PUMVarShowRelations)
+'$startalias $rel $endalias $reladder
+'!endif
+'!endprocedure
 
 
 ' ############################################
@@ -348,6 +368,8 @@ $startalias $rel $endalias $reladder
     !$constr = "<--"
 !elseif ($type=="inout")
     !$constr = "<-->"
+!else
+    !$constr= "--"
 !endif
 interface "$ifname" as $ifalias
 $ifalias $constr $elemalias

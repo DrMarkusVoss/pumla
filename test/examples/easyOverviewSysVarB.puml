@@ -35,6 +35,7 @@ PUMLAPutElement(wirelessUnit)
 internet_tempSys -- internet_wirelessUnit
 
 PUMLAPutAllConnections()
+PUMLAConCheatSheetAllAttributes()
 
 ' remove the elements you do not want to see.
 ' the following are included as internal parts
