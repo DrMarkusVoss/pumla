@@ -1,0 +1,2 @@
+!$allconnections = {"connections": [{"end": "temp_dC_tempSensorBdC", "filename": "tempSensorBdC.puml", "start": "temp_dC_tempConverter", "contype": "--", "path": "./tempSensorBdC/", "contxt": "", "id": "C#2"},
+ {"end": "temp_dF_tempConverter", "filename": "tempSensorBdC.puml", "start": "temp_dF_tempSensorB", "contype": "--", "path": "./tempSensorBdC/", "contxt": "", "id": "C#3"}], "modelconnectionrepopath": "/Users/xyz/Desktop/git/github/pumla/test/examples", "modelconnectionrepofile": "./connectionsrepo_json.puml"}

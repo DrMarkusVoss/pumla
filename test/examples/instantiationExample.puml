@@ -37,7 +37,16 @@ PUMLACreateAndPutInstanceOf(wirelessUnit, wu1)
 PUMLAPutElement(tempSensorB)
 
 PUMLAPutElement(tempSensorBdC)
+
+' tSys1 and tSys2 are defined in the same file.
+' putting one of them on the diagram automatically
+' puts also the second one. if you do not want that,
+' put them in different files or remove one of them
+' at the end of the diagram.
 PUMLAPutElement(tSys1)
+
+remove tSys2
+
 PUMLAPutElement(tempSys)
 
 'PUMLAPutRelationsForElement(tSys1)
@@ -51,7 +60,6 @@ note left of ts2
     instantiation mechanism.
 end note
 
-
 note left of ts1
     you can attach notes
     to the instance or use
@@ -60,6 +68,5 @@ note left of ts1
 end note
 
 ts1 <..> ts2 : some interaction
-
 
 @enduml

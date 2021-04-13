@@ -20,8 +20,6 @@
 
 title Example showing explicit relations of the model repository
 
-
-
 PUMLAPutElement(tempSensorBdC)
 PUMLAPutElement(tempSensorB)
 PUMLAPutElement(tempConverter)
@@ -32,6 +30,11 @@ PUMLAPutElement(tempConverter)
 PUMLAPutRelationsForElement(tempSensorBdC)
 'PUMLAPutRelationsForElement(tempSensorB)
 
+' we also have a cheat sheet for the relations
+' model repo, but only the "all attributes" version
+' as the only thing you might not care for are the
+' filename and path, the rest is typically always of
+' interest.
 PUMLARelCheatSheetAllAttributes()
 
 'remove tempConverter

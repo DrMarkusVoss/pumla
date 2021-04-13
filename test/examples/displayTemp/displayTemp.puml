@@ -1,11 +1,7 @@
 'PUMLAMR
 'PUMLAPARENT: tempSys
 @startuml
-
-!if ($PUMVarShowInterfaces)
-interface "temp_dC" as temp_dC_displayTemp
-temp_dC_displayTemp )--> displayTemp
-!endif
+!include ./../../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
 component displayTemp <<block>>  {
@@ -15,6 +11,8 @@ component displayTemp <<block>>  {
     !endif
 }
 !endif
+
+PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
 !if ($PUMVarShowDescr)
 note bottom of displayTemp

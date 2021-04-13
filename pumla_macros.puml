@@ -88,6 +88,30 @@
 !endprocedure
 
 ' ############################################
+
+' ---------------------------------------------
+' all elements with attributes
+' diagram creator based on json repo.
+' TODO
+!unquoted procedure PUMLAPutAllRelations()
+!foreach $el in $allrelations.relations
+    PUMLAPutRelation($el.id)
+!endfor
+!endprocedure
+
+' ############################################
+
+' ---------------------------------------------
+' all elements with attributes
+' diagram creator based on json repo.
+' TODO
+!unquoted procedure PUMLAPutAllConnections()
+!foreach $el in $allconnections.connections
+    PUMLAPutConnection($el.id)
+!endfor
+!endprocedure
+
+' ############################################
 ' ---------------------------------------------
 ' create an instance of an element that exists
 ' in the json model repo. Internal txt creation.
@@ -140,7 +164,9 @@ $instalias ..> $elemalias : instance of
 !if ($instname == "")
 !$instname = $instalias
 !endif
+!if ($PUMVarShowBody)
 _PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!endif
 !endprocedure
 
 ' ############################################
@@ -272,51 +298,66 @@ $startalias $rel $endalias $reladder
 !endif
 !endprocedure
 
+
 ' ############################################
 ' ---------------------------------------------
-' put this after the definition of a re-usable
-' model element. it adds things that refer to
-' internal elements but must be stated outside
-!unquoted procedure PUMLAFinalizeElement()
-!if ($PUMVarShowImplicitRels)
-$internal_finalize_string
-!endif
-!$internal_finalize_string = ""
+' define a re-usable Connection
+!unquoted procedure PUMLAConnection($startalias, $endalias, $contype, $contxt="", $conid="")
+
 !endprocedure
 
 ' ############################################
 ' ---------------------------------------------
-' define a re-usable connection.
+' put a re-usable connection onto the diagram.
 ' connections only exist between interfaces.
 ' otherwise it is a relation, not a connection.
 ' therefore, if interfaces are not shown, also
 ' the connections cannot be shown.
-!unquoted procedure PUMLAPutConnection($startalias, $endalias, $con, $contxt="")
-!if ($contxt == "")
-!$conadder = ""
-!else
-!$conadder = ": " + $contxt
-!endif
+!unquoted procedure PUMLAPutConnection($conid)
+!foreach $el in $allconnections.connections
+    !if ($el.id == $conid)
+        !if (%not(%variable_exists($$el.id)))
+            !if ($PUMVarShowInterfaces)
+            !if ($PUMVarShowConnections)
+            !if ($el.contxt=="")
+                !$conadr = ""
+            !else
+                !$conadr = " : " $el.contxt
+            !endif
+            $el.start $el.contype $el.end $conadr
+            ' set global variable to indicate that the connection
+            ' is already put onto the diagram
+            %set_variable_value($$el.id, "%true()")
+            !endif
+            !endif
+        !endif
+    !endif
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable interface
+!unquoted procedure PUMLAPutInterface($ifname, $ifalias, $elemalias, $type="")
 !if ($PUMVarShowInterfaces)
-!if ($PUMVarShowConnections)
-$startalias $con $endalias $conadder
+!if ($type=="")
+    !$constr = "--"
+!elseif ($type=="in")
+    !$constr = ")-->"
+!elseif ($type=="out")
+    !$constr = "<--"
+!elseif ($type=="inout")
+    !$constr = "<-->"
 !endif
+interface "$ifname" as $ifalias
+$ifalias $constr $elemalias
 !endif
 !endprocedure
 
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable interface
-!unquoted procedure PUMLAPutInterface($ifname, $ifalias)
-!if ($PUMVarShowInterfaces)
-interface $ifname as $ifalias
-!endif
-!endprocedure
-
-' ############################################
-' ---------------------------------------------
-' define a re-usable interface
-!unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt, $relid)
+!unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt="", $relid="")
 
 !endprocedure
 

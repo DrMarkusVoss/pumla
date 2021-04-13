@@ -4,6 +4,14 @@
 !include ./../../pumla_macros.puml
 '!include modelrepo_json.puml
 
+' here 2 re-usable instances of tempSys are defined.
+' see line 2, where we mark this as instance file.
+' other re-usable element files shall only contain
+' one model element (atomic definition). but for
+' instances that might be annoying, so we make an
+' exception to allow for multiple instance element
+' definitions in one file.
+
 ' create the instance "ts1" of model element with alias "tempSys".
 ' the name contains whitespaces, therefore name and alias are
 ' not equal and this version of the macro is called.

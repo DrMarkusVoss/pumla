@@ -1,13 +1,7 @@
 'PUMLAMR
 'PUMLAPARENT: tempSys
 @startuml
-
-!if ($PUMVarShowInterfaces)
-interface "temp_dC" as temp_dC_tempConverter
-interface "temp_dF" as temp_dF_tempConverter
-temp_dC_tempConverter <-- tempConverter
-temp_dF_tempConverter )--> tempConverter
-!endif
+!include ./../../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
 component "Temp. Converter" <<block>> as tempConverter {
@@ -17,6 +11,9 @@ component "Temp. Converter" <<block>> as tempConverter {
     !endif
 }
 !endif
+
+PUMLAPutInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
+PUMLAPutInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")
 
 !if ($PUMVarShowDescr)
 note bottom of tempConverter

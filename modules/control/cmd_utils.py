@@ -2,6 +2,7 @@ import os
 import json
 from modules.model.PUMLAElement import PUMLAElement
 from modules.model.PUMLARelation import PUMLARelation
+from modules.model.PUMLAConnection import PUMLAConnection
 
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
@@ -87,6 +88,23 @@ def findRelations(lines, path, filename):
 
     return ret_rels
 
+def findConnections(lines, path, filename):
+    ret_cons = []
+    for e in lines:
+        if ("PUMLAConnection" in e):
+            s1 = e.replace("PUMLAConnection", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s4)>4):
+                pr = PUMLAConnection(s5[4], s5[0], s5[1], s5[2], s5[3])
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_cons.append(pr)
+
+    return ret_cons
 
 def findInstances(lines, path, filename):
     ret_instances = []
@@ -136,6 +154,7 @@ def parsePUMLAFile(filename):
     pel = PUMLAElement()
     pels = []
     rels = []
+    cons = []
     # check if it is a PUMLA file
     if ("'PUMLAMR" in lines[0]):
         fns = filename.split("/")
@@ -166,6 +185,7 @@ def parsePUMLAFile(filename):
             pel.setPath(el_path)
             el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
             rels = findRelations(lines, el_path, el_fn)
+            cons = findConnections(lines, el_path, el_fn)
             if (el_name == "-"):
                 pel.setName(el_alias)
             else:
@@ -176,7 +196,7 @@ def parsePUMLAFile(filename):
             pels.append(pel)
 
     # return the PUMLA Element
-    return pels, rels
+    return pels, rels, cons
 
 def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
@@ -219,8 +239,28 @@ def serializePUMLARelationsToDict(rels, mrpath, mrfilename):
 
     return dict
 
+def serializePUMLAConnectionsToDict(cons, mrpath, mrfilename):
+    '''create a dict from the list of pumla relations from which easily a JSON definition can be created'''
+    dict = {"modelconnectionrepopath" : os.path.abspath(mrpath), "modelconnectionrepofile" : mrfilename, "connections": []}
 
-def updatePUMLAMR(path, mrefilename, mrrfilename):
+    # put the relevant information from each pumla element
+    # into a temp dict. put all temp dicts into a
+    # dict for all the elements
+    for e in cons:
+        tmpdict = {}
+        tmpdict["id"] = e.getID()
+        tmpdict["start"] = e.getStart()
+        tmpdict["end"] = e.getEnd()
+        tmpdict["contype"] = e.getConType()
+        tmpdict["contxt"] = e.getConTxt()
+        tmpdict["path"] = e.getPath()
+        tmpdict["filename"] = e.getFilename()
+        dict["connections"].append(tmpdict)
+
+    return dict
+
+
+def updatePUMLAMR(path, mrefilename, mrrfilename, mrcfilename):
     """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
@@ -231,13 +271,16 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
     # gets put into a list.
     pumlaelements = []
     pumlarelations = []
+    pumlaconnections = []
 
     for f in pumlafiles:
-        pels, rels = parsePUMLAFile(f)
+        pels, rels, cons = parsePUMLAFile(f)
         for p in pels:
             pumlaelements.append(p)
         for r in rels:
             pumlarelations.append(r)
+        for c in cons:
+            pumlaconnections.append(c)
 
 
 
@@ -249,6 +292,10 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
     # transformed into a JSON representation.
     jsonreldict = serializePUMLARelationsToDict(pumlarelations, path, mrrfilename)
 
+    # put the connections into a dictionary that can be easily
+    # transformed into a JSON representation.
+    jsoncondict = serializePUMLAConnectionsToDict(pumlaconnections, path, mrcfilename)
+
     # make it accessible from within PlantUML.
     # $allelemens is the preprocessor variable that
     # allows access by PlantUML pumla marcros.
@@ -259,6 +306,11 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
     # allows access by PlantUML pumla marcros.
     jsonreltxt = "!$allrelations = " + json.dumps(jsonreldict)
 
+    # make it accessible from within PlantUML.
+    # $allconnections is the preprocessor variable that
+    # allows access by PlantUML pumla marcros.
+    jsoncontxt = "!$allconnections = " + json.dumps(jsoncondict)
+
     # split text to make the resulting file more readable;
     # one element definition per line.
     txt_lines = jsontxt.split("},")
@@ -266,6 +318,10 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
     # split text to make the resulting file more readable;
     # one element definition per line.
     txtrel_lines = jsonreltxt.split("},")
+
+    # split text to make the resulting file more readable;
+    # one element definition per line.
+    txtcon_lines = jsoncontxt.split("},")
 
     # write the lines to the model element repo file
     with open(mrefilename, "w") as fil:
@@ -279,6 +335,13 @@ def updatePUMLAMR(path, mrefilename, mrrfilename):
         for i in range(len(txtrel_lines)-1):
             rfil.write(txtrel_lines[i] + "},\n")
         rfil.write(txtrel_lines[len(txtrel_lines)-1] + "\n")
-    fil.close()
+    rfil.close()
 
-    return True, mrefilename, mrrfilename
+    # write the lines to the model connections repo file
+    with open(mrcfilename, "w") as cfil:
+        for i in range(len(txtcon_lines)-1):
+            cfil.write(txtcon_lines[i] + "},\n")
+        cfil.write(txtcon_lines[len(txtcon_lines)-1] + "\n")
+    cfil.close()
+
+    return True, mrefilename, mrrfilename, mrcfilename

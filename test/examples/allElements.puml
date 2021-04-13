@@ -1,5 +1,6 @@
 @startuml
 !include modelrepo_json.puml
+!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
@@ -13,10 +14,13 @@
 
 scale 0.5
 
-title Overview of all elements of the model repo
+title Overview of all elements and their relations of the model repo
 
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
+
+'put all relations of json-repo onto the diagram
+PUMLAPutAllRelations()
 
 note bottom of displayTemp
     this is an additional note to
@@ -26,7 +30,5 @@ note bottom of displayTemp
     **"PUMLACheatSheet"** command,
     see separate example.
 end note
-
-
 
 @enduml

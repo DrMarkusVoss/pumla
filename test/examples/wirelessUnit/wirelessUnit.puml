@@ -23,10 +23,7 @@ rectangle "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
 }
 !endif
 
-!if ($PUMVarShowInterfaces)
-interface "internet" as internet_wirelessUnit
-internet_wirelessUnit <--> wirelessUnit
-!endif
+PUMLAPutInterface("internet", internet_wirelessUnit, wirelessUnit, "inout")
 
 !if ($PUMVarShowDescr)
 

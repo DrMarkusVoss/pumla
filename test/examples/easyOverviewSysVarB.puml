@@ -1,6 +1,7 @@
 @startuml
 
 !include modelrepo_json.puml
+!include connectionsrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
@@ -33,12 +34,14 @@ PUMLAPutElement(wirelessUnit)
 
 internet_tempSys -- internet_wirelessUnit
 
+PUMLAPutAllConnections()
+
 ' remove the elements you do not want to see.
 ' the following are included as internal parts
 ' of the "tempSys". But in Variant B2 they are
 ' not connected and therefore not needed.
 ' You can remove them by their alias.
-remove tempSensorA
-remove temp_dC_tempSensorA
+'remove tempSensorA
+'remove temp_dC_tempSensorA
 
 @enduml

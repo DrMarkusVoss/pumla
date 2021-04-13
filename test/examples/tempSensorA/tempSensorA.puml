@@ -16,10 +16,7 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
 }
 !endif
 
-!if ($PUMVarShowInterfaces)
-interface "temp_dC" as temp_dC_tempSensorA
-temp_dC_tempSensorA <-- tempSensorA
-!endif
+PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
 
 !if ($PUMVarShowDescr)
 note bottom of tempSensorA
