@@ -13,19 +13,19 @@
 !if ($PUMVarShowBody)
     rectangle "Temp. Display" <<block>> as displayTemp {
         PUMLAPutTaggedValues()
+
         !if ($PUMVarShowBodyInternals)
             [display]
             [conversion]
-            PUMLAInjectChildElements( displayTemp )
+            PUMLAInjectChildElements(displayTemp)
         !endif
+
+        PUMLAPutInternalElement(tempSensorA)
     }
 !endif
 
-!if ($PUMVarShowInterfaces)
-    ' the interface alias should be <interface_name>_<modelelement_alias>_
-    interface temp_dC as temp_dC_displayTemp
-    temp_dC_displayTemp )--> displayTemp
-!endif
+' the interface alias should be <interface_name>_<modelelement_alias>
+PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
 !if ($PUMVarShowDescr)
     note bottom of displayTemp

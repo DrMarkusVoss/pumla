@@ -12,6 +12,31 @@ tooling `pumla` simple in its implementation. Without these rules, a lot
 more effort would need to go into the tooling to allow the same 
 functionality.
 
+## Some Principles
+### Static vs. Dynamic 
+Modelling elements first the static aspect with the atomic 
+definitions.
+
+Instances in separate files, that may contain more than one
+instance definition for convenience, also that brings with it
+some drawbacks: when putting an instance from a file with more
+instances defined in it onto a diagram, then all the instances
+appear on the diagram. You have to remove the unwanted instances
+then by hand (via PlantUML "remove" command).
+
+Dynamic aspects tbd
+
+### Relations vs. Connections
+Connections are typed dataflows. Therefore, a connection is only valid
+between interfaces. 
+
+Relations are between two elements. also a general information flow can be a
+relation, but as relation it is not concretely defined with what information
+flows in detail as specified by an interface.
+
+### Diagrams
+tbd.
+
 ## Rule: `pumla` files are valid PlantUML files 
 We only use PlantUML language in the `pumla` architecture descriptions.
 

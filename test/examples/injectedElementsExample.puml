@@ -1,9 +1,7 @@
 @startuml
 !include modelrepo_json.puml
-!include connectionsrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
-
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %true()
@@ -30,6 +28,7 @@ title Element injection example
 ' designed for usage in the parent context, so
 ' they should not be used without their parent.
 PUMLAPutElement(tempSys)
+
 PUMLAPutConnectionsForElement(tempConverter)
 
 @enduml

@@ -94,12 +94,12 @@ you manage your architecture elements and artefacts.
 
 ### `PUMLARelCheatSheetAllAttributes()`
 This macro creates a note with a table that shows the contents of the relations
-repository. It puts all relations with all attributes into a table to help
+of the model repository. It puts all relations with all attributes into a table to help
 you manage your architecture relations and artefacts.
 
 ### `PUMLAConCheatSheetAllAttributes()`
 This macro creates a note with a table that shows the contents of the connections
-repository. It puts all relations with all attributes into a table to help
+of the model repository. It puts all relations with all attributes into a table to help
 you manage your architecture relations and artefacts.
 
 
@@ -133,7 +133,7 @@ gets the same type and stereotype(s) as the model element from the repository bu
 addition the stereotype `<<instance>>`. On diagrams that do not show
 the `instance of` relation to the model element, the name of the instance will
 be extended by `::<model element name>`. The `instance of` relation
-will not appear in the model relation repository, as this method is
+will not appear in the model repository, as this method is
 not intended to create a re-usable element but to create a 
 non-re-usable instance of a re-usable element. So it is a convencience function
 simplifying the instantiation process with at the same time creating
@@ -157,7 +157,7 @@ Creates a re-usable relation between the two elements starting at element with a
 compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
 will be put next to the relation when put on a diagram. `relid` can be used as
 unique identifier to reference to the relation. If not given, `pumla` automatically creates the
-id by combining start and end alias. This relation is created only in the relations repo and will be
+id by combining start and end alias. This relation is created only in the model repo and will be
 filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
 
 ### `PUMLAConnection(startalias : string, endalias : string, "contype" : string, "contxt" : string (optional), "conid" : string (optional))`
@@ -166,12 +166,12 @@ Creates a connection between the two interfaces starting at interface with alias
 compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
 will be put next to the relation when put on a diagram. `conid` can be used as
 unique identifier to reference to the connection. If not given, `pumla` automatically creates the
-id by combining start and end alias. This connection is created only in the connections repo and will be
+id by combining start and end alias. This connection is created only in the model repo and will be
 filled with a text drawing the relation when put onto a diagram with `PUMLAPutConnection(...)` (or PutAll...). 
 
 ### `PUMLAPutRelation("relid" : string)`
 Puts the relation with the given ID onto the diagram. The ID must refer to a relation
-in the relations repository.
+in the model repository.
 
 ### `PUMLAPutRelationsForElement(elemalias : string, "reltype" : string (optional))`
 Puts all relations from the relations repository onto the diagram, that are associated
@@ -180,19 +180,19 @@ If also a relation type is given with `reltype`, then only the relations of that
 will be put onto the diagram.
 
 ### `PUMLAPutAllRelations()`
-Puts all relations from the relations repository onto the diagram.
+Puts all relations from the model repository onto the diagram.
 
 ### `PUMLAPutConnection("conid" : string)`
 Puts the connection with the given ID onto the diagram. The ID must refer to a relation
-in the connections repository.
+in the model repository.
 
 ### `PUMLAPutConnectionsForElement(elemalias : string)`
-Puts all connections from the connections repository onto the diagram, that are associated
+Puts all connections from the model repository onto the diagram, that are associated
 with the model element with the given `elemalias`, meaning it starts or ends with an interface
 of that element. 
 
 ### `PUMLAPutAllConnections()`
-Puts all connections from the connections repository onto the diagram.
+Puts all connections from the model repository onto the diagram.
 
 
 ### `AddTaggedValue( tag : string, value : string )`

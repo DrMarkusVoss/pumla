@@ -7,3 +7,12 @@
  {"instclassalias": "-", "name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
  {"instclassalias": "-", "name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "stereotypes": ["block"]},
  {"instclassalias": "-", "name": "Temp. Converter", "parent": "tempSys", "type": "component", "filename": "tempConverter.puml", "alias": "tempConverter", "path": "./tempConv/", "stereotypes": ["block"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/xyz/Desktop/git/github/pumla/test/examples"}
+
+!$allrelations = {"modelrelationrepofile": "./modelrepo_json.puml", "modelrelationrepopath": "/Users/xyz/Desktop/git/github/pumla/test/examples", "relations": [{"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys1", "reltxt": "instance of", "path": "./", "id": "REL#tSys1tempSys"},
+ {"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys2", "reltxt": "instance of", "path": "./", "id": "REL#tSys2tempSys"},
+ {"end": "tempSensorB", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#1"},
+ {"end": "tempConverter", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#2"}]}
+
+!$allconnections = {"connections": [{"end": "temp_dC_tempSensorBdC", "filename": "tempSensorBdC.puml", "start": "temp_dC_tempConverter", "contype": "--", "path": "./tempSensorBdC/", "contxt": "", "id": "C#2"},
+ {"end": "temp_dF_tempConverter", "filename": "tempSensorBdC.puml", "start": "temp_dF_tempSensorB", "contype": "--", "path": "./tempSensorBdC/", "contxt": "", "id": "C#3"}], "modelconnectionrepopath": "/Users/xyz/Desktop/git/github/pumla/test/examples", "modelconnectionrepofile": "./modelrepo_json.puml"}
+

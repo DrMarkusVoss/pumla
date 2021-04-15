@@ -12,10 +12,7 @@
     }
 !endif
 
-!if ($PUMVarShowInterfaces)
-interface "internet" as internet_tempSys
-internet_tempSys <--> tempSys
-!endif
+PUMLAPutInterface("internet", internet_tempSys, tempSys, "inout")
 
 !if ($PUMVarShowDescr)
     note bottom of tempSys

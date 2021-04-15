@@ -17,12 +17,15 @@ class TestPumlaCmdUtils:
 
     def test_findAllPUMLAFiles(self):
         print("test_findAllPumlaFiles()")
-        expected_result = ['./../examples/tempSys.puml', './../examples/tempSensorB/tempSensorB.puml',
+        expected_result = ['./../examples/tempSys.puml',
+                           './../examples/tempSysInstances.puml',
+                           './../examples/tempSensorB/tempSensorB.puml',
                            './../examples/wirelessUnit/wirelessUnit.puml',
                            './../examples/tempSensorA/tempSensorA.puml',
                            './../examples/tempSensorBdC/tempSensorBdC.puml',
                            './../examples/displayTemp/displayTemp.puml',
                            './../examples/tempConv/tempConverter.puml']
+
         result = findAllPUMLAFiles("./../examples")
         #print(result)
         if (result == expected_result):
@@ -41,7 +44,8 @@ class TestPumlaCmdUtils:
 
         test_passed = True
 
-        result_elem = parsePUMLAFile(filename)
+        pels, rels, cons = parsePUMLAFile(filename)
+        result_elem = pels[0]
 
         if (not(result_elem.name == exp_result_name)):
             test_passed = False

@@ -25,6 +25,7 @@ def findAllPUMLAFiles(path):
     return pumlafiles
 
 def findStereoTypesInLine(line):
+    """ find PlantUML stereotype definitions in given line. """
     e = line
     stypes = []
     tempstr = e
@@ -71,6 +72,7 @@ def findElementNameAndTypeInText(lines, alias):
     return elem_name, elem_type, elem_stereotypes
 
 def findRelations(lines, path, filename):
+    """ find PUMLA relation definitions in given lines. """
     ret_rels = []
     for e in lines:
         if ("PUMLARelation" in e):
@@ -89,6 +91,7 @@ def findRelations(lines, path, filename):
     return ret_rels
 
 def findConnections(lines, path, filename):
+    """ find PUMLA connection definitions in given lines. """
     ret_cons = []
     for e in lines:
         if ("PUMLAConnection" in e):
@@ -107,6 +110,7 @@ def findConnections(lines, path, filename):
     return ret_cons
 
 def findInstances(lines, path, filename):
+    """ find PUMLA instance definitions in given lines. """
     ret_instances = []
     for e in lines:
         if ("PUMLAInstanceOf(" in e):
@@ -133,6 +137,7 @@ def findInstances(lines, path, filename):
     return ret_instances
 
 def createInstanceRelation(inst, path, fn):
+    """ creates a PUMLA instance-of relation for a given instance. """
     pr = PUMLARelation(("REL#" + inst.getAlias() + inst.getInstanceClassAlias()), inst.getAlias(), inst.getInstanceClassAlias(), "..>", "instance of")
     pr.setPath(path)
     pr.setFilename(fn)
@@ -260,7 +265,7 @@ def serializePUMLAConnectionsToDict(cons, mrpath, mrfilename):
     return dict
 
 
-def updatePUMLAMR(path, mrefilename, mrrfilename, mrcfilename):
+def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
@@ -273,6 +278,7 @@ def updatePUMLAMR(path, mrefilename, mrrfilename, mrcfilename):
     pumlarelations = []
     pumlaconnections = []
 
+    # sum up information from all files in common lists
     for f in pumlafiles:
         pels, rels, cons = parsePUMLAFile(f)
         for p in pels:
@@ -282,19 +288,17 @@ def updatePUMLAMR(path, mrefilename, mrrfilename, mrcfilename):
         for c in cons:
             pumlaconnections.append(c)
 
-
-
     # put the elements into a dictionary that can be easily
     # transformed into a JSON representation.
     jsondict = serializePUMLAElementsToDict(pumlaelements, path, mrefilename)
 
     # put the relations into a dictionary that can be easily
     # transformed into a JSON representation.
-    jsonreldict = serializePUMLARelationsToDict(pumlarelations, path, mrrfilename)
+    jsonreldict = serializePUMLARelationsToDict(pumlarelations, path, mrefilename)
 
     # put the connections into a dictionary that can be easily
     # transformed into a JSON representation.
-    jsoncondict = serializePUMLAConnectionsToDict(pumlaconnections, path, mrcfilename)
+    jsoncondict = serializePUMLAConnectionsToDict(pumlaconnections, path, mrefilename)
 
     # make it accessible from within PlantUML.
     # $allelemens is the preprocessor variable that
@@ -327,21 +331,13 @@ def updatePUMLAMR(path, mrefilename, mrrfilename, mrcfilename):
     with open(mrefilename, "w") as fil:
         for i in range(len(txt_lines)-1):
             fil.write(txt_lines[i] + "},\n")
-        fil.write(txt_lines[len(txt_lines)-1] + "\n")
+        fil.write(txt_lines[len(txt_lines)-1] + "\n\n")
+        for i in range(len(txtrel_lines)-1):
+            fil.write(txtrel_lines[i] + "},\n")
+        fil.write(txtrel_lines[len(txtrel_lines)-1] + "\n\n")
+        for i in range(len(txtcon_lines)-1):
+            fil.write(txtcon_lines[i] + "},\n")
+        fil.write(txtcon_lines[len(txtcon_lines)-1] + "\n\n")
     fil.close()
 
-    # write the lines to the model relations repo file
-    with open(mrrfilename, "w") as rfil:
-        for i in range(len(txtrel_lines)-1):
-            rfil.write(txtrel_lines[i] + "},\n")
-        rfil.write(txtrel_lines[len(txtrel_lines)-1] + "\n")
-    rfil.close()
-
-    # write the lines to the model connections repo file
-    with open(mrcfilename, "w") as cfil:
-        for i in range(len(txtcon_lines)-1):
-            cfil.write(txtcon_lines[i] + "},\n")
-        cfil.write(txtcon_lines[len(txtcon_lines)-1] + "\n")
-    cfil.close()
-
-    return True, mrefilename, mrrfilename, mrcfilename
+    return True, mrefilename

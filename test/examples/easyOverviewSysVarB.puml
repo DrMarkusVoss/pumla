@@ -1,7 +1,6 @@
 @startuml
 
 !include modelrepo_json.puml
-!include connectionsrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
@@ -11,7 +10,6 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowImplicitRels = %false()
-!$PUMVarShowRelations = %true()
 !$PUMVarShowConnections = %true()
 
 title Overview Temperature System Variant B
@@ -35,6 +33,7 @@ PUMLAPutElement(wirelessUnit)
 internet_tempSys -- internet_wirelessUnit
 
 PUMLAPutAllConnections()
+
 PUMLAConCheatSheetAllAttributes()
 
 ' remove the elements you do not want to see.

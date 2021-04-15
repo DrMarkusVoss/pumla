@@ -15,9 +15,8 @@ component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
     PUMLAPutInternalElement(tempConverter)
 }
 !endif
-' necessary to call when "PUMLAPutInternalElementWithRel" has been used
-' inside the re-usable element definition
 
+' define usage relation towards the internal elements
 PUMLARelation(tempSensorBdC, tempSensorB, "..>", "use", "tempSensorBdCRel#1")
 PUMLARelation(tempSensorBdC, tempConverter, "..>", "use", "tempSensorBdCRel#2")
 

@@ -2,7 +2,6 @@
 ' the following file gets generated when you call
 ' "python pumla.py update" in this directory
 !include modelrepo_json.puml
-!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
@@ -34,10 +33,6 @@ PUMLACreateAndPutInstanceOf(tempSys, ts2)
 ' model element it is derived from.
 PUMLACreateAndPutInstanceOf(wirelessUnit, wu1)
 
-PUMLAPutElement(tempSensorB)
-
-PUMLAPutElement(tempSensorBdC)
-
 ' tSys1 and tSys2 are defined in the same file.
 ' putting one of them on the diagram automatically
 ' puts also the second one. if you do not want that,
@@ -45,10 +40,17 @@ PUMLAPutElement(tempSensorBdC)
 ' at the end of the diagram.
 PUMLAPutElement(tSys1)
 
+' for this diagram I am only interested in tSys1. As
+' tSys1 and tSys2 are defined in one PlantUML file,
+' with putting tSys1 I get them both and then have
+' to remove the one I don't want. if this happens often
+' you should think about defining these instances in
+' separate files.
 remove tSys2
 
 PUMLAPutElement(tempSys)
 
+' different ways of putting the relations
 'PUMLAPutRelationsForElement(tSys1)
 'PUMLAPutRelation(REL#tSys2tempSys)
 PUMLAPutRelationsForElement(tempSys)
@@ -67,6 +69,9 @@ note left of ts1
     referring to the alias.
 end note
 
+' I can still connect or relate my re-usable elements
+' in the classic PlantUML way by referencing them
+' by their alias.
 ts1 <..> ts2 : some interaction
 
 @enduml

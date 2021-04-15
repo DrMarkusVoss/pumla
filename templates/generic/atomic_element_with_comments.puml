@@ -43,17 +43,20 @@ PUMLAPutTaggedValues()
 ' the following line can be deleted
 ' (the name in the brackets must of course be adapted
 '  to the alias of the real element)
-PUMLAInjectChildElements( displayTemp )
-
+PUMLAInjectChildElements(displayTemp)
 !endif
+
+' putting another internal element from
+' model repo.
+PUMLAPutInternalElement(tempSensorA)
+
 }
 !endif
 
-!if ($PUMVarShowInterfaces)
 'add interface connections here
-temp_dC )--> displayTemp
+' the interface alias should be <interface_name>_<modelelement_alias>
+PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
-!endif
 
 !if ($PUMVarShowDescr)
 'add description note to the block here, e.g.

@@ -6,7 +6,6 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %true()
-!$PUMVarShowRelations = %true()
 !$PUMVarShowConnections = %true()
 
 !$internal_finalize_string = ""
@@ -235,8 +234,8 @@ end note
 note as PUMLAUPRelCheatSheetAllAttributes
     **PUMLA Relations Cheat Sheet with all attributes**
 
-    Model Relations Repository Path: $allrelations.modelrelationrepopath
-    Model Relations Repository File: $allrelations.modelrelationrepofile
+    Model Repository Path: $allrelations.modelrelationrepopath
+    Model Repository File: $allrelations.modelrelationrepofile
 
     **Model Relations Repository contents:**
     |= id |= start |= type |= end |= text |= filename |= path |
@@ -257,8 +256,8 @@ end note
 note as PUMLAUPConCheatSheetAllAttributes
     **PUMLA Connections Cheat Sheet with all attributes**
 
-    Model Connections Repository Path: $allconnections.modelconnectionrepopath
-    Model Connections Repository File: $allconnections.modelconnectionrepofile
+    Model Repository Path: $allconnections.modelconnectionrepopath
+    Model Repository File: $allconnections.modelconnectionrepofile
 
     **Model Connections Repository contents:**
     |= id |= start |= type |= end |= text |= filename |= path |

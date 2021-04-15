@@ -2,7 +2,6 @@
 ' the following 2 files gets generated when you call
 ' "python pumla.py update" in this directory
 !include modelrepo_json.puml
-!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
@@ -19,15 +18,15 @@
 
 title Example showing explicit relations of the model repository
 
+' put 3 elements from the model repo to the diagram
 PUMLAPutElement(tempSensorBdC)
 PUMLAPutElement(tempSensorB)
 PUMLAPutElement(tempConverter)
 
-'PUMLAPutRelation("tempSensorBdCRel#1")
-'PUMLAPutRelation("tempSensorBdCRel#2")
-
+' add all the relations for tempSensorBdC.
+' it uses the 2 other elements.
 PUMLAPutRelationsForElement(tempSensorBdC)
-'PUMLAPutRelationsForElement(tempSensorB)
+
 
 ' we also have a cheat sheet for the relations
 ' model repo, but only the "all attributes" version
@@ -35,7 +34,5 @@ PUMLAPutRelationsForElement(tempSensorBdC)
 ' filename and path, the rest is typically always of
 ' interest.
 PUMLARelCheatSheetAllAttributes()
-
-'remove tempConverter
 
 @enduml

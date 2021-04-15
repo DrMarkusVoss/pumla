@@ -43,25 +43,14 @@ def parseSysArg(sysarg):
             if (len(sysarg) > 2):
                 # take 3rd command line argument as filename for model repo JSON file
                 mrefilename = sysarg[2]
-                mrrfilename = os.path.curdir + "/relationsrepo_json.puml"
-                mrcfilename = os.path.curdir + "/connectionsrepo_json.puml"
             else:
                 # setup the default filename to store the JSON model repo
                 mrefilename = os.path.curdir + "/modelrepo_json.puml"
-                mrrfilename = os.path.curdir + "/relationsrepo_json.puml"
-                mrcfilename = os.path.curdir + "/connectionsrepo_json.puml"
-            if (len(sysarg) > 3):
-                mrrfilename = sysarg[2]
-                mrcfilename = os.path.curdir + "/connectionsrepo_json.puml"
-            if (len(sysarg) > 4):
-                mrcfilename = sysarg[3]
 
             # create/update/overwrite the pumla model repository
-            (success, efn, rfn, cfn) = updatePUMLAMR(os.path.curdir, mrefilename, mrrfilename, mrcfilename)
+            (success, efn) = updatePUMLAMR(os.path.curdir, mrefilename)
             if (success):
-                print("element repo file: " + efn)
-                print("relations repo file: " + rfn)
-                print("connections repo file: " + cfn)
+                print("model repo file: " + efn)
                 print("done.")
             else:
                 print("failed.")

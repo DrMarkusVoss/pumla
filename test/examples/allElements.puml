@@ -1,6 +1,5 @@
 @startuml
 !include modelrepo_json.puml
-!include relationsrepo_json.puml
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
