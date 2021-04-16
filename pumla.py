@@ -28,12 +28,14 @@ def parseSysArg(sysarg):
             # and fill PUMLA elements list
             for fn in pfls:
                 # pel = PUMLA element
-                pel = parsePUMLAFile(fn)
-                pelems.append(pel)
+                (pels, rels, cons) = parsePUMLAFile(fn)
+                for pel in pels:
+                    pelems.append(pel)
 
             # print out the details of each
             # element of the PUMLA elements list
             for e in pelems:
+                #print(e)
                 e.printMe()
                 print("")
 
