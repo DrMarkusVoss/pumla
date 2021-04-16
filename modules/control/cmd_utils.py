@@ -37,7 +37,7 @@ def findStereoTypesInLine(line):
     return stypes
 
 def findElementNameAndTypeInText(lines, alias):
-    """ find the real name of the model element with given alias in given line """
+    """ find the real name, type and stereotype(s) of the model element with given alias in given line """
     # return value with '-' as default
     elem_name = "-"
     elem_type = "-"

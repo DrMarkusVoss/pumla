@@ -6,9 +6,10 @@ It seems that PlantUML is quite liked by a lot of software developers. With Plan
 architecture documentation even without an architect forcing them to do. One of the reasons
 for that is the text-based and code-like approach, I guess.
 
-But PlantUML has a big drawback from my point of view (the systems and software architect point of view): 
+But PlantUML has a big drawback from my point of view (the systems and software architect point of view,
+but I am also a software developer): 
 with PlantUML you basically program diagrams. What the architect would like to do is to 
-program a system/software model with the possibility to re-use the once-modelled elements
+"draw/model/program" a system/software model with the possibility to re-use the once-modelled elements
 in different views on different diagrams exposing different aspects, attributes, interactions and
 relations.
 
