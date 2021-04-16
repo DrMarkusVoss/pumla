@@ -28,7 +28,7 @@ Dynamic aspects tbd
 
 ### Relations vs. Connections
 Connections are typed dataflows. Therefore, a connection is only valid
-between interfaces. 
+between two interfaces. 
 
 Relations are between two elements. also a general information flow can be a
 relation, but as relation it is not concretely defined with what information

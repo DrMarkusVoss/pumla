@@ -2,22 +2,38 @@
 `pumla` = PlantUML Manager
 
 ### Idea
-In order to enable systematic re-use for architecture models with PlantUML, 
+It seems that PlantUML is quite liked by a lot of software developers. With PlantUML they do
+architecture documentation even without an architect forcing them to do. One of the reasons
+for that is the text-based and code-like approach, I guess.
+
+But PlantUML has a big drawback from my point of view (the systems and software architect point of view): 
+with PlantUML you basically program diagrams. What the architect would like to do is to 
+program a system/software model with the possibility to re-use the once-modelled elements
+in different views on different diagrams exposing different aspects, attributes, interactions and
+relations.
+
+So the approach with `pumla` is to dock onto the success of PlantUML but to extend it in order
+to get rid of the "no re-usable model" drawback.
+
+Therefore, in order to enable systematic re-use for architecture models with PlantUML, 
 `pumla` is intended to be an extension around PlantUML to organize and enable
 this systematic re-use.
 
 ### Use Cases & Principles
 - Architecture modelling of bigger software solutions using PlantUML
 - Have the same model elements in different diagrams as single source entities
-- Create an arc42 architecture documentation based on common PlantUML description patterns
 - Keep the architecture descriptions close to the Source Code --> Architecture as text
 - Allow modularity of the architecture elements and loose coupling --> no complicated
   include mechanisms with "paths" that then make refactoring hard --> architecture modelling
   files can be everywhere in the source tree and will be found.
+- Create an arc42 architecture documentation based on common PlantUML description patterns
 
 ### Context Diagram
 Here's an overview of the idea. It's solution is in parts still
 unclear, but it evolves.
+
+In blue you can see the parts developed as `pumla` and how they interact
+with other applications and documents during software development.
 
 ![](./arch/01_context/pumla_context.png)
 

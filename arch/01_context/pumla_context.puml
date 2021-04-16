@@ -2,16 +2,25 @@
 
 skinparam componentStyle uml2
 
+skinparam rectangle {
+    backgroundColor<<pumla>> LightBlue
+}
+
 title pumla Simple Context Diagram
 
 
 :Developer: as dev
 
+note left of dev
+    develop software, document it's architecture in a re-usable
+    model repository created with PUMLA, create diagrams  that
+    visualize the architecture using PlantUML.
+end note
 
-rectangle "pumla.py" <<application>> as pumla {
+rectangle "pumla.py" <<application>> <<pumla>> as pumla {
 }
 
-rectangle "pumla_macros.puml" <<PlantUML Extension>> as pmac {
+rectangle "pumla_macros.puml" <<PlantUML Extension>> <<pumla>> as pmac {
 }
 
 rectangle "PlantUML" <<application>> as plantuml {
@@ -38,10 +47,10 @@ rectangle "Build Tool Configuration" as btc {
 }
 }
 
-rectangle "Modelling Guideline" <<markdown document>> as modguid {
+rectangle "Modelling Guideline" <<markdown document>> <<pumla>> as modguid {
 }
 
-rectangle "Model Element templates" <<PlantUML  template>> as templ {
+rectangle "Model Element templates" <<PlantUML  template>> <<pumla>> as templ {
 }
 
 note top of pumla
@@ -68,15 +77,10 @@ cloud PlantUML as puml {
 
 }
 
-cloud "Some Cloud" as cloud {
- rectangle "CI/CT environment" as cict {
- }
-}
 
 Java -[hidden]-> Python
 Python -[hidden]-> puml
 pumlamr -[hidden]-> sco
-pumlamr -[hidden]-> cloud
 
 pumla --> sco: runs on
 
@@ -95,9 +99,9 @@ pumla ..> pumlamr: generate/update
 pumla ..> pumlf: find and enlist
 pumlf ..> pumlamr: include
 pumlf ..> pmac : include
+pumlf ..> templ : based on
 dev --> pmac : use
 dev --> pumlf : create and maintain
-pgr --> cict : gets build and tested completely in
 pgr --> sco : gets build and tested reduced locally
 pumlf --> plantuml: use to create diagrams
 archdiags -->plantuml: use to create diagrams
