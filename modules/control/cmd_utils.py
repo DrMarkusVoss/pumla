@@ -44,6 +44,8 @@ def findElementNameAndTypeInText(lines, alias):
     elem_stereotypes = []
     # search term definition
     findit = " as " + alias
+    # it is tricky to find the element definition as the alias name might also occur in
+    # a comment or note.
     for e in lines:
         if (findit in e):
             stypes = findStereoTypesInLine(e)

@@ -1,5 +1,5 @@
 # pumla
-`pumla` = PlantUML Manager
+`pumla` = PlantUML Manager, v0.4
 
 ### Idea
 It seems that PlantUML is quite liked by a lot of software developers. With PlantUML they do

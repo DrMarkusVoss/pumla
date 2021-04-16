@@ -41,8 +41,8 @@ rectangle "Architecture Diagrams \ndescribing \nSource Code Solution" <<PlantUML
 rectangle "pumla model repo file" <<JSON PlantUML file>> as pumlamr {
 }
 
-rectangle "Programming Language \nCodeSource Code files" {
-}
+collections "Programming Language \n Source Code files" as sc
+
 rectangle "Build Tool Configuration" as btc {
 }
 }
@@ -102,7 +102,8 @@ pumlf ..> pmac : include
 pumlf ..> templ : based on
 dev --> pmac : use
 dev --> pumlf : create and maintain
-pgr --> sco : gets build and tested reduced locally
+pgr --> sco : gets build and \ntested locally
 pumlf --> plantuml: use to create diagrams
 archdiags -->plantuml: use to create diagrams
+pumlf --> sc : describes architecture \n element of
 @enduml
