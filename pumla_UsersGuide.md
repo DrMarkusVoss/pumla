@@ -108,11 +108,13 @@ This macro puts the model element with the given alias `elem_alias` onto the dia
 The referenced element must exist somewhere in the source tree as a model element
 described in a `pumla` model repository file.
 
-### `PUMLAPutElement( elem_alias, lod )`
+### tbd: `PUMLAPutElement( elem_alias, lod )`
 Same as above, but limits the displaying of nested elements to the level number 
 defined by `lod` (level of detail). This overrides the global variable
 `$PUMVarShowBodyInternals`. Even when that variable is set to false, only the 
 referenced element will be shown with the defined levels of nested internals.
+
+**Not yet implemented!**
 
 ### `PUMLAPutAllElements()`
 Puts all elements from the model repository on the diagram. Useful to get an

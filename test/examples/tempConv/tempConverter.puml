@@ -2,6 +2,7 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
+!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
 component "Temp. Converter" <<block>> as tempConverter {
@@ -11,6 +12,7 @@ component "Temp. Converter" <<block>> as tempConverter {
     !endif
 }
 !endif
+
 
 PUMLAPutInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
 PUMLAPutInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")

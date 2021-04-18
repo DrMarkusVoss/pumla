@@ -15,7 +15,7 @@
 ' get an element referenced by path and filename name
 '
 !unquoted procedure _PUMPutElement($folderpath,$filename)
-!include $folderpath/$filename
+!include $allelems.modelrepopath/%substr($folderpath,2)/$filename
 !endprocedure
 ' ---------------------------------------------
 
@@ -48,27 +48,6 @@
 !foreach $el in $allelems.elements
     !if ($el.alias == $elem)
         _PUMPutElement($el.path,$el.filename)
-    !endif
-!endfor
-!endprocedure
-
-' ############################################
-
-' ---------------------------------------------
-' get all elements for given scope out of
-' JSON puml file with given level of depth (lod) do
-' be visualized
-
-!unquoted procedure PUMLAPutElement($elem, $lod)
-!foreach $scp in $allelems.scopes
-    !if ($scp.alias == $elem)
-        _PUMPutElement($scp.path,$scp.filename)
-    !else
-        !foreach $emp in $scp.elements
-            !if ($emp.alias == $elem)
-                _PUMPutElement($emp.path,$emp.filename)
-            !endif
-        !endfor
     !endif
 !endfor
 !endprocedure
@@ -287,42 +266,12 @@ PUMLAPutElement($elemalias)
 
 ' ############################################
 ' ---------------------------------------------
-' internal use of an existing model repo element.
-'!unquoted procedure PUMLAPutInternalElementWithRel($parent, $elemalias, $rel, $reltxt="")
-'PUMLAPutInternalElement($elemalias)
-'!if ($reltxt == "")
-'!$reladder = ""
-'!else
-'!$reladder = ": " + $reltxt
-'!endif
-'
-'!$internal_finalize_string = $internal_finalize_string + %newline() + $parent + $rel + $elemalias + $reladder
-''!if ($PUMVarShowImplicitRels)
-''$parent $rel $elemalias : $reltxt
-''!endif
-'!endprocedure
-
-'' ############################################
-'' ---------------------------------------------
-'' define a re-usable relation
-'!unquoted procedure PUMLAPutRelation_depr($startalias, $endalias, $rel, $reltxt="")
-'!if ($reltxt == "")
-'!$reladder = ""
-'!else
-'!$reladder = ": " + $reltxt
-'!endif
-'
-'!if ($PUMVarShowRelations)
-'$startalias $rel $endalias $reladder
-'!endif
-'!endprocedure
-
-
-' ############################################
-' ---------------------------------------------
 ' define a re-usable Connection
 !unquoted procedure PUMLAConnection($startalias, $endalias, $contype, $contxt="", $conid="")
-
+' empty by intention... the macro name will only be parsed
+' by the pumla.py script and the connection then put into
+' the model repo. The PlantUML code comes when you put
+' a connection from the repo to a diagram.
 !endprocedure
 
 ' ############################################
@@ -377,9 +326,12 @@ $ifalias $constr $elemalias
 
 ' ############################################
 ' ---------------------------------------------
-' define a re-usable interface
+' define a re-usable relation
 !unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt="", $relid="")
-
+' empty by intention... the macro name will only be parsed
+' by the pumla.py script and the relation then put into
+' the model repo. The PlantUML code comes when you put
+' a relation from the repo to a diagram.
 !endprocedure
 
 ' ############################################
