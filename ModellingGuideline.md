@@ -37,16 +37,6 @@ flows in detail as specified by an interface.
 ### Diagrams
 tbd.
 
-### Scaling the model repository
-A model repository is basically a file containing re-usable element, connection 
-and relation information in JSON format readable by PlantUML. For big source 
-code repositories that also contain a lot of re-usable element information, 
-it might be inconvenient to have all that information in one (big) file. In that 
-case, a distribution into sub-spaces of the architecture and therefore 
-sub-model-repositories might make sense.
-
-This is supported by pumla with the TBD mechanism.
-
 
 ## Rule: `pumla` files are valid PlantUML files 
 We only use PlantUML language in the `pumla` architecture descriptions.
