@@ -12,7 +12,8 @@
 !$internal_relations_on_diagram = ""
 
 ' --------------------------------------------
-' get an element referenced by path and filename name
+' put an element referenced by path and filename
+' by including its file
 '
 !unquoted procedure _PUMPutElement($folderpath,$filename)
 !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
@@ -23,12 +24,12 @@
 ' ############################################
 
 ' ---------------------------------------------
-' get all elements for given scope out of
-' JSON puml file
+' inject child elements for the referenced
+' parent element
 '
-!unquoted procedure PUMLAInjectChildElements($scope)
+!unquoted procedure PUMLAInjectChildElements($parentalias)
 !foreach $el in $allelems.elements
-    !if ($el.parent == $scope)
+    !if ($el.parent == $parentalias)
         !include $el.path/$el.filename
     !endif
 !endfor
@@ -37,16 +38,11 @@
 ' ############################################
 
 ' ---------------------------------------------
-' get all elements for given scope out of
-' JSON puml file
-' TODO: a recursion is needed here to go through
-' all scopes and elements
-' Addendum: no recursion needed, json list will not
-' be nested but a linked list by "parent".
+' put the referenced element onto the diagdam
 '
-!unquoted procedure PUMLAPutElement($elem)
+!unquoted procedure PUMLAPutElement($elemalias)
 !foreach $el in $allelems.elements
-    !if ($el.alias == $elem)
+    !if ($el.alias == $elemalias)
         _PUMPutElement($el.path,$el.filename)
     !endif
 !endfor
@@ -55,9 +51,8 @@
 ' ############################################
 
 ' ---------------------------------------------
-' all elements with attributes
-' diagram creator based on json repo.
-' TODO
+' put all elements within the model repo onto
+' the diagram
 !unquoted procedure PUMLAPutAllElements()
 !foreach $el in $allelems.elements
     _PUMPutElement($el.path,$el.filename)
@@ -65,11 +60,9 @@
 !endprocedure
 
 ' ############################################
-
 ' ---------------------------------------------
-' all elements with attributes
-' diagram creator based on json repo.
-' TODO
+' put all relations of the model repo
+' onto the diagram
 !unquoted procedure PUMLAPutAllRelations()
 !foreach $el in $allrelations.relations
     PUMLAPutRelation($el.id)
@@ -79,9 +72,8 @@
 ' ############################################
 
 ' ---------------------------------------------
-' all elements with attributes
-' diagram creator based on json repo.
-' TODO
+' put all connections of the model repo
+' onto the diagram
 !unquoted procedure PUMLAPutAllConnections()
 !foreach $el in $allconnections.connections
     PUMLAPutConnection($el.id)
@@ -121,7 +113,8 @@
 ' ############################################
 ' ---------------------------------------------
 ' create an instance of an element that exists
-' in the json model repo.
+' in the json model repo and put it onto
+' the diagram.
 !unquoted procedure PUMLACreateAndPutInstanceOf($elemalias, $instalias, $instname="")
 !if ($instname == "")
 !$instname = $instalias
@@ -305,7 +298,8 @@ PUMLAPutElement($elemalias)
 
 ' ############################################
 ' ---------------------------------------------
-' define a re-usable interface
+' define a re-usable interface and put it on
+' the diagram.
 !unquoted procedure PUMLAPutInterface($ifname, $ifalias, $elemalias, $type="")
 !if ($PUMVarShowInterfaces)
 !if ($type=="")

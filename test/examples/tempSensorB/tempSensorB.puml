@@ -15,7 +15,7 @@ PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 !if ($PUMVarShowDescr)
 note bottom of tempSensorB
     Temperature Sensor of company B.
-    Provides the temperatur in degree
+    Provides the temperature in degree
     Fahrenheit.
 end note
 

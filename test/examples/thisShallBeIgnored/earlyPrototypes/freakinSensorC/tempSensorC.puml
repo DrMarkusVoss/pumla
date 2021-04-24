@@ -1,0 +1,30 @@
+'PUMLAMR
+@startuml
+!include ./../../../../../pumla_macros.puml
+!if ($PUMVarShowBody)
+'add block definition with internals here, e.g.:
+component "Temperature Sensor C" <<block>> <<external System>> as tempSensorC {
+    !if ($PUMVarShowBodyInternals)
+    [magic internals, just wonderful]
+    !endif
+}
+!endif
+
+PUMLAPutInterface("temp_dF", temp_dF_tempSensorC, tempSensorC, "out")
+
+!if ($PUMVarShowDescr)
+note bottom of tempSensorC
+    Temperature Sensor of company C.
+    Provides the temperature in degree
+    Fahrenheit.
+
+    This is so coolest sensor I have ever
+    seen. It's design is marvelous, also
+    from the inside. I do not care if it
+    costs 5 times the price of the
+    competitor products. It's the one
+    I want to use.
+end note
+
+!endif
+@enduml

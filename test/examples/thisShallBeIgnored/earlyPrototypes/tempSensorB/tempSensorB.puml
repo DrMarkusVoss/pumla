@@ -1,0 +1,30 @@
+'PUMLAMR
+@startuml
+!include ./../../../../../pumla_macros.puml
+!if ($PUMVarShowBody)
+'add block definition with internals here, e.g.:
+component "Temperature Sensor B Prototype" <<block>> <<external System>> as tempSensorB {
+    !if ($PUMVarShowBodyInternals)
+    [will hopefully never appear in an official documentation]
+    !endif
+}
+!endif
+
+PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
+
+!if ($PUMVarShowDescr)
+note bottom of tempSensorB
+    Temperature Sensor of company B.
+    Provides the temperature in degree
+    Fahrenheit.
+
+    I am really not sure if this will
+    ever work and I never liked company B.
+    And I am hungry and doing overtime again.
+
+    If you read this text on an official
+    diagram... something went wrong.
+end note
+
+!endif
+@enduml

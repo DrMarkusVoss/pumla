@@ -1,7 +1,24 @@
 #!/usr/bin/python
+"""Command Line Tool for the PlantUML extension to enable architecture
+element re-usability.
+"""
+
+__author__ = "Dr. Markus Voss (private person)"
+__copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
+__license__ = "GPL"
+__version__ = "0.4.1"
+__maintainer__ = "Dr. Markus Voss (private person)"
+__status__ = "Development"
+
 import sys
 import os
 from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+
+"""Command Line Tool for the PlantUML extension to enable architecture 
+element re-usability.
+"""
+
+__author__      = "Dr. Markus Voss (private person)"
 
 def identifyMe():
     """ information about the executed command """

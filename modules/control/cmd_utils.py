@@ -7,6 +7,16 @@ from modules.model.PUMLAConnection import PUMLAConnection
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
     pumlafiles = []
+    blacklist = []
+
+    blacklistfilename = path + "/pumla_blacklist.txt"
+    if (os.path.isfile(blacklistfilename)):
+        print("blacklist found\n")
+        file = open(blacklistfilename)
+        text = file.read()
+        print(text)
+        file.close()
+
 
     # walk through the file and folder structure
     # and put all PUMLA files into a list
