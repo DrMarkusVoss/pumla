@@ -335,10 +335,12 @@ $ifalias $constr $elemalias
 !foreach $el in $allrelations.relations
     !if ($el.id == $relid)
         !if (%not(%variable_exists($$el.id)))
+            !if ((%not($el.reltxt == "instance of")) || ($PUMVarShowInstantiationRel))
             $el.start $el.reltype $el.end : $el.reltxt
             ' set global variable to indicate that the relation
             ' is already put onto the diagram
             %set_variable_value($$el.id, "%true()")
+            !endif
         !endif
     !endif
 !endfor
@@ -356,10 +358,12 @@ $ifalias $constr $elemalias
     !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
-            $el.start $el.reltype $el.end : $el.reltxt
-            ' set global variable to indicate that the relation
-            ' is already put onto the diagram
-            %set_variable_value($$el.id, "%true()")
+            !if ((%not($el.reltxt == "instance of")) || ($PUMVarShowInstantiationRel))
+                $el.start $el.reltype $el.end : $el.reltxt
+                ' set global variable to indicate that the relation
+                ' is already put onto the diagram
+                %set_variable_value($$el.id, "%true()")
+            !endif
         !endif
     !endif
 !endfor

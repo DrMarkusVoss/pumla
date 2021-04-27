@@ -27,7 +27,7 @@ class TestPumlaCmdUtils:
                            './../examples/tempConv/tempConverter.puml']
 
         result = findAllPUMLAFiles("./../examples")
-        #print(result)
+        print(result)
         if (result == expected_result):
             print("test passed!")
         else:
