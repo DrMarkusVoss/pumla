@@ -5,8 +5,6 @@
  {"instclassalias": "-", "name": "anotherClass", "parent": "-", "type": "class", "filename": "anotherClass.puml", "alias": "anotherClass", "path": "./anotherClass/", "stereotypes": ["Python"]},
  {"instclassalias": "-", "name": "CWeather", "parent": "-", "type": "class", "filename": "CWeather.puml", "alias": "CWeather", "path": "./CWeather/", "stereotypes": ["Python"]},
  {"instclassalias": "-", "name": "Wireless Unit", "parent": "-", "type": "rectangle", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./wirelessUnit/", "stereotypes": ["block", "external System"]},
- {"instclassalias": "-", "name": "Temperature Sensor B Prototype", "parent": "-", "type": "component", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./thisShallBeIgnored/earlyPrototypes/tempSensorB/", "stereotypes": ["block", "external System"]},
- {"instclassalias": "-", "name": "Temperature Sensor C", "parent": "-", "type": "component", "filename": "tempSensorC.puml", "alias": "tempSensorC", "path": "./thisShallBeIgnored/earlyPrototypes/freakinSensorC/", "stereotypes": ["block", "external System"]},
  {"instclassalias": "-", "name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "stereotypes": ["block"]},
  {"instclassalias": "-", "name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
  {"instclassalias": "-", "name": "displayTemp", "parent": "tempSys", "type": "component", "filename": "displayTemp.puml", "alias": "displayTemp", "path": "./displayTemp/", "stereotypes": ["block"]},

@@ -5,7 +5,7 @@
 '!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
-component "Temp. Converter" <<block>> as tempConverter {
+component "Temp. Converter" as tempConverter <<block>> {
     !if ($PUMVarShowBodyInternals)
     [conversionModule]
     [formulaLib]

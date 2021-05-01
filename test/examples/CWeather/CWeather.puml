@@ -3,7 +3,7 @@
 '!include ./../../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
-    class CWeather <<Python>>  {
+    class "CWeather" as CWeather <<Python>>  {
 
         ' private functions and members
         ' are considered internal
