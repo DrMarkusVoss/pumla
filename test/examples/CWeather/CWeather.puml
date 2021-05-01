@@ -1,0 +1,29 @@
+'PUMLAMR
+@startuml
+'!include ./../../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class CWeather <<Python>>  {
+
+        ' private functions and members
+        ' are considered internal
+        !if ($PUMVarShowBodyInternals)
+            -m_temp_dC : int
+            -m_airPressure_bar : int
+        !endif
+        ' public methods are not internal
+        +getTemperature_dC() : int
+        +getAirPressure_bar() : int
+        +setTemperature_dC(temp_dC : int) : void
+        +setAirPressure_bar(ap_bar : int) : void
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of CWeather
+        A class managing weather data.
+    end note
+!endif
+
+@enduml

@@ -20,6 +20,8 @@ class TestPumlaCmdUtils:
         expected_result = ['./../examples/tempSys.puml',
                            './../examples/tempSysInstances.puml',
                            './../examples/tempSensorB/tempSensorB.puml',
+                           './../examples/anotherClass/anotherClass.puml',
+                           './../examples/CWeather/CWeather.puml',
                            './../examples/wirelessUnit/wirelessUnit.puml',
                            './../examples/tempSensorA/tempSensorA.puml',
                            './../examples/tempSensorBdC/tempSensorBdC.puml',
@@ -27,7 +29,7 @@ class TestPumlaCmdUtils:
                            './../examples/tempConv/tempConverter.puml']
 
         result = findAllPUMLAFiles("./../examples")
-        print(result)
+        #print(result)
         if (result == expected_result):
             print("test passed!")
         else:

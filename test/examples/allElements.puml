@@ -6,7 +6,7 @@
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
-!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %false()
 !$PUMVarShowImplicitRels = %true()

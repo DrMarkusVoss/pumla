@@ -118,7 +118,41 @@ referenced element will be shown with the defined levels of nested internals.
 
 ### `PUMLAPutAllElements()`
 Puts all elements from the model repository on the diagram. Useful to get an
-overview on all elements inside the source tree.
+overview on all elements inside the source tree. This macro automatically
+overrides the `$PUMVarShowBodyInternals` with false, in order to allow the
+mixing of class and component elements. At the end of the macro the value of 
+`$PUMVarShowBodyInternals` is restored to the previous value.
+
+TBD: I am thinking whether it makes sense to mark the repository as "software" or
+"system", so that you can put all "software elements" onto a diagram. Because class
+elements can be embedded into packages etc. you could use the inject mechanism also
+for that. 
+
+### `PUMLAPutAllElementsMix()`
+Puts all elements from the model repository on the diagram. Useful to get an
+overview on all elements inside the source tree. This macro automatically
+overrides the `$PUMVarShowBodyInternals` with false, in order to allow the
+mixing of class and component elements. At the end of the macro the value of 
+`$PUMVarShowBodyInternals` is restored to the previous value.
+
+When the model repository is mixed with class and component elements, then this 
+macro puts a note around the class elements. With PlantUML it is not possible to
+mix classes onto a component diagram and vice versa. Therefore, in order to keep 
+up the functionality of putting really all elements onto a diagram, the 
+classes need to be wrapped in a note in order to be put onto the component diagram, 
+that this macro call will create. A side-effect of this is, that you cannot 
+reference the classes on that diagram by their alias or in any other way. So you
+cannot attach additional notes or relations to them when put on a diagram
+with this macro. If you want to work with classes, you should use the 
+`PUMLAPutAllClasses()` macro, which will create a class diagram with only all 
+class elements onto the diagram.
+
+### `PUMLAPutAllClasses()`
+Puts all class elements of the model repository onto the diagram. The diagram
+will become a class diagram. So you cannot mix it with component elements. That
+is a PlantUML limitation. You can partly work around it by adding the command
+`allowmixing`, but this does still not allow to have elements like `[some component]`
+on the diagram, so it leads to an error.
 
 ### `PUMLACreateAndPutInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
 This macro is intented to be called outside of the model repository, meaning on diagrams

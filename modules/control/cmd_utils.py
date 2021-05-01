@@ -4,6 +4,13 @@ from modules.model.PUMLAElement import PUMLAElement
 from modules.model.PUMLARelation import PUMLARelation
 from modules.model.PUMLAConnection import PUMLAConnection
 
+def isInBlacklist(path, blacklist):
+    retval = False
+    for e in blacklist:
+        if (e in path):
+            retval = True
+    return retval
+
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
     pumlafiles = []
@@ -11,25 +18,30 @@ def findAllPUMLAFiles(path):
 
     blacklistfilename = path + "/pumla_blacklist.txt"
     if (os.path.isfile(blacklistfilename)):
-        print("blacklist found\n")
+        #print("blacklist found\n")
         file = open(blacklistfilename)
         text = file.read()
-        print(text)
+        #print(text)
         file.close()
+        for li in text.split():
+            blacklist.append(path + li.strip("."))
+        #print(blacklist)
 
 
     # walk through the file and folder structure
     # and put all PUMLA files into a list
     for dirpath, dirs, files in os.walk(path):
         for filename in files:
-            fname = os.path.join(dirpath, filename)
-            # a PUMLA file must end with '.puml' (see Modelling Guideline)
-            if fname.endswith('.puml'):
-                with open(fname) as myfile:
-                    line = myfile.read()
-                    # a PUMLA file must have that first comment line (see Modelling Guideline)
-                    if (line.startswith("'PUMLAMR")):
-                        pumlafiles.append(fname)
+            if (not(isInBlacklist(dirpath, blacklist))):
+                #print(dirpath)
+                fname = os.path.join(dirpath, filename)
+                # a PUMLA file must end with '.puml' (see Modelling Guideline)
+                if fname.endswith('.puml'):
+                    with open(fname) as myfile:
+                        line = myfile.read()
+                        # a PUMLA file must have that first comment line (see Modelling Guideline)
+                        if (line.startswith("'PUMLAMR")):
+                            pumlafiles.append(fname)
 
     #return the list of PUMLA files found
     return pumlafiles
@@ -73,7 +85,9 @@ def findElementNameAndTypeInText(lines, alias):
                     # element name is the second item, list starts at 0
                     elem_name = splt[1]
                     elem_type = splt[0].strip()
-        elif ((alias in e) and (not("'" in e)) and(("component" in e) or ("rectangle" in e) or ("node" in e))):
+
+
+        elif ((alias in e) and (not("'" in e)) and(("component" in e) or ("rectangle" in e) or ("node" in e) or ("class" in e))):
             stypes = findStereoTypesInLine(e)
 
             for sts in stypes:

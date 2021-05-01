@@ -18,6 +18,16 @@
 !unquoted procedure _PUMPutElement($folderpath,$filename)
 !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
 !endprocedure
+
+' --------------------------------------------
+' put an element referenced by path and filename
+' by including its file
+'
+!unquoted function _PUMElement($folderpath,$filename)
+!$retval = "!include " + $allelems.modelrepopath + "/" + %substr($folderpath,2) + $filename
+!return $retval
+!endfunction
+
 ' ---------------------------------------------
 
 
@@ -52,10 +62,46 @@
 
 ' ---------------------------------------------
 ' put all elements within the model repo onto
-' the diagram
+' the diagram. Mixing of class & component elements
+' is enabled by wrapping class elements into notes.
+!unquoted procedure PUMLAPutAllElementsMix()
+!foreach $el in $allelems.elements
+    !if ($el.type == "class")
+        !$nn = $el.name + "_" + $el.type
+        note as $nn #white
+        {{
+        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+        }}
+        end note
+    !else
+        _PUMPutElement($el.path,$el.filename)
+    !endif
+!endfor
+!endprocedure
+
+' ---------------------------------------------
+' put all elements within the model repo onto
+' the diagram. in order to allow class and component
+' elements, component elements like [ds] cannot be shown
+' therefore, internals are deactivated.
 !unquoted procedure PUMLAPutAllElements()
+!$old_sbi = %get_variable_value("$PUMVarShowBodyInternals")
+!$PUMVarShowBodyInternals = %false()
+allowmixing
 !foreach $el in $allelems.elements
     _PUMPutElement($el.path,$el.filename)
+!endfor
+!$PUMVarShowBodyInternals = $old_sbi
+!endprocedure
+
+' ---------------------------------------------
+' put all classes within the model repo onto
+' the diagram
+!unquoted procedure PUMLAPutAllClasses()
+!foreach $el in $allelems.elements
+    !if ($el.type == "class")
+        _PUMPutElement($el.path,$el.filename)
+    !endif
 !endfor
 !endprocedure
 

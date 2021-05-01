@@ -1,0 +1,25 @@
+'PUMLAMR
+@startuml
+'!include ./../../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class anotherClass <<Python>>  {
+
+        ' private functions and members
+        ' are considered internal
+        !if ($PUMVarShowBodyInternals)
+            -my_private_membervar : int
+        !endif
+        ' public methods are not internal
+        +my_public_getMethod() : int
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of anotherClass
+        Another class for the examples.
+    end note
+!endif
+
+@enduml
