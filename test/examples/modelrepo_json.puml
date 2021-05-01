@@ -1,9 +1,11 @@
 !$allelems = {"elements": [{"instclassalias": "-", "name": "Temperature System", "parent": "-", "type": "node", "filename": "tempSys.puml", "alias": "tempSys", "path": "./", "stereotypes": []},
- {"instclassalias": "tempSys", "name": "tSys1 professional", "parent": "-", "type": "-", "filename": "tempSysInstances.puml", "alias": "tSys1", "path": "./", "stereotypes": ["instance"]},
- {"instclassalias": "tempSys", "name": "tSys2", "parent": "-", "type": "-", "filename": "tempSysInstances.puml", "alias": "tSys2", "path": "./", "stereotypes": ["instance"]},
+ {"instclassalias": "tempSys", "name": "tSys1 professional", "parent": "-", "type": "node", "filename": "tempSysInstances.puml", "alias": "tSys1", "path": "./", "stereotypes": ["instance"]},
+ {"instclassalias": "tempSys", "name": "tSys2", "parent": "-", "type": "node", "filename": "tempSysInstances.puml", "alias": "tSys2", "path": "./", "stereotypes": ["instance"]},
  {"instclassalias": "-", "name": "Temperature Sensor B", "parent": "-", "type": "component", "filename": "tempSensorB.puml", "alias": "tempSensorB", "path": "./tempSensorB/", "stereotypes": ["block", "external System"]},
  {"instclassalias": "-", "name": "anotherClass", "parent": "-", "type": "class", "filename": "anotherClass.puml", "alias": "anotherClass", "path": "./anotherClass/", "stereotypes": ["Python"]},
  {"instclassalias": "-", "name": "CWeather", "parent": "-", "type": "class", "filename": "CWeather.puml", "alias": "CWeather", "path": "./CWeather/", "stereotypes": ["Python"]},
+ {"instclassalias": "CWeather", "name": "Weather Data Instance 1", "parent": "-", "type": "class", "filename": "WeatherInstances.puml", "alias": "w1", "path": "./CWeather/", "stereotypes": ["instance", "Python"]},
+ {"instclassalias": "CWeather", "name": "Weather Data Instance 2", "parent": "-", "type": "class", "filename": "WeatherInstances.puml", "alias": "w2", "path": "./CWeather/", "stereotypes": ["instance", "Python"]},
  {"instclassalias": "-", "name": "Wireless Unit", "parent": "-", "type": "rectangle", "filename": "wirelessUnit.puml", "alias": "wirelessUnit", "path": "./wirelessUnit/", "stereotypes": ["block", "external System"]},
  {"instclassalias": "-", "name": "Temperature Sensor A", "parent": "tempSys", "type": "component", "filename": "tempSensorA.puml", "alias": "tempSensorA", "path": "./tempSensorA/", "stereotypes": ["block"]},
  {"instclassalias": "-", "name": "Temperature Sensor B (dC)", "parent": "tempSys", "type": "component", "filename": "tempSensorBdC.puml", "alias": "tempSensorBdC", "path": "./tempSensorBdC/", "stereotypes": ["block"]},
@@ -12,6 +14,8 @@
 
 !$allrelations = {"modelrelationrepofile": "./modelrepo_json.puml", "modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "relations": [{"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys1", "reltxt": "instance of", "path": "./", "id": "REL#tSys1tempSys"},
  {"end": "tempSys", "reltype": "..>", "filename": "tempSysInstances.puml", "start": "tSys2", "reltxt": "instance of", "path": "./", "id": "REL#tSys2tempSys"},
+ {"end": "CWeather", "reltype": "..>", "filename": "WeatherInstances.puml", "start": "w1", "reltxt": "instance of", "path": "./CWeather/", "id": "REL#w1CWeather"},
+ {"end": "CWeather", "reltype": "..>", "filename": "WeatherInstances.puml", "start": "w2", "reltxt": "instance of", "path": "./CWeather/", "id": "REL#w2CWeather"},
  {"end": "tempSensorB", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#1"},
  {"end": "tempConverter", "reltype": "..>", "filename": "tempSensorBdC.puml", "start": "tempSensorBdC", "reltxt": "use", "path": "./tempSensorBdC/", "id": "tempSensorBdCRel#2"}]}
 

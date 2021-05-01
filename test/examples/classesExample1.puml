@@ -8,7 +8,7 @@
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
-!$PUMVarShowInstantiationRel = %false()
+!$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowImplicitRels = %true()
 
 title All Classes from Model Repository
@@ -20,6 +20,7 @@ allowmixing
 ' put all classes onto this diagram
 ' which becomes a class diagram with that
 PUMLAPutAllClasses()
+PUMLAPutRelationsForElement(CWeather)
 
 ' if you want to show the internals
 ' and mix with other non-class elements,

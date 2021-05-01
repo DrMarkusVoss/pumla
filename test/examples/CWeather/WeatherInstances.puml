@@ -1,0 +1,25 @@
+'PUMLAMR
+'PUMLAINSTANCES
+@startuml
+!include ./../../pumla_macros.puml
+'!include modelrepo_json.puml
+
+' here 2 re-usable instances of CWeather are defined.
+' see line 2, where we mark this as instance file.
+' other re-usable element files shall only contain
+' one model element (atomic definition). but for
+' instances that might be annoying, so we make an
+' exception to allow for multiple instance element
+' definitions in one file.
+
+' create the instance "w1" of model element with alias "CWeather".
+' the name contains whitespaces, therefore name and alias are
+' not equal and this version of the macro is called.
+PUMLAInstanceOf(CWeather, w1, "Weather Data Instance 1")
+
+' create another instance "ts2" from same model element.
+' the instance name equals the alias, therefore is not
+' allowed to contain whitespaces.
+PUMLAInstanceOf(CWeather, w2, "Weather Data Instance 2")
+
+@enduml

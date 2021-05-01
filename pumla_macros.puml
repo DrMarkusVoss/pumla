@@ -149,7 +149,7 @@ allowmixing
         !foreach $st in $el.stereotypes
             !$sts = $sts + " <<" + $st + ">>"
         !endfor
-        !$retval = $elt + ' "' + $iname + '"' + $sts + ' <<instance>> as ' + $instalias
+        !$retval = $elt + ' "' + $iname + '" as ' + $instalias + ' <<instance>> ' + $sts
     !endif
 !endfor
 !return $retval

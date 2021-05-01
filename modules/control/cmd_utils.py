@@ -290,6 +290,30 @@ def serializePUMLAConnectionsToDict(cons, mrpath, mrfilename):
 
     return dict
 
+def getElementByAlias(pels, alias):
+    retval = None
+
+    for e in pels:
+        if (e.getAlias() == alias):
+            retval = e
+            break
+
+    return retval
+
+def finalizeInstances(pels):
+    '''instance information can only be finalized when the repo is fully setup.
+    This function adds parent type and stereotypes to the instance.'''
+    for e in pels:
+        print(e.getStereotypes())
+        if ("instance" in e.getStereotypes()):
+            print("found instance")
+            parent = getElementByAlias(pels, e.getInstanceClassAlias())
+            for st in parent.getStereotypes():
+                e.addStereotype(st)
+            e.setType(parent.getType())
+
+    return pels
+
 
 def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
@@ -313,6 +337,10 @@ def updatePUMLAMR(path, mrefilename):
             pumlarelations.append(r)
         for c in cons:
             pumlaconnections.append(c)
+
+    tmp_pels = finalizeInstances(pumlaelements)
+
+    pumlaelements = tmp_pels
 
     # put the elements into a dictionary that can be easily
     # transformed into a JSON representation.
