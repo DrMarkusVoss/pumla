@@ -19,7 +19,7 @@
 title Overview on all model elements in repository
 
 'put all elements of json-modelrepo onto the diagram
-PUMLAPutAllElements()
+PUMLAPutAllElementsMix()
 
 '!include ./relations/relations_tempSys_Var_A.puml
 '!include ./relations/relations_tempSys_Var_B.puml

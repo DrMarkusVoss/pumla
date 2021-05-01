@@ -67,12 +67,16 @@
 !unquoted procedure PUMLAPutAllElementsMix()
 !foreach $el in $allelems.elements
     !if ($el.type == "class")
-        !$nn = $el.name + "_" + $el.type
-        note as $nn #white
-        {{
-        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
-        }}
-        end note
+        !$fn = "NN_" + %substr($el.filename, 0, %strlen($el.filename)-5)
+        !if (%not(%variable_exists($fn)))
+            !$nn = "NN_" + $fn
+            note as $nn #white
+            {{
+            !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+            }}
+            end note
+            %set_variable_value($fn, "%true()")
+        !endif
     !else
         _PUMPutElement($el.path,$el.filename)
     !endif
