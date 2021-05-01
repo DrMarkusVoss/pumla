@@ -3,11 +3,19 @@
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
+' the "true" variables are not really needed
+' on your diagram description here.
+' they are just put in nearly every example
+' so that you can play with switching them
+' to false to see what happens.
+' so, the real-life overhead is much less.
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
+' the following must be true to see the
+' instantiation relation
 !$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowImplicitRels = %true()
 
@@ -20,6 +28,10 @@ allowmixing
 ' put all classes onto this diagram
 ' which becomes a class diagram with that
 PUMLAPutAllClasses()
+
+' make the instantiation relations visible
+' make sure that the corresponding global
+' variable is set to true
 PUMLAPutRelationsForElement(CWeather)
 
 ' if you want to show the internals
