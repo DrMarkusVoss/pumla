@@ -4,6 +4,11 @@ source code of the .puml files that form the example model repository
 there.
 
 ## E#1: Show all Elements
+See, how classes and other elements are mixed on this diagram. That works only
+when internals are not shown. If you want to expose internals, you need to wrap
+the classes into notes. Use the "`PUMLAPutAllElementsMix()`" macro for that
+purpose (see example from the main page).
+
 [./test/examples/allElements.puml](./test/examples/allElements.puml)
 
 ![](./test/examples/pics/allElements.png)
@@ -71,3 +76,23 @@ put onto the diagram of this file:
 See the resulting diagram for that file:
 
 ![](./test/examples/pics/injectedElementsExample.png)
+
+### E#7: Classes
+This example shows how classes can be re-used.
+
+See this file, for how the public and private methods are handled differently in the
+definition of a re-usable class:
+
+[./test/examples/CWeather/CWeather.puml](./test/examples/CWeather/CWeather.puml)
+
+See here, how instances of the class element are created, which is similar to the
+creation of other instances:
+
+[./test/examples/CWeather/WeatherInstances.puml](./test/examples/CWeather/WeatherInstances.puml)
+
+See here how the class, the class instances and another non-class-diagram-compatible
+element are mixed on one diagram:
+
+[./test/examples/classesExample1.puml](./test/examples/classesExample1.puml)
+
+![](./test/examples/pics/classesExample1.png)

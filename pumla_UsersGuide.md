@@ -31,7 +31,7 @@ Writes out to the console all `pumla` model elements and diagrams of
 the model repository and diagram repository, with all their relevant 
 attributes.
 
-### `pumla update <filename optional>`
+### `pumla update`
 This is the most important command. It scans the source code repository starting
 at the current folder location and traverses from here through all underlying
 folders for all `.puml` files. The .puml files will be parsed and if they are 
