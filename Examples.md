@@ -1,7 +1,15 @@
 # `pumla` usage examples
 These are diagrams from the `./test/examples` section. You find the
 source code of the .puml files that form the example model repository
-there.
+there. In order to get the example running on your computer, you need
+to run "`python ./../../pumla.py update`" in the examples directory, 
+because the paths in the model repo file (./test/examples/modelrepo_json.puml)
+need to be updated to the directory structure on your computer. Currently
+the model repo file has the paths from the structure as I have it on my
+machine. You can't run the pumla update from the main path of pumla, as
+it is setup to update the architecture model repo of the pumla tool itself.
+The examples section will be ignored from the top level. So you have to go
+down to the examples and call the pumla update from that directory.
 
 ## E#1: Show all Elements
 See, how classes and other elements are mixed on this diagram. That works only
