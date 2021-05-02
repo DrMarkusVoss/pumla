@@ -4,7 +4,7 @@
 
 ![](./01_context/pumla_context.png)
 
-## Static Structure
+## Command line tool `pumla.py`
 
 ### Cheat Sheets
 
@@ -14,7 +14,7 @@
 
 ![](./00_pics/overview_allelements.png)
 
-### Internal Structure
+### Internal Static Structure 
 
 ![](./00_pics/overview_internalstructure.png)
 
