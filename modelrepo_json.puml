@@ -1,0 +1,8 @@
+!$allelems = {"elements": [{"instclassalias": "-", "name": "pumla.py", "parent": "-", "type": "rectangle", "filename": "pumla.puml", "alias": "pumla", "path": "./", "stereotypes": ["application", "python"]},
+ {"instclassalias": "-", "name": "control", "parent": "pumla", "type": "rectangle", "filename": "pumlaControl.puml", "alias": "pumlaControl", "path": "./modules/", "stereotypes": ["module", "python"]},
+ {"instclassalias": "-", "name": "cmd_utils.py", "parent": "pumlaControl", "type": "class", "filename": "cmdUtils.puml", "alias": "cmdUtils", "path": "./modules/control/", "stereotypes": ["module", "python"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/mvoss/Desktop/git/github/pumla"}
+
+!$allrelations = {"modelrelationrepofile": "./modelrepo_json.puml", "modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla", "relations": []}
+
+!$allconnections = {"connections": [], "modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla", "modelconnectionrepofile": "./modelrepo_json.puml"}
+

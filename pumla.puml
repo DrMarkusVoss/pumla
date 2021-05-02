@@ -1,0 +1,26 @@
+'PUMLAMR
+'PUMLAPARENT: -
+@startuml
+!include ./pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    rectangle "pumla.py" <<application>> <<python>> as pumla {
+
+        !if ($PUMVarShowBodyInternals)
+            PUMLAInjectChildElements(pumla)
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumla
+        The command line interface of **pumla**.
+        Call **"python pumla.py update"** to scan the
+        source code repository, find re-usable
+        pumla model description files and fill the
+        model repository (_json.puml file).
+    end note
+!endif
+
+@enduml

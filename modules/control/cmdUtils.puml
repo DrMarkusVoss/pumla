@@ -1,0 +1,25 @@
+'PUMLAMR
+'PUMLAPARENT: pumlaControl
+@startuml
+!include ./../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class "cmd_utils.py" as cmdUtils <<module>> <<python>>  {
+
+        !if ($PUMVarShowBodyInternals)
+
+        !endif
+        updatePUMLAMR(path : string, mrefilename : string) : (success : bool, modelrepo_fn : string)
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of cmdUtils
+        The counterpart for the command-line tool. Here
+        the logic for scanning and parsing is implemented,
+        as well as the generation of the model repository.
+    end note
+!endif
+
+@enduml

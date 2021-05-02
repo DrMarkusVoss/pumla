@@ -40,6 +40,20 @@
 !unquoted procedure PUMLAInjectChildElements($parentalias)
 !foreach $el in $allelems.elements
     !if ($el.parent == $parentalias)
+        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+    !endif
+!endfor
+!endprocedure
+
+' ############################################
+
+' ---------------------------------------------
+' inject child elements for the referenced
+' parent element
+'
+!unquoted procedure PUMLAInjectChildElements_depr($parentalias)
+!foreach $el in $allelems.elements
+    !if ($el.parent == $parentalias)
         !include $el.path/$el.filename
     !endif
 !endfor

@@ -17,6 +17,7 @@ def findAllPUMLAFiles(path):
     blacklist = []
 
     blacklistfilename = path + "/pumla_blacklist.txt"
+    #print(blacklistfilename)
     if (os.path.isfile(blacklistfilename)):
         #print("blacklist found\n")
         file = open(blacklistfilename)

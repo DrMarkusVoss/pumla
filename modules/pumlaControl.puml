@@ -1,0 +1,25 @@
+'PUMLAMR
+'PUMLAPARENT: pumla
+@startuml
+!include ./../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    rectangle "control" <<module>> <<python>> as pumlaControl {
+
+        !if ($PUMVarShowBodyInternals)
+            PUMLAInjectChildElements(pumlaControl)
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumlaControl
+        The control module of pumla. pumla follows the
+        MVC pattern, the control modules has all the
+        logic for scanning and parsing pumla files and
+        creating the model repository.
+    end note
+!endif
+
+@enduml
