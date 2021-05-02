@@ -1,7 +1,7 @@
 
 class PUMLARelation:
     ''' store PUMLA relations '''
-    def __init__(self, id, start, end, reltype="", reltxt=""):
+    def __init__(self, id, start, reltype, end, reltxt=""):
         self.id = id
         self.start = start
         self.end = end

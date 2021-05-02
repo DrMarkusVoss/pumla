@@ -310,7 +310,7 @@ PUMLAPutElement($elemalias)
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable Connection
-!unquoted procedure PUMLAConnection($startalias, $endalias, $contype, $contxt="", $conid="")
+!unquoted procedure PUMLAConnection($startalias, $contype, $endalias, $contxt="", $conid="")
 ' empty by intention... the macro name will only be parsed
 ' by the pumla.py script and the connection then put into
 ' the model repo. The PlantUML code comes when you put
@@ -371,7 +371,7 @@ $ifalias $constr $elemalias
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable relation
-!unquoted procedure PUMLARelation($startalias, $endalias, $reltype, $reltxt="", $relid="")
+!unquoted procedure PUMLARelation($startalias, $reltype, $endalias, $reltxt="", $relid="")
 ' empty by intention... the macro name will only be parsed
 ' by the pumla.py script and the relation then put into
 ' the model repo. The PlantUML code comes when you put

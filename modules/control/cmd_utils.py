@@ -164,7 +164,7 @@ def findInstances(lines, path, filename):
 
 def createInstanceRelation(inst, path, fn):
     """ creates a PUMLA instance-of relation for a given instance. """
-    pr = PUMLARelation(("REL#" + inst.getAlias() + inst.getInstanceClassAlias()), inst.getAlias(), inst.getInstanceClassAlias(), "..>", "instance of")
+    pr = PUMLARelation(("REL#" + inst.getAlias() + inst.getInstanceClassAlias()), inst.getAlias(), "..>", inst.getInstanceClassAlias(), "instance of")
     pr.setPath(path)
     pr.setFilename(fn)
     return pr
@@ -304,9 +304,9 @@ def finalizeInstances(pels):
     '''instance information can only be finalized when the repo is fully setup.
     This function adds parent type and stereotypes to the instance.'''
     for e in pels:
-        print(e.getStereotypes())
+        #print(e.getStereotypes())
         if ("instance" in e.getStereotypes()):
-            print("found instance")
+            #print("found instance")
             parent = getElementByAlias(pels, e.getInstanceClassAlias())
             for st in parent.getStereotypes():
                 e.addStereotype(st)

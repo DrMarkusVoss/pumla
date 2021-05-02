@@ -1,7 +1,7 @@
 
 class PUMLAConnection:
     ''' store PUMLA connections '''
-    def __init__(self, id, start, end, contype="", contxt=""):
+    def __init__(self, id, start, contype, end, contxt=""):
         self.id = id
         self.start = start
         self.end = end

@@ -17,17 +17,17 @@ component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
 !endif
 
 ' define usage relation towards the internal elements
-PUMLARelation(tempSensorBdC, tempSensorB, "..>", "use", "tempSensorBdCRel#1")
-PUMLARelation(tempSensorBdC, tempConverter, "..>", "use", "tempSensorBdCRel#2")
+PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")
+PUMLARelation(tempSensorBdC, "..>", tempConverter, "use", "tempSensorBdCRel#2")
 
 ' define an interface and connect it
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorBdC, tempSensorBdC, "out")
 
 ' define connection between the internal elements interface and
 ' this element
-PUMLAConnection(temp_dC_tempConverter, temp_dC_tempSensorBdC, "--", "", "C#2")
+PUMLAConnection(temp_dC_tempConverter, "--", temp_dC_tempSensorBdC, "", "C#2")
 ' define connection between both internal elements (their interfaces)
-PUMLAConnection(temp_dF_tempSensorB, temp_dF_tempConverter, "--", "", "C#3")
+PUMLAConnection(temp_dF_tempSensorB, "--", temp_dF_tempConverter, "", "C#3")
 
 !if ($PUMVarShowDescr)
 note bottom of tempSensorBdC
