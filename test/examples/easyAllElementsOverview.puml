@@ -4,6 +4,7 @@
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
+scale 0.7
 
 !$PUMVarShowDescr = %false()
 ' by default the global variables are "true",
