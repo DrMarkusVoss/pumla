@@ -1,0 +1,24 @@
+'PUMLAMR
+'PUMLAPARENT: pumlaModel
+@startuml
+!include ./../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class "PUMLAConnection.py" as pumlaConnection <<module>> <<python>>  {
+
+        !if ($PUMVarShowBodyInternals)
+
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumlaConnection
+        Class representing a connection in pumla.
+        A connection is a special relation that
+        connects two interfaces.
+    end note
+!endif
+
+@enduml

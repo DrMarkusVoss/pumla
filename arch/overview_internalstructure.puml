@@ -1,0 +1,23 @@
+@startuml
+!include ./../modelrepo_json.puml
+!include ./../pumla_macros.puml
+!include ./../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %true()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowImplicitRels = %true()
+
+scale 0.8
+
+title Overview of **pumla** and its internals
+
+PUMLAPutElement(pumla)
+
+'put all relations of json-repo onto the diagram
+PUMLAPutAllRelations()
+
+@enduml

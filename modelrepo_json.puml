@@ -1,5 +1,9 @@
 !$allelems = {"elements": [{"instclassalias": "-", "name": "pumla.py", "parent": "-", "type": "rectangle", "filename": "pumla.puml", "alias": "pumla", "path": "./", "stereotypes": ["application", "python"]},
+ {"instclassalias": "-", "name": "model", "parent": "pumla", "type": "rectangle", "filename": "pumlaModel.puml", "alias": "pumlaModel", "path": "./modules/", "stereotypes": ["module", "python"]},
  {"instclassalias": "-", "name": "control", "parent": "pumla", "type": "rectangle", "filename": "pumlaControl.puml", "alias": "pumlaControl", "path": "./modules/", "stereotypes": ["module", "python"]},
+ {"instclassalias": "-", "name": "PUMLARelation.py", "parent": "pumlaModel", "type": "class", "filename": "pumlaRelation.puml", "alias": "pumlaRelation", "path": "./modules/model/", "stereotypes": ["module", "python"]},
+ {"instclassalias": "-", "name": "PUMLAElement.py", "parent": "pumlaModel", "type": "class", "filename": "pumlaElement.puml", "alias": "pumlaElement", "path": "./modules/model/", "stereotypes": ["module", "python"]},
+ {"instclassalias": "-", "name": "PUMLAConnection.py", "parent": "pumlaModel", "type": "class", "filename": "pumlaConnection.puml", "alias": "pumlaConnection", "path": "./modules/model/", "stereotypes": ["module", "python"]},
  {"instclassalias": "-", "name": "cmd_utils.py", "parent": "pumlaControl", "type": "class", "filename": "cmdUtils.puml", "alias": "cmdUtils", "path": "./modules/control/", "stereotypes": ["module", "python"]}], "modelrepofile": "./modelrepo_json.puml", "modelrepopath": "/Users/mvoss/Desktop/git/github/pumla"}
 
 !$allrelations = {"modelrelationrepofile": "./modelrepo_json.puml", "modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla", "relations": []}

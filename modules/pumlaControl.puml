@@ -16,7 +16,7 @@
 !if ($PUMVarShowDescr)
     note bottom of pumlaControl
         The control module of pumla. pumla follows the
-        MVC pattern, the control modules has all the
+        MVC pattern, the control module has all the
         logic for scanning and parsing pumla files and
         creating the model repository.
     end note

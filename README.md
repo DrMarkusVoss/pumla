@@ -83,3 +83,9 @@ you have fast previews of the `.puml` and markdown files.
   and Unix platform. It is proven to run on my Macbook (Catalina)
   with Python 3.8.2  and Raspberry Pi 3 with Python 3.7.3.
 
+### `pumla` Architecture
+The `pumla` Architecture is also documented using `pumla`.
+
+Here is a first rough overview:
+
+[Link to pumla architecture documentation](./arch/pumla_architecture.md)

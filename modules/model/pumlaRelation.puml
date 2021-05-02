@@ -1,0 +1,22 @@
+'PUMLAMR
+'PUMLAPARENT: pumlaModel
+@startuml
+!include ./../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class "PUMLARelation.py" as pumlaRelation <<module>> <<python>>  {
+
+        !if ($PUMVarShowBodyInternals)
+
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumlaRelation
+        Class representing a relation in pumla.
+    end note
+!endif
+
+@enduml

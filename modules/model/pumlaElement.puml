@@ -1,0 +1,24 @@
+'PUMLAMR
+'PUMLAPARENT: pumlaModel
+@startuml
+!include ./../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class "PUMLAElement.py" as pumlaElement <<module>> <<python>>  {
+
+        !if ($PUMVarShowBodyInternals)
+
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumlaElement
+        Class representing an element in pumla.
+        An element can be a class, rectangle,
+        component, node etc.
+    end note
+!endif
+
+@enduml

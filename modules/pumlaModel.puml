@@ -1,0 +1,24 @@
+'PUMLAMR
+'PUMLAPARENT: pumla
+@startuml
+!include ./../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    rectangle "model" <<module>> <<python>> as pumlaModel {
+
+        !if ($PUMVarShowBodyInternals)
+            PUMLAInjectChildElements(pumlaModel)
+        !endif
+
+    }
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of pumlaModel
+        The model module of pumla. pumla follows the
+        MVC pattern, the model module holds  the
+        models of the pumla elements.
+    end note
+!endif
+
+@enduml
