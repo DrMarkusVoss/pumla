@@ -17,18 +17,25 @@ scale 0.7
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowImplicitRels = %true()
 
-title Overview on all model elements in repository
+title Show a system configuration by combining elements from the model epository
 
-'put all elements of json-modelrepo onto the diagram
+' put all "block" elements onto the diagram.
+' you could also put each element with a single
+' statement onto the diagram, then you do not
+' have to remove things that you do not need...
 PUMLAPutAllElementsOfStereotype("block")
 
-hide tSys1
-hide tSys2
+' I do not need the instances...
+PUMLARemoveAllInstances()
 
-'!include ./relations/relations_tempSys_Var_A.puml
-'!include ./relations/relations_tempSys_Var_B.puml
-!include ./relations/relations_tempSys_Var_B2.puml
+' for this diagram I do not want so see the
+' following elements (that are also "block"s)
+remove tempSensorA
+remove temp_dC_tempSensorA
 
+PUMLAPutConnection("CON#99")
+
+PUMLAPutConnectionsForElement(tempConverter)
 
 internet_tempSys -- internet_wirelessUnit
 

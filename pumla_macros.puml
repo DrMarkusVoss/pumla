@@ -136,6 +136,19 @@ allowmixing
 !endfor
 !endprocedure
 
+' ---------------------------------------------
+' remove all instances, meaning elements with
+' stereotype instance
+!unquoted procedure PUMLARemoveAllInstances()
+!foreach $el in $allelems.elements
+    !foreach $s in $el.stereotypes
+        !if ($s == "instance")
+            remove $el.alias
+        !endif
+    !endfor
+!endfor
+!endprocedure
+
 ' ############################################
 ' ---------------------------------------------
 ' put all relations of the model repo
