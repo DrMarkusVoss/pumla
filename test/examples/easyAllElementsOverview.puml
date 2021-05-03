@@ -15,16 +15,20 @@ scale 0.7
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowTaggedValues = %true()
-!$PUMVarShowImplicitRels = %false()
+!$PUMVarShowImplicitRels = %true()
 
 title Overview on all model elements in repository
 
 'put all elements of json-modelrepo onto the diagram
-PUMLAPutAllElementsMix()
+PUMLAPutAllElementsOfStereotype("block")
+
+hide tSys1
+hide tSys2
 
 '!include ./relations/relations_tempSys_Var_A.puml
 '!include ./relations/relations_tempSys_Var_B.puml
 !include ./relations/relations_tempSys_Var_B2.puml
+
 
 internet_tempSys -- internet_wirelessUnit
 

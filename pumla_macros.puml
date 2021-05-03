@@ -123,6 +123,19 @@ allowmixing
 !endfor
 !endprocedure
 
+' ---------------------------------------------
+' put all elements within the model repo onto
+' the diagram, that have the given stereotype
+!unquoted procedure PUMLAPutAllElementsOfStereotype(st)
+!foreach $el in $allelems.elements
+    !foreach $s in $el.stereotypes
+        !if ($s == st)
+            _PUMPutElement($el.path,$el.filename)
+        !endif
+    !endfor
+!endfor
+!endprocedure
+
 ' ############################################
 ' ---------------------------------------------
 ' put all relations of the model repo
@@ -274,7 +287,7 @@ note as PUMLAUPRelCheatSheetAllAttributes
     Model Repository File: $allrelations.modelrelationrepofile
 
     **Model Relations Repository contents:**
-    |= id |= start |= type |= end |= text |= filename |= path |
+    |= alias |= start |= type |= end |= text |= filename |= path |
 !foreach $el in $allrelations.relations
     | $el.id | $el.start | $el.reltype | $el.end | $el.reltxt | $el.filename | $el.path |
 !endfor
@@ -296,7 +309,7 @@ note as PUMLAUPConCheatSheetAllAttributes
     Model Repository File: $allconnections.modelconnectionrepofile
 
     **Model Connections Repository contents:**
-    |= id |= start |= type |= end |= text |= filename |= path |
+    |= alias |= start |= type |= end |= text |= filename |= path |
 !foreach $el in $allconnections.connections
     | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $el.filename | $el.path |
 !endfor

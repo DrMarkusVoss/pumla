@@ -8,14 +8,16 @@
         ' private functions and members
         ' are considered internal
         !if ($PUMVarShowBodyInternals)
-            -m_temp_dC : int
-            -m_airPressure_bar : int
+            -m_tempCurrent_dC : int
+            -m_airPressureCurrent_bar : int
+            -m_tempHistory_dC : int[7]
         !endif
         ' public methods are not internal
         +getTemperature_dC() : int
         +getAirPressure_bar() : int
         +setTemperature_dC(temp_dC : int) : void
         +setAirPressure_bar(ap_bar : int) : void
+        +lastSevenDayTemperatureAvg_dC() : int
 
     }
 !endif

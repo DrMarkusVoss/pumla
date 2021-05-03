@@ -3,7 +3,7 @@
 !include ./../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
-    node "Temperature System" as tempSys {
+    node "Temperature System" <<block>> as tempSys {
 
         !if ($PUMVarShowBodyInternals)
             PUMLAInjectChildElements(tempSys)

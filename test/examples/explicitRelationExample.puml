@@ -26,7 +26,8 @@ PUMLAPutElement(tempConverter)
 ' add all the relations for tempSensorBdC.
 ' it uses the 2 other elements.
 PUMLAPutRelationsForElement(tempSensorBdC)
-
+'PUMLAPutRelation(tempSensorBdCRel#1)
+'PUMLAPutRelation(tempSensorBdCRel#2)
 
 ' we also have a cheat sheet for the relations
 ' model repo, but only the "all attributes" version

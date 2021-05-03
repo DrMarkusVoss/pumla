@@ -154,6 +154,9 @@ is a PlantUML limitation. You can partly work around it by adding the command
 `allowmixing`, but this does still not allow to have elements like `[some component]`
 on the diagram, so it leads to an error.
 
+### `PUMLAPutAllElementsOfStereotype( st : string )`
+Put all elements with stereotype `st` onto the diagram.
+
 ### `PUMLACreateAndPutInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
 This macro is intented to be called outside of the model repository, meaning on diagrams
 that use re-usable elements but a diagram that is not a re-usable element
