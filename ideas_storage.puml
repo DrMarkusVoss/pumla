@@ -132,5 +132,19 @@ e.g. where templates are stored.
 end note
 
 note right of n13 #back:lightGreen : **DONE**
+
+note as n14
+Different handling of tagged values (like relations and connections), so
+that the information is stored in the database and can be used for
+filtering. So you can Put elements on the diagram based on
+concrete values of the tagged values.
+
+Inheritance concept for tagged values.
+end note
+
+note as n15
+inheritance of methods from classes for instances?
+end note
+
 }
 @enduml

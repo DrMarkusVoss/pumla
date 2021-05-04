@@ -1,0 +1,31 @@
+'PUMLAMR
+@startuml
+
+' You can put one or more connection definition in one PUMLAMR file,
+' without any drawbacks. So you can really place the connections close
+' to the source code files.
+' You can also have in one file connections and relations.
+
+' PUMLA makes connections re-usable by allowing you to give it an alias
+' to address it from within the model repository.
+' With "PUMLAConnection(..)" the connection is created purely virtual,
+' which means it will be created only in the model repository.
+' To see the connection, you need to put it on a diagram with
+' "PUMLAPutConnection( con_alias )" or similar macros. Only then the
+' connection is created as PlantUML code, reading the relevant
+' information from the model repository.
+
+' A connection is something between two interfaces. Everything else is
+' a relation (by PUMLA definition). Therefore, "start" and "end" in the
+' following description must refer to aliases of interfaces:
+
+'                   start            type      end              label     alias
+'                 interface                  interface                     of
+'                   alias                      alias                     connection
+PUMLAConnection(temp_dC_tempSensorA, "--", temp_dC_displayTemp,   "hard-wired",    "CON#_SYS_VAR_A")
+
+' ... when put to a diagram corresponds to PlantUML code (unfortunately
+'     PlantUML does not allow to give this connection an alias):
+' temp_dC_tempSensorA -- temp_dC_displayTemp : hard-wired
+
+@enduml

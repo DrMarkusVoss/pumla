@@ -4,7 +4,25 @@ from modules.model.PUMLAElement import PUMLAElement
 from modules.model.PUMLARelation import PUMLARelation
 from modules.model.PUMLAConnection import PUMLAConnection
 
+puml_deployment_keywords = ["actor", "agent", "artifact", "boundary", "card", "circle", "cloud",
+                            "collections", "component", "control", "database", "entity", "file",
+                            "folder", "frame", "hexagon", "interface", "label", "node",
+                            "package", "queue", "rectangle", "stack", "storage", "usecase"]
+
+
+def isPumlDeployKeywordInLine(line):
+    """check whether one of the deployment diagram element keywords
+        is contained in the given string line."""
+    retval = False
+
+    for kw in puml_deployment_keywords:
+        if (kw in line):
+            retval = True
+
+    return retval
+
 def isInBlacklist(path, blacklist):
+    """ check whether the given path is in the blacklist list."""
     retval = False
     for e in blacklist:
         if (e in path):
@@ -88,7 +106,7 @@ def findElementNameAndTypeInText(lines, alias):
                     elem_type = splt[0].strip()
 
 
-        elif ((alias in e) and (not("'" in e)) and(("component" in e) or ("rectangle" in e) or ("node" in e) or ("class" in e))):
+        elif ((alias in e) and (not("'" in e)) and (isPumlDeployKeywordInLine(e))):
             stypes = findStereoTypesInLine(e)
 
             for sts in stypes:
