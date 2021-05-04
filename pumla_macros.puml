@@ -126,10 +126,10 @@ allowmixing
 ' ---------------------------------------------
 ' put all elements within the model repo onto
 ' the diagram, that have the given stereotype
-!unquoted procedure PUMLAPutAllElementsOfStereotype(st)
+!unquoted procedure PUMLAPutAllElementsOfStereotype($st)
 !foreach $el in $allelems.elements
     !foreach $s in $el.stereotypes
-        !if ($s == st)
+        !if ($s == $st)
             _PUMPutElement($el.path,$el.filename)
         !endif
     !endfor
@@ -139,14 +139,21 @@ allowmixing
 ' ---------------------------------------------
 ' remove all instances, meaning elements with
 ' stereotype instance
-!unquoted procedure PUMLARemoveAllInstances()
+!unquoted procedure PUMLARemoveAllElementsOfStereotype($st)
 !foreach $el in $allelems.elements
     !foreach $s in $el.stereotypes
-        !if ($s == "instance")
+        !if ($s == $st)
             remove $el.alias
         !endif
     !endfor
 !endfor
+!endprocedure
+
+' ---------------------------------------------
+' remove all instances, meaning elements with
+' stereotype instance
+!unquoted procedure PUMLARemoveAllInstances()
+PUMLARemoveAllElementsOfStereotype("instance")
 !endprocedure
 
 ' ############################################
