@@ -12,7 +12,7 @@
 !$PUMVarShowImplicitRels = %false()
 !$PUMVarShowConnections = %true()
 
-title Overview Temperature System Variant B
+title Overview Temperature System Variant B and Connection selection
 
 ' put the elements of interest onto the diagrams
 ' by naming them by their alias.
@@ -26,19 +26,23 @@ PUMLAPutElement(wirelessUnit)
 ' system is connected. Uncomment the one you
 ' like to see. Adopt the removal of not used
 ' or unwanted elements at the bottom of the file.
-'!include ./relations/relations_tempSys_Var_A.puml
-'!include ./relations/relations_tempSys_Var_B.puml
-!include ./relations/relations_tempSys_Var_B2.puml
+
+'PUMLAPutConnection("CON#_SYS_VAR_A")
+
+PUMLAPutConnection("CON#1_SYS_VAR_B")
+PUMLAPutConnection("CON#2_SYS_VAR_B")
+PUMLAPutConnection("C#3")
+
+'PUMLAPutConnection("CON#_SYS_VAR_B2")
+
 
 internet_tempSys -- internet_wirelessUnit
-
-PUMLAPutAllConnections()
 
 PUMLAConCheatSheetAllAttributes()
 
 ' remove the elements you do not want to see.
 ' the following are included as internal parts
-' of the "tempSys". But in Variant B2 they are
+' of the "tempSys". But in Variant B/B2 they are
 ' not connected and therefore not needed.
 ' You can remove them by their alias.
 'remove tempSensorA

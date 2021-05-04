@@ -1,0 +1,29 @@
+@startuml
+!include ./../modelrepo_json.puml
+!include ./../pumla_macros.puml
+!include ./../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %true()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowImplicitRels = %true()
+
+scale 0.8
+
+title Overview of **pumla** MVC hierarchy
+
+PUMLAPutElement(pumla)
+
+PUMLAPutElement(pumlaControl)
+PUMLAPutElement(pumlaModel)
+
+'put all relations of json-repo onto the diagram
+PUMLAPutAllRelations()
+
+pumla ..> pumlaControl: use
+pumlaControl ..> pumlaModel: use
+
+@enduml

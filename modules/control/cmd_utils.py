@@ -216,16 +216,20 @@ def parsePUMLAFile(filename):
             pel.setAlias(el_alias)
             pel.setPath(el_path)
             el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+            if ((el_name == "-") and (el_type == "-") and (el_stereotypes == [])):
+                pel = None
+                pels = []
+            else:
+                if (el_name == "-"):
+                    pel.setName(el_alias)
+                else:
+                    pel.setName(el_name)
+                pel.setType(el_type)
+                for st in el_stereotypes:
+                    pel.stereotypes.append(st)
+                pels.append(pel)
             rels = findRelations(lines, el_path, el_fn)
             cons = findConnections(lines, el_path, el_fn)
-            if (el_name == "-"):
-                pel.setName(el_alias)
-            else:
-                pel.setName(el_name)
-            pel.setType(el_type)
-            for st in el_stereotypes:
-                pel.stereotypes.append(st)
-            pels.append(pel)
 
     # return the PUMLA Element
     return pels, rels, cons

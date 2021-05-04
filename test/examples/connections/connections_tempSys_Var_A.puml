@@ -1,0 +1,6 @@
+'PUMLAMR
+@startuml
+
+PUMLAConnection(temp_dC_tempSensorA, "--", temp_dC_displayTemp, "", "CON#_SYS_VAR_A")
+
+@enduml

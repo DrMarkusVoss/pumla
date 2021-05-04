@@ -33,7 +33,7 @@ PUMLARemoveAllInstances()
 remove tempSensorA
 remove temp_dC_tempSensorA
 
-PUMLAPutConnection("CON#99")
+'PUMLAPutConnection("CON#99")
 
 PUMLAPutConnectionsForElement(tempConverter)
 

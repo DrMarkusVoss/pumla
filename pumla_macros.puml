@@ -48,20 +48,6 @@
 ' ############################################
 
 ' ---------------------------------------------
-' inject child elements for the referenced
-' parent element
-'
-!unquoted procedure PUMLAInjectChildElements_depr($parentalias)
-!foreach $el in $allelems.elements
-    !if ($el.parent == $parentalias)
-        !include $el.path/$el.filename
-    !endif
-!endfor
-!endprocedure
-
-' ############################################
-
-' ---------------------------------------------
 ' put the referenced element onto the diagdam
 '
 !unquoted procedure PUMLAPutElement($elemalias)
