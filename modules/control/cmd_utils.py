@@ -9,8 +9,11 @@ puml_deployment_keywords = ["actor", "agent", "artifact", "boundary", "card", "c
                             "folder", "frame", "hexagon", "interface", "label", "node",
                             "package", "queue", "rectangle", "stack", "storage", "usecase"]
 
+puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "circle_short_form",
+                       "class", "diamond", "diamond_short_form", "entity", "enum", "interface"]
 
-def isPumlDeployKeywordInLine(line):
+
+def isPumlKeywordInLine(line):
     """check whether one of the deployment diagram element keywords
         is contained in the given string line."""
     retval = False
@@ -19,10 +22,16 @@ def isPumlDeployKeywordInLine(line):
         if (kw in line):
             retval = True
 
+    for kw in puml_class_keywords:
+        if (kw in line):
+            retval = True
+
+
     return retval
 
 def isInBlacklist(path, blacklist):
-    """ check whether the given path is in the blacklist list."""
+    """ check whether the given path is contained in the
+        given blacklist list."""
     retval = False
     for e in blacklist:
         if (e in path):
@@ -94,7 +103,6 @@ def findElementNameAndTypeInText(lines, alias):
             for sts in stypes:
                 elem_stereotypes.append(sts)
 
-
             # a definition of a name that needs an alias is put in '"',
             # therefore there must be two '"' and the name is in between
             if ('"' in e):
@@ -106,13 +114,14 @@ def findElementNameAndTypeInText(lines, alias):
                     elem_type = splt[0].strip()
 
 
-        elif ((alias in e) and (not("'" in e)) and (isPumlDeployKeywordInLine(e))):
+        elif ((alias in e) and (not("'" in e)) and (isPumlKeywordInLine(e))):
             stypes = findStereoTypesInLine(e)
 
             for sts in stypes:
                 elem_stereotypes.append(sts)
             splt = e.rsplit(alias)
             elem_type = splt[0].strip()
+
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
@@ -339,14 +348,16 @@ def finalizeInstances(pels):
 
 
 def updatePUMLAMR(path, mrefilename):
-    """create, update/overwrite the PUMLA model repository json file with current state of the source code repository"""
+    """create, update/overwrite the PUMLA model repository json file
+        with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
     pumlafiles = findAllPUMLAFiles(path)
 
     # parse each pumla file and create
-    # a PUMLA Element out of it, that
-    # gets put into a list.
+    # a PUMLA Elements, Connections and
+    # relations out of it, that
+    # get put into lists.
     pumlaelements = []
     pumlarelations = []
     pumlaconnections = []
@@ -361,13 +372,19 @@ def updatePUMLAMR(path, mrefilename):
         for c in cons:
             pumlaconnections.append(c)
 
+    # finalization step necessary to complement the instances
+    # with information from the parents. that can only be done
+    # when the complete repo has been created, so that all
+    # parents for the instances are within the repo list.
+    # then the instances can be complemented with information
+    # from their parents: type and stereotypes.
     tmp_pels = finalizeInstances(pumlaelements)
 
     pumlaelements = tmp_pels
 
     # put the elements into a dictionary that can be easily
     # transformed into a JSON representation.
-    jsondict = serializePUMLAElementsToDict(pumlaelements, path, mrefilename)
+    jsonelemdict = serializePUMLAElementsToDict(pumlaelements, path, mrefilename)
 
     # put the relations into a dictionary that can be easily
     # transformed into a JSON representation.
@@ -380,7 +397,7 @@ def updatePUMLAMR(path, mrefilename):
     # make it accessible from within PlantUML.
     # $allelemens is the preprocessor variable that
     # allows access by PlantUML pumla marcros.
-    jsontxt = "!$allelems = " + json.dumps(jsondict)
+    jsontxt = "!$allelems = " + json.dumps(jsonelemdict)
 
     # make it accessible from within PlantUML.
     # $allrelations is the preprocessor variable that

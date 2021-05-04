@@ -29,8 +29,8 @@ PUMLAPutElement(wirelessUnit)
 
 'PUMLAPutConnection("CON#_SYS_VAR_A")
 
-PUMLAPutConnection("CON#1_SYS_VAR_B")
-PUMLAPutConnection("CON#2_SYS_VAR_B")
+PUMLAPutConnection("CON#_SYS_VAR_B")
+PUMLAPutConnection("C#2")
 PUMLAPutConnection("C#3")
 
 'PUMLAPutConnection("CON#_SYS_VAR_B2")

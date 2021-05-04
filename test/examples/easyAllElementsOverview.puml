@@ -33,9 +33,9 @@ PUMLARemoveAllInstances()
 remove tempSensorA
 remove temp_dC_tempSensorA
 
-'PUMLAPutConnection("CON#99")
-
-PUMLAPutConnectionsForElement(tempConverter)
+PUMLAPutConnection("CON#_SYS_VAR_B")
+PUMLAPutConnection("C#2")
+PUMLAPutConnection("C#3")
 
 internet_tempSys -- internet_wirelessUnit
 
