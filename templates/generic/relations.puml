@@ -1,0 +1,11 @@
+'PUMLAMR
+@startuml
+
+'                   start    type        end         label       alias
+PUMLARelation(tempSensorBdC, "..>", tempConverter,  "uses",  "REL#1_TSBDC")
+
+' ... when put to a diagram corresponds to PlantUML code (unfortunately
+'     PlantUML does not allow to give this relation an alias):
+' tempSensorBdC ..> tempConverter : uses
+
+@enduml

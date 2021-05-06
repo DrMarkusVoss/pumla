@@ -1,0 +1,27 @@
+' alias = "someComplicatedClass"
+' expected_result = ("someComplicatedClass", "class", ["Python"])
+'PUMLAMR
+@startuml
+'!include ./../../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    class someComplicatedClass <<Python>>
+
+        ' private functions and members
+        ' are considered internal
+        !if ($PUMVarShowBodyInternals)
+            someComplicatedClass : -my_private_membervar : int
+        !endif
+        ' public methods are not internal
+        someComplicatedClass : +my_public_getMethod() : int
+
+
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of someComplicatedClass
+        Another class for the examples.
+    end note
+!endif
+
+@enduml

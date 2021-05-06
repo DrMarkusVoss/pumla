@@ -19,10 +19,10 @@
 ' a relation (by PUMLA definition). Therefore, "start" and "end" in the
 ' following description must refer to aliases of interfaces:
 
-'                   start            type      end              label     alias
-'                 interface                  interface                     of
-'                   alias                      alias                     connection
-PUMLAConnection(temp_dC_tempSensorA, "--", temp_dC_displayTemp,   "hard-wired",    "CON#_SYS_VAR_A")
+'                   start            type      end              label              alias
+'                 interface                  interface                              of
+'                   alias                      alias                             connection
+PUMLAConnection(temp_dC_tempSensorA, "--", temp_dC_displayTemp,   "hard-wired", "CON#_SYS_VAR_A")
 
 ' ... when put to a diagram corresponds to PlantUML code (unfortunately
 '     PlantUML does not allow to give this connection an alias):

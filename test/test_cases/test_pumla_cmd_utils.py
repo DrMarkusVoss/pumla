@@ -15,8 +15,8 @@ class TestPumlaCmdUtils:
     def printSeparation(self):
         print("---------------------------------")
 
-    def test_findAllPUMLAFiles(self):
-        print("test_findAllPumlaFiles()")
+    def test_01_findAllPUMLAFiles(self):
+        print("test_01_findAllPumlaFiles()")
         expected_result = ['./../examples/tempSys.puml',
                            './../examples/tempSysInstances.puml',
                            './../examples/tempSensorB/tempSensorB.puml',
@@ -40,8 +40,8 @@ class TestPumlaCmdUtils:
             print("test failed!")
         self.printSeparation()
 
-    def test_parsePUMLAFile(self):
-        print("test_parsePUMLAFile()")
+    def test_02_parsePUMLAFile(self):
+        print("test_02_parsePUMLAFile()")
         filename = "./../examples/tempConv/tempConverter.puml"
         exp_result_name = "Temp. Converter"
         exp_result_alias = "tempConverter"
@@ -72,8 +72,8 @@ class TestPumlaCmdUtils:
         self.printSeparation()
 
 
-    def test_findStereoTypesInLine(self):
-        print("test_findStereoTypesInLine()")
+    def test_03_findStereoTypesInLine(self):
+        print("test_03_findStereoTypesInLine()")
         test_passed = False
         line = 'rectangle "huhu" <<block>> <<component>><<external System>> as hu {'
         expected_result = ['block', 'component', 'external System']
@@ -90,26 +90,56 @@ class TestPumlaCmdUtils:
             print("test failed!")
         self.printSeparation()
 
-    def test_findElementNameAndTypeInText(self):
-        lines = []
-        print("test_findElementNameAndTypeInText()")
-        test_passed = False
-        lines.append('component "hello my friend" <<block>> <<weird>> as HelloMyFriend     {\n')
-        lines.append('note as n1 \n')
-        lines.append('rectangle "huhu this is my testName" <<block>> <<component>><<external System>> as hu {')
-        expected_result = ('hello my friend', 'component', ['block', 'weird'])
-        result = findElementNameAndTypeInText(lines, "HelloMyFriend")
-        #print(result)
+    def getAliasFromFileContent(self, line):
+        alias = None
+        alias_code = line.strip("'").strip(" ")
+        # will fill the alias variable with content from file.
+        exec(alias_code)
 
-        if (result == expected_result):
-            test_passed = True
-        else:
-            test_passed = False
-        if (test_passed):
-            print("test passed!")
-        else:
-            print("test failed!")
-        self.printSeparation()
+        return alias
+
+    def getExpectedResultFromFileContent(self, line):
+        expected_result = None
+        exp_res_code = line.strip("'").strip(" ")
+        # will fill the expected result variable with content from file.
+        exec(exp_res_code)
+        #print(expected_result)
+
+        return expected_result
+
+    def test_04_findElementNameAndTypeInText(self):
+        print("test_04_findElementNameAndTypeInText()")
+
+        test_04_pathname = "./test_files_04"
+        for files in os.walk(test_04_pathname):
+            for f in files[2]:
+                # make sure not to test the README.md
+                if (".puml" in f):
+                    fn = test_04_pathname + "/" + f.strip(".")
+                    print("Test file = " + fn)
+                    file = open(fn)
+                    text = file.read()
+                    file.close()
+
+                    all_lines = text.split("\n")
+                    # first line will contains the expected result
+                    alias = self.getAliasFromFileContent(all_lines[0])
+                    # second line will contain the expected result
+                    expected_result = self.getExpectedResultFromFileContent(all_lines[1])
+                    lines = all_lines[2:]
+                    result = findElementNameAndTypeInText(lines, alias)
+
+                    if (result == expected_result):
+                        test_passed = True
+                    else:
+                        test_passed = False
+                    if (test_passed):
+                        print("test passed!")
+                    else:
+                        print("test failed!")
+                        print(result)
+                        print(expected_result)
+                    self.printSeparation()
 
 
 
@@ -120,10 +150,10 @@ class TestPumlaCmdUtils:
         self.backToOldPath()
 
     def executeTests(self):
-        self.test_findAllPUMLAFiles()
-        self.test_parsePUMLAFile()
-        self.test_findStereoTypesInLine()
-        self.test_findElementNameAndTypeInText()
+        self.test_01_findAllPUMLAFiles()
+        self.test_02_parsePUMLAFile()
+        self.test_03_findStereoTypesInLine()
+        self.test_04_findElementNameAndTypeInText()
 
         # needs to be at the end of this method
         self.cleanup()

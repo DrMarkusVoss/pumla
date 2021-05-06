@@ -146,5 +146,11 @@ note as n15
 inheritance of methods from classes for instances?
 end note
 
+note as n16
+Pre-update python hook to provide the basic model elements
+for the source code repo, like creating re-usable elements
+for the modules, classes and files.
+end note
+
 }
 @enduml

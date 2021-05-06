@@ -1,0 +1,7 @@
+@startuml
+class hello
+class huhu
+
+hello ..> huhu
+
+@enduml

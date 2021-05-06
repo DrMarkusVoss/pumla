@@ -1,0 +1,15 @@
+'PUMLAMR
+'PUMLAINSTANCES
+@startuml
+'              from which      alias        name
+'               class to        for         for
+'              derivce the      the         the
+'               instance      instance      instance (optional)
+PUMLAInstanceOf(tempSys,       tSys1,       "tSys1 professional")
+
+' instance files are allowed to have more than
+' one instance defined, but then they appear
+' always together...
+PUMLAInstanceOf(tempSys, tSys2)
+
+@enduml

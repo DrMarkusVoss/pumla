@@ -1,0 +1,18 @@
+' alias = "otherAbstractClass"
+' expected_result = ("otherAbstractClass", "abstract class", ["C++"])
+'PUMLAMR
+@startuml
+'!include ./../../../pumla_macros.puml
+
+!if ($PUMVarShowBody)
+    abstract class otherAbstractClass <<C++>>
+
+!endif
+
+!if ($PUMVarShowDescr)
+    note bottom of otherAbstractClass
+        An abstract class test example.
+    end note
+!endif
+
+@enduml

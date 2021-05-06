@@ -116,6 +116,7 @@ def findElementNameAndTypeInText(lines, alias):
 
         elif ((alias in e) and (not("'" in e)) and (isPumlKeywordInLine(e))):
             stypes = findStereoTypesInLine(e)
+            elem_name = alias
 
             for sts in stypes:
                 elem_stereotypes.append(sts)

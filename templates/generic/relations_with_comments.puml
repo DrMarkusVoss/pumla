@@ -1,0 +1,27 @@
+'PUMLAMR
+@startuml
+
+' You can put one or more relation definition in one PUMLAMR file,
+' without any drawbacks. So you can really place the relation close
+' to the source code files.
+' You can also have in one file connections and relations.
+
+' PUMLA makes relations re-usable by allowing you to give it an alias
+' to address it from within the model repository.
+' With "PUMLARelation(..)" the relation is created purely virtual,
+' which means it will be created only in the model repository.
+' To see the relation, you need to put it on a diagram with
+' "PUMLAPutRelation( con_alias )" or similar macros. Only then the
+' relation is created as PlantUML code, reading the relevant
+' information from the model repository.
+
+'                   start          type       end               label          alias
+'                  element                  element                             of
+'                   alias                    alias                            relation
+PUMLARelation(tempSensorBdC,       "..>", tempConverter,       "uses",      "REL#1_TSBDC")
+
+' ... when put to a diagram corresponds to PlantUML code (unfortunately
+'     PlantUML does not allow to give this relation an alias):
+' tempSensorBdC ..> tempConverter : uses
+
+@enduml

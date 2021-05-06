@@ -142,3 +142,42 @@ scanner and it makes sense as a naming convention anyway.
 ###*Rationale*
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
 should not be included in the atomic model element definitions.
+
+## Rule: Do not use implicit PlantUML type definitions for re-usable model element definitions
+Instead, explicitly specify the type of the element by writing it down.
+
+###*Rationale*
+PlantUML allows a lot of shortcuts for creating elements, where the type is implictly derived based on assumptions.
+Example:
+```PlantUML
+
+@startuml
+hello ..> huhu
+@enduml
+```
+In this example both "hello" and "huhu" become classes. If you change the arrow to "-->" they become objects in 
+a sequence diagram. If you add a ">" directly after the "huhu" like "huhu>", you end up with an activity diagram
+with "hello" and "huhu" being activities. 
+
+This is fine in order to be able to quickly sketch a diagram with minimum number of characters typed. But it is 
+really hard to process and parse. 
+
+Therefore, it is necessary to exlicitly specify the type for elements that you describe as
+pumla re-usable elements. Example:
+
+```PlantUML
+
+@startuml
+class hello
+class huhu
+hello ..> huhu
+@enduml
+```
+Then you can also exchange the names or the arrows without the diagram changing its character
+and without having the elements "huhu" and "hello" switch their type. Instead you might get 
+a PlantUML error, because mixing elemts like activities and classes might not be allowed.
+And for pumla this is much easier to parse this element definition. So in order not to 
+rewrite the complete PlantUML parser, this is a mandatory rule for pumla files. For 
+re-usable element definitions, the "save every character"-use-case might also not be so 
+relevant, because in that use-case I guess you prefer clarity and explicity.
+
