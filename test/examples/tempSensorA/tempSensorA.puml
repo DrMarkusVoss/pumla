@@ -3,7 +3,6 @@
 @startuml
 allowmixing
 !include ./../../../pumla_macros.puml
-!$PUMVarShowBodyInternals = %false()
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor A" <<block>> as tempSensorA {
@@ -13,6 +12,7 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
         component getSignal
         component "AD conversion"
         component "signal processing"
+        state publicState
 
     !endif
 
@@ -47,12 +47,17 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
             [vomp]
         }}
         end note
+        publicState ..> n5
+        getSignal --> publicState
+
     !endif
 
 }
 !endif
 
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
+
+publicState ..> temp_dC_tempSensorA
 
 !if ($PUMVarShowDescr)
 note bottom of tempSensorA
