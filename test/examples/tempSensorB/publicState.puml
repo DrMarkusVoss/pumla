@@ -1,0 +1,14 @@
+'PUMLAMR
+'PUMLAPARENT: tempSensorB
+@startuml
+'allowmixing
+state "Public State" as publicState
+
+note bottom of publicState  #white
+{{
+    !include publicState_dyn.puml
+}}
+end note
+
+
+@enduml
