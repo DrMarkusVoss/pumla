@@ -14,6 +14,9 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 !endif
 
 PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
+PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")
+'publicState ..> temp_dF_tempSensorB : provides
+PUMLAPutRelation("REL#publicStateToIF")
 
 !if ($PUMVarShowDescr)
 note bottom of tempSensorB

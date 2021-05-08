@@ -22,8 +22,6 @@ PUMLACheatSheetAllAttributes()
 ' has the alias "wirelessUnit"...
 ' I put it on the diagram and then I can
 ' comment out the cheat sheet.
-'PUMLAPutElement(wirelessUnit)
-
-PUMLAPutElement(tempSensorB)
+PUMLAPutElement(wirelessUnit)
 
 @enduml

@@ -15,6 +15,7 @@
 
 !$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "REL#tSys1tempSys", "start": "tSys1", "end": "tempSys", "reltype": "..>", "reltxt": "instance of", "path": "./", "filename": "tempSysInstances.puml"},
  {"id": "REL#tSys2tempSys", "start": "tSys2", "end": "tempSys", "reltype": "..>", "reltxt": "instance of", "path": "./", "filename": "tempSysInstances.puml"},
+ {"id": "REL#publicStateToIF", "start": "publicState", "end": "temp_dF_tempSensorB", "reltype": "..>", "reltxt": "provides", "path": "./tempSensorB/", "filename": "tempSensorB.puml"},
  {"id": "REL#w1CWeather", "start": "w1", "end": "CWeather", "reltype": "..>", "reltxt": "instance of", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"id": "REL#w2CWeather", "start": "w2", "end": "CWeather", "reltype": "..>", "reltxt": "instance of", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"id": "tempSensorBdCRel#1", "start": "tempSensorBdC", "end": "tempSensorB", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
