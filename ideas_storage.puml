@@ -142,7 +142,7 @@ concrete values of the tagged values.
 Inheritance concept for tagged values.
 end note
 
-note as n15
+note as n15 #lightgreen
 inheritance of methods from classes for instances?
 end note
 
