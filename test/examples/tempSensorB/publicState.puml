@@ -1,14 +1,26 @@
 'PUMLAMR
 'PUMLAPARENT: tempSensorB
 @startuml
-'allowmixing
-state "Public State" as publicState
-
-note bottom of publicState  #white
-{{
-    !include publicState_dyn.puml
-}}
-end note
-
-
+state "Public State" as publicState {
+!if ($PUMVarShowBodyInternalsDyn)
+    [*] -> State1
+    State1 --> State2 : Succeeded
+    State1 --> [*] : Aborted
+    State2 --> State3 : Succeeded
+    State2 --> [*] : Aborted
+    state State3 {
+    state "Accumulate Enough Data" as long1
+    long1 : Just a test
+    [*] --> long1
+    long1 --> long1 : New Data
+    long1 --> ProcessData : Enough Data
+    State2 --> [H]: Resume
+    }
+    State3 --> State2 : Pause
+    State2 --> State3[H*]: DeepResume
+    State3 --> State3 : Failed
+    State3 --> [*] : Succeeded / Save Result
+    State3 --> [*] : Aborted
+!endif
+}
 @enduml

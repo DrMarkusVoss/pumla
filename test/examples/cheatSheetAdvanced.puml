@@ -5,6 +5,9 @@
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %true()
+
 title Cheat Sheet with all attributes example
 
 ' this commands gives you an overview
@@ -19,6 +22,8 @@ PUMLACheatSheetAllAttributes()
 ' has the alias "wirelessUnit"...
 ' I put it on the diagram and then I can
 ' comment out the cheat sheet.
+'PUMLAPutElement(wirelessUnit)
+
 PUMLAPutElement(tempSensorB)
 
 @enduml

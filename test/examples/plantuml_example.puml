@@ -1,7 +1,7 @@
 @startuml
 allowmixing
 
-note as n1
+note as n1 #white
 {{
 allowmixing
 state huhu
@@ -9,14 +9,22 @@ state State2
 huhu --> State2
 class ha
 }}
+
 {{
-'allowmixing
+allowmixing
+component huhu {
+state Ha {
+}
+}
+}}
+
+{{
+
 [*] --> One
-'class interfad
-'component troro
-'state dsfs
-'state asfsd
-'dsfs --> asfsd
+
+state dsfs
+state asfsd
+dsfs --> asfsd
 Two --> [*]
 Three --> [*]
 
@@ -41,6 +49,8 @@ class ha
 component mu {
 
 }
+
+state yeay
 
 ' activity cannot be mixed
 ' the following does not work to put it here
@@ -78,4 +88,21 @@ note as n5
 
         }}
 end note
+
+note as n976
+'@startuml
+'
+'rectangle "Public State" <<state>> as publicState
+'
+'note bottom of publicState #white
+'{{
+'    !include publicState_dyn.puml
+'}}
+'end note sdf
+'
+'
+'@enduml
+dsfas
+end note
+
 @enduml

@@ -476,3 +476,33 @@ $ifalias $constr $elemalias
 !endfor
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' put a dynamic element (like state) into a
+' static element (like component)
+!unquoted procedure PUMLAPutDynamicElement($elemalias)
+!foreach $el in $allelems.elements
+!if ($el.alias == $elemalias)
+!$felpath = $el.path
+!$felfn = $el.filename
+!$felname = $el.name
+!endif
+!endfor
+rectangle "$felname" <<state>> as $elemalias
+
+note bottom of $elemalias #white
+{{
+    _PUMPutElement($felpath, $felfn)
+}}
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put an internal dynamic element (like state) into a
+' static element (like component)
+!unquoted procedure PUMLAPutInternalDynElement($elemalias)
+!if ($PUMVarShowBodyInternalsDyn)
+PUMLAPutDynamicElement($elemalias)
+!endif
+!endprocedure

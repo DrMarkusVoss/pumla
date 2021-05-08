@@ -3,6 +3,7 @@ skinparam rectangle {
     backgroundColor<<external System>> LightGrey
     backgroundColor<<instance>> LightYellow
     roundCorner<<block>> 15
+    roundCorner<<state>> 15
 }
 skinparam component {
     backgroundColor<<external System>> LightGrey

@@ -1,13 +1,15 @@
 'PUMLAMR
 @startuml
 !include ./../../../pumla_macros.puml
-allowmixing
+
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
     !if ($PUMVarShowBodyInternals)
-    PUMLAPutInternalElement(publicState)
+    [unknown elements]
     !endif
+
+    PUMLAPutInternalDynElement(publicState)
 }
 !endif
 
