@@ -104,3 +104,31 @@ element are mixed on one diagram:
 [./test/examples/classesExample1.puml](./test/examples/classesExample1.puml)
 
 ![](./test/examples/pics/classesExample1.png)
+
+### E#8: Dynamic Behaviour - State Machine
+In the following example, we just put the "Temperature Sensor B" element onto the
+diagram.
+[./test/examples/exampleDynBehStateMachine.puml](./test/examples/exampleDynBehStateMachine.puml)
+
+This leads to this nice diagram, as internals are shown for that element, both
+static and dynamic internals:
+
+![](./test/examples/pics/exampleDynBehStateMachine.png)
+
+Because that element has both, static and dynamic elements in its inside, see here in this file:
+
+[./test/examples/tempSensorB/tempSensorB.puml](./test/examples/tempSensorB/tempSensorB.puml)
+
+In order to be able to mix static and dynamic elements (PlantUML limited capabilities regarding that),
+the different PUMLA macros take care of that by wrapping the dynamic element details diagram into
+a note. That way, static and dynamic world can co-exist. In order to create traceability between
+the elements, pumla doubles the dynamic element as a rectangle an attaches the note to it.
+That way you can also create links between the static and dynamic elements.
+
+See here, how the dynamic element is defined, which is conceptually similar to the static
+re-usable element definitions:
+
+[./test/examples/tempSensorB/publicState.puml](./test/examples/tempSensorB/publicState.puml)
+
+So basically, it uses the same PUMLA mechanism, the file marking and the PUMLAPARENT. The parent
+mechanism is not really necessary for this example, but it fits logically.
