@@ -1,4 +1,5 @@
 'PUMLAMR
+'PUMLAPARENT: tempSensorA
 'PUMLADYN
 @startuml
 box "Temperature Sensor A internal sequence"

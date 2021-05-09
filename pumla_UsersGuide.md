@@ -74,6 +74,10 @@ file contains definitions of re-usable instances of re-usable elements.
 Other than model elements, it is allowed to define multiple instances
 in one file. That is why there is a dedicated marking for such a file.
 
+### `'PUMLADYN`
+This comment marks the file as a re-usable asset of a dynamic behaviour 
+element description. In a file marked like that, only the dynamic aspect
+should be modelled, by e.g. a sequence, state or activity diagram.
 
 ---
 
@@ -108,6 +112,14 @@ This macro puts the model element with the given alias `elem_alias` onto the dia
 The referenced element must exist somewhere in the source tree as a model element
 described in a `pumla` model repository file.
 
+Both, static and dynamic elements, can be put onto a diagram with this macro. But be
+aware, that with this macro you cannot mix the static and dynamic world. If you want
+to put static and dynamic elements onto the same diagram, then use the 
+`PUMLAPutDynamicElement( alias : string )` macro (see down below) to put the dynamic
+elements onto the same diagram as you put the static elements with this macro
+here.
+
+
 ### tbd: `PUMLAPutElement( elem_alias, lod )`
 Same as above, but limits the displaying of nested elements to the level number 
 defined by `lod` (level of detail). This overrides the global variable
@@ -122,6 +134,13 @@ overview on all elements inside the source tree. This macro automatically
 overrides the `$PUMVarShowBodyInternals` with false, in order to allow the
 mixing of class and component elements. At the end of the macro the value of 
 `$PUMVarShowBodyInternals` is restored to the previous value.
+
+This macro only puts static elements onto the diagram, as this is a typical 
+use case. If you want an overview of really all elements, static and dynamic,
+the cheat sheet is the right thing to use. When it comes to architectural 
+documentations, you would always want to have separate overviews for static
+and dynamic elements, and special diagrams where you show the collaboration of
+static and dynamic world with the scope on specific or single elements only.
 
 TBD: I am thinking whether it makes sense to mark the repository as "software" or
 "system", so that you can put all "software elements" onto a diagram. Because class
@@ -156,6 +175,25 @@ on the diagram, so it leads to an error.
 
 ### `PUMLAPutAllElementsOfStereotype( st : string )`
 Put all elements with stereotype `st` onto the diagram.
+
+### `PUMLAPutDynamicElement( alias : string )`
+Put a dynamic element onto the diagram in a way that it can be mixed with static
+diagram elements. PlantUML has a lot of pitfalls when it comes to mixing elements
+of different diagram types. With `pumla` these macros help you to create the 
+traceability between the dynamic and static world. 
+
+This macro basically wraps the dynamic description details into a note, and 
+creates a static element, a rectangle, representing the dynamic aspect. The
+wrapping note is linked to the static rectangle element. That way
+you have the bridge between static and dynamic world.
+
+If you just need a diagram with dynamic aspects of the same kind, you can
+also just use the standard `PUMLAPutElement(...)` to put also dynamic elements 
+onto the diagram.
+
+### `PUMLAPutInternalDynElement( alias : string )`
+Same as previous macro, but wraps the call of the previous macro into a 
+dependency on the boolean value of the global variable `$PUMVarShowBodyInternalsDyn`.
 
 ### `PUMLACreateAndPutInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
 This macro is intented to be called outside of the model repository, meaning on diagrams
@@ -272,10 +310,15 @@ likely almost on every diagram true. But there may be some
 rare exceptions where you want it. ;-)
 
 ### `$PUMVarShowBodyInternals : boolean`
-Defines whether the internals of the model elements are shown.
+Defines whether the internals of the model element are shown.
 Internals can be elements directly modelled into the body or
 elements belonging inside indirectly, by using the
 `'PUMLAPARENT` marking.
+
+### `$PUMVarShowBodyInternalsDyn : boolean`
+Defines whether the dynamic internals of the model element are
+shown. That way you can decide to show only dynamic internals 
+or only static internals (previous global variable) or both.
 
 ### `$PUMVarShowTaggedValues : boolean`
 Defines whether the tagged values table of the model element
