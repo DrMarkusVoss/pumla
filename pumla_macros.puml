@@ -159,6 +159,30 @@ PUMLARemoveAllElementsOfStereotype("instance")
 !endfor
 !endprocedure
 
+!unquoted function _PUMIsStatic($elemalias)
+!$retval = %true()
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !if ($el.kind == "dynamic")
+            !$retval = %false()
+        !endif
+    !endif
+!endfor
+!return $retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' put all relations of the model repo
+' onto the diagram
+!unquoted procedure PUMLAPutAllStaticRelations()
+!foreach $er in $allrelations.relations
+!if _PUMIsStatic($er.start) && _PUMIsStatic($er.end)
+    PUMLAPutRelation($er.id)
+!endif
+!endfor
+!endprocedure
+
 ' ############################################
 
 ' ---------------------------------------------

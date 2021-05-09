@@ -259,6 +259,15 @@ will be put onto the diagram.
 ### `PUMLAPutAllRelations()`
 Puts all relations from the model repository onto the diagram.
 
+### `PUMLAPutAllStaticRelations()`
+Puts only all these relations from the model repository onto the 
+diagram, for which both, the start and the end element are static 
+elements.
+
+This is a convenience function for the case that you want to deal
+only with static elements on your diagram, and want to put only 
+those relations onto it.
+
 ### `PUMLAPutConnection("conid" : string)`
 Puts the connection with the given ID onto the diagram. The ID must refer to a relation
 in the model repository.
