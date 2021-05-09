@@ -150,7 +150,7 @@ static and dynamic internals:
 
 That element has both, static and dynamic elements in its inside, see here in this file:
 
-[./test/examples/tempSensorB/tempSensorB.puml](./test/examples/tempSensorB/tempSensorB.puml)
+[./test/examples/tempSensorA/tempSensorA.puml](./test/examples/tempSensorA/tempSensorA.puml)
 
 In order to be able to mix static and dynamic elements (PlantUML has limited capabilities regarding that),
 the different `pumla` macros take care of that by wrapping the dynamic element details diagram into
@@ -161,7 +161,7 @@ That way you can also create links between the static and dynamic elements.
 See here, how the dynamic element is defined, which is conceptually similar to the static
 re-usable element definitions:
 
-[./test/examples/tempSensorB/publicState.puml](./test/examples/tempSensorA/internalSequence.puml)
+[./test/examples/tempSensorA/internalSequence.puml](./test/examples/tempSensorA/internalSequence.puml)
 
 So basically, it uses the same `pumla` mechanism, the file marking and the PUMLAPARENT. The parent
 mechanism is not really necessary for this example, but it fits logically. Additionaly, re-usable
