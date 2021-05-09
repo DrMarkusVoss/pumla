@@ -169,3 +169,25 @@ description files of dynamic elements must be marked with PUMLADYN. That is beca
 impossible to differentiate a static and a dynamic description from one another. On the other hand
 there are a lot of pitfalls when you try to mix them, which is a problem for the re-use use case. 
 That is why in `pumla` you explicitly mark the dynamic descriptions.
+
+### E#10 Dynamic Behaviour - Re-using and extending a Sequence Diagram
+If you have a dynamic element like "internalSequence" and put it onto a diagram like here...
+
+[./test/examples/exampleSimpleReUseSequence.puml](./test/examples/exampleSimpleReUseSequence.puml)
+
+... then you get automatically a sequence diagram which looks like this:
+
+![](./test/examples/pics/exampleSimpleReUseSequence.png)
+
+Now, you can extend this diagram, by referencing the elements from inside this re-usable description and
+using it for further messages/calls or additional notes.
+
+Look into this example, that takes the "internalSequence" and extends it with several
+notes and additional messages:
+
+[./test/examples/exampleReUseAndModifyBehaviour.puml](./test/examples/exampleReUseAndModifyBehaviour.puml)
+
+The result is then the following diagram:
+
+![](./test/examples/pics/exampleReUseAndModifyBehaviour.png)
+

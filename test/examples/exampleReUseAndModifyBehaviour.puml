@@ -1,0 +1,47 @@
+@startuml
+' the following file gets generated when you call
+' "python pumla.py update" in this directory
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %true()
+
+title Example on how to re-use and extend an existing sequence
+
+' put the re-usable sequence onto the diagram
+PUMLAPutElement(internalSequence)
+
+' now, if you look into the code of the sequence
+' (find out which file with the PUMLACheatSheetAllAttributes)
+' you know the name of the elements.
+' You can attach additional notes to it...
+note left of getSignal
+    This note has
+    not been put
+    into the re-usable
+    element, but
+    only on this diagram.
+end note
+
+note across
+    I can also write something across all the elements.
+    It does not matter that the sequence and box is already
+    closed. The "across" relates it to the last sequence.
+end note
+
+note over "AD conversion"
+    some additional
+    note here...
+end note
+
+' I can also extend the diagram at the bottom
+internalSequence -> "getSignal" : plausibilization
+activate getSignal
+getSignal -> "signal processing" : signal check
+activate "signal processing"
+return signal ok?
+return check ok?
+
+@enduml
