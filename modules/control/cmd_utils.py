@@ -12,6 +12,9 @@ puml_deployment_keywords = ["actor", "agent", "artifact", "boundary", "card", "c
 puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "circle_short_form",
                        "class", "diamond", "diamond_short_form", "entity", "enum", "interface"]
 
+puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
+                       "collections", "participant", "activity", "partition"]
+
 
 def isPumlKeywordInLine(line):
     """check whether one of the deployment diagram element keywords
@@ -23,6 +26,10 @@ def isPumlKeywordInLine(line):
             retval = True
 
     for kw in puml_class_keywords:
+        if (kw in line):
+            retval = True
+
+    for kw in puml_dyn_keywords:
         if (kw in line):
             retval = True
 
@@ -164,7 +171,7 @@ def findConnections(lines, path, filename):
 
     return ret_cons
 
-def findInstances(lines, path, filename):
+def findInstances(lines, path, filename, kind):
     """ find PUMLA instance definitions in given lines. """
     ret_instances = []
     for e in lines:
@@ -181,6 +188,15 @@ def findInstances(lines, path, filename):
                 pr.addStereotype("instance")
                 pr.setInstanceClassAlias(s5[0])
                 pr.setAlias(s5[1])
+
+                if (kind == "static"):
+                    pr.setKindStatic()
+                elif (kind == "dynamic"):
+                    pr.setKindDynamic()
+                else:
+                    print("FindInstances:Error: no meaningful element kind.")
+                    pass
+
                 if (len(s5) > 2):
                     pr.setName(s5[2])
                 else:
@@ -197,6 +213,31 @@ def createInstanceRelation(inst, path, fn):
     pr.setPath(path)
     pr.setFilename(fn)
     return pr
+
+def parsePUMLAFileMarkings(lines):
+    retdict_filemarkings = {"mr": False, "parent": "-", "instances": False, "kind": "-"}
+
+    for e in lines:
+        if ("'PUMLAMR" in e):
+            retdict_filemarkings["mr"] = True
+        elif ("'PUMLAINSTANCES" in e):
+            retdict_filemarkings["instances"] = True
+        elif ("'PUMLAPARENT:" in e):
+            par = e.lstrip("'PUMLAPARENT: ")
+            parent = par.strip(" ")
+            retdict_filemarkings["parent"] = parent
+        elif ("'PUMLADYN" in e):
+            retdict_filemarkings["kind"] = "dynamic"
+        else:
+            pass
+
+    if ((retdict_filemarkings["mr"] == True) and (retdict_filemarkings["kind"] == "-")):
+        retdict_filemarkings["kind"] = "static"
+
+    return retdict_filemarkings
+
+
+
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -216,13 +257,24 @@ def parsePUMLAFile(filename):
     rels = []
     cons = []
     # check if it is a PUMLA file
+    file_markings = parsePUMLAFileMarkings(lines)
+    #print(filename)
+    #print(file_markings)
+    if (file_markings["kind"] == "static"):
+        pel.setKindStatic()
+    elif (file_markings["kind"] == "dynamic"):
+        pel.setKindDynamic()
+    else:
+        print("ParsePumlaFile:Error: no meaningful element kind.")
+        pass
+
     if ("'PUMLAMR" in lines[0]):
         fns = filename.split("/")
         el_fn = fns[len(fns) - 1]
         el_path = filename.rstrip(el_fn)
         # instance definition is defined by second line comment
         if ("'PUMLAINSTANCES" in lines[1]):
-            ri = findInstances(lines, el_path, el_fn)
+            ri = findInstances(lines, el_path, el_fn, file_markings["kind"])
             for i in ri:
                 pels.append(i)
                 instrel = createInstanceRelation(i, el_path, el_fn)
@@ -275,6 +327,7 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
         tmpdict["alias"] = e.getAlias()
         tmpdict["type"] = e.getType()
         tmpdict["stereotypes"] = e.getStereotypes()
+        tmpdict["kind"] = e.getKind()
         tmpdict["parent"] = e.getParent()
         tmpdict["instclassalias"] = e.getInstanceClassAlias()
         tmpdict["path"] = e.getPath()

@@ -8,6 +8,7 @@
 !$PUMVarShowInterfaces = %true()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowImplicitRels = %false()
 !$PUMVarShowConnections = %true()

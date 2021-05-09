@@ -10,6 +10,7 @@
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowBody = %true()
 
 ' this following flag allows to show/not show the automatically

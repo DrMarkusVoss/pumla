@@ -1,0 +1,18 @@
+'PUMLAMR
+'PUMLADYN
+@startuml
+box "Temperature Sensor A internal sequence"
+participant "**Internal Sequence**" as internalSequence
+activate internalSequence
+internalSequence->getSignal : start
+activate getSignal
+getSignal -> "AD conversion"
+activate "AD conversion"
+"AD conversion" -> "signal processing"
+activate "signal processing"
+return
+return
+return end
+end box
+
+@enduml

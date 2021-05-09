@@ -7,6 +7,7 @@
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %false()
 !$PUMVarShowImplicitRels = %true()
@@ -20,6 +21,11 @@ PUMLAPutAllElements()
 
 'put all relations of json-repo onto the diagram
 PUMLAPutAllRelations()
+
+' todo: RemoveRelation(alias)
+' in order to get rid of the dynamic elements relation
+' or better: put the "kind" tag also to relations, so dynamic if a
+' dynamic element is involved...
 
 note bottom of displayTemp
     this is an additional note to

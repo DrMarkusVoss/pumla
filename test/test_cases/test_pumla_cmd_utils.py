@@ -20,6 +20,7 @@ class TestPumlaCmdUtils:
         expected_result = ['./../examples/tempSys.puml',
                            './../examples/tempSysInstances.puml',
                            './../examples/tempSensorB/tempSensorB.puml',
+                           './../examples/tempSensorB/publicState.puml',
                            './../examples/anotherClass/anotherClass.puml',
                            './../examples/CWeather/CWeather.puml',
                            './../examples/CWeather/WeatherInstances.puml',
@@ -28,6 +29,7 @@ class TestPumlaCmdUtils:
                            './../examples/connections/connections_tempSys_Var_A.puml',
                            './../examples/connections/connections_tempSys_Var_B2.puml',
                            './../examples/tempSensorA/tempSensorA.puml',
+                           './../examples/tempSensorA/internalSequence.puml',
                            './../examples/tempSensorBdC/tempSensorBdC.puml',
                            './../examples/displayTemp/displayTemp.puml',
                            './../examples/tempConv/tempConverter.puml']

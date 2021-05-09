@@ -115,14 +115,14 @@ static and dynamic internals:
 
 ![](./test/examples/pics/exampleDynBehStateMachine.png)
 
-Because that element has both, static and dynamic elements in its inside, see here in this file:
+That element has both, static and dynamic elements in its inside, see here in this file:
 
 [./test/examples/tempSensorB/tempSensorB.puml](./test/examples/tempSensorB/tempSensorB.puml)
 
-In order to be able to mix static and dynamic elements (PlantUML limited capabilities regarding that),
-the different PUMLA macros take care of that by wrapping the dynamic element details diagram into
+In order to be able to mix static and dynamic elements (PlantUML has limited capabilities regarding that),
+the different `pumla` macros take care of that by wrapping the dynamic element details diagram into
 a note. That way, static and dynamic world can co-exist. In order to create traceability between
-the elements, pumla doubles the dynamic element as a rectangle an attaches the note to it.
+the elements, pumla doubles the dynamic element as a rectangle and attaches the note to it.
 That way you can also create links between the static and dynamic elements.
 
 See here, how the dynamic element is defined, which is conceptually similar to the static
@@ -130,5 +130,42 @@ re-usable element definitions:
 
 [./test/examples/tempSensorB/publicState.puml](./test/examples/tempSensorB/publicState.puml)
 
-So basically, it uses the same PUMLA mechanism, the file marking and the PUMLAPARENT. The parent
-mechanism is not really necessary for this example, but it fits logically.
+So basically, it uses the same `pumla` mechanism, the file marking and the PUMLAPARENT. The parent
+mechanism is not really necessary for this example, but it fits logically. Additionaly, re-usable
+description files of dynamic elements must be marked with PUMLADYN. That is because it is almost
+impossible to differentiate a static and a dynamic description from one another. On the other hand
+there are a lot of pitfalls when you try to mix them, which is a problem for the re-use use case. 
+That is why in `pumla` you explicitly mark the dynamic descriptions.
+
+
+### E#9: Dynamic Behaviour - Sequence Diagram
+In the following example, we just put the "Temperature Sensor A" element onto the
+diagram.
+[./test/examples/exampleDynBehSequence.puml](./test/examples/exampleDynBehSequence.puml)
+
+This leads to this nice diagram, as internals are shown for that element, both
+static and dynamic internals:
+
+![](./test/examples/pics/exampleDynBehSequence.png)
+
+That element has both, static and dynamic elements in its inside, see here in this file:
+
+[./test/examples/tempSensorB/tempSensorB.puml](./test/examples/tempSensorB/tempSensorB.puml)
+
+In order to be able to mix static and dynamic elements (PlantUML has limited capabilities regarding that),
+the different `pumla` macros take care of that by wrapping the dynamic element details diagram into
+a note. That way, static and dynamic world can co-exist. In order to create traceability between
+the elements, pumla doubles the dynamic element as a rectangle and attaches the note to it.
+That way you can also create links between the static and dynamic elements.
+
+See here, how the dynamic element is defined, which is conceptually similar to the static
+re-usable element definitions:
+
+[./test/examples/tempSensorB/publicState.puml](./test/examples/tempSensorA/internalSequence.puml)
+
+So basically, it uses the same `pumla` mechanism, the file marking and the PUMLAPARENT. The parent
+mechanism is not really necessary for this example, but it fits logically. Additionaly, re-usable
+description files of dynamic elements must be marked with PUMLADYN. That is because it is almost
+impossible to differentiate a static and a dynamic description from one another. On the other hand
+there are a lot of pitfalls when you try to mix them, which is a problem for the re-use use case. 
+That is why in `pumla` you explicitly mark the dynamic descriptions.

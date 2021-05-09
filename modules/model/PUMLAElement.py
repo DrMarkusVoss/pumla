@@ -13,6 +13,17 @@ class PUMLAElement:
         self.stereotypes = []
         self.isInstance = False
         self.instance_class_alias = "-"
+        # can be "static" or "dynamic"
+        self.kind = "-"
+
+    def setKindStatic(self):
+        self.kind = "static"
+
+    def setKindDynamic(self):
+        self.kind = "dynamic"
+
+    def getKind(self):
+        return self.kind
 
     def setInstance(self):
         self.isInstance = True

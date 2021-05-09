@@ -6,7 +6,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "0.4.5"
+__version__ = "0.5.0"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -22,7 +22,7 @@ __author__      = "Dr. Markus Voss (private person)"
 
 def identifyMe():
     """ information about the executed command """
-    print("pumla v0.4 - by Dr. Markus Voss")
+    print("pumla v0.5 - by Dr. Markus Voss")
 
 def parseSysArg(sysarg):
     """ parses the given command line arguments """

@@ -7,6 +7,7 @@
 !$PUMVarShowInterfaces = %true()
 !$PUMVarShowBody = %true()
 !$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowTaggedValues = %true()
 
 scale 0.8

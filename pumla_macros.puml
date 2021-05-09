@@ -62,11 +62,12 @@
 ' ############################################
 
 ' ---------------------------------------------
-' put all elements within the model repo onto
+' put all static elements within the model repo onto
 ' the diagram. Mixing of class & component elements
 ' is enabled by wrapping class elements into notes.
 !unquoted procedure PUMLAPutAllElementsMix()
 !foreach $el in $allelems.elements
+!if ($el.kind == "static")
     !if ($el.type == "class")
         !$fn = "NN_" + %substr($el.filename, 0, %strlen($el.filename)-5)
         !if (%not(%variable_exists($fn)))
@@ -81,11 +82,12 @@
     !else
         _PUMPutElement($el.path,$el.filename)
     !endif
+!endif
 !endfor
 !endprocedure
 
 ' ---------------------------------------------
-' put all elements within the model repo onto
+' put all static elements within the model repo onto
 ' the diagram. in order to allow class and component
 ' elements, component elements like [ds] cannot be shown
 ' therefore, internals are deactivated.
@@ -94,7 +96,9 @@
 !$PUMVarShowBodyInternals = %false()
 allowmixing
 !foreach $el in $allelems.elements
+!if ($el.kind == "static")
     _PUMPutElement($el.path,$el.filename)
+!endif
 !endfor
 !$PUMVarShowBodyInternals = $old_sbi
 !endprocedure
@@ -111,15 +115,17 @@ allowmixing
 !endprocedure
 
 ' ---------------------------------------------
-' put all elements within the model repo onto
+' put all static elements within the model repo onto
 ' the diagram, that have the given stereotype
 !unquoted procedure PUMLAPutAllElementsOfStereotype($st)
 !foreach $el in $allelems.elements
+!if ($el.kind == "static")
     !foreach $s in $el.stereotypes
         !if ($s == $st)
             _PUMPutElement($el.path,$el.filename)
         !endif
     !endfor
+!endif
 !endfor
 !endprocedure
 
@@ -256,7 +262,7 @@ note as PUMLAUPCheatSheetAllAttributes
     Model Repository File: $allelems.modelrepofile
 
     **Model Repository contents:**
-    |= name |= alias |= type |= stereotypes |= parent |= instclass |= filename |= path |
+    |= name |= alias |= type |= stereotypes |= parent |= instclass |= kind |= filename |= path |
 !foreach $el in $allelems.elements
     !$sts = ""
     !$lmax = 0
@@ -274,7 +280,7 @@ note as PUMLAUPCheatSheetAllAttributes
     !if ($sts=="")
         !$sts="-"
     !endif
-    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.filename | $el.path |
+    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.kind | $el.filename | $el.path |
 !endfor
 end note
 !endprocedure
@@ -486,15 +492,23 @@ $ifalias $constr $elemalias
 !$felpath = $el.path
 !$felfn = $el.filename
 !$felname = $el.name
+!$feltype = $el.type
 !endif
 !endfor
+!if ($feltype == "state")
 rectangle "$felname" <<state>> as $elemalias
-
+!elseif ($feltype == "participant")
+rectangle "$felname" <<sequence>> as $elemalias
+!else
+rectangle "$felname" as $elemalias
+!endif
+!if ($PUMVarShowBodyInternalsDyn)
 note bottom of $elemalias #white
 {{
     _PUMPutElement($felpath, $felfn)
 }}
 end note
+!endif
 !endprocedure
 
 ' ############################################
