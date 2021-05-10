@@ -12,9 +12,9 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
         component "AD conversion"
         component "signal processing"
 
-        PUMLAPutInternalDynElement(internalSequence)
-
     !endif
+
+    PUMLAPutInternalDynElement(internalSequence)
 
 
 }

@@ -170,7 +170,7 @@ impossible to differentiate a static and a dynamic description from one another.
 there are a lot of pitfalls when you try to mix them, which is a problem for the re-use use case. 
 That is why in `pumla` you explicitly mark the dynamic descriptions.
 
-### E#10 Dynamic Behaviour - Re-using and extending a Sequence Diagram
+### E#10: Dynamic Behaviour - Re-using and extending a Sequence Diagram
 If you have a dynamic element like "internalSequence" and put it onto a diagram like here...
 
 [./test/examples/exampleSimpleReUseSequence.puml](./test/examples/exampleSimpleReUseSequence.puml)

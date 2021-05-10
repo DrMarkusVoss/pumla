@@ -19,13 +19,9 @@ title Overview of all elements and their relations of the model repo
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
 
-'put all relations of json-repo onto the diagram
+'put all relations between static elements
+'of the json-repo onto the diagram
 PUMLAPutAllStaticRelations()
-
-' todo: RemoveRelation(alias)
-' in order to get rid of the dynamic elements relation
-' or better: put the "kind" tag also to relations, so dynamic if a
-' dynamic element is involved...
 
 note bottom of displayTemp
     this is an additional note to

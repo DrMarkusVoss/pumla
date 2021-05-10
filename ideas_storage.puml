@@ -142,7 +142,7 @@ concrete values of the tagged values.
 Inheritance concept for tagged values.
 end note
 
-note as n15 #lightgreen
+note as n15
 inheritance of methods from classes for instances?
 end note
 
@@ -152,5 +152,22 @@ for the source code repo, like creating re-usable elements
 for the modules, classes and files.
 end note
 
+note as n17
+use packages to organize the model repository content.
+make cheat sheets for packages overview and cheat sheet
+per package.
+end note
+
+note as n18
+introduce "extension point macros" that allow to extend
+a re-usable element description at defined points. That could
+be useful for e.g. sequence diagrams, when you have a re-usable
+element that has a hook call in it, and you want to fill in
+the right hook in different versions for dedicated diagrams to
+have a complete view of the sequence, not a broken one with
+additional documentation that explains how the broken one
+will work if it is filled by another document.
+end note
 }
+
 @enduml
