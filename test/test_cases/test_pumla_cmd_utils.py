@@ -93,21 +93,30 @@ class TestPumlaCmdUtils:
         self.printSeparation()
 
     def getAliasFromFileContent(self, line):
+        global alias
         alias = None
-        alias_code = line.strip("'").strip(" ")
-        # will fill the alias variable with content from file.
-        exec(alias_code)
 
-        return alias
+        gd = {"alias" : alias}
+        alias_code = line.strip("'").strip(" ")
+        #print("ac = " + alias_code)
+        # will fill the alias variable with content from file.
+        exec(alias_code, gd)
+
+        #print(gd["alias"])
+
+        return gd["alias"]
 
     def getExpectedResultFromFileContent(self, line):
+        global expected_result
         expected_result = None
         exp_res_code = line.strip("'").strip(" ")
+        erd = {"expected_result": expected_result}
         # will fill the expected result variable with content from file.
-        exec(exp_res_code)
-        #print(expected_result)
+        exec(exp_res_code, erd)
+        #print("er code = " + exp_res_code)
+        #print(erd["expected_result"])
 
-        return expected_result
+        return erd["expected_result"]
 
     def test_04_findElementNameAndTypeInText(self):
         print("test_04_findElementNameAndTypeInText()")

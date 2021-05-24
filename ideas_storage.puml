@@ -27,6 +27,8 @@ Example of Tree
 |_ First line
 |_ **Bom (Model)**
 |_ prop1
+  |_ hu
+  |_ ha
 |_ prop2
 |_ prop3
 |_ Last line
@@ -146,11 +148,17 @@ note as n15
 inheritance of methods from classes for instances?
 end note
 
-note as n16
+note as n16 #lightgreen
 Pre-update python hook to provide the basic model elements
 for the source code repo, like creating re-usable elements
 for the modules, classes and files.
+
+> this will be done in a separate project, see here:
+== https://github.com/DrMarkusVoss/py2pumla
+
+Therefore seen as "done" here.
 end note
+note right of n16 #back:lightGreen : **DONE**
 
 note as n17
 use packages to organize the model repository content.

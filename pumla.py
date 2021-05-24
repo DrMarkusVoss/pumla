@@ -14,11 +14,7 @@ import sys
 import os
 from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
-"""Command Line Tool for the PlantUML extension to enable architecture 
-element re-usability.
-"""
 
-__author__      = "Dr. Markus Voss (private person)"
 
 def identifyMe():
     """ information about the executed command """

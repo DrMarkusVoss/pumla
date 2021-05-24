@@ -1,108 +1,20 @@
 @startuml
-allowmixing
 
-note as n1 #white
-{{
-allowmixing
-state huhu
-state State2
-huhu --> State2
-class ha
-}}
+package "cmd_utils.py" as pd <<Python>> <<module>> {
 
-{{
-allowmixing
-component huhu {
-state Ha {
-}
-}
-}}
+    class cmd_utils <<Python>> <<module functions>>{
+    +vosda()
+    +as()
+    }
 
-{{
+    class huh <<Python>> <<class>> {
+        +__init__(self, hu)
+        +hu()
 
-[*] --> One
-
-state dsfs
-state asfsd
-dsfs --> asfsd
-Two --> [*]
-Three --> [*]
-
-}}
-{{
-
-component s3 {
- component hello as huhu
-}
-component s5
-huhu -->s5
-'box "hu"
-
-
-'end box
-
-}}
-end note
-
-class ha
-
-component mu {
+    }
 
 }
 
-state yeay
 
-' activity cannot be mixed
-' the following does not work to put it here
-' :acti;
-
-note as n5
-{{
-            [*] -> State1
-            State1 --> State2 : Succeeded
-            State1 --> [*] : Aborted
-            State2 --> State3 : Succeeded
-            State2 --> [*] : Aborted
-            state State3 {
-            state "Accumulate Enough Data" as long1
-            long1 : Just a test
-            [*] --> long1
-            long1 --> long1 : New Data
-            long1 --> ProcessData : Enough Data
-            State2 --> [H]: Resume
-            }
-            State3 --> State2 : Pause
-            State2 --> State3[H*]: DeepResume
-            State3 --> State3 : Failed
-            State3 --> [*] : Succeeded / Save Result
-            State3 --> [*] : Aborted
-
-
-        }}
-        {{
-            ':hello;
-            state "hello my friend" as hello
-        }}
-        {{
-            [vomp] ..> hello
-
-        }}
-end note
-
-note as n976
-'@startuml
-'
-'rectangle "Public State" <<state>> as publicState
-'
-'note bottom of publicState #white
-'{{
-'    !include publicState_dyn.puml
-'}}
-'end note sdf
-'
-'
-'@enduml
-dsfas
-end note
 
 @enduml

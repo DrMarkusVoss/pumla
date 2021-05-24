@@ -100,7 +100,7 @@ def findElementNameAndTypeInText(lines, alias):
     elem_type = "-"
     elem_stereotypes = []
     # search term definition
-    findit = " as " + alias
+    findit = " as " + str(alias)
     # it is tricky to find the element definition as the alias name might also occur in
     # a comment or note.
     for e in lines:
@@ -121,7 +121,7 @@ def findElementNameAndTypeInText(lines, alias):
                     elem_type = splt[0].strip()
 
 
-        elif ((alias in e) and (not("'" in e)) and (isPumlKeywordInLine(e))):
+        elif ((str(alias) in e) and (not("'" in e)) and (isPumlKeywordInLine(e))):
             stypes = findStereoTypesInLine(e)
             elem_name = alias
 
