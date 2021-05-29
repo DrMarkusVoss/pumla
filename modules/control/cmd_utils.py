@@ -81,6 +81,25 @@ def findAllPUMLAFiles(path):
     #return the list of PUMLA files found
     return pumlafiles
 
+def findTaggedValuesInText(lines):
+    rettvs = []
+
+    ret_cons = []
+    for e in lines:
+        if ("PUMLAAddTV" in e):
+            s1 = e.replace("PUMLAAddTV", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s4) > 2):
+                al_tv = {s5[0] : {s5[1] : s5[2]}}
+                rettvs.append(al_tv)
+
+    return rettvs
+
+
 def findStereoTypesInLine(line):
     """ find PlantUML stereotype definitions in given line. """
     e = line
@@ -256,6 +275,7 @@ def parsePUMLAFile(filename):
     pels = []
     rels = []
     cons = []
+    tvs = {}
     # check if it is a PUMLA file
     file_markings = parsePUMLAFileMarkings(lines)
     #print(filename)
@@ -296,6 +316,7 @@ def parsePUMLAFile(filename):
             pel.setAlias(el_alias)
             pel.setPath(el_path)
             el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+            tvs = findTaggedValuesInText(lines)
             if ((el_name == "-") and (el_type == "-") and (el_stereotypes == [])):
                 pel = None
                 pels = []
@@ -312,7 +333,7 @@ def parsePUMLAFile(filename):
             cons = findConnections(lines, el_path, el_fn)
 
     # return the PUMLA Element
-    return pels, rels, cons
+    return pels, rels, cons, tvs
 
 def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
     '''create a dict from the list of pumla elements from which easily a JSON definition can be created'''
@@ -404,6 +425,35 @@ def finalizeInstances(pels):
 
     return pels
 
+def getIndexForElementInList(el_alias, pels):
+    retval = -1
+    index = 0
+
+    for e in pels:
+        if (e.getAlias() == el_alias):
+            retval = index
+            break
+        index = index + 1
+
+    return retval
+
+def addTaggedValuesToElements(tvs, pels):
+
+    if (tvs.__len__() > 0):
+        for t in tvs:
+            #print(t)
+            for k in t.keys():
+                ind = getIndexForElementInList(k, pels)
+                #print("el_al = " + pels[ind].getAlias())
+                #pels[ind].printMe()
+                for tv in t[k]:
+                    #print("tv")
+                    #print(tv)
+                    #print(t[k][tv])
+                    pels[ind].addTaggedValue(tv, t[k][tv])
+
+    return pels
+
 
 def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file
@@ -419,16 +469,19 @@ def updatePUMLAMR(path, mrefilename):
     pumlaelements = []
     pumlarelations = []
     pumlaconnections = []
+    pumlataggedvalues = []
 
     # sum up information from all files in common lists
     for f in pumlafiles:
-        pels, rels, cons = parsePUMLAFile(f)
+        pels, rels, cons, tvs = parsePUMLAFile(f)
         for p in pels:
             pumlaelements.append(p)
         for r in rels:
             pumlarelations.append(r)
         for c in cons:
             pumlaconnections.append(c)
+
+        npumlels = addTaggedValuesToElements(tvs, pumlaelements)
 
     # finalization step necessary to complement the instances
     # with information from the parents. that can only be done

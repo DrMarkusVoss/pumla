@@ -544,3 +544,12 @@ end note
 PUMLAPutDynamicElement($elemalias)
 !endif
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' add a tagged value
+!unquoted procedure PUMLAAddTV($elemalias, $tag, $value)
+' empty by intention. will be handley by the pumla command
+' line tool.
+!endprocedure
+

@@ -52,7 +52,7 @@ class TestPumlaCmdUtils:
 
         test_passed = True
 
-        pels, rels, cons = parsePUMLAFile(filename)
+        pels, rels, cons, tvs = parsePUMLAFile(filename)
         result_elem = pels[0]
 
         if (not(result_elem.name == exp_result_name)):

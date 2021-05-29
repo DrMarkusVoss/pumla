@@ -13,6 +13,15 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 }
 !endif
 
+' PUMLAAddTV is a macro under development.
+' in pumla v0.5 this functionality is
+' subsequently under development. For v0.6
+' it will be introduced officially, but the
+' API will change.
+PUMLAAddTV(tempSensorB, "SysVariant", "B1")
+PUMLAAddTV(tempSensorB, "SysVariant", "B2")
+PUMLAAddTV(tempSensorB, "Vendor", "B")
+
 PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")
 'publicState ..> temp_dF_tempSensorB : provides
