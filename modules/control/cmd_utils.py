@@ -332,6 +332,10 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
         tmpdict["instclassalias"] = e.getInstanceClassAlias()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
+        tvs = e.getTaggedValues()
+        # the tagged values are stored in a dict
+        if (tvs.__len__() > 0):
+            tmpdict["taggedvalues"] = tvs
         dict["elements"].append(tmpdict)
 
     return dict

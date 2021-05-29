@@ -15,6 +15,9 @@ class PUMLAElement:
         self.instance_class_alias = "-"
         # can be "static" or "dynamic"
         self.kind = "-"
+        # tagged values is a dict are like
+        # like {<tag>: [<tag_value1>, <tag_value2>, ...]}
+        self.tagged_values = {}
 
     def setKindStatic(self):
         self.kind = "static"
@@ -80,6 +83,20 @@ class PUMLAElement:
 
     def getStereotypes(self):
         return self.stereotypes
+
+    def getTaggedValues(self):
+        return self.tagged_values
+
+    def addTaggedValue(self, tag, value):
+        """add a tagged value."""
+        if (tag in self.tagged_values):
+            self.tagged_values[tag].append(value)
+        else:
+            self.tagged_values[tag] = [value]
+
+    def addValueToTag(self, value, tag):
+        """add a value to a already existing tag."""
+        self.tagged_values[tag].append(value)
 
     def printMe(self):
         """ command line print out of the model element attributes """
