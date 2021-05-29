@@ -1,4 +1,19 @@
 @startuml
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Temperature System", "alias": "tempSys", "type": "node", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "tempSys.puml"},
+ {"name": "tSys1 professional", "alias": "tSys1", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
+ {"name": "tSys2", "alias": "tSys2", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
+ {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml", "taggedvalues": {"SysVariant": ["B1", "B2"], "Vendor": ["B"]}},
+ {"name": "Public State", "alias": "publicState", "type": "state", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorB", "instclassalias": "-", "path": "./tempSensorB/", "filename": "publicState.puml"},
+ {"name": "anotherClass", "alias": "anotherClass", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./anotherClass/", "filename": "anotherClass.puml"},
+ {"name": "CWeather", "alias": "CWeather", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./CWeather/", "filename": "CWeather.puml"},
+ {"name": "Weather Data Instance 1", "alias": "w1", "type": "class", "stereotypes": ["instance", "Python"], "kind": "static", "parent": "-", "instclassalias": "CWeather", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
+ {"name": "Weather Data Instance 2", "alias": "w2", "type": "class", "stereotypes": ["instance", "Python"], "kind": "static", "parent": "-", "instclassalias": "CWeather", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
+ {"name": "Wireless Unit", "alias": "wirelessUnit", "type": "rectangle", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./wirelessUnit/", "filename": "wirelessUnit.puml"},
+ {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorA/", "filename": "tempSensorA.puml"},
+ {"name": "**Internal Sequence**", "alias": "internalSequence", "type": "participant", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorA", "instclassalias": "-", "path": "./tempSensorA/", "filename": "internalSequence.puml"},
+ {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
+ {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml"},
+ {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempConv/", "filename": "tempConverter.puml"}]}
 
 package "cmd_utils.py" as pd <<Python>> <<module>> {
 
@@ -16,5 +31,16 @@ package "cmd_utils.py" as pd <<Python>> <<module>> {
 }
 
 
+note as n11
+huhu
+end note
+
+note as n12
+haha
+$allelems.elements[3].taggedvalues.SysVariant[0]
+The tagged values as defined like this are hardly iterable without
+knowing the tags name... have to change the representation in the
+JSON model repo.
+end note
 
 @enduml

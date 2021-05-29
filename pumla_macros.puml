@@ -547,9 +547,23 @@ PUMLAPutDynamicElement($elemalias)
 
 ' ############################################
 ' ---------------------------------------------
-' add a tagged value
+' add a tagged value to to element referenced by its alias
 !unquoted procedure PUMLAAddTV($elemalias, $tag, $value)
-' empty by intention. will be handley by the pumla command
+' empty by intention. will be handled by the pumla command
 ' line tool.
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' add a tagged value to to element referenced by its alias
+!unquoted procedure PUMLATestNewTVs($elemalias)
+!$notestr = "-"
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !$notestr = $notestr + " - " + $el.taggedvalues
+        note as n987
+            $notestr
+        end note
+    !endif
+!endfor
+!endprocedure

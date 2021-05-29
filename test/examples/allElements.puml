@@ -32,5 +32,7 @@ note bottom of displayTemp
     see separate example.
 end note
 
+PUMLATestNewTVs(tempSensorB)
+
 
 @enduml
