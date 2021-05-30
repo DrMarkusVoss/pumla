@@ -34,7 +34,8 @@ attributes.
 ### `pumla update`
 This is the most important command. It scans the source code repository starting
 at the current folder location and traverses from here through all underlying
-folders for all `.puml` files. The .puml files will be parsed and if they are 
+folders for all `.puml` files. If you want to exclude certain folders from the search,
+you can name these in a `pumla_blacklist.txt` file. The .puml files found will be parsed and if they are 
 pumla files, their relevant content will be extracted and stored in the 
 `modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the the given
 filename. Each call will overwrite the existing `{modelrepo | diagramrepo}_json.puml`

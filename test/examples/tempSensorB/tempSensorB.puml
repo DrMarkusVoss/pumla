@@ -7,7 +7,18 @@
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
+    ' this puts the table with the tagged values here
+    ' to show.
+    ' even without the following macro, tagged values
+    ' attached with "PUMLAAddTV" will still be in the
+    ' model repo attached to the element, they will just
+    ' not be seen on diagrams, even if the global variable
+    ' for showing them is set to true.
+    ' You will be able to see the full list of available
+    ' tagged values and the elements they are attached to
+    ' with an upcoming CheatSheet macro.
     PUMLAPutTaggedValues(tempSensorB)
+
     !if ($PUMVarShowBodyInternals)
     [unknown elements]
     !endif
@@ -21,6 +32,8 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 ' subsequently under development. For v0.6
 ' it will be introduced officially, but the
 ' API will change.
+' This macro adds a tag/value pair to the element
+' with the given alias.
 PUMLAAddTV(tempSensorB, "SysVariant", "B1")
 PUMLAAddTV(tempSensorB, "SysVariant", "B2")
 PUMLAAddTV(tempSensorB, "Vendor", "B Inc.")

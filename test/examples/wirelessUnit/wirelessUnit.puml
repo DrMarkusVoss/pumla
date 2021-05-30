@@ -3,6 +3,10 @@
 !include ./../../../pumla_macros.puml
 !include ./../../../pumla_tagged_values.puml
 
+' this tagged values mechanism will be replaced
+' by another one, that puts the tagged values
+' also in the model repository. This old mechanism
+' only puts them on diagrams.
 !if ($PUMVarShowTaggedValues)
 AddTaggedValue("Vendor", "XY")
 AddTaggedValue("SecurityClass", "Alpha")
