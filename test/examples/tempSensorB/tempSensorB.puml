@@ -1,10 +1,13 @@
 'PUMLAMR
 @startuml
 !include ./../../../pumla_macros.puml
+!include ./../../../pumla_tagged_values_mr.puml
+!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
+    PUMLAPutTaggedValues(tempSensorB)
     !if ($PUMVarShowBodyInternals)
     [unknown elements]
     !endif

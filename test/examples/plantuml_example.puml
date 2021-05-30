@@ -2,7 +2,7 @@
 !$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Temperature System", "alias": "tempSys", "type": "node", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "tempSys.puml"},
  {"name": "tSys1 professional", "alias": "tSys1", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
  {"name": "tSys2", "alias": "tSys2", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
- {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml", "taggedvalues": {"SysVariant": ["B1", "B2"], "Vendor": ["B"]}},
+ {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml", "taggedvalues": [{"tag": "SysVariant", "values":  ["B1", "B2"]}, {"tag": "Vendor", "values": ["B"]}]},
  {"name": "Public State", "alias": "publicState", "type": "state", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorB", "instclassalias": "-", "path": "./tempSensorB/", "filename": "publicState.puml"},
  {"name": "anotherClass", "alias": "anotherClass", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./anotherClass/", "filename": "anotherClass.puml"},
  {"name": "CWeather", "alias": "CWeather", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./CWeather/", "filename": "CWeather.puml"},
@@ -37,7 +37,7 @@ end note
 
 note as n12
 haha
-$allelems.elements[3].taggedvalues.SysVariant[0]
+$allelems.elements[3].taggedvalues[0].tag
 The tagged values as defined like this are hardly iterable without
 knowing the tags name... have to change the representation in the
 JSON model repo.

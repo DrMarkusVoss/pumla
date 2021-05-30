@@ -2,6 +2,8 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor A" <<block>> as tempSensorA {

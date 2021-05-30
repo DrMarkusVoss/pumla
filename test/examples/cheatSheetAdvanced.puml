@@ -6,7 +6,7 @@
 !include ./../../templates/sysml/skin.puml
 
 !$PUMVarShowBodyInternals = %true()
-!$PUMVarShowBodyInternalsDyn = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
 
 title Cheat Sheet with all attributes example
 

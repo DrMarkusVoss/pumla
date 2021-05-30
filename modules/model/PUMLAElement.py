@@ -87,6 +87,14 @@ class PUMLAElement:
     def getTaggedValues(self):
         return self.tagged_values
 
+    def getTaggedValuesMRJSONFormat(self):
+        tvs = []
+        for k in self.tagged_values.keys():
+            nd = {"tag" : k, "values" : self.tagged_values[k]}
+            tvs.append(nd)
+
+        return tvs
+
     def addTaggedValue(self, tag, value):
         """add a tagged value."""
         if (tag in self.tagged_values):

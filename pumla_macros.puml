@@ -130,6 +130,30 @@ allowmixing
 !endprocedure
 
 ' ---------------------------------------------
+' put all static elements within the model repo onto
+' the diagram, that have the given tag/value
+!unquoted procedure PUMLAPutAllElementsWithTagValue($tag, $value)
+!foreach $el in $allelems.elements
+!if ($el.kind == "static")
+    !foreach $tvs in $el.taggedvalues
+        !$tv_found = "NO"
+
+        !if ($tvs.tag == $tag)
+            !foreach $v in $tvs.values
+                !if ($v == $value)
+                    !$tv_found = "YES"
+                !endif
+            !endfor
+            !if ($tv_found == "YES")
+                _PUMPutElement($el.path,$el.filename)
+            !endif
+        !endif
+    !endfor
+!endif
+!endfor
+!endprocedure
+
+' ---------------------------------------------
 ' remove all instances, meaning elements with
 ' stereotype instance
 !unquoted procedure PUMLARemoveAllElementsOfStereotype($st)
@@ -560,7 +584,9 @@ PUMLAPutDynamicElement($elemalias)
 !$notestr = "-"
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
-        !$notestr = $notestr + " - " + $el.taggedvalues
+        !foreach $tv in $el.taggedvalues
+            !$notestr = $notestr + " \n" + "tag=" + $tv.tag + "; values = " + $tv.values
+        !endfor
         note as n987
             $notestr
         end note
