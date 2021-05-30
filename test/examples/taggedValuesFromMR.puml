@@ -7,11 +7,22 @@
 
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowBodyInternalsDyn = %false()
+' even with tagged values not shown on a diagram,
+' we can reference the elements by their
+' tags and values.
+!$PUMVarShowTaggedValues = %false()
+'!$PUMVarShowTaggedValues = %true()
 
 title Example using tagged values to put elements
 
 ' put all elements with a given combination of
-' tag and value onto the diagram
+' tag and value onto the diagram.
+' this also works when we do not show the tagged
+' values on the diagram.
 PUMLAPutAllElementsWithTagValue("SysVariant", "B1")
+
+' toggle the global variable "$PUMVarShowTaggedValues"
+' to "%true()" to see that the right element has
+' been placed on the diagram.
 
 @enduml

@@ -23,7 +23,7 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 ' API will change.
 PUMLAAddTV(tempSensorB, "SysVariant", "B1")
 PUMLAAddTV(tempSensorB, "SysVariant", "B2")
-PUMLAAddTV(tempSensorB, "Vendor", "B")
+PUMLAAddTV(tempSensorB, "Vendor", "B Inc.")
 
 PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")

@@ -11,6 +11,7 @@
 !$PUMVarShowInterfaces = %false()
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %false()
 !$PUMVarShowBody = %true()
 
 ' this following flag allows to show/not show the automatically
