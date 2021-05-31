@@ -2,6 +2,7 @@
 @startuml
 !include ./../../../pumla_macros.puml
 !include ./../../../pumla_tagged_values.puml
+!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
 
