@@ -47,8 +47,9 @@ with other applications and documents during software development.
 
 ### Simple example
 See this example diagram description, putting
-all elements of the example model repository onto the
-diagram...
+all elements of the example model repository with stereotype "block" 
+onto the diagram. Then some relations are added and unnecessary elements
+removed.
 
 [./test/examples/easyAllElementsOverview.puml](./test/examples/easyAllElementsOverview.puml)
 
