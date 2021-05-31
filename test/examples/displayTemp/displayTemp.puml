@@ -18,7 +18,7 @@ component displayTemp <<block>>  {
 !endif
 
 PUMLAAddTV(displayTemp, "Vendor", "C Ltd.")
-
+PUMLAAddTV(displayTemp, "Brightness", "300 Nits")
 
 PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
