@@ -2,7 +2,7 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
-!include ./../../../pumla_tagged_values_mr.puml
+!include ./../../../pumla_tagged_values.puml
 '!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
@@ -18,7 +18,7 @@ component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
 }
 !endif
 
-PUMLAAddTV(tempSensorBdC, "Vendor", "C Ltd.")
+PUMLAAddTaggedValue(tempSensorBdC, "Vendor", "C Ltd.")
 
 
 ' define usage relation towards the internal elements

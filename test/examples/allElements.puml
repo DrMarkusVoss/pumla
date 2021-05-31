@@ -18,10 +18,6 @@ title Overview of all elements and their relations of the model repo
 
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
-'PUMLAPutElement(displayTemp)
-'PUMLAPutElement(tempSensorA)
-'PUMLAPutElement(tempConverter)
-'PUMLAPutElement(tempSys)
 
 
 'put all relations between static elements

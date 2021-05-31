@@ -3,7 +3,7 @@
 @startuml
 !include ./../../../pumla_macros.puml
 !include ./../modelrepo_json.puml
-!include ./../../../pumla_tagged_values_mr.puml
+!include ./../../../pumla_tagged_values.puml
 
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
@@ -25,7 +25,7 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
 }
 !endif
 
-PUMLAAddTV(tempSensorA, "Vendor", "A GmbH")
+PUMLAAddTaggedValue(tempSensorA, "Vendor", "A GmbH")
 
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
 

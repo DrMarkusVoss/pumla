@@ -1,7 +1,7 @@
 'PUMLAMR
 @startuml
 !include ./../../pumla_macros.puml
-!include ./../../pumla_tagged_values_mr.puml
+!include ./../../pumla_tagged_values.puml
 
 !if ($PUMVarShowBody)
     node "Temperature System" <<block>> as tempSys {
@@ -13,7 +13,7 @@
     }
 !endif
 
-PUMLAAddTV(tempSys, "Vendor", "C Ltd.")
+PUMLAAddTaggedValue(tempSys, "Vendor", "C Ltd.")
 
 
 PUMLAPutInterface("internet", internet_tempSys, tempSys, "inout")

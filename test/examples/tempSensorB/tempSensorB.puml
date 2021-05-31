@@ -1,7 +1,7 @@
 'PUMLAMR
 @startuml
 !include ./../../../pumla_macros.puml
-!include ./../../../pumla_tagged_values_mr.puml
+!include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
@@ -27,16 +27,11 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 }
 !endif
 
-' PUMLAAddTV is a macro under development.
-' in pumla v0.5 this functionality is
-' subsequently under development. For v0.6
-' it will be introduced officially, but the
-' API will change.
 ' This macro adds a tag/value pair to the element
 ' with the given alias.
-PUMLAAddTV(tempSensorB, "SysVariant", "B1")
-PUMLAAddTV(tempSensorB, "SysVariant", "B2")
-PUMLAAddTV(tempSensorB, "Vendor", "B Inc.")
+PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B1")
+PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B2")
+PUMLAAddTaggedValue(tempSensorB, "Vendor", "B Inc.")
 
 PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")

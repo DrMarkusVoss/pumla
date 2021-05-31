@@ -2,7 +2,7 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
-!include ./../../../pumla_tagged_values_mr.puml
+!include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
@@ -17,8 +17,8 @@ component displayTemp <<block>>  {
 }
 !endif
 
-PUMLAAddTV(displayTemp, "Vendor", "C Ltd.")
-PUMLAAddTV(displayTemp, "Brightness", "300 Nits")
+PUMLAAddTaggedValue(displayTemp, "Vendor", "C Ltd.")
+PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")
 
 PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 

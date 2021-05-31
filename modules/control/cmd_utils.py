@@ -86,8 +86,8 @@ def findTaggedValuesInText(lines):
 
     ret_cons = []
     for e in lines:
-        if ("PUMLAAddTV" in e):
-            s1 = e.replace("PUMLAAddTV", "")
+        if ("PUMLAAddTaggedValue" in e):
+            s1 = e.replace("PUMLAAddTaggedValue", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
