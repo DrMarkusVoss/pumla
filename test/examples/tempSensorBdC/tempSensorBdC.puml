@@ -2,11 +2,13 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
+!include ./../../../pumla_tagged_values_mr.puml
+'!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
-
+    PUMLAPutTaggedValues(tempSensorBdC)
     ' the elements put here should have no or
     ' no other parent
 
@@ -15,6 +17,9 @@ component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
     PUMLAPutInternalElement(tempConverter)
 }
 !endif
+
+PUMLAAddTV(tempSensorBdC, "Vendor", "C Ltd.")
+
 
 ' define usage relation towards the internal elements
 PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")

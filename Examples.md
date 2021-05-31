@@ -191,3 +191,10 @@ The result is then the following diagram:
 
 ![](./test/examples/pics/exampleReUseAndModifyBehaviour.png)
 
+### E#11: Dynamic Behaviour - Re-using and extending a State Machine 
+
+tbd.
+
+### E#12: Using Tagged Values as selection mechanism
+
+tbd.

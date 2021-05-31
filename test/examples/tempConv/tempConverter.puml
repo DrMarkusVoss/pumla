@@ -2,10 +2,14 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
-'!include ./../modelrepo_json.puml
+!include ./../../../pumla_tagged_values_mr.puml
+!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
-component "Temp. Converter" as tempConverter <<block>> {
+component "Temp. Converter" <<block>>  as tempConverter {
+
+    PUMLAPutTaggedValues(tempConverter)
+
     !if ($PUMVarShowBodyInternals)
     [conversionModule]
     [formulaLib]
@@ -13,6 +17,7 @@ component "Temp. Converter" as tempConverter <<block>> {
 }
 !endif
 
+PUMLAAddTV(tempConverter, "Vendor", "C Ltd.")
 
 PUMLAPutInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
 PUMLAPutInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")

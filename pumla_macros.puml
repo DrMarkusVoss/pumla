@@ -593,3 +593,13 @@ PUMLAPutDynamicElement($elemalias)
     !endif
 !endfor
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' small helper to enforce the diagram to be a
+' component diagram. This should be executed first
+' after the title.
+!unquoted procedure PUMLASetAsComponentDiagram()
+[comp_193242153453236632191729533452]
+remove comp_193242153453236632191729533452
+!endprocedure

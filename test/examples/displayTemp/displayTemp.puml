@@ -2,15 +2,23 @@
 'PUMLAPARENT: tempSys
 @startuml
 !include ./../../../pumla_macros.puml
+!include ./../../../pumla_tagged_values_mr.puml
+!include ./../modelrepo_json.puml
 
 !if ($PUMVarShowBody)
 component displayTemp <<block>>  {
-    !if ($PUMVarShowBodyInternals)
-    [display]
-    [conversion]
-    !endif
+
+    PUMLAPutTaggedValues(displayTemp)
+
+    '!if ($PUMVarShowBodyInternals)
+    '[display]
+    '[conversion]
+    '!endif
 }
 !endif
+
+PUMLAAddTV(displayTemp, "Vendor", "C Ltd.")
+
 
 PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 

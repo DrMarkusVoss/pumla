@@ -5,21 +5,27 @@
 !include ./../../pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
-!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
 ' even with tagged values not shown on a diagram,
 ' we can reference the elements by their
 ' tags and values.
 !$PUMVarShowTaggedValues = %false()
-'!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowTaggedValues = %true()
 
 title Example using tagged values to put elements
+
+' without this line the interfaces of the component
+' would be displayed as classes. the following
+' command enforces this diagram to be a component
+' diagram where we have these circles as interfaces.
+PUMLASetAsComponentDiagram()
 
 ' put all elements with a given combination of
 ' tag and value onto the diagram.
 ' this also works when we do not show the tagged
 ' values on the diagram.
-PUMLAPutAllElementsWithTagValue("SysVariant", "B1")
+PUMLAPutAllElementsWithTagValue("Vendor", "C Ltd.")
 
 ' toggle the global variable "$PUMVarShowTaggedValues"
 ' to "%true()" to see that the right element has
