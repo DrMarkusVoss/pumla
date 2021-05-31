@@ -1,35 +1,4 @@
 @startuml
-start
-: hu
-|=huhu |=haha |
-| tra | tru |;
-
-'package "cmd_utils.py \n |=huhu |=haha | \n | tra | tru | " as pd <<Python>> <<module>> {
-'
-'    class cmd_utils <<Python>> <<module functions>>{
-'    +vosda()
-'    +as()
-'    }
-'
-'    class huh <<Python>> <<class>> {
-'        +__init__(self, hu)
-'        +hu()
-'
-'    }
-'
-'}
-'
-'
-'note as n11
-'huhu
-'end note
-'
-'note as n12
-'haha
-'$allelems.elements[3].taggedvalues[0].tag
-'The tagged values as defined like this are hardly iterable without
-'knowing the tags name... have to change the representation in the
-'JSON model repo.
-'end note
+[comp1] --> [comp2] : uses\n<size: 8>{"SysVariant": ["B1", "B2"]}
 
 @enduml

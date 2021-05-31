@@ -397,6 +397,10 @@ def serializePUMLAConnectionsToDict(cons, mrpath, mrfilename):
         tmpdict["contxt"] = e.getConTxt()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
+        tvs = e.getTaggedValuesMRJSONFormat()
+        # the tagged values are stored in a dict
+        if (tvs.__len__() > 0):
+            tmpdict["taggedvalues"] = tvs
         dict["connections"].append(tmpdict)
 
     return dict
@@ -437,6 +441,18 @@ def getIndexForElementInList(el_alias, pels):
 
     return retval
 
+def getIndexForConnectionInList(con_id, cons):
+    retval = -1
+    index = 0
+
+    for e in cons:
+        if (e.getID() == con_id):
+            retval = index
+            break
+        index = index + 1
+
+    return retval
+
 def addTaggedValuesToElements(tvs, pels):
 
     if (tvs.__len__() > 0):
@@ -454,6 +470,25 @@ def addTaggedValuesToElements(tvs, pels):
 
     return pels
 
+def addTaggedValuesToCons(tvs, cons):
+
+    if (tvs.__len__() > 0):
+        for t in tvs:
+            print(t)
+            for k in t.keys():
+                ind = getIndexForConnectionInList(k, cons)
+                if (ind == -1):
+                    break
+                print("ind =" + str(ind))
+                print("el_al = " + cons[ind].getID())
+                #cons[ind].printMe()
+                for tv in t[k]:
+                    print("tv")
+                    print(tv)
+                    print(t[k][tv])
+                    cons[ind].addTaggedValue(tv, t[k][tv])
+
+    return cons
 
 def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file
@@ -482,6 +517,7 @@ def updatePUMLAMR(path, mrefilename):
             pumlaconnections.append(c)
 
         npumlels = addTaggedValuesToElements(tvs, pumlaelements)
+        npumlcons = addTaggedValuesToCons(tvs, pumlaconnections)
 
     # finalization step necessary to complement the instances
     # with information from the parents. that can only be done

@@ -424,6 +424,19 @@ PUMLAPutElement($elemalias)
             !else
                 !$conadr = " : " $el.contxt
             !endif
+            !if ($PUMVarShowTaggedValues)
+                !$tvs = ""
+                !$cma = ""
+                !foreach $tv in $el.taggedvalues
+                    !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]"
+                !endfor
+                !if ($tvs!= "")
+                    !if ($conadr == "")
+                        !$conadr = " : "
+                    !endif
+                    !$conadr = $conadr + "\n{" +  $tvs + "}"
+                !endif
+            !endif
             $el.start $el.contype $el.end $conadr
             ' set global variable to indicate that the connection
             ' is already put onto the diagram

@@ -10,7 +10,8 @@
  {"name": "Weather Data Instance 2", "alias": "w2", "type": "class", "stereotypes": ["instance", "Python"], "kind": "static", "parent": "-", "instclassalias": "CWeather", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"name": "Wireless Unit", "alias": "wirelessUnit", "type": "rectangle", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./wirelessUnit/", "filename": "wirelessUnit.puml", "taggedvalues": [{"tag": "Vendor", "values": ["XY"]},
  {"tag": "SecurityClass", "values": ["Alpha"]},
- {"tag": "Frequency Range", "values": ["5 GHz"]}]},
+ {"tag": "Frequency Range", "values": ["5 GHz"]},
+ {"tag": "SysVariant", "values": ["B1", "B2", "A", "B2"]}]},
  {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorA/", "filename": "tempSensorA.puml", "taggedvalues": [{"tag": "Vendor", "values": ["A GmbH"]}]},
  {"name": "**Internal Sequence**", "alias": "internalSequence", "type": "participant", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorA", "instclassalias": "-", "path": "./tempSensorA/", "filename": "internalSequence.puml"},
  {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]}]},
@@ -26,9 +27,9 @@
  {"id": "tempSensorBdCRel#1", "start": "tempSensorBdC", "end": "tempSensorB", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
  {"id": "tempSensorBdCRel#2", "start": "tempSensorBdC", "end": "tempConverter", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"}]}
 
-!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": [{"id": "CON#_SYS_VAR_B", "start": "temp_dC_tempSensorBdC", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_B.puml"},
- {"id": "CON#_SYS_VAR_A", "start": "temp_dC_tempSensorA", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_A.puml"},
- {"id": "CON#_SYS_VAR_B2", "start": "temp_dC_tempSensorBdC", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_B2.puml"},
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": [{"id": "CON#_SYS_VAR_B", "start": "temp_dC_tempSensorBdC", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_B.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B1", "B2"]}]},
+ {"id": "CON#_SYS_VAR_A", "start": "temp_dC_tempSensorA", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_A.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["A"]}]},
+ {"id": "CON#_SYS_VAR_B2", "start": "temp_dC_tempSensorBdC", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_B2.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B2"]}]},
  {"id": "C#2", "start": "temp_dC_tempConverter", "end": "temp_dC_tempSensorBdC", "contype": "--", "contxt": "", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"},
  {"id": "C#3", "start": "temp_dF_tempSensorB", "end": "temp_dF_tempConverter", "contype": "--", "contxt": "", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml"}]}
 

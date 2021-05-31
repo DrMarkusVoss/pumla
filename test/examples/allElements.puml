@@ -9,7 +9,7 @@
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowTaggedValues = %true()
-!$PUMVarShowInstantiationRel = %false()
+!$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowImplicitRels = %true()
 !$PUMTaggedValuesNoteToElementAlignment = right
 

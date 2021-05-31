@@ -2,5 +2,5 @@
 @startuml
 
 PUMLAConnection(temp_dC_tempSensorBdC, "--", temp_dC_displayTemp, "", "CON#_SYS_VAR_B2")
-
+PUMLAAddTaggedValue("CON#_SYS_VAR_B2", "SysVariant", "B2")
 @enduml
