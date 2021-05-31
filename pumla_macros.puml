@@ -8,6 +8,7 @@
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowConnections = %true()
+!$PUMTaggedValuesNoteToElementAlignment = right
 
 !$internal_finalize_string = ""
 !$internal_relations_on_diagram = ""

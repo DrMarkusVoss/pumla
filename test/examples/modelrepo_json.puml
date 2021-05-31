@@ -5,7 +5,7 @@
  {"tag": "Vendor", "values": ["B Inc."]}]},
  {"name": "Public State", "alias": "publicState", "type": "state", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorB", "instclassalias": "-", "path": "./tempSensorB/", "filename": "publicState.puml"},
  {"name": "anotherClass", "alias": "anotherClass", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./anotherClass/", "filename": "anotherClass.puml"},
- {"name": "CWeather", "alias": "CWeather", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./CWeather/", "filename": "CWeather.puml"},
+ {"name": "CWeather", "alias": "CWeather", "type": "class", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./CWeather/", "filename": "CWeather.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]}]},
  {"name": "Weather Data Instance 1", "alias": "w1", "type": "class", "stereotypes": ["instance", "Python"], "kind": "static", "parent": "-", "instclassalias": "CWeather", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"name": "Weather Data Instance 2", "alias": "w2", "type": "class", "stereotypes": ["instance", "Python"], "kind": "static", "parent": "-", "instclassalias": "CWeather", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"name": "Wireless Unit", "alias": "wirelessUnit", "type": "rectangle", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./wirelessUnit/", "filename": "wirelessUnit.puml", "taggedvalues": [{"tag": "Vendor", "values": ["XY"]},

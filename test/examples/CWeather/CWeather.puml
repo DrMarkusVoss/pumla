@@ -1,6 +1,7 @@
 'PUMLAMR
 @startuml
-'!include ./../../../pumla_macros.puml
+!include ./../../../pumla_macros.puml
+!include ./../../../pumla_tagged_values.puml
 
 !if ($PUMVarShowBody)
     class "CWeather" as CWeather <<Python>>  {
@@ -21,6 +22,10 @@
 
     }
 !endif
+
+PUMLAPutTaggedValuesAsNoteToElement(CWeather)
+
+PUMLAAddTaggedValue(CWeather, "Vendor", "C Ltd.")
 
 !if ($PUMVarShowDescr)
     note bottom of CWeather

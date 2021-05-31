@@ -11,6 +11,7 @@
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %false()
 !$PUMVarShowImplicitRels = %true()
+!$PUMTaggedValuesNoteToElementAlignment = right
 
 scale 0.5
 

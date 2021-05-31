@@ -1,11 +1,40 @@
 
-' put the tagged value table into a rectangle.
-' so it is not necessarily exactly below the name
-' of the surrounding element.
+' put the tagged value table into a note
+' to be included in a non-class element
 !unquoted procedure PUMLAPutTaggedValues($elalias)
 !if ($PUMVarShowTaggedValues)
 !$nn = "NN_" + $elalias + "_TV"
 note as $nn #$PUMColorTaggedValues
+|= Tag |= Values |
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elalias)
+        !foreach $tv in $el.taggedvalues
+            !$lmax = 0
+            !foreach $t in $tv.values
+                !$lmax = $lmax + 1
+            !endfor
+            !$l = 0
+            !$tvs = ""
+            !foreach $t in $tv.values
+                !$tvs = $tvs + $t
+                !$l = $l + 1
+                !if ($l < $lmax)
+                    !$tvs = $tvs + ", "
+                !endif
+            !endfor
+| $tv.tag | $tvs |
+        !endfor
+    !endif
+  !endfor
+end note
+!endif
+!endprocedure
+
+' put the tagged value table as note to a class
+!unquoted procedure PUMLAPutTaggedValuesAsNoteToElement($elalias)
+!if ($PUMVarShowTaggedValues)
+!$nn = "NN_" + $elalias + "_TV"
+note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
 |= Tag |= Values |
 !foreach $el in $allelems.elements
     !if ($el.alias == $elalias)
