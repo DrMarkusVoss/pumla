@@ -196,5 +196,12 @@ The result is then the following diagram:
 tbd.
 
 ### E#12: Using Tagged Values as selection mechanism
+Example code:
+
+[./test/examples/taggedValuesFromMR.puml](./test/examples/taggedValuesFromMR.puml)
+
+Example diagram:
+
+![](./test/examples/pics/taggedValuesFromMR.png)
 
 tbd.

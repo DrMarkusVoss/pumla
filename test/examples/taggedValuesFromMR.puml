@@ -15,6 +15,13 @@
 
 title Example using tagged values to put elements
 
+note as note1
+This example puts all elements
+tagged with "Vendor" as "C Ltd."
+on this diagram with just one
+command.
+end note
+
 ' without this line the interfaces of the component
 ' would be displayed as classes. the following
 ' command enforces this diagram to be a component
