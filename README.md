@@ -93,3 +93,9 @@ The `pumla` Architecture is also documented using `pumla`.
 Here is a first rough overview:
 
 [Link to pumla architecture documentation](./arch/pumla_architecture.md)
+
+
+### `pumla` Roadmap
+See here:
+
+[Link to pumla wiki with roadmap](https://github.com/DrMarkusVoss/pumla/wiki)
