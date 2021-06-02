@@ -487,8 +487,20 @@ $ifalias $constr $elemalias
 !foreach $el in $allrelations.relations
     !if ($el.id == $relid)
         !if (%not(%variable_exists($$el.id)))
+            !$reladr = ""
             !if ((%not($el.reltxt == "instance of")) || ($PUMVarShowInstantiationRel))
-            $el.start $el.reltype $el.end : $el.reltxt
+               !if ($PUMVarShowTaggedValues)
+                !$tvs = ""
+                !$cma = ""
+                !foreach $tv in $el.taggedvalues
+                    !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]"
+                !endfor
+
+                !if ($tvs!= "")
+                    !$reladr = "\n{" +  $tvs + "}"
+                !endif
+               !endif
+            $el.start $el.reltype $el.end : $el.reltxt $reladr
             ' set global variable to indicate that the relation
             ' is already put onto the diagram
             %set_variable_value($$el.id, "%true()")
@@ -511,7 +523,19 @@ $ifalias $constr $elemalias
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
             !if ((%not($el.reltxt == "instance of")) || ($PUMVarShowInstantiationRel))
-                $el.start $el.reltype $el.end : $el.reltxt
+                !$reladr=""
+                !if ($PUMVarShowTaggedValues)
+                !$tvs = ""
+                !$cma = ""
+                !foreach $tv in $el.taggedvalues
+                    !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]"
+                !endfor
+
+                !if ($tvs!= "")
+                    !$reladr = "\n{" +  $tvs + "}"
+                !endif
+                !endif
+                $el.start $el.reltype $el.end : $el.reltxt $reladr
                 ' set global variable to indicate that the relation
                 ' is already put onto the diagram
                 %set_variable_value($$el.id, "%true()")

@@ -25,6 +25,10 @@ PUMLAAddTaggedValue(tempSensorBdC, "Vendor", "C Ltd.")
 PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")
 PUMLARelation(tempSensorBdC, "..>", tempConverter, "use", "tempSensorBdCRel#2")
 
+PUMLAAddTaggedValue("tempSensorBdCRel#1", "SysVariant", "B2")
+PUMLAAddTaggedValue("tempSensorBdCRel#2", "SysVariant", "B2")
+
+
 ' define an interface and connect it
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorBdC, tempSensorBdC, "out")
 

@@ -377,6 +377,10 @@ def serializePUMLARelationsToDict(rels, mrpath, mrfilename):
         tmpdict["reltxt"] = e.getRelTxt()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
+        tvs = e.getTaggedValuesMRJSONFormat()
+        # the tagged values are stored in a dict
+        if (tvs.__len__() > 0):
+            tmpdict["taggedvalues"] = tvs
         dict["relations"].append(tmpdict)
 
     return dict
@@ -474,21 +478,41 @@ def addTaggedValuesToCons(tvs, cons):
 
     if (tvs.__len__() > 0):
         for t in tvs:
-            print(t)
+            #print(t)
             for k in t.keys():
                 ind = getIndexForConnectionInList(k, cons)
                 if (ind == -1):
                     break
-                print("ind =" + str(ind))
-                print("el_al = " + cons[ind].getID())
+                #print("ind =" + str(ind))
+                #print("el_al = " + cons[ind].getID())
                 #cons[ind].printMe()
                 for tv in t[k]:
-                    print("tv")
-                    print(tv)
-                    print(t[k][tv])
+                    #print("tv")
+                    #print(tv)
+                    #print(t[k][tv])
                     cons[ind].addTaggedValue(tv, t[k][tv])
 
     return cons
+
+def addTaggedValuesToRels(tvs, rels):
+
+    if (tvs.__len__() > 0):
+        for t in tvs:
+            #print(t)
+            for k in t.keys():
+                ind = getIndexForConnectionInList(k, rels)
+                if (ind == -1):
+                    break
+                #print("ind =" + str(ind))
+                #print("el_al = " + cons[ind].getID())
+                #cons[ind].printMe()
+                for tv in t[k]:
+                    #print("tv")
+                    #print(tv)
+                    #print(t[k][tv])
+                    rels[ind].addTaggedValue(tv, t[k][tv])
+
+    return rels
 
 def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file
@@ -518,6 +542,7 @@ def updatePUMLAMR(path, mrefilename):
 
         npumlels = addTaggedValuesToElements(tvs, pumlaelements)
         npumlcons = addTaggedValuesToCons(tvs, pumlaconnections)
+        npumlrels = addTaggedValuesToRels(tvs, pumlarelations)
 
     # finalization step necessary to complement the instances
     # with information from the parents. that can only be done
