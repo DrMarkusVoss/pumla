@@ -1,10 +1,6 @@
-
-' put the tagged value table into a note
-' to be included in a non-class element
-!unquoted procedure PUMLAPutTaggedValues($elalias)
-!if ($PUMVarShowTaggedValues)
-!$nn = "NN_" + $elalias + "_TV"
-note as $nn #$PUMColorTaggedValues
+' put the tagged value table with data
+' from modelrepository
+!unquoted procedure _TaggedValuesTable($elalias)
 |= Tag |= Values |
 !foreach $el in $allelems.elements
     !if ($el.alias == $elalias)
@@ -26,6 +22,15 @@ note as $nn #$PUMColorTaggedValues
         !endfor
     !endif
   !endfor
+!endprocedure
+
+' put the tagged value table into a note
+' to be included in a non-class element
+!unquoted procedure PUMLAPutTaggedValues($elalias)
+!if ($PUMVarShowTaggedValues)
+!$nn = "NN_" + $elalias + "_TV"
+note as $nn #$PUMColorTaggedValues
+_TaggedValuesTable($elalias)
 end note
 !endif
 !endprocedure
@@ -35,27 +40,7 @@ end note
 !if ($PUMVarShowTaggedValues)
 !$nn = "NN_" + $elalias + "_TV"
 note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
-|= Tag |= Values |
-!foreach $el in $allelems.elements
-    !if ($el.alias == $elalias)
-        !foreach $tv in $el.taggedvalues
-            !$lmax = 0
-            !foreach $t in $tv.values
-                !$lmax = $lmax + 1
-            !endfor
-            !$l = 0
-            !$tvs = ""
-            !foreach $t in $tv.values
-                !$tvs = $tvs + $t
-                !$l = $l + 1
-                !if ($l < $lmax)
-                    !$tvs = $tvs + ", "
-                !endif
-            !endfor
-| $tv.tag | $tvs |
-        !endfor
-    !endif
-  !endfor
+_TaggedValuesTable($elalias)
 end note
 !endif
 !endprocedure
