@@ -8,7 +8,7 @@
 !$PUMVarShowBodyInternals = %true()
 !$PUMVarShowBodyInternalsDyn = %true()
 
-title Example on how to re-use an existing sequence
+title Example on how to re-use an existing state machine
 
 ' put the re-usable element "publicState" onto the diagram
 PUMLAPutElement(publicState)
