@@ -213,3 +213,17 @@ Example diagram:
 
 ![](./test/examples/pics/taggedValuesFromMR.png)
 
+
+### E#13: Cheat Sheets for Connections and Relations
+See the following example for putting cheat sheets showing
+all connections and all relations of the model repository
+onto a diagram. The cheat cheets are encapsulated in nodes
+just to be able to make the layout "top-down" instead
+of next to each other.
+
+[./test/examples/exampleCheatSheetsConsAndRels.puml](./test/examples/exampleCheatSheetsConsAndRels.puml)
+
+Example diagram:
+
+![](./test/examples/pics/exampleCheatSheetsConsAndRels.png)
+

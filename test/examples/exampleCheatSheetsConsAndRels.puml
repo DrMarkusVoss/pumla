@@ -1,0 +1,37 @@
+@startuml
+
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %true()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowImplicitRels = %false()
+!$PUMVarShowConnections = %true()
+
+title Overview on all connections and relations from the model repository
+
+node "Connections" as cons {
+' you do not need to put the cheat sheet within
+' some other element, you can also place them
+' freely somewhere on the diagram.
+PUMLAConCheatSheetAllAttributes()
+}
+
+node "Relations" as rels {
+' you do not need to put the cheat sheet within
+' some other element, you can also place them
+' freely somewhere on the diagram.
+PUMLARelCheatSheetAllAttributes()
+}
+
+' the nodes around the cheat sheets as well as the
+' following relation are just to put the tables
+' in top-down sequence layout-wise.
+cons -[hidden]-> rels
+
+@enduml
