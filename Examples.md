@@ -192,10 +192,19 @@ The result is then the following diagram:
 ![](./test/examples/pics/exampleReUseAndModifyBehaviour.png)
 
 ### E#11: Dynamic Behaviour - Re-using and extending a State Machine 
+Look into this example, that takes the "publicState" state machine and extends it with several
+additional states and transitions:
+[./test/examples/exampleReUseAndModifyStateMachine.puml](./test/examples/exampleReUseAndModifyStateMachine.puml)
 
-tbd.
+The result is then the following diagram:
+
+![](./test/examples/pics/exampleReUseAndModifyStateMachine.png)
+
 
 ### E#12: Using Tagged Values as selection mechanism
+See the following example, where all elements with the Tag/Value pair
+"Vendor"/"C Ltd." are put on the diagram.
+
 Example code:
 
 [./test/examples/taggedValuesFromMR.puml](./test/examples/taggedValuesFromMR.puml)
@@ -204,4 +213,3 @@ Example diagram:
 
 ![](./test/examples/pics/taggedValuesFromMR.png)
 
-tbd.
