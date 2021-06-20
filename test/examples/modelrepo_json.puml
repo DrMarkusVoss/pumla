@@ -1,4 +1,5 @@
 !$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Temperature System", "alias": "tempSys", "type": "node", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "tempSys.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]}]},
+ {"name": "py2pumlaModule", "alias": "py2pumlaModule", "type": "PUMLARelation(", "stereotypes": ["Python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "py2pumlaModule.puml"},
  {"name": "tSys1 professional", "alias": "tSys1", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
  {"name": "tSys2", "alias": "tSys2", "type": "node", "stereotypes": ["instance", "block"], "kind": "static", "parent": "-", "instclassalias": "tempSys", "path": "./", "filename": "tempSysInstances.puml"},
  {"name": "Temperature Sensor B", "alias": "tempSensorB", "type": "component", "stereotypes": ["block", "external System"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./tempSensorB/", "filename": "tempSensorB.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B1", "B2"]},
@@ -20,7 +21,10 @@
  {"tag": "Brightness", "values": ["300 Nits"]}]},
  {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempConv/", "filename": "tempConverter.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]}]}]}
 
-!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "REL#tSys1tempSys", "start": "tSys1", "end": "tempSys", "reltype": "..>", "reltxt": "instance of", "path": "./", "filename": "tempSysInstances.puml"},
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "REL#py2pumlaModule_CONTAINS_py2pumlaModFuncs", "start": "py2pumlaModule", "end": "py2pumlaModFuncs", "reltype": "..>", "reltxt": "contains", "path": "./", "filename": "py2pumlaModule.puml"},
+ {"id": "REL#py2pumlaModule_USES_spec_from_file_location_FROM__frozen_importlib_external", "start": "py2pumlaModule", "end": "_frozen_importlib_external", "reltype": "..>", "reltxt": "uses: spec_from_file_location", "path": "./", "filename": "py2pumlaModule.puml"},
+ {"id": "REL#py2pumlaModule_USES_module_from_spec_FROM__frozen_importlib", "start": "py2pumlaModule", "end": "_frozen_importlib", "reltype": "..>", "reltxt": "uses: module_from_spec", "path": "./", "filename": "py2pumlaModule.puml"},
+ {"id": "REL#tSys1tempSys", "start": "tSys1", "end": "tempSys", "reltype": "..>", "reltxt": "instance of", "path": "./", "filename": "tempSysInstances.puml"},
  {"id": "REL#tSys2tempSys", "start": "tSys2", "end": "tempSys", "reltype": "..>", "reltxt": "instance of", "path": "./", "filename": "tempSysInstances.puml"},
  {"id": "REL#publicStateToIF", "start": "publicState", "end": "temp_dF_tempSensorB", "reltype": "..>", "reltxt": "provides", "path": "./tempSensorB/", "filename": "tempSensorB.puml"},
  {"id": "REL#w1CWeather", "start": "w1", "end": "CWeather", "reltype": "..>", "reltxt": "instance of", "path": "./CWeather/", "filename": "WeatherInstances.puml"},

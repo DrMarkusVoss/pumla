@@ -140,7 +140,7 @@ def findElementNameAndTypeInText(lines, alias):
                     elem_type = splt[0].strip()
 
 
-        elif ((str(alias) in e) and (not("'" in e)) and (isPumlKeywordInLine(e))):
+        elif ((str(alias) in e) and (not("'" in e)) and (not('"' in e)) and (isPumlKeywordInLine(e))):
             stypes = findStereoTypesInLine(e)
             elem_name = alias
 
