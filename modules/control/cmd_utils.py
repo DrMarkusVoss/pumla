@@ -464,6 +464,8 @@ def addTaggedValuesToElements(tvs, pels):
             #print(t)
             for k in t.keys():
                 ind = getIndexForElementInList(k, pels)
+                if (ind == -1):
+                    break
                 #print("el_al = " + pels[ind].getAlias())
                 #pels[ind].printMe()
                 for tv in t[k]:
