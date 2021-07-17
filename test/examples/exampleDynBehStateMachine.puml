@@ -11,5 +11,6 @@
 title Example with an element having dynamic behaviour inside
 
 PUMLAPutElement(tempSensorB)
+PUMLAPutRelationsForElement(publicState)
 
 @enduml

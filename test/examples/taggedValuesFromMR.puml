@@ -20,6 +20,10 @@ This example puts all elements
 tagged with "Vendor" as "C Ltd."
 on this diagram with just one
 command.
+
+Classes are automatically wrapped
+in notes to allow the co-existence
+of class and other elements.
 end note
 
 ' without this line the interfaces of the component

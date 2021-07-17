@@ -50,7 +50,7 @@
 ' ############################################
 
 ' ---------------------------------------------
-' put the referenced element onto the diagdam
+' put the referenced element onto the diagram
 '
 !unquoted procedure PUMLAPutElement($elemalias)
 !foreach $el in $allelems.elements
@@ -58,6 +58,30 @@
         _PUMPutElement($el.path,$el.filename)
     !endif
 !endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put the referenced element onto the diagram
+'
+
+!unquoted procedure PUMLAPutClassElementToCompDiagram($folderpath,$filename)
+
+!if ($el.type == "class")
+    !$fn = "NN_" + %substr($el.filename, 0, %strlen($el.filename)-5)
+    !if (%not(%variable_exists($fn)))
+        !$nn = "NN_" + $fn
+        note as $nn #white
+        {{
+        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+        }}
+        end note
+        %set_variable_value($fn, "%true()")
+    !endif
+!else
+    !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
+!endif
+
 !endprocedure
 
 ' ############################################
@@ -133,20 +157,24 @@ allowmixing
 ' ---------------------------------------------
 ' put all static elements within the model repo onto
 ' the diagram, that have the given tag/value
-!unquoted procedure PUMLAPutAllElementsWithTagValue($tag, $value)
+!unquoted procedure PUMLAPutAllElementsWithTagValue($tag, $value="")
 !foreach $el in $allelems.elements
 !if ($el.kind == "static")
     !foreach $tvs in $el.taggedvalues
         !$tv_found = "NO"
 
         !if ($tvs.tag == $tag)
-            !foreach $v in $tvs.values
-                !if ($v == $value)
-                    !$tv_found = "YES"
-                !endif
-            !endfor
+            !if ($value != "")
+                !foreach $v in $tvs.values
+                    !if ($v == $value)
+                        !$tv_found = "YES"
+                    !endif
+                !endfor
+            !else
+                !$tv_found = "YES"
+            !endif
             !if ($tv_found == "YES")
-                _PUMPutElement($el.path,$el.filename)
+                PUMLAPutClassElementToCompDiagram($el.path,$el.filename)
             !endif
         !endif
     !endfor

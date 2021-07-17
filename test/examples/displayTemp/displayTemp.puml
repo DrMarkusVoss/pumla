@@ -10,10 +10,10 @@ component displayTemp <<block>>  {
 
     PUMLAPutTaggedValues(displayTemp)
 
-    '!if ($PUMVarShowBodyInternals)
-    '[display]
-    '[conversion]
-    '!endif
+'    !if ($PUMVarShowBodyInternals)
+'    [display]
+'    [conversion]
+'    !endif
 }
 !endif
 

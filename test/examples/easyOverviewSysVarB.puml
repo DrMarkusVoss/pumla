@@ -44,7 +44,7 @@ PUMLAConCheatSheetAllAttributes()
 ' of the "tempSys". But in Variant B/B2 they are
 ' not connected and therefore not needed.
 ' You can remove them by their alias.
-'remove tempSensorA
-'remove temp_dC_tempSensorA
+remove tempSensorA
+remove temp_dC_tempSensorA
 
 @enduml

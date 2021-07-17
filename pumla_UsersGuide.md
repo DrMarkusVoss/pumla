@@ -177,6 +177,14 @@ on the diagram, so it leads to an error.
 ### `PUMLAPutAllElementsOfStereotype( st : string )`
 Put all elements with stereotype `st` onto the diagram.
 
+### `PUMLAPutAllElementsWithTagValue($tag : string, $value : string (optional))`
+Put all elements with the given tag value combination onto the diagram. This command
+is intended to be used on component and deployment diagrams, therefore classes elements
+will be wrapped in notes, so that they can coexist with other element types
+on the same diagram. The `value` argument is optional, so you can also use only tags
+without giving the values argument a concrete value. This command will then see
+that the tag argument is set, the value argument is treated as empty string by default.
+
 ### `PUMLAPutDynamicElement( alias : string )`
 Put a dynamic element onto the diagram in a way that it can be mixed with static
 diagram elements. PlantUML has a lot of pitfalls when it comes to mixing elements
