@@ -15,7 +15,7 @@
  {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorA/", "filename": "tempSensorA.puml", "taggedvalues": [{"tag": "Vendor", "values": ["A GmbH"]}]},
  {"name": "**Internal Sequence**", "alias": "internalSequence", "type": "participant", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorA", "instclassalias": "-", "path": "./tempSensorA/", "filename": "internalSequence.puml"},
  {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
- {"tag": "SysVariant", "values": ["B2", "B2"]}]},
+ {"tag": "SysVariant", "values": ["B2", "B2", "B3", "B3"]}]},
  {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Brightness", "values": ["300 Nits"]}]},
  {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempConv/", "filename": "tempConverter.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]}]}]}
@@ -26,7 +26,9 @@
  {"id": "REL#w1CWeather", "start": "w1", "end": "CWeather", "reltype": "..>", "reltxt": "instance of", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"id": "REL#w2CWeather", "start": "w2", "end": "CWeather", "reltype": "..>", "reltxt": "instance of", "path": "./CWeather/", "filename": "WeatherInstances.puml"},
  {"id": "tempSensorBdCRel#1", "start": "tempSensorBdC", "end": "tempSensorB", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B2"]}]},
- {"id": "tempSensorBdCRel#2", "start": "tempSensorBdC", "end": "tempConverter", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B2"]}]}]}
+ {"id": "tempSensorBdCRel#2", "start": "tempSensorBdC", "end": "tempConverter", "reltype": "..>", "reltxt": "use", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B2"]}]},
+ {"id": "tempSensorBdCRel#3", "start": "tempSensorBdC", "end": "tempSensorB", "reltype": "..>", "reltxt": "useForB3", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B3"]}]},
+ {"id": "tempSensorBdCRel#4", "start": "tempSensorBdC", "end": "tempConverter", "reltype": "..>", "reltxt": "useForB3", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B3"]}]}]}
 
 !$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": [{"id": "CON#_SYS_VAR_B", "start": "temp_dC_tempSensorBdC", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_B.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["B1", "B2"]}]},
  {"id": "CON#_SYS_VAR_A", "start": "temp_dC_tempSensorA", "end": "temp_dC_displayTemp", "contype": "--", "contxt": "", "path": "./connections/", "filename": "connections_tempSys_Var_A.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["A"]}]},

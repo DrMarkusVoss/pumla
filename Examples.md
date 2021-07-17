@@ -227,3 +227,13 @@ Example diagram:
 
 ![](./test/examples/pics/exampleCheatSheetsConsAndRels.png)
 
+### E#14: Using tagged values for selecting relations to put on the diagram
+See the following example that puts 3 elements onto the diagram. After that, for one element its dependent relations that additionally
+have the right tag/value combination attached are put onto the diagram.
+
+
+[./test/examples/taggedRelationExample.puml](./test/examples/taggedRelationExample.puml)
+
+Example diagram:
+
+![](./test/examples/pics/taggedRelationExample.png)

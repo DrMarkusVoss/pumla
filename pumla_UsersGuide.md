@@ -259,11 +259,16 @@ filled with a text drawing the relation when put onto a diagram with `PUMLAPutCo
 Puts the relation with the given ID onto the diagram. The ID must refer to a relation
 in the model repository.
 
-### `PUMLAPutRelationsForElement(elemalias : string, "reltype" : string (optional))`
+### `PUMLAPutRelationsForElement(elemalias : string, "reltype" : string (optional), "tag" : string (optional), "value" : string (optional))`
 Puts all relations from the relations repository onto the diagram, that are associated
 with the model element with the given `elemalias`, meaning it starts or ends at that element.
 If also a relation type is given with `reltype`, then only the relations of that type
 will be put onto the diagram.
+
+When a tag is given, then only relations that additionally have the given tag will be put
+on the diagram. If also a value is given, then also the value must be the same for the relation
+to be put onto the diagram. Giving only a value without a tag will ignore the tag/value
+filtering.
 
 ### `PUMLAPutAllRelations()`
 Puts all relations from the model repository onto the diagram.

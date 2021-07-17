@@ -542,11 +542,29 @@ $ifalias $constr $elemalias
 ' ---------------------------------------------
 ' put all relations related to given element alias
 ' to the diagram
-!unquoted procedure PUMLAPutRelationsForElement($elemalias, $reltype="")
+!unquoted procedure PUMLAPutRelationsForElement($elemalias, $reltype="", $tag="", $value="")
 !foreach $el in $allrelations.relations
     !if ($reltype == "")
         !$reltype = $el.reltype
     !endif
+
+    !foreach $tvs in $el.taggedvalues
+        !$tv_found = "NO"
+
+        !if ($tvs.tag == $tag)
+            !if ($value != "")
+                !foreach $v in $tvs.values
+                    !if ($v == $value)
+                        !$tv_found = "YES"
+                    !endif
+                !endfor
+            !else
+                !$tv_found = "YES"
+            !endif
+
+        !endif
+    !endfor
+
     !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
@@ -563,7 +581,13 @@ $ifalias $constr $elemalias
                     !$reladr = "\n{" +  $tvs + "}"
                 !endif
                 !endif
-                $el.start $el.reltype $el.end : $el.reltxt $reladr
+                !if ($tag == "")
+                    $el.start $el.reltype $el.end : $el.reltxt $reladr
+                !else
+                    !if ($tv_found == "YES")
+                        $el.start $el.reltype $el.end : $el.reltxt $reladr
+                    !endif
+                !endif
                 ' set global variable to indicate that the relation
                 ' is already put onto the diagram
                 %set_variable_value($$el.id, "%true()")

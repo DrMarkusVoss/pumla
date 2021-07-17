@@ -24,9 +24,13 @@ PUMLAAddTaggedValue(tempSensorBdC, "Vendor", "C Ltd.")
 ' define usage relation towards the internal elements
 PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")
 PUMLARelation(tempSensorBdC, "..>", tempConverter, "use", "tempSensorBdCRel#2")
+PUMLARelation(tempSensorBdC, "..>", tempSensorB, "useForB3", "tempSensorBdCRel#3")
+PUMLARelation(tempSensorBdC, "..>", tempConverter, "useForB3", "tempSensorBdCRel#4")
 
 PUMLAAddTaggedValue("tempSensorBdCRel#1", "SysVariant", "B2")
 PUMLAAddTaggedValue("tempSensorBdCRel#2", "SysVariant", "B2")
+PUMLAAddTaggedValue("tempSensorBdCRel#3", "SysVariant", "B3")
+PUMLAAddTaggedValue("tempSensorBdCRel#4", "SysVariant", "B3")
 
 
 ' define an interface and connect it
