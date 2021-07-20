@@ -17,7 +17,7 @@ title Example using tagged values on relations
 
 note as note1
 This example puts 3 elements
-onto the diagram
+onto the diagram.
 
 Then for the "Temperature Sensor B (dC)"
 all dependent relations are put onto the

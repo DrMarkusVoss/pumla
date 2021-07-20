@@ -237,3 +237,16 @@ have the right tag/value combination attached are put onto the diagram.
 Example diagram:
 
 ![](./test/examples/pics/taggedRelationExample.png)
+
+
+### E#15: Using Diagram Filters
+See the following PlantUML code where a diagram filter is 
+applied to elements of type "component". Therefore, no component
+is appearing on the diagram, although they are put onto:
+
+[./test/examples/elementFilterExample.puml](./test/examples/elementFilterExample.puml)
+
+Example diagram:
+
+![](./test/examples/pics/elementFilterExample.png)
+

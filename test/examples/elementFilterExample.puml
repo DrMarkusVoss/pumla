@@ -1,0 +1,50 @@
+@startuml
+' the following file gets generated when you call
+' "python pumla.py update" in this directory
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+!include ./../../templates/sysml/skin.puml
+
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+
+title Example using an Element Filter
+
+note as note1
+The element filter for this diagram is set to "component".
+That is why on this diagram only "Temperature System"
+appears. All other elements that are put on are
+filtered out, because they are "component"s.
+end note
+
+' without this line the interfaces of the component
+' would be displayed as classes. the following
+' command enforces this diagram to be a component
+' diagram where we have these circles as interfaces.
+PUMLASetAsComponentDiagram()
+
+' sets the element filter for this diagram to "component".
+' that is why on this diagram only "Temperature System"
+' appears, it is of type "node". All other elements that
+' are put on are filtered out, because they are "component"s.
+PUMLASetElementFilterOutType("component")
+'PUMLASetElementFilterOutType("node")
+'PUMLASetElementFilterInType("node")
+
+
+' put the following elements on the diagram:
+
+' type = "component"
+PUMLAPutElement(tempSensorB)
+
+' type = "component"
+PUMLAPutElement(tempConverter)
+
+' type = "node"
+PUMLAPutElement(tempSys)
+
+' type = "component"
+PUMLAPutElement(tempSensorBdC)
+
+@enduml

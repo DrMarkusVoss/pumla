@@ -307,6 +307,34 @@ Puts the tagged value table enclosed by a rectangle in place.
 
 Requires including `pumla_tagged_values.puml`.
 
+### `PUMLASetElementFilterOutType($type : string)`
+With this command you can set a filter that is applied to all
+"PutElement" macros that are following after this filter command.
+
+This command filters out all data elements with the given type 
+(see cheat sheet to find out which types the elements have). 
+Therefore, elements of that type will not appear on the diagram.
+Typically types are "node", "component", "rectangle", "class", 
+"state", etc.
+
+### `PUMLASetElementFilterInType($type : string)`
+With this command you can set a filter that is applied to all
+"PutElement" macros that are following after this filter command.
+
+This command filters in all data elements with the given type 
+(see cheat sheet to find out which types the elements have).
+That means, all elements of the given type will can be put onto
+the diagram, for all other types the elements will not appear
+even if they are explicitly put on the diagram.
+Typically types are "node", "component", "rectangle", "class", 
+"state", etc.
+
+You can change the filters throughout the specification of the 
+diagram. The filter only affects the following lines after this
+macro, until this macro is called again with another type. If it
+shall be deactivated for further lines, set type to the empty string,
+"".
+
 ### TODO
 - Put macros that vary showing interface, description, internals
   and tagged values as option, overriding the globals

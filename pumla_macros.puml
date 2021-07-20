@@ -13,12 +13,25 @@
 !$internal_finalize_string = ""
 !$internal_relations_on_diagram = ""
 
+!$pum_global_element_filter_out_type = ""
+!$pum_global_element_filter_in_type = ""
+
 ' --------------------------------------------
 ' put an element referenced by path and filename
 ' by including its file
 '
 !unquoted procedure _PUMPutElement($folderpath,$filename)
 !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
+!endprocedure
+
+' --------------------------------------------
+' put an element referenced by path and filename
+' by including its file using Filters
+'
+!unquoted procedure _PUMPutElementFiltered($folderpath,$filename)
+!if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
+    !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
+!endif
 !endprocedure
 
 ' --------------------------------------------
@@ -48,14 +61,47 @@
 !endprocedure
 
 ' ############################################
+' ---------------------------------------------
+' check filter conditions for the given element.
+' return false if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutShowElement($elem)
+!local $internal_retval = %true()
+!if ($pum_global_element_filter_out_type != "")
+    !if ($elem.type == $pum_global_element_filter_out_type)
+        !$internal_retval = %false()
+    !endif
+!endif
+!return $internal_retval
+!endfunction
 
+' ############################################
+' ---------------------------------------------
+' check filter conditions for the given element.
+' return false if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInShowElement($elem)
+!local $internal_retval = %true()
+!if ($pum_global_element_filter_in_type != "")
+    !if ($elem.type != $pum_global_element_filter_in_type)
+        !$internal_retval = %false()
+    !endif
+!endif
+!return $internal_retval
+!endfunction
+
+' ############################################
 ' ---------------------------------------------
 ' put the referenced element onto the diagram
 '
 !unquoted procedure PUMLAPutElement($elemalias)
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
-        _PUMPutElement($el.path,$el.filename)
+        !if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
+                _PUMPutElement($el.path,$el.filename)
+        !endif
     !endif
 !endfor
 !endprocedure
@@ -122,7 +168,7 @@
 allowmixing
 !foreach $el in $allelems.elements
 !if ($el.kind == "static")
-    _PUMPutElement($el.path,$el.filename)
+    _PUMPutElementFiltered($el.path,$el.filename)
 !endif
 !endfor
 !$PUMVarShowBodyInternals = $old_sbi
@@ -693,3 +739,18 @@ PUMLAPutDynamicElement($elemalias)
 [comp_193242153453236632191729533452]
 remove comp_193242153453236632191729533452
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+!unquoted procedure PUMLASetElementFilterOutType($type)
+!$pum_global_element_filter_out_type = $type
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+!unquoted procedure PUMLASetElementFilterInType($type)
+!$pum_global_element_filter_in_type = $type
+!endprocedure
+

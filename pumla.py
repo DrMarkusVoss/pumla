@@ -14,11 +14,9 @@ import sys
 import os
 from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
-
-
 def identifyMe():
     """ information about the executed command """
-    print("pumla v0.5 - by Dr. Markus Voss")
+    print("pumla v0.6 - by Dr. Markus Voss")
 
 def parseSysArg(sysarg):
     """ parses the given command line arguments """
