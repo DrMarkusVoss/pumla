@@ -16,6 +16,24 @@
 !$pum_global_element_filter_out_type = ""
 !$pum_global_element_filter_in_type = ""
 
+!$pum_global_element_filter_out_stereotype = ""
+!$pum_global_element_filter_in_stereotype = ""
+
+!$pum_global_element_filter_out_instclass = ""
+!$pum_global_element_filter_in_instclass = ""
+
+!$pum_global_element_filter_out_tv_tag = ""
+!$pum_global_element_filter_in_tv_tag = ""
+
+!$pum_global_element_filter_out_tv_value = ""
+!$pum_global_element_filter_in_tv_value = ""
+
+!$pum_global_element_filter_out_static = %false()
+!$pum_global_element_filter_in_static = %false()
+
+!$pum_global_element_filter_out_dynamic = %false()
+!$pum_global_element_filter_in_dynamic = %false()
+
 ' --------------------------------------------
 ' put an element referenced by path and filename
 ' by including its file
@@ -62,17 +80,51 @@
 
 ' ############################################
 ' ---------------------------------------------
+' check filter type conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutElementTypeShow($elem)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_type != "")
+    !if ($elem.type == $pum_global_element_filter_out_type)
+        !$internal_retval = %true()
+    !endif
+!endif
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter stereotype conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutElementStereotypeShow($elem)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_stereotype != "")
+    !foreach $st in $elem.stereotypes
+    !if ($st == $pum_global_element_filter_out_stereotype)
+        !$internal_retval = %true()
+    !endif
+    !endfor
+!endif
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
 ' check filter conditions for the given element.
 ' return false if the element shall not be
 ' shown but filtered out.
 '
 !unquoted function _PUMLACheckFilterOutShowElement($elem)
 !local $internal_retval = %true()
-!if ($pum_global_element_filter_out_type != "")
-    !if ($elem.type == $pum_global_element_filter_out_type)
-        !$internal_retval = %false()
-    !endif
+
+!if ((_PUMLACheckFilterOutElementTypeShow($elem)) || (_PUMLACheckFilterOutElementStereotypeShow($elem)))
+    !$internal_retval = %false()
 !endif
+
 !return $internal_retval
 !endfunction
 
@@ -754,3 +806,16 @@ remove comp_193242153453236632191729533452
 !$pum_global_element_filter_in_type = $type
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+!unquoted procedure PUMLASetElementFilterOutStereotype($stereotype)
+!$pum_global_element_filter_out_stereotype = $stereotype
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+!unquoted procedure PUMLASetElementFilterInStereotype($stereotype)
+!$pum_global_element_filter_in_stereotype = $stereotype
+!endprocedure

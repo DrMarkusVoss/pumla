@@ -323,8 +323,8 @@ With this command you can set a filter that is applied to all
 
 This command filters in all data elements with the given type 
 (see cheat sheet to find out which types the elements have).
-That means, all elements of the given type will can be put onto
-the diagram, for all other types the elements will not appear
+That means, all elements of the given type will appear on the diagram
+when put there, for all other types the elements will not appear
 even if they are explicitly put on the diagram.
 Typically types are "node", "component", "rectangle", "class", 
 "state", etc.

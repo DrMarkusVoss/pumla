@@ -240,9 +240,10 @@ Example diagram:
 
 
 ### E#15: Using Diagram Filters
-See the following PlantUML code where a diagram filter is 
-applied to elements of type "component". Therefore, no component
-is appearing on the diagram, although they are put onto:
+See the following PlantUML code where two diagram filters are
+applied to elements of type "node" and elements of stereotype
+"external System". Therefore, out of the 4 elements put onto
+the diagram only 2 are shown, the other 2 are filtered out:
 
 [./test/examples/elementFilterExample.puml](./test/examples/elementFilterExample.puml)
 

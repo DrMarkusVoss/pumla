@@ -12,10 +12,11 @@
 title Example using an Element Filter
 
 note as note1
-The element filter for this diagram is set to "component".
-That is why on this diagram only "Temperature System"
-appears. All other elements that are put on are
-filtered out, because they are "component"s.
+The element type filter for this diagram is set to "node"
+and the element stereotype filter is set to "external System".
+That is why on this diagram only "Temperature Sensor B (dC)"
+and "Temp. Converter" appear. All other elements that are put
+on are filtered out.
 end note
 
 ' without this line the interfaces of the component
@@ -28,11 +29,11 @@ PUMLASetAsComponentDiagram()
 ' that is why on this diagram only "Temperature System"
 ' appears, it is of type "node". All other elements that
 ' are put on are filtered out, because they are "component"s.
-PUMLASetElementFilterOutType("component")
-'PUMLASetElementFilterOutType("node")
+'PUMLASetElementFilterOutType("component")
+PUMLASetElementFilterOutType("node")
 'PUMLASetElementFilterInType("node")
 
-
+PUMLASetElementFilterOutStereotype("external System")
 ' put the following elements on the diagram:
 
 ' type = "component"
