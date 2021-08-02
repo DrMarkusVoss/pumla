@@ -11,12 +11,19 @@
 
 title Example using an Element Filter
 
+!$BGCOLOR=LightGrey
+!theme sketchy-outline
+!$PUMColorTaggedValues = darkgreen
+
 note as note1
 The element type filter for this diagram is set to "node"
 and the element stereotype filter is set to "external System".
 That is why on this diagram only "Temperature Sensor B (dC)"
 and "Temp. Converter" appear. All other elements that are put
 on are filtered out.
+
+Also using the "sketchy-outline" theme here, therefore adopted
+the backgroundcolor for the tagged values note to darkgreen.
 end note
 
 ' without this line the interfaces of the component
