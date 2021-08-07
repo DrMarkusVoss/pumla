@@ -5,10 +5,8 @@
 !include ./../modelrepo_json.puml
 !include ./../../../pumla_tagged_values.puml
 
-!if ($PUMVarShowBody)
-'add block definition with internals here, e.g.:
-component "Temperature Sensor A" <<block>> as tempSensorA {
 
+PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
     PUMLAPutTaggedValues(tempSensorA)
 
     !if ($PUMVarShowBodyInternals)
@@ -21,9 +19,8 @@ component "Temperature Sensor A" <<block>> as tempSensorA {
 
     PUMLAPutInternalDynElement(internalSequence)
 
-
 }
-!endif
+
 
 PUMLAAddTaggedValue(tempSensorA, "Vendor", "A GmbH")
 

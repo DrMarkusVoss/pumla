@@ -256,7 +256,41 @@ def parsePUMLAFileMarkings(lines):
     return retdict_filemarkings
 
 
+def findReUsableAssetDefinition(lines):
 
+    success = False
+    el_name = ""
+    el_alias = ""
+    el_type = ""
+    el_stereotypes = []
+
+    for e in lines:
+        if ("PUMLAReUsableAsset(" in e):
+            s1 = e.replace("PUMLAReUsableAsset", "")
+            s11 = s1.strip("{}")
+            s2 = s11.strip("(")
+            s21 = s2.strip(")")
+            s3 = s21.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+            s6 = [ix.strip('{') for ix in s5]
+            s7 = [ix.strip(')') for ix in s6]
+            s8 = [ix.strip('"') for ix in s7]
+            el_name = s8[0]
+            el_alias = s8[1]
+            el_type = s8[2]
+
+            st = s8[3].strip(" ")
+            st1 = st.split(">>")
+            st2 = [ist.strip() for ist in st1]
+            st3 = [ist.strip("<<") for ist in st2]
+
+            for est in st3:
+                if (est != ""):
+                    el_stereotypes.append(est)
+            success = True
+
+    return success, el_name, el_alias, el_type, el_stereotypes
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -311,11 +345,16 @@ def parsePUMLAFile(filename):
             # all other information can be found in filename (Modelling Guideline)
             # and file contents.
             pel.setFilename(el_fn)
-            el_alias_s = el_fn.split(".")
-            el_alias = el_alias_s[0]
-            pel.setAlias(el_alias)
+            # TODO: check here for PUMLAReUsableAsset
+            # only if not found, check for old syntax...
+            success, el_name, el_alias, el_type, el_stereotypes = findReUsableAssetDefinition(lines)
             pel.setPath(el_path)
-            el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+            if not(success):
+                el_alias_s = el_fn.split(".")
+                el_alias = el_alias_s[0]
+                el_name, el_type, el_stereotypes = findElementNameAndTypeInText(lines, el_alias)
+
+            pel.setAlias(el_alias)
             tvs = findTaggedValuesInText(lines)
             if ((el_name == "-") and (el_type == "-") and (el_stereotypes == [])):
                 pel = None
@@ -427,9 +466,12 @@ def finalizeInstances(pels):
         if ("instance" in e.getStereotypes()):
             #print("found instance")
             parent = getElementByAlias(pels, e.getInstanceClassAlias())
-            for st in parent.getStereotypes():
-                e.addStereotype(st)
-            e.setType(parent.getType())
+            if (parent == None):
+                print("PUMLA model error: parent not found for instance with alias: " + e.getAlias() + "; missing parent element is: " + e.getInstanceClassAlias())
+            else:
+                for st in parent.getStereotypes():
+                    e.addStereotype(st)
+                e.setType(parent.getType())
 
     return pels
 

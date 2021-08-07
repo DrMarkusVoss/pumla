@@ -4,9 +4,8 @@
 !include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
-!if ($PUMVarShowBody)
-    class "CWeather" as CWeather <<Python>>  {
 
+PUMLAReUsableAsset("CWeather", CWeather, class, "<<Python>>") {
         ' private functions and members
         ' are considered internal
         !if ($PUMVarShowBodyInternals)
@@ -21,8 +20,8 @@
         +setAirPressure_bar(ap_bar : int) : void
         +lastSevenDayTemperatureAvg_dC() : int
 
-    }
-!endif
+}
+
 
 PUMLAPutTaggedValuesAsNoteToElement(CWeather)
 

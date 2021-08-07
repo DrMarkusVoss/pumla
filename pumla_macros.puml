@@ -819,3 +819,13 @@ remove comp_193242153453236632191729533452
 !unquoted procedure PUMLASetElementFilterInStereotype($stereotype)
 !$pum_global_element_filter_in_stereotype = $stereotype
 !endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define re-usable asset
+!unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes)
+$type "$name" as $alias $stereotypes
+!endprocedure
+
+
+
