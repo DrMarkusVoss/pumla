@@ -827,5 +827,16 @@ remove comp_193242153453236632191729533452
 $type "$name" as $alias $stereotypes
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' define re-usable asset description note
+!unquoted procedure PUMLAReUsableAssetDescr($alias_rua, $alias_descr)
+!if (%not($PUMVarShowDescr))
+    remove $alias_descr
+!else
+    $alias_rua .d. $alias_descr
+!endif
+!endprocedure
+
 
 

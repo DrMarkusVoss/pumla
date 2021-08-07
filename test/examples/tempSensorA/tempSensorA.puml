@@ -26,14 +26,12 @@ PUMLAAddTaggedValue(tempSensorA, "Vendor", "A GmbH")
 
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
 
-!if ($PUMVarShowDescr)
-note bottom of tempSensorA
+note as tn
     Temperature Sensor of company A.
     Provides the temperatur in degree
     Celsius.
 end note
-!endif
 
-
+PUMLAReUsableAssetDescr(tempSensorA, tn)
 
 @enduml
