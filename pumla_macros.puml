@@ -1,4 +1,5 @@
 !include pumla_global_cfg.puml
+!include pumla_internal.puml
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %true()
@@ -34,6 +35,15 @@
 !$pum_global_element_filter_out_dynamic = %false()
 !$pum_global_element_filter_in_dynamic = %false()
 
+!$pum_global_current_rua_alias = ""
+!$pum_global_current_rua_internals = ""
+!$pum_global_current_rua_tvnote = ""
+!$pum_global_current_rua_descr = ""
+
+!$pum_global_instance_adder = ""
+
+!$pum_global_error_cnt = 1
+
 ' --------------------------------------------
 ' put an element referenced by path and filename
 ' by including its file
@@ -65,7 +75,6 @@
 
 
 ' ############################################
-
 ' ---------------------------------------------
 ' inject child elements for the referenced
 ' parent element
@@ -149,22 +158,24 @@
 ' put the referenced element onto the diagram
 '
 !unquoted procedure PUMLAPutElement($elemalias)
+!$int_suc = %false()
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
         !if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
                 _PUMPutElement($el.path,$el.filename)
+                !$int_suc = %true()
         !endif
     !endif
 !endfor
+PUMLAPutElementErrorCheck($int_suc, $elemalias)
 !endprocedure
+
 
 ' ############################################
 ' ---------------------------------------------
 ' put the referenced element onto the diagram
 '
-
 !unquoted procedure PUMLAPutClassElementToCompDiagram($folderpath,$filename)
-
 !if ($el.type == "class")
     !$fn = "NN_" + %substr($el.filename, 0, %strlen($el.filename)-5)
     !if (%not(%variable_exists($fn)))
@@ -350,7 +361,7 @@ PUMLARemoveAllElementsOfStereotype("instance")
 ' create an instance of an element that exists
 ' in the json model repo. Internal txt creation.
 !unquoted function _PUMLACreateInstanceOf($elemalias, $instalias, $instname)
-!$retval = "[**ERROR:** Element **" + $elemalias + "** not in model repository!]"
+!$retval = "ERROR"
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
         !if ($PUMVarShowInstantiationRel)
@@ -384,10 +395,15 @@ PUMLARemoveAllElementsOfStereotype("instance")
 !if ($instname == "")
 !$instname = $instalias
 !endif
-_PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!$inst = _PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!if ($inst == ERROR)
+PUMLACreateInstanceError($elemalias)
+!else
+$inst
 !if ($PUMVarShowInstantiationRel)
 PUMLAPutElement($elemalias)
 $instalias ..> $elemalias : instance of
+!endif
 !endif
 !endprocedure
 
@@ -400,7 +416,13 @@ $instalias ..> $elemalias : instance of
 !$instname = $instalias
 !endif
 !if ($PUMVarShowBody)
-_PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+'_PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!$inst = _PUMLACreateInstanceOf($elemalias,$instalias, $instname)
+!if ($inst == ERROR)
+PUMLACreateInstanceError($elemalias)
+!else
+$inst
+!endif
 !endif
 !endprocedure
 
@@ -768,6 +790,14 @@ PUMLAPutDynamicElement($elemalias)
 ' ############################################
 ' ---------------------------------------------
 ' add a tagged value to to element referenced by its alias
+!unquoted procedure PUMLARUAAddTaggedValue($tag, $value)
+' empty by intention. will be handled by the pumla command
+' line tool.
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' add a tagged value to to element referenced by its alias
 !unquoted procedure PUMLATestNewTVs($elemalias)
 !$notestr = "-"
 !foreach $el in $allelems.elements
@@ -824,19 +854,111 @@ remove comp_193242153453236632191729533452
 ' ---------------------------------------------
 ' define re-usable asset
 !unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes)
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
 $type "$name" as $alias $stereotypes
 !endprocedure
 
 ' ############################################
 ' ---------------------------------------------
+' define re-usable asset
+!unquoted procedure PUMLAReUsableClass($name_alias, $stereotypes)
+!global $pum_global_current_rua_alias = $name_alias
+class $name_alias $stereotypes
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
 ' define re-usable asset description note
-!unquoted procedure PUMLAReUsableAssetDescr($alias_rua, $alias_descr)
+!unquoted procedure PUMLAReUsableAssetDescr($alias_descr)
+!global $pum_global_current_rua_descr = $alias_descr
 !if (%not($PUMVarShowDescr))
     remove $alias_descr
 !else
-    $alias_rua .d. $alias_descr
+    $pum_global_current_rua_alias .d. $alias_descr
 !endif
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' define re-usable asset internal items
+!unquoted procedure PUMLAReUsableAssetInternals()
+!$body_internals = $pum_global_current_rua_alias + "_internals"
+!global $pum_global_current_rua_internals = $body_internals
+rectangle "Internals" as $body_internals
+!endprocedure
 
+' ############################################
+' ---------------------------------------------
+' define re-usable asset internal items
+!unquoted procedure PUMLAReUsableAssetClassInternals()
+!$body_internals = $pum_global_current_rua_alias + "_internals"
+!global $pum_global_current_rua_internals = $body_internals
+rectangle "Internals" as $body_internals
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this has to be called at the end of a
+' re-usable asset definition (file).
+!unquoted procedure PUMLAReUsableAssetFinalize()
+!$body_internals = $pum_global_current_rua_alias + "_internals"
+!if (%not($PUMVarShowBodyInternals))
+    remove $body_internals
+!endif
+
+!if (($pum_global_current_rua_tvnote != "") && ($pum_global_current_rua_internals != ""))
+    !$tvnote = $pum_global_current_rua_tvnote
+    !$ints = $pum_global_current_rua_internals
+    $tvnote .[hidden]d. $ints
+!endif
+!$pum_global_current_rua_alias = ""
+!$pum_global_current_rua_tvnote = ""
+!$pum_global_current_rua_descr = ""
+!$pum_global_current_rua_internals = ""
+!$pum_global_instance_adder = ""
+
+!endprocedure
+
+
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable class that can be instantiated,
+' with the instances getting automatically all
+' class attributes.
+!unquoted procedure PUMLAFullyInstantiatableClass($classname, $stereotypes)
+!if ($classname_instancename == "$classname_instancename")
+    !$alias = $classname
+    !$classname_i = $classname
+!else
+    !$alias = $classname_instancename
+    !$classname_i = $classname_instancename + " (" + $classname + ")"
+!endif
+!$stereotyps = $pum_global_instance_adder + "" + $stereotypes
+PUMLAReUsableAsset($classname_i, $alias, class, $stereotyps)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable class that can be instantiated,
+' with the instances getting automatically all
+' class attributes defined in the RUA class body.
+!unquoted procedure PUMLAFullInstanceOf($classalias, $instalias)
+!$int_suc = %false()
+!$pum_global_instance_adder = "<<instance>>"
+%set_variable_value("$classname_instancename", $instalias)
+
+'!$classname_instancename = $instalias
+!foreach $el in $allelems.elements
+    !if ($el.alias==$classalias)
+        !includesub $allelems.modelrepopath/%substr($el.path,2)/$el.filename!BODY
+        !$int_suc = %true()
+    !endif
+!endfor
+!if %not($int_suc)
+PUMLACreateInstanceError($classalias)
+!endif
+%set_variable_value("$classname_instancename", "$classname_instancename")
+!endprocedure
 

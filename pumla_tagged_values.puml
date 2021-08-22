@@ -29,6 +29,7 @@
 !unquoted procedure PUMLAPutTaggedValues($elalias)
 !if ($PUMVarShowTaggedValues)
 !$nn = "NN_" + $elalias + "_TV"
+!global $pum_global_current_rua_tvnote = $nn
 note as $nn #$PUMColorTaggedValues
 _TaggedValuesTable($elalias)
 end note
@@ -39,11 +40,13 @@ end note
 !unquoted procedure PUMLAPutTaggedValuesAsNoteToElement($elalias)
 !if ($PUMVarShowTaggedValues)
 !$nn = "NN_" + $elalias + "_TV"
+!global $pum_global_current_rua_tvnote = $nn
 note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
 _TaggedValuesTable($elalias)
 end note
 !endif
 !endprocedure
+
 
 
 

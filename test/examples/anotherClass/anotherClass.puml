@@ -2,24 +2,25 @@
 @startuml
 !include ./../../../pumla_macros.puml
 
-!if ($PUMVarShowBody)
-    class anotherClass <<Python>>  {
-
+PUMLAReUsableClass("anotherClass", "<<Python>>")
+{
         ' private functions and members
         ' are considered internal
         !if ($PUMVarShowBodyInternals)
             -my_private_membervar : int
+        !else
+            .. <i>private internals hidden ..
+--
         !endif
         ' public methods are not internal
         +my_public_getMethod() : int
-
-    }
-!endif
+}
 
 !if ($PUMVarShowDescr)
     note bottom of anotherClass
         Another class for the examples.
     end note
 !endif
+PUMLAReUsableAssetFinalize()
 
 @enduml

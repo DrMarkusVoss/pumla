@@ -1,0 +1,21 @@
+'PUMLAMR
+@startuml
+!include ./../../pumla_macros.puml
+
+!startsub BODY
+PUMLAReUsableClass("MyNewClass1", "<<Python>>")
+{
+    +sayHelloToTheWorld()
+}
+!endsub
+
+
+note as tn1231
+hello World!
+end note
+
+PUMLAReUsableAssetDescr(tn1231)
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

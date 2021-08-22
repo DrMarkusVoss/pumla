@@ -2,7 +2,7 @@
 'PUMLAINSTANCES
 @startuml
 !include ./../../pumla_macros.puml
-'!include modelrepo_json.puml
+!include ./modelrepo_json.puml
 
 ' here 2 re-usable instances of tempSys are defined.
 ' see line 2, where we mark this as instance file.

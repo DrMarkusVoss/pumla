@@ -4,14 +4,18 @@
 !include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
-
-PUMLAReUsableAsset("CWeather", CWeather, class, "<<Python>>") {
+!startsub BODY
+PUMLAFullyInstantiatableClass(CWeather, "<<Python>>")
+{
         ' private functions and members
         ' are considered internal
         !if ($PUMVarShowBodyInternals)
             -m_tempCurrent_dC : int
             -m_airPressureCurrent_bar : int
             -m_tempHistory_dC : int[7]
+        !else
+            .. <i>private internals hidden ..
+            --
         !endif
         ' public methods are not internal
         +getTemperature_dC() : int
@@ -21,16 +25,18 @@ PUMLAReUsableAsset("CWeather", CWeather, class, "<<Python>>") {
         +lastSevenDayTemperatureAvg_dC() : int
 
 }
+!endsub
 
+PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
 PUMLAPutTaggedValuesAsNoteToElement(CWeather)
 
-PUMLAAddTaggedValue(CWeather, "Vendor", "C Ltd.")
+note as tn
+    A class managing weather data.
+end note
 
-!if ($PUMVarShowDescr)
-    note bottom of CWeather
-        A class managing weather data.
-    end note
-!endif
+PUMLAReUsableAssetDescr(tn)
+
+PUMLAReUsableAssetFinalize()
 
 @enduml

@@ -99,6 +99,24 @@ def findTaggedValuesInText(lines):
 
     return rettvs
 
+def findRUATaggedValuesInText(lines, rua_alias):
+    rettvs = []
+
+    ret_cons = []
+    for e in lines:
+        if ("PUMLARUAAddTaggedValue" in e):
+            s1 = e.replace("PUMLARUAAddTaggedValue", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s4) > 1):
+                al_tv = {rua_alias : {s5[0] : s5[1]}}
+                rettvs.append(al_tv)
+
+    return rettvs
+
 
 def findStereoTypesInLine(line):
     """ find PlantUML stereotype definitions in given line. """
@@ -224,6 +242,35 @@ def findInstances(lines, path, filename, kind):
                 pr.setFilename(filename)
                 ret_instances.append(pr)
 
+        if ("PUMLAFullInstanceOf(" in e):
+            s1 = e.replace("PUMLAFullInstanceOf", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if (len(s5) > 1):
+                pr = PUMLAElement()
+                pr.setInstance()
+                pr.addStereotype("instance")
+                pr.setInstanceClassAlias(s5[0])
+                pr.setAlias(s5[1])
+
+                if (kind == "static"):
+                    pr.setKindStatic()
+                elif (kind == "dynamic"):
+                    pr.setKindDynamic()
+                else:
+                    print("FindInstances:Error: no meaningful element kind.")
+                    pass
+
+                pr.setName(s5[1])
+
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_instances.append(pr)
+
+
     return ret_instances
 
 def createInstanceRelation(inst, path, fn):
@@ -281,6 +328,56 @@ def findReUsableAssetDefinition(lines):
             el_type = s8[2]
 
             st = s8[3].strip(" ")
+            st1 = st.split(">>")
+            st2 = [ist.strip() for ist in st1]
+            st3 = [ist.strip("<<") for ist in st2]
+
+            for est in st3:
+                if (est != ""):
+                    el_stereotypes.append(est)
+            success = True
+
+        if ("PUMLAReUsableClass(" in e):
+            s1 = e.replace("PUMLAReUsableClass", "")
+            s11 = s1.strip("{}")
+            s2 = s11.strip("(")
+            s21 = s2.strip(")")
+            s3 = s21.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+            s6 = [ix.strip('{') for ix in s5]
+            s7 = [ix.strip(')') for ix in s6]
+            s8 = [ix.strip('"') for ix in s7]
+            el_alias = s8[0]
+            el_name = el_alias
+            el_type = "class"
+
+            st = s8[1].strip(" ")
+            st1 = st.split(">>")
+            st2 = [ist.strip() for ist in st1]
+            st3 = [ist.strip("<<") for ist in st2]
+
+            for est in st3:
+                if (est != ""):
+                    el_stereotypes.append(est)
+            success = True
+
+        if ("PUMLAFullyInstantiatableClass(" in e):
+            s1 = e.replace("PUMLAFullyInstantiatableClass", "")
+            s11 = s1.strip("{}")
+            s2 = s11.strip("(")
+            s21 = s2.strip(")")
+            s3 = s21.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+            s6 = [ix.strip('{') for ix in s5]
+            s7 = [ix.strip(')') for ix in s6]
+            s8 = [ix.strip('"') for ix in s7]
+            el_alias = s8[0]
+            el_name = el_alias
+            el_type = "class"
+
+            st = s8[1].strip(" ")
             st1 = st.split(">>")
             st2 = [ist.strip() for ist in st1]
             st3 = [ist.strip("<<") for ist in st2]
@@ -356,6 +453,10 @@ def parsePUMLAFile(filename):
 
             pel.setAlias(el_alias)
             tvs = findTaggedValuesInText(lines)
+            tvs2 = findRUATaggedValuesInText(lines, el_alias)
+            for tava in tvs2:
+                tvs.append(tava)
+
             if ((el_name == "-") and (el_type == "-") and (el_stereotypes == [])):
                 pel = None
                 pels = []

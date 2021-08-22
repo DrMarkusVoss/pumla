@@ -23,6 +23,7 @@ class TestPumlaCmdUtils:
                            './../examples/tempSensorB/publicState.puml',
                            './../examples/anotherClass/anotherClass.puml',
                            './../examples/CWeather/CWeather.puml',
+                           './../examples/CWeather/FurtherWeatherInstances.puml',
                            './../examples/CWeather/WeatherInstances.puml',
                            './../examples/wirelessUnit/wirelessUnit.puml',
                            './../examples/connections/connections_tempSys_Var_B.puml',

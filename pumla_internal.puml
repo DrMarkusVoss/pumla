@@ -1,0 +1,30 @@
+
+!unquoted procedure PUMLAErrorCheck($suc, $elemalias, $errortxt, $reasontxt, $hinttxt)
+!if ($PUMVarShowPUMLAErrorNotes)
+!if %not($suc=="1")
+!$notename = "pum_error_note_nr" + %string($pum_global_error_cnt)
+note as $notename #red
+**<i>PUMLA Error:**
+'Running Nr.$pum_global_error_cnt
+$errortxt: $elemalias
+
+**Reason:**
+$reasontxt
+
+**Hint:**
+$hinttxt
+
+end note
+!$tempval = $pum_global_error_cnt
+%set_variable_value("$pum_global_error_cnt", $tempval + 1)
+!endif
+!endif
+!end procedure
+
+!unquoted procedure PUMLAPutElementErrorCheck($suc, $elemalias)
+PUMLAErrorCheck($suc, $elemalias, "Could not put element with alias", "Element was not found in model repo.", "- try to update the model repo, or %newline()- check the alias for misspellings.")
+!end procedure
+
+!unquoted procedure PUMLACreateInstanceError($elemalias)
+PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alias", "The element that should be instantiated %newline()was not found in the model repo.", "- try to update the model repo, or %newline()- check the alias for misspellings.")
+!end procedure

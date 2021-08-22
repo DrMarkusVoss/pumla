@@ -12,14 +12,12 @@
 ' exception to allow for multiple instance element
 ' definitions in one file.
 
-' create the instance "w1" of model element with alias "CWeather".
-' the name contains whitespaces, therefore name and alias are
-' not equal and this version of the macro is called.
-PUMLAInstanceOf(CWeather, w1, "Weather Data Instance 1")
+PUMLAFullInstanceOf("CWeather", "w3")
+PUMLAFullInstanceOf("CWeather", "w4")
 
-' create another instance "w2" from same model element.
-' the instance name equals the alias, therefore is not
-' allowed to contain whitespaces.
-PUMLAInstanceOf(CWeather, w2, "Weather Data Instance 2")
+note left of w4
+ an additional note to
+ instance w4.
+end note
 
 @enduml

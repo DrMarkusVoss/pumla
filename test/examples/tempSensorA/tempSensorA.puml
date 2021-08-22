@@ -9,29 +9,28 @@
 PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
     PUMLAPutTaggedValues(tempSensorA)
 
-    !if ($PUMVarShowBodyInternals)
+    PUMLAReUsableAssetInternals() {
 
         component getSignal
         component "AD conversion"
         component "signal processing"
 
-    !endif
-
-    PUMLAPutInternalDynElement(internalSequence)
-
+        PUMLAPutInternalDynElement(internalSequence)
+    }
 }
 
-
-PUMLAAddTaggedValue(tempSensorA, "Vendor", "A GmbH")
+PUMLARUAAddTaggedValue("Vendor", "A GmbH")
 
 PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
 
-note as tn
+note as tn27
     Temperature Sensor of company A.
-    Provides the temperatur in degree
+    Provides the temperature in degree
     Celsius.
 end note
 
-PUMLAReUsableAssetDescr(tempSensorA, tn)
+PUMLAReUsableAssetDescr(tn27)
+
+PUMLAReUsableAssetFinalize()
 
 @enduml

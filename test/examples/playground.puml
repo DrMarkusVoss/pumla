@@ -1,0 +1,19 @@
+@startuml
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+!$PUMVarShowDescr = %false()
+!$PUMVarShowTaggedValues = %false()
+!$PUMVarShowInstantiationRel = %true()
+
+title nice diagram
+
+PUMLAPutElement("MyNewClass1")
+
+PUMLAPutElement("CWeather")
+PUMLAPutElement("w1")
+PUMLAPutRelationsForElement("CWeather")
+
+
+
+
+@enduml
