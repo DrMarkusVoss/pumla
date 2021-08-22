@@ -1,0 +1,30 @@
+'PUMLAMR
+'PUMLAPARENT: pumla
+@startuml
+!include ./pumla_macros.puml
+
+PUMLAReUsableAsset("pumla preprocessor macros", pppm, rectangle, "<<PlantUML>> <<preprocessor macros>>") {
+
+    PUMLAReUsableAssetInternals() {
+
+        file "pumla_global_cfg.puml" as pppcfg {
+        }
+        file "pumla_internal.puml" as ppi {
+        }
+        file "pumla_tagged_values.puml" as pptv {
+        }
+        file "pumla_macros.puml" as ppm {
+        }
+    }
+}
+
+note as tn723492387
+    The preprocessor macros implemented to
+    extend the PlantUML language.
+end note
+
+PUMLAReUsableAssetDescr(tn723492387)
+
+PUMLAReUsableAssetFinalize()
+
+@enduml
