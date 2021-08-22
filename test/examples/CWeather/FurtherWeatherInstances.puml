@@ -16,8 +16,10 @@ PUMLAFullInstanceOf("CWeather", "w3")
 PUMLAFullInstanceOf("CWeather", "w4")
 
 note left of w4
- an additional note to
- instance w4.
+    w3 and w4 are instances created with the
+    "PUMLAFullInstanceOf" macro. That way, the
+    instances were automatically equipped with
+    the methods of the parent class.
 end note
 
 @enduml
