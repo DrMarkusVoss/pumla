@@ -34,7 +34,7 @@ PUMLAAddTaggedValue("tempSensorBdCRel#4", "SysVariant", "B3")
 
 
 ' define an interface and connect it
-PUMLAPutInterface("temp_dC", temp_dC_tempSensorBdC, tempSensorBdC, "out")
+PUMLAInterface("temp_dC", temp_dC_tempSensorBdC, tempSensorBdC, "out")
 
 ' define connection between the internal elements interface and
 ' this element

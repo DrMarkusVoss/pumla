@@ -19,8 +19,8 @@ component "Temp. Converter" <<block>>  as tempConverter {
 
 PUMLAAddTaggedValue(tempConverter, "Vendor", "C Ltd.")
 
-PUMLAPutInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
-PUMLAPutInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")
+PUMLAInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
+PUMLAInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")
 
 !if ($PUMVarShowDescr)
 note bottom of tempConverter

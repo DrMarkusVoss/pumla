@@ -600,7 +600,7 @@ PUMLAPutElement($elemalias)
 ' ---------------------------------------------
 ' define a re-usable interface and put it on
 ' the diagram.
-!unquoted procedure PUMLAPutInterface($ifname, $ifalias, $elemalias, $type="")
+!unquoted procedure PUMLAInterface($ifname, $ifalias, $elemalias, $type="")
 !if ($PUMVarShowInterfaces)
 !if ($type=="")
     !$constr = "--"
@@ -616,6 +616,14 @@ PUMLAPutElement($elemalias)
 interface "$ifname" as $ifalias
 $ifalias $constr $elemalias
 !endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' DEPRECATION: DO NOT USE THIS FUNCTION ANYMORE
+' USE INSTEAD: PUMLAInterface
+!unquoted procedure PUMLAPutInterface($ifname, $ifalias, $elemalias, $type="")
+PUMLAInterface($ifname, $ifalias, $elemalias, $type="")
 !endprocedure
 
 ' ############################################

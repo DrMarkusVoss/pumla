@@ -21,7 +21,7 @@ PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") 
 
 PUMLARUAAddTaggedValue("Vendor", "A GmbH")
 
-PUMLAPutInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
+PUMLAInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
 
 note as tn27
     Temperature Sensor of company A.

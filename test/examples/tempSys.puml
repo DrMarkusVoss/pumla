@@ -16,7 +16,7 @@
 PUMLAAddTaggedValue(tempSys, "Vendor", "C Ltd.")
 
 
-PUMLAPutInterface("internet", internet_tempSys, tempSys, "inout")
+PUMLAInterface("internet", internet_tempSys, tempSys, "inout")
 
 !if ($PUMVarShowDescr)
     note bottom of tempSys

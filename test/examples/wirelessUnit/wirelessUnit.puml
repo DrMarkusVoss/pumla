@@ -22,7 +22,7 @@ PUMLAAddTaggedValue(wirelessUnit, "Vendor", "XY")
 PUMLAAddTaggedValue(wirelessUnit, "SecurityClass", "Alpha")
 PUMLAAddTaggedValue(wirelessUnit, "Frequency Range", "5 GHz")
 
-PUMLAPutInterface("internet", internet_wirelessUnit, wirelessUnit, "inout")
+PUMLAInterface("internet", internet_wirelessUnit, wirelessUnit, "inout")
 
 !if ($PUMVarShowDescr)
 

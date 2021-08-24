@@ -33,7 +33,7 @@ PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B1")
 PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B2")
 PUMLAAddTaggedValue(tempSensorB, "Vendor", "B Inc.")
 
-PUMLAPutInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
+PUMLAInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")
 'publicState ..> temp_dF_tempSensorB : provides
 'PUMLAPutRelation("REL#publicStateToIF")

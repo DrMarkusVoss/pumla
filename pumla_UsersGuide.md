@@ -50,14 +50,14 @@ way.
 ## PlantUML Extension
 The following special comments (file markings), macros and global variables are made as extension to PlantUML. 
 
-### File Markings
+## File Markings
 
 ### `'PUMLAMR`
 This comment put into the first line of a `.puml` file marks the file
 as `pumla` model element description that shall be part of the re-usable
 model repository.
 
-### `'PUMLADR`
+### tbd: `'PUMLADR`
 This comment put into the first line of a .puml file marks the file
 as pumla diagram element description that shall be part of the re-usable
 diagram repository.
@@ -82,9 +82,53 @@ should be modelled, by e.g. a sequence, state or activity diagram.
 
 ---
 
-### Extension Macros
-These macros (that are PlantUML unquoted functions and procedures) can be
-used within each PlantUML file by including `pumla_macros.puml`.
+## Extension Macros
+The following macros (that are PlantUML unquoted functions and procedures) can be
+used within each PlantUML file by including `pumla_macros.puml`. They are the
+user "API" of `pumla`.
+
+## Creating Re-usable Elements 
+
+### `PUMLAInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
+Creates a re-usable instance of a model element with alias `model_elem_alias` that is
+inside the model repository and names the instances `inst_name` with the alias.
+This is only allowed to be called within an instance definition file (marked with
+`'PUMLAINSTANCES` in the second line of the file.
+
+### `PUMLAInterface( "ifname": string, ifalias : string, elemalias : string, $type="":string)`
+Creates an interface with name and alias that belongs to element referenced by
+`elem_alias`. `type` is the kind of connection between the interface and
+the model element and can be `in`, `out`, `inout` or empty which translates to
+a non-directional connections ("--").
+
+## Creating Re-usable Relations and Connections
+
+### `PUMLARelation(startalias : string, endalias : string, "reltype" : string, "reltxt" : string (optional), "relid" : string (optional))`
+Creates a re-usable relation between the two elements starting at element with alias
+`startalias` and end at element with alias `endalias`. The type of relation can be any PlantUML
+compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
+will be put next to the relation when put on a diagram. `relid` can be used as
+unique identifier to reference to the relation. If not given, `pumla` automatically creates the
+id by combining start and end alias. This relation is created only in the model repo and will be
+filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
+
+### `PUMLAConnection(startalias : string, endalias : string, "contype" : string, "contxt" : string (optional), "conid" : string (optional))`
+Creates a connection between the two interfaces starting at interface with alias
+`startalias` and end at interface with alias `endalias`. The type of connection can be any PlantUML
+compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
+will be put next to the relation when put on a diagram. `conid` can be used as
+unique identifier to reference to the connection. If not given, `pumla` automatically creates the
+id by combining start and end alias. This connection is created only in the model repo and will be
+filled with a text drawing the relation when put onto a diagram with `PUMLAPutConnection(...)` (or PutAll...). 
+
+## Overview on the Model Repository of Re-usable Elements
+
+The easiest way to get an overview on the contents of the model repository
+is the usage of Cheat Sheets. With the following macros you can get
+information about the contents of the model repository directly on a
+diagram as a table within a note. If you do not need the information anymore,
+you can just comment the macro out.
+
 
 ### `PUMLACheatSheet()`
 This macro creates a note with a table that shows the contents of the model
@@ -108,6 +152,8 @@ of the model repository. It puts all relations with all attributes into a table 
 you manage your architecture relations and artefacts.
 
 
+## Putting Re-usable Elements onto Diagrams
+
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
 The referenced element must exist somewhere in the source tree as a model element
@@ -119,15 +165,6 @@ to put static and dynamic elements onto the same diagram, then use the
 `PUMLAPutDynamicElement( alias : string )` macro (see down below) to put the dynamic
 elements onto the same diagram as you put the static elements with this macro
 here.
-
-
-### tbd: `PUMLAPutElement( elem_alias, lod )`
-Same as above, but limits the displaying of nested elements to the level number 
-defined by `lod` (level of detail). This overrides the global variable
-`$PUMVarShowBodyInternals`. Even when that variable is set to false, only the 
-referenced element will be shown with the defined levels of nested internals.
-
-**Not yet implemented!**
 
 ### `PUMLAPutAllElements()`
 Puts all elements from the model repository on the diagram. Useful to get an
@@ -225,35 +262,8 @@ non-re-usable instance of a re-usable element. So it is a convencience function
 simplifying the instantiation process with at the same time creating
 the proper relation between instance and class element.
 
-### `PUMLAInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
-Creates a re-usable instance of a model element with alias `model_elem_alias` that is
-inside the model repository and names the instances `inst_name` with the alias.
-This is only allowed to be called within an instance definition file (marked with
-`'PUMLAINSTANCES` in the second line of the file.
 
-### `PUMLAPutInterface( "ifname": string, ifalias : string, elemalias : string, $type="":string)`
-Creates an interface with name and alias that belongs to element referenced by
-`elem_alias`. `type` is the kind of connection between the interface and
-the model element and can be `in`, `out`, `inout` or empty which translates to
-a non-directional connections ("--").
-
-### `PUMLARelation(startalias : string, endalias : string, "reltype" : string, "reltxt" : string (optional), "relid" : string (optional))`
-Creates a re-usable relation between the two elements starting at element with alias
-`startalias` and end at element with alias `endalias`. The type of relation can be any PlantUML
-compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
-will be put next to the relation when put on a diagram. `relid` can be used as
-unique identifier to reference to the relation. If not given, `pumla` automatically creates the
-id by combining start and end alias. This relation is created only in the model repo and will be
-filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
-
-### `PUMLAConnection(startalias : string, endalias : string, "contype" : string, "contxt" : string (optional), "conid" : string (optional))`
-Creates a connection between the two interfaces starting at interface with alias
-`startalias` and end at interface with alias `endalias`. The type of connection can be any PlantUML
-compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
-will be put next to the relation when put on a diagram. `conid` can be used as
-unique identifier to reference to the connection. If not given, `pumla` automatically creates the
-id by combining start and end alias. This connection is created only in the model repo and will be
-filled with a text drawing the relation when put onto a diagram with `PUMLAPutConnection(...)` (or PutAll...). 
+## Putting Re-usable Relations and Connections onto Diagrams
 
 ### `PUMLAPutRelation("relid" : string)`
 Puts the relation with the given ID onto the diagram. The ID must refer to a relation
@@ -295,17 +305,20 @@ of that element.
 Puts all connections from the model repository onto the diagram.
 
 
+## Adding Tagged Values to Elements, Relations and Connections
+
 ### `AddTaggedValue( tag : string, value : string )`
 Adds a tag/value pair to the tagged value table of the
-next model element to be defined.
+ re-usable model element defined in the same file.
 
 Requires including `pumla_tagged_values.puml`.
-
 
 ### `PUMLAPutTaggedValues()`
 Puts the tagged value table enclosed by a rectangle in place.
 
 Requires including `pumla_tagged_values.puml`.
+
+## Diagram Filters
 
 ### `PUMLASetElementFilterOutType($type : string)`
 With this command you can set a filter that is applied to all
@@ -335,25 +348,31 @@ macro, until this macro is called again with another type. If it
 shall be deactivated for further lines, set type to the empty string,
 "".
 
-### TODO
-- Put macros that vary showing interface, description, internals
-  and tagged values as option, overriding the globals
-  
+## Working around some PlantUML limitations
+tbd
+
 ---
 
-### Global Variables
+## Global Variables
 These following global variables have an impact on the visualization 
-of all pumla model elements that are put onto the diagram.
+of all pumla model elements that are put onto the diagram after the 
+redefinition.
 
 ### `$PUMVarShowDescr : boolean` 
+*Default*: `%true()`
+
 Defines whether the model elements descriptions are shown on
 the diagram or not. 
 
 ### `$PUMVarShowInterfaces : boolean`
+*Default*: `%true()`
+
 Defines whether the interfaces of the model elements are shown
 on the diagram or not.
 
 ### `$PUMVarShowBody : boolean`
+*Default*: `%true()`
+
 Defines whether the model elements body is shown on the diagram
 or not. The body is the main model element. In most cases it 
 does not make sense to hide the body, so this will be most
@@ -361,29 +380,67 @@ likely almost on every diagram true. But there may be some
 rare exceptions where you want it. ;-)
 
 ### `$PUMVarShowBodyInternals : boolean`
+*Default*: `%true()`
+
 Defines whether the internals of the model element are shown.
 Internals can be elements directly modelled into the body or
 elements belonging inside indirectly, by using the
 `'PUMLAPARENT` marking.
 
 ### `$PUMVarShowBodyInternalsDyn : boolean`
+*Default*: `%true()`
+
 Defines whether the dynamic internals of the model element are
 shown. That way you can decide to show only dynamic internals 
 or only static internals (previous global variable) or both.
 
 ### `$PUMVarShowTaggedValues : boolean`
+*Default*: `%true()`
+
 Defines whether the tagged values table of the model element
 are shown within the model elements body or not.
 
 ### `$PUMVarShowInstantiationRel : boolean`
+*Default*: `%true()`
+
 Defines whether the `instance of` relation created by the 
 macro `PUMLACreateInstanceOf(...)` is shown on the diagram 
 or not. Furthermore it influences the shown name of the 
 instance. When set to "false", the instance name is enhanced
 by the model element that it is instantiated from.
 
-### TODO
-- global level of detail for internals
+### `$PUMVarShowConnections : boolean`
+*Default*: `%true()`
+
+### `$PUMTaggedValuesNoteToElementAlignment : string`
+*Default*: `right`
+
+### `$PUMVarShowPUMLAFooterNote : boolean`
+*Default*: `%true()` (Configuration in `pumla_global_cfg.puml`)
+
+Turn on (true) or off (false) the default
+pumla advertising footer. Can also be
+overwritten in each diagram with own
+footer.
+
+### `$PUMVarShowPUMLAErrorNotes : boolean`
+*Default*: `%true()` (Configuration in `pumla_global_cfg.puml`)
+
+Turn on (true) or off (false) the
+Error Note generation. With error
+notes you get information about a
+failed pumla command in a red note
+on the diagram.
+
+### `$PUMColorTaggedValues : boolean`
+*Default*: `lightgreen` (Configuration in `pumla_global_cfg.puml`)
+
+Choose the color of the tagged values
+table. Color names have to be written
+in small letters.
+
+
+
 
 ### Example
 ```PlantUML
@@ -410,7 +467,7 @@ PUMLAPutAllElements()
 ```
 ---
 
-### Files to be included
+## Files to be included
 
 ### `pumla_macros.puml`
 Include this file in your PlantUML diagram files or 
@@ -427,7 +484,7 @@ element containing the tagged values is placed.
 Include this file wherever you access the model repository
 with the `pumla` Extension Macros.
 
-### `diagramrepo_json.puml`
+### tbd: `diagramrepo_json.puml`
 Include this file wherever you access the diagram repository
 with the `pumla` Extension Macros.
 
