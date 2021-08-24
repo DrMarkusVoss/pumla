@@ -12,6 +12,9 @@ tooling `pumla` simple in its implementation. Without these rules, a lot
 more effort would need to go into the tooling to allow the same 
 functionality.
 
+Furthermore, this guideline will give you hints on how to achieve certain use 
+cases using `pumla`, like e.g. variant management.
+
 ## Some Principles
 ### Static vs. Dynamic 
 Modelling elements first the static aspect with the atomic 
@@ -35,14 +38,41 @@ relation, but as relation it is not concretely defined with what information
 flows in detail as specified by an interface.
 
 ### Diagrams
-tbd.
+Diagrams can be created using elements of the model repository, as well as by 
+adding also all kinds of extra stuff to the diagram using standard PlantUML code.
 
+`pumla` offers a lot of convenience commands, that let you put the contents of 
+the model repository onto a diagram in a very efficient way. So, if you want to
+keep track of all the architecture elements that are modelled in your repository,
+you can just use the command `"PUMLAPutAllElements()"` and you get all the model
+elements of your model repository put onto the diagram. After e.g. a git pull 
+you just need to run `pumla update`, the model repo will be updated and
+after that your diagram will automatically contain all elements of the updated version.
+So this feature can really help you keeping an overview on your architecture if
+you are working with a bigger team with a lot of different people adding re-usable
+architecture elements.
+
+You can also expose different parts of the re-usable elements by using the different
+`pumla`-specific global variables. E.g. you can decide to show or not to show the
+note with the description of a re-usable element, or show/not show the internals of
+a re-usable element.
+
+## Lightweight Variant Management
+- use tagged values (also on relations and connections)
+- create variants by creating a diagram with a filter on the respective
+  tagged values.
+- Example
+
+# Rules
 
 ## Rule: `pumla` files are valid PlantUML files 
 We only use PlantUML language in the `pumla` architecture descriptions.
+The `pumla` macros are valid PlantUML code (PlantUML and its preprocessor
+commands). Therefore, using `pumla` macros of course is also valid usage.
 
 ###*Rationale*
-That way, we can re-use the `pumla` model elements in each and every PlantUML diagram.
+That way, we can re-use the `pumla` model elements in each and every PlantUML diagram
+(of course, as long as the `pumla_macros.puml` are included).
 
 ## Rule: Atomicity of Model Element descriptions
 In the model files where the re-usable elements are modelled, do 
@@ -139,6 +169,7 @@ scanner and it makes sense as a naming convention anyway.
 
 ## Rule: No layout adoptions in atomic `pumla` files
 `pumla` files for atomic model elements should not contain layout, coloring and skin definitions.
+
 ###*Rationale*
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
 should not be included in the atomic model element definitions.

@@ -176,6 +176,16 @@ have a complete view of the sequence, not a broken one with
 additional documentation that explains how the broken one
 will work if it is filled by another document.
 end note
-}
 
+
+note as n19
+Interfaces as part of the model repository, so you can have
+an overview of your interfaces. Also be able to put tagged
+values to interfaces, so you can filter and search for defined
+interfaces.
+
+Convenience macro to put elements onto diagram that use or have
+a certain interface.
+end note
+}
 @enduml

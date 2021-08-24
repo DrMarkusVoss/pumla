@@ -797,7 +797,8 @@ PUMLAPutDynamicElement($elemalias)
 
 ' ############################################
 ' ---------------------------------------------
-' add a tagged value to to element referenced by its alias
+' add a tagged value to the re-usableelement
+' that is defined within this file
 !unquoted procedure PUMLARUAAddTaggedValue($tag, $value)
 ' empty by intention. will be handled by the pumla command
 ' line tool.

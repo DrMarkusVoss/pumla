@@ -89,6 +89,31 @@ user "API" of `pumla`.
 
 ## Creating Re-usable Elements 
 
+### `PUMLAReUsableAsset($name : string, $alias : string, $type : string, $stereotypes : string) {...}`
+tbd
+
+### `PUMLAReUsableClass($name_alias : string, $stereotypes : string) {...}`
+tbd
+
+### `PUMLAFullyInstantiatableClass($classname : string, $stereotypes : string) {...}`
+tbd
+
+### `PUMLAReUsableAssetDescr($alias_descr)`
+tbd
+
+### `PUMLAReUsableAssetInternals() {...}`
+tbd
+
+### `PUMLAReUsableAssetClassInternals()`
+tbd
+
+### `PUMLAReUsableAssetFinalize()`
+tbd
+
+### `PUMLAFullInstanceOf($classalias : string, $instalias : string)`
+tbd
+
+
 ### `PUMLAInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
 Creates a re-usable instance of a model element with alias `model_elem_alias` that is
 inside the model repository and names the instances `inst_name` with the alias.
@@ -307,11 +332,14 @@ Puts all connections from the model repository onto the diagram.
 
 ## Adding Tagged Values to Elements, Relations and Connections
 
-### `AddTaggedValue( tag : string, value : string )`
+### `PUMLAAddTaggedValue( alias : string, tag : string, value : string )`
+Adds a tag/value pair to the tagged value table of the
+ re-usable model element, relation or connection with
+ the given alias.
+
+### `PUMLARUAAddTaggedValue( tag : string, value : string )`
 Adds a tag/value pair to the tagged value table of the
  re-usable model element defined in the same file.
-
-Requires including `pumla_tagged_values.puml`.
 
 ### `PUMLAPutTaggedValues()`
 Puts the tagged value table enclosed by a rectangle in place.
@@ -348,9 +376,16 @@ macro, until this macro is called again with another type. If it
 shall be deactivated for further lines, set type to the empty string,
 "".
 
-## Working around some PlantUML limitations
+### `PUMLASetElementFilterOutStereotype($stereotype : string)`
 tbd
 
+### `PUMLASetElementFilterInStereotype($stereotype : string)`
+tbd
+
+## Working around some PlantUML limitations
+
+### `PUMLASetAsComponentDiagram()`
+tbd
 ---
 
 ## Global Variables

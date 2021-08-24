@@ -11,6 +11,31 @@ it is setup to update the architecture model repo of the pumla tool itself.
 The examples section will be ignored from the top level. So you have to go
 down to the examples and call the pumla update from that directory.
 
+## E#0: Create Re-usable Elements
+Here are examples for defining elements, that can be easily re-used on different
+diagrams with the possibility to switch on different levels of detail.
+
+## E#0.1: General Re-usable Asset
+See here an example for the definition of a Re-usable Element using the
+`PUMLAReUsableAsset` macro:
+[./test/examples/tempSensorA/tempSensorA.puml](./test/examples/tempSensorA/tempSensorA.puml)
+
+![](./test/examples/pics/tempSensorA.png)
+
+## E#0.2: Re-usable Class
+Here is an example for the definition of a Re-usable Class using the
+`PUMLAReUsableClass` macro:
+[./test/examples/anotherClass/anotherClass.puml](./test/examples/anotherClass/anotherClass.puml)
+
+![](./test/examples/pics/anotherClass.png)
+
+## E#0.3: Re-usable, fully-instantiable Class
+Here is an example for the definition of a Re-usable Class using the
+`PUMLAFullyInstantiatableClass` macro:
+[./test/examples/CWeather/CWeather.puml](./test/examples/CWeather/CWeather.puml)
+
+![](./test/examples/pics/CWeather.png)
+
 ## E#1: Show all Elements
 See, how classes and other elements are mixed on this diagram. That works only
 when internals are not shown. If you want to expose internals, you need to wrap
@@ -60,7 +85,7 @@ purpose (see example from the main page).
 Only element "tempSys" is put on the diagram, but internals are shown.
 If you look at the definition of the "tempSys" model element, you do not see the internals
 defined. They are injected via the "PUMLAInjectChildElements" macro. This tells
-pumla to insert into this element all other elements that call "tempSys" their parent in
+`pumla` to insert into this element all other elements that call "tempSys" their parent in
 the second line of the .puml file. That way, the parent element definition does
 not need to be changed when another child has been created. The children themselves are
 designed for usage in the parent context, so they should not be used without their parent.
