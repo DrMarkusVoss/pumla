@@ -9,7 +9,7 @@
 PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
     PUMLAPutTaggedValues(tempSensorA)
 
-    PUMLAReUsableAssetInternals() {
+    PUMLARUAInternals() {
 
         component getSignal
         component "AD conversion"
@@ -21,7 +21,7 @@ PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") 
 
 PUMLARUAAddTaggedValue("Vendor", "A GmbH")
 
-PUMLAInterface("temp_dC", temp_dC_tempSensorA, tempSensorA, "out")
+PUMLARUAInterface("temp_dC", temp_dC_tempSensorA, "out")
 
 note as tn27
     Temperature Sensor of company A.
@@ -29,7 +29,7 @@ note as tn27
     Celsius.
 end note
 
-PUMLAReUsableAssetDescr(tn27)
+PUMLARUADescr(tn27)
 
 PUMLAReUsableAssetFinalize()
 

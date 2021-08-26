@@ -35,7 +35,7 @@ note as tn
     A class managing weather data.
 end note
 
-PUMLAReUsableAssetDescr(tn)
+PUMLARUADescr(tn)
 
 PUMLAReUsableAssetFinalize()
 

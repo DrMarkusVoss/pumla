@@ -126,6 +126,12 @@ Creates an interface with name and alias that belongs to element referenced by
 the model element and can be `in`, `out`, `inout` or empty which translates to
 a non-directional connections ("--").
 
+### `PUMLARUAInterface( "ifname": string, ifalias : string, $type="":string)`
+Same as `PUMLAInterface(...)` but the element the interface is applied to is 
+automatically the re-usable asset of the current definition (file), so its element
+alias does not need to be explicitly mentioned. So it does only work if previously
+in the same file the `PUMLAReUsableAsset/Class` has been called.
+
 ## Creating Re-usable Relations and Connections
 
 ### `PUMLARelation(startalias : string, endalias : string, "reltype" : string, "reltxt" : string (optional), "relid" : string (optional))`

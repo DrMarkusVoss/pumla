@@ -11,8 +11,14 @@
 
 title Example using an Element Filter
 
+' this is standard PlantUML.
+' Choosing a nice scheme and
+' adopting the background color.
 !$BGCOLOR=LightGrey
 !theme sketchy-outline
+
+' this is PUMLA-specific, the color of tagged value
+' notes
 !$PUMColorTaggedValues = darkgreen
 
 note as note1

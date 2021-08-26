@@ -161,9 +161,9 @@
 !$int_suc = %false()
 !foreach $el in $allelems.elements
     !if ($el.alias == $elemalias)
+        !$int_suc = %true()
         !if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
                 _PUMPutElement($el.path,$el.filename)
-                !$int_suc = %true()
         !endif
     !endif
 !endfor
@@ -617,6 +617,14 @@ interface "$ifname" as $ifalias
 $ifalias $constr $elemalias
 !endif
 !endprocedure
+' ############################################
+' ---------------------------------------------
+' define a re-usable interface for a re-usable
+' asset with the given and put it on
+' the diagram.
+!unquoted procedure PUMLARUAInterface($ifname, $ifalias, $type="")
+PUMLAInterface($ifname, $ifalias, $pum_global_current_rua_alias, $type)
+!endprocedure
 
 ' ############################################
 ' ---------------------------------------------
@@ -879,7 +887,7 @@ class $name_alias $stereotypes
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset description note
-!unquoted procedure PUMLAReUsableAssetDescr($alias_descr)
+!unquoted procedure PUMLARUADescr($alias_descr)
 !global $pum_global_current_rua_descr = $alias_descr
 !if (%not($PUMVarShowDescr))
     remove $alias_descr
@@ -891,7 +899,7 @@ class $name_alias $stereotypes
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset internal items
-!unquoted procedure PUMLAReUsableAssetInternals()
+!unquoted procedure PUMLARUAInternals()
 !$body_internals = $pum_global_current_rua_alias + "_internals"
 !global $pum_global_current_rua_internals = $body_internals
 rectangle "Internals" as $body_internals
@@ -900,7 +908,7 @@ rectangle "Internals" as $body_internals
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset internal items
-!unquoted procedure PUMLAReUsableAssetClassInternals()
+!unquoted procedure PUMLARUAClassInternals()
 !$body_internals = $pum_global_current_rua_alias + "_internals"
 !global $pum_global_current_rua_internals = $body_internals
 rectangle "Internals" as $body_internals

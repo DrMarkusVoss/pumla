@@ -39,7 +39,7 @@ def parseSysArg(sysarg):
             # and fill PUMLA elements list
             for fn in pfls:
                 # pel = PUMLA element
-                (pels, rels, cons) = parsePUMLAFile(fn)
+                (pels, rels, cons, tvs) = parsePUMLAFile(fn)
                 for pel in pels:
                     pelems.append(pel)
 
