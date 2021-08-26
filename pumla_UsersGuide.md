@@ -98,13 +98,13 @@ tbd
 ### `PUMLAFullyInstantiatableClass($classname : string, $stereotypes : string) {...}`
 tbd
 
-### `PUMLAReUsableAssetDescr($alias_descr)`
+### `PUMLARUADescr($alias_descr)`
 tbd
 
-### `PUMLAReUsableAssetInternals() {...}`
+### `PUMLARUAInternals() {...}`
 tbd
 
-### `PUMLAReUsableAssetClassInternals()`
+### `PUMLARUAClassInternals()`
 tbd
 
 ### `PUMLAReUsableAssetFinalize()`
