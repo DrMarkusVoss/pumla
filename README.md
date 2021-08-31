@@ -82,11 +82,12 @@ internal bundled markdown handling activated. That way
 you have fast previews of the `.puml` and markdown files.
 
 ### System Requirements
-- currently `pumla` works only on Unix-like systems like Linux,
- Unix, Raspbian/Raspberry Pi OS and MacOS (I didn't do the
+- currently `pumla` supports only Unix-like systems like Linux,
+ Unix, Raspbian/Raspberry Pi OS and MacOS. I didn't do the
   file paths handling in a way that it works across Windows
-  and Unix platform. It is proven to run on my Macbook (Catalina)
-  with Python 3.8.2  and Raspberry Pi 3 with Python 3.7.3.
+  and Unix platform, as I also do not have a Windows test platform 
+  at hand anymore. It is proven to run on my Macbook (Mojave)
+  with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3.
 
 ### `pumla` Architecture
 The `pumla` Architecture is also documented using `pumla`.

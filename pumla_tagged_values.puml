@@ -36,6 +36,13 @@ end note
 !endif
 !endprocedure
 
+' put the tagged value table into a note
+' to be included in a non-class element
+' for use within a re-usable element definition.
+!unquoted procedure PUMLARUAPutTaggedValues()
+PUMLAPutTaggedValues($pum_global_current_rua_alias)
+!endprocedure
+
 ' put the tagged value table as note to a class
 !unquoted procedure PUMLAPutTaggedValuesAsNoteToElement($elalias)
 !if ($PUMVarShowTaggedValues)
@@ -46,7 +53,3 @@ _TaggedValuesTable($elalias)
 end note
 !endif
 !endprocedure
-
-
-
-

@@ -86,6 +86,7 @@
     !endif
 !endfor
 !endprocedure
+!endprocedure
 
 ' ############################################
 ' ---------------------------------------------
@@ -544,6 +545,7 @@ PUMLAPutElement($elemalias)
 !endif
 !endprocedure
 
+
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable Connection
@@ -870,7 +872,7 @@ remove comp_193242153453236632191729533452
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset
-!unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes)
+!unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes="")
 !global $pum_global_current_rua_alias = $alias
 %set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
 $type "$name" as $alias $stereotypes
@@ -879,7 +881,7 @@ $type "$name" as $alias $stereotypes
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset
-!unquoted procedure PUMLAReUsableClass($name_alias, $stereotypes)
+!unquoted procedure PUMLAReUsableClass($name_alias, $stereotypes="")
 !global $pum_global_current_rua_alias = $name_alias
 class $name_alias $stereotypes
 !endprocedure
@@ -908,10 +910,11 @@ rectangle "Internals" as $body_internals
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset internal items
+' NOT WORKING RIGHT NOW!
 !unquoted procedure PUMLARUAClassInternals()
-!$body_internals = $pum_global_current_rua_alias + "_internals"
-!global $pum_global_current_rua_internals = $body_internals
-rectangle "Internals" as $body_internals
+'!$body_internals = $pum_global_current_rua_alias + "_internals"
+'!global $pum_global_current_rua_internals = $body_internals
+'rectangle "Internals" as $body_internals
 !endprocedure
 
 ' ############################################
@@ -934,17 +937,14 @@ rectangle "Internals" as $body_internals
 !$pum_global_current_rua_descr = ""
 !$pum_global_current_rua_internals = ""
 !$pum_global_instance_adder = ""
-
 !endprocedure
-
-
 
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable class that can be instantiated,
 ' with the instances getting automatically all
 ' class attributes.
-!unquoted procedure PUMLAFullyInstantiatableClass($classname, $stereotypes)
+!unquoted procedure PUMLAFullyInstantiatableClass($classname, $stereotypes="")
 !if ($classname_instancename == "$classname_instancename")
     !$alias = $classname
     !$classname_i = $classname
@@ -978,4 +978,5 @@ PUMLACreateInstanceError($classalias)
 !endif
 %set_variable_value("$classname_instancename", "$classname_instancename")
 !endprocedure
+
 

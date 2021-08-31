@@ -89,29 +89,39 @@ user "API" of `pumla`.
 
 ## Creating Re-usable Elements 
 
-### `PUMLAReUsableAsset($name : string, $alias : string, $type : string, $stereotypes : string) {...}`
-tbd
+### `PUMLAReUsableAsset($name : string, $alias : string, $type : string, $stereotypes : string (optinal)) {...}`
+Creates a re-usable asset (RUA). The asset can be of any PlantUML type, like class, component, node, rectangle, ...
+You can only define one re-usable asset within a file.
 
-### `PUMLAReUsableClass($name_alias : string, $stereotypes : string) {...}`
-tbd
+For classes there are also specialized macros to make use of the special differences between classes and the
+other types. 
 
-### `PUMLAFullyInstantiatableClass($classname : string, $stereotypes : string) {...}`
-tbd
+### `PUMLAReUsableClass($name_alias : string, $stereotypes : string (optional)) {...}`
+Create a re-usable class asset. One special thing here is that name and alias are the same.
+This means you can only use characters for the name that also work for the alias (no whitespace, no special characters).
+You do not need to specify the type as parameter, just the name which acts also as alias and stereotypes if needed.
+
+### `PUMLAFullyInstantiatableClass($classname : string, $stereotypes : string (optional)) {...}`
+Create a special re-usable class asset. If you create a class with this macro, it allows its instances to inherit the
+methods and attributes defined in this class.
 
 ### `PUMLARUADescr($alias_descr)`
-tbd
+Links a description with the given alias to the re-usable asset.
 
 ### `PUMLARUAInternals() {...}`
-tbd
-
-### `PUMLARUAClassInternals()`
-tbd
+Creates an "internals" section within the re-usable asset. The internals can be filtered out with the global variable
+`$PUMVarShowBodyInternals` set to `%false()`. The internals must be defined
+within the brackets `{ ... }`.
 
 ### `PUMLAReUsableAssetFinalize()`
-tbd
+Needs to be called at the end of a file with a re-usable asset description before `@enduml`. This cleans up internal
+global variables and allows multiple re-usable assets to be used, even multiple 
+instances of one re-usable asset.
 
 ### `PUMLAFullInstanceOf($classalias : string, $instalias : string)`
-tbd
+Creates an instance that inherits the internals (methods, attributes) of a class that has been
+created with the `PUMLAFullyInstantiatableClass(...)` macro. If you try to apply this macro
+to a $classalias which has been created in a different way, you will experience errors.
 
 
 ### `PUMLAInstanceOf( model_elem_alias : string, inst_alias : string, inst_name : string (optional))`
@@ -347,7 +357,12 @@ Adds a tag/value pair to the tagged value table of the
 Adds a tag/value pair to the tagged value table of the
  re-usable model element defined in the same file.
 
-### `PUMLAPutTaggedValues()`
+### `PUMLAPutTaggedValues( elemalias : string)`
+Puts the tagged value table enclosed by a rectangle in place.
+
+Requires including `pumla_tagged_values.puml`.
+
+### `PUMLARUAPutTaggedValues( )`
 Puts the tagged value table enclosed by a rectangle in place.
 
 Requires including `pumla_tagged_values.puml`.

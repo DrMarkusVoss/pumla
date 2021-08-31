@@ -1,0 +1,70 @@
+'PUMLAMR
+'PUMLAPARENT: -
+' in the line above, replace the "-" with a
+' parent alias if this es a child element that
+' shall be nested into the parent.
+
+@startuml
+' adopt path if necessary or put the path to pumla
+' into your include path
+!include ./../../pumla_macros.puml
+
+' following include only needed if tagged values
+' are used
+!include ./../../pumla_tagged_values.puml
+
+' add atomic model element definition with
+' internals here, e.g.:
+PUMLAReUsableAsset("Element Name", element_alias, component, "<<block>>") {
+'if the element has tagged values defined above, just uncomment
+'the following line:
+PUMLARUAPutTaggedValues()
+
+' this command defines the section for the internal
+' elements...
+PUMLARUAInternals() {
+' add some internal elements here, like this:
+    [internal element]
+    [another internal element]
+    PUMLAPutElement(tempSensorB)
+
+' "aggregating" its children, meaning others
+' can add internals without changing this definition
+' then.
+' if that kind of aggregation is not used
+' the following line can be deleted
+' (the name in the brackets must of course be adapted
+'  to the alias of the real element)
+    PUMLAInjectChildElements(element_alias)
+}
+
+' putting another internal element from
+' model repo into the internals of this element.
+' this is an alternative to the above method.
+' this just puts one element internally
+    PUMLAPutInternalElement(tempSensorA)
+}
+
+PUMLARUAAddTaggedValue("Vendor", "XY")
+PUMLARUAAddTaggedValue("SecurityClass", "Alpha")
+PUMLARUAAddTaggedValue("Frequency Range", "5 GHz")
+
+'add interface connections here
+' the interface alias should be <interface_name>_<modelelement_alias>
+PUMLARUAInterface("some_interface", some_interface_element_alias, "in")
+
+' add description note to the block here, e.g.
+' the note alias must be unique. If you use this
+' template, make sure to set a unique value
+' every time you use it here as note alias.
+note as n7987473
+    Re-usable element description.
+end note
+
+PUMLARUADescr(n7987473)
+
+' this must be called at the end of a
+' re-usable assat (RUA) model element description.
+PUMLAReUsableAssetFinalize()
+
+@enduml

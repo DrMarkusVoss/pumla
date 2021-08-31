@@ -7,7 +7,7 @@
 
 
 PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
-    PUMLAPutTaggedValues(tempSensorA)
+    PUMLARUAPutTaggedValues()
 
     PUMLARUAInternals() {
 

@@ -5,7 +5,7 @@
 ' shall be nested into the parent.
 
 @startuml
-' adopt path if necesary or put the path to pumla
+' adopt path if necessary or put the path to pumla
 ' into your include path
 !include ./../../pumla_macros.puml
 
@@ -13,28 +13,18 @@
 ' are used
 !include ./../../pumla_tagged_values.puml
 
-' tagged values are optional.
-' if you want do not need tagged values,
-' just delete the following lines:
-!if ($PUMVarShowTaggedValues)
-AddTaggedValue("Vendor", "XY")
-AddTaggedValue("SecurityClass", "Alpha")
-AddTaggedValue("Frequency Range", "5 GHz")
-!endif
-
-!if ($PUMVarShowBody)
 ' add atomic model element definition with
 ' internals here, e.g.:
-rectangle "Temp. Display" <<block>> as displayTemp {
+rectangle "Element Name" <<block>> as element_alias {
 
 'if the element has tagged values defined above, just uncomment
 'the following line:
-PUMLAPutTaggedValues()
+PUMLAPutTaggedValues(element_alias)
 
 !if ($PUMVarShowBodyInternals)
 ' add some internal elements here, like this:
-[display]
-[conversion]
+[internal element]
+[another internal element]
 
 ' "aggregating" its children, meaning others
 ' can add internals without changing this definition
@@ -43,28 +33,27 @@ PUMLAPutTaggedValues()
 ' the following line can be deleted
 ' (the name in the brackets must of course be adapted
 '  to the alias of the real element)
-PUMLAInjectChildElements(displayTemp)
+PUMLAInjectChildElements(element_alias)
 !endif
 
 ' putting another internal element from
-' model repo.
+' model repo into the internals of this element.
 PUMLAPutInternalElement(tempSensorA)
-
 }
-!endif
+
+PUMLAAddTaggedValue(element_alias, "Vendor", "XY")
+PUMLAAddTaggedValue(element_alias, "SecurityClass", "Alpha")
+PUMLAAddTaggedValue(element_alias, "Frequency Range", "5 GHz")
 
 'add interface connections here
 ' the interface alias should be <interface_name>_<modelelement_alias>
-PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
-
+PUMLAInterface("some_interface", some_interface_element_alias, element_alias, "in")
 
 !if ($PUMVarShowDescr)
 'add description note to the block here, e.g.
-note bottom of displayTemp
-    Gets as input a temperature in
-    degree Celsius or Fahrenheit, or both.
+note bottom of element_alias
+    Re-usable element description.
 end note
-
 !endif
 
 @enduml
