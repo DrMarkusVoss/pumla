@@ -18,6 +18,7 @@ class TestPumlaCmdUtils:
     def test_01_findAllPUMLAFiles(self):
         print("test_01_findAllPumlaFiles()")
         expected_result = ['./../examples/tempSys.puml',
+                           './../examples/reusableClass1.puml',
                            './../examples/tempSysInstances.puml',
                            './../examples/tempSensorB/tempSensorB.puml',
                            './../examples/tempSensorB/publicState.puml',
