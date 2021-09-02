@@ -19,7 +19,20 @@
     necessary (but still PlantUML conformant coded) information
     in another PlantUML-conformant and readable representation
     (global variables in JSON format).
+- **Keep the scope of `pumla` to the "re-use" aspect, do not try
+  to extend it for other use cases.**
+  - **Rationale:** Typically, if you try to make a tool to serve
+    a lot of different and more and more purposes, it gets worse 
+    and worse. I try to stick here to the "re-use" use case. Other
+    use cases can then be added by using/including other projects.
 
+  - **Implementation:** E.g. a feature-tree-based variant handling
+    mechanism will not be included in `pumla`. Of course it is 
+    somehow related to "re-use", but not really the systematic re-use
+    of PlantUML description, but it is a very general "re-use"
+    problem. So if I will address that problem, I will setup a separate
+    project for that.
+ 
 ## Context
 
 ![](./01_context/pumla_context.png)
