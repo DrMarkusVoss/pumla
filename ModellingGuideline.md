@@ -70,7 +70,7 @@ We only use PlantUML language in the `pumla` architecture descriptions.
 The `pumla` macros are valid PlantUML code (PlantUML and its preprocessor
 commands). Therefore, using `pumla` macros of course is also valid usage.
 
-###*Rationale*
+### *Rationale*
 That way, we can re-use the `pumla` model elements in each and every PlantUML diagram
 (of course, as long as the `pumla_macros.puml` are included).
 
@@ -80,7 +80,7 @@ model only one element, do not model further other model elements
 or dependencies to other elements. Therefore, do not include other
 model files from here. You should have one file per model element.
 
-###*Rationale*
+### *Rationale*
 When we want to re-use a model element in a diagram, we need to include
 it's *.puml file into our diagram puml file. If another file is included 
 by the model element file of the element we want to have on our
@@ -91,7 +91,7 @@ describing/modelling the elements should be atomic, meaning no other files
 are included. Dependencies of this element to other elements are to be
 modelled in a separate file, therefore.
 
-###*Example*
+### *Example*
 
 Wrong:
 ```PlantUML
@@ -138,7 +138,7 @@ marked with the following first line in the puml file:
 This PlantUML comment line exposes the following PlantUML description as
 a re-usable asset of the model repository.
 
-###*Rationale*
+### *Rationale*
 This explicit marking as a re-usable artefact is needed in order to be
 able to separate your re-usable model from other PlantUML diagram files
 in your repository. Developers might use other diagrams for e.g.
@@ -153,7 +153,7 @@ includes PlantUML compatible language.
 ## Rule: `pumla` files end with ".puml"
 Each valid `pumla` file is a valid PlantUML file, and it shall end with ".puml".
 
-###*Rationale*
+### *Rationale*
 This is used as simplification to scan and parse through the source code repo.
 This restriction is not important for the concept or design, but just simplifies
 parsing and scanning. Therefore, it might be removed later.
@@ -163,21 +163,21 @@ Each `pumla` file should have the name of the alias of the model element it is d
 If in an `pumla` file the model element has no alias, then it should have no whitespaces 
 or special characters in it and therefore the name can and should be used as filename.
 
-###*Rationale*
+### *Rationale*
 Same as previous rule, it simplifies the implementation of the parser and file
 scanner and it makes sense as a naming convention anyway.
 
 ## Rule: No layout adoptions in atomic `pumla` files
 `pumla` files for atomic model elements should not contain layout, coloring and skin definitions.
 
-###*Rationale*
+### *Rationale*
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
 should not be included in the atomic model element definitions.
 
 ## Rule: Do not use implicit PlantUML type definitions for re-usable model element definitions
 Instead, explicitly specify the type of the element by writing it down.
 
-###*Rationale*
+### *Rationale*
 PlantUML allows a lot of shortcuts for creating elements, where the type is implictly derived based on assumptions.
 Example:
 ```PlantUML
