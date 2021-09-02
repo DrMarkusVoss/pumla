@@ -1,0 +1,26 @@
+@startuml
+!include modelrepo_json.puml
+!include ./../../pumla_macros.puml
+
+title Example showing a pumla error note
+
+' if you want to mix classes and other elements
+' on a diagram you need to do this:
+allowmixing
+
+' put some class elements on to the diagram
+
+' the following here exist:
+
+PUMLAPutElement("CWeather")
+
+PUMLAPutElement("w3")
+
+PUMLAPutElement(w4)
+
+' but the following element with alias "w5"
+' does not exist, therefore you get a
+' pumla error note (red note in the diagram)
+PUMLAPutElement(w5)
+
+@enduml

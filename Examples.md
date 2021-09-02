@@ -284,3 +284,22 @@ Example diagram:
 
 ![](./test/examples/pics/elementFilterExample.png)
 
+
+### E#16: Error Notes
+Error notes appear if you try to access (e.g. put) an element of the pumla
+model repository that does not exist. In that case, pumla puts a red note
+onto the diagram explaining the error and naming the alias of the element 
+that you tried to access and that does not exist.
+
+See the following example, where we put 3 elements onto the diagram that 
+exist, and then try to put another element with alias `w5` onto the diagram,
+and that element does not exist. That is why you get the red error note.
+
+
+[./test/examples/errorNotesExample.puml](./test/examples/errorNotesExample.puml)
+
+Example diagram:
+
+![](./test/examples/pics/errorNotesExample.png)
+
+
