@@ -17,23 +17,29 @@ cases using `pumla`, like e.g. variant management.
 
 ## Some Principles
 ### Static vs. Dynamic 
-Modelling elements first the static aspect with the atomic 
-definitions.
+When modelling the elements, first model the static aspect with the atomic 
+definition of the element. Then, in separate files, add the dynamic aspects.
+Put internal dynamic behaviour descriptions of an element into its
+internals definition.
 
-Instances in separate files, that may contain more than one
+Define instances in separate files. Instance files may contain more than one
 instance definition for convenience, also that brings with it
 some drawbacks: when putting an instance from a file with more
 instances defined in it onto a diagram, then all the instances
 appear on the diagram. You have to remove the unwanted instances
 then by hand (via PlantUML "remove" command).
 
-Dynamic aspects tbd
+PlantUML has limitations regarding the mixing of static and dynamic
+elements. `pumla` works around that with macros that encapsulate the 
+dynamic aspects into notes so that they can be mixed with or embedded
+in static elements. Of course, for pure dynamic diagrams this is not
+needed, and also pure dynamic element definitions can be re-used.
 
 ### Relations vs. Connections
 Connections are typed dataflows. Therefore, a connection is only valid
 between two interfaces. 
 
-Relations are between two elements. also a general information flow can be a
+Relations are between two elements. Also a general information flow can be a
 relation, but as relation it is not concretely defined with what information
 flows in detail as specified by an interface.
 
@@ -60,8 +66,8 @@ a re-usable element.
 ## Lightweight Variant Management
 - use tagged values (also on relations and connections)
 - create variants by creating a diagram with a filter on the respective
-  tagged values.
-- Example
+  tagged values of the elements
+- see the examples for filtering and tagged values on the examples page
 
 # Rules
 
