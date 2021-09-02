@@ -302,4 +302,11 @@ Example diagram:
 
 ![](./test/examples/pics/errorNotesExample.png)
 
+Error notes are only created if you directly try to access an element that 
+you name by its alias. They will not occur e.g. if you call the macro 
+`PUMLAPutAllClasses()` and there are no classes in the repository. In that 
+case, it is not an error. You may call this macro to explore the content of 
+the repository, and if no classes are in there then it is no error. And then
+showing just nothing is also no error, but a correct behaviour.
+
 
