@@ -728,7 +728,8 @@ remove class193242153453236632191729533452
 ' set the internal element filter with values
 ' TBD
 !unquoted procedure PUMLASetElementFilterOutTag($tag)
-'!$pum_global_element_filter_out_stereotype = $stereotype
+!$pum_global_element_filter_out_tv_tag = $tag
+!$pum_global_element_filter_out_tv_value = ""
 !endprocedure
 
 ' ############################################
@@ -736,7 +737,8 @@ remove class193242153453236632191729533452
 ' set the internal element filter with values
 ' TBD
 !unquoted procedure PUMLASetElementFilterInTag($tag)
-'!$pum_global_element_filter_out_stereotype = $stereotype
+!$pum_global_element_filter_in_tv_tag = $tag
+!$pum_global_element_filter_in_tv_value = ""
 !endprocedure
 
 ' TBD: "AddElementFilter..." to add more than one
@@ -747,7 +749,8 @@ remove class193242153453236632191729533452
 ' set the internal element filter with values
 ' TBD
 !unquoted procedure PUMLASetElementFilterOutTagValue($tag, $value)
-'!$pum_global_element_filter_out_stereotype = $stereotype
+!$pum_global_element_filter_out_tv_tag = $tag
+!$pum_global_element_filter_out_tv_value = $value
 !endprocedure
 
 ' ############################################
@@ -755,7 +758,8 @@ remove class193242153453236632191729533452
 ' set the internal element filter with values
 ' TBD
 !unquoted procedure PUMLASetElementFilterInTagValue($tag, $value)
-'!$pum_global_element_filter_out_stereotype = $stereotype
+!$pum_global_element_filter_in_tv_tag = $tag
+!$pum_global_element_filter_in_tv_value = $value
 !endprocedure
 
 ' ############################################
