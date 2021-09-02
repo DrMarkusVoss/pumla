@@ -44,36 +44,9 @@
 
 !$pum_global_error_cnt = 1
 
-' --------------------------------------------
-' put an element referenced by path and filename
-' by including its file
-'
-!unquoted procedure _PUMPutElement($folderpath,$filename)
-!include $allelems.modelrepopath/%substr($folderpath,2)/$filename
-!endprocedure
-
-' --------------------------------------------
-' put an element referenced by path and filename
-' by including its file using Filters
-'
-!unquoted procedure _PUMPutElementFiltered($folderpath,$filename)
-!if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
-    !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
-!endif
-!endprocedure
-
-' --------------------------------------------
-' put an element referenced by path and filename
-' by including its file
-'
-!unquoted function _PUMElement($folderpath,$filename)
-!$retval = "!include " + $allelems.modelrepopath + "/" + %substr($folderpath,2) + $filename
-!return $retval
-!endfunction
+' # _put elem proc
 
 ' ---------------------------------------------
-
-
 ' ############################################
 ' ---------------------------------------------
 ' inject child elements for the referenced
@@ -871,6 +844,41 @@ remove comp_193242153453236632191729533452
 
 ' ############################################
 ' ---------------------------------------------
+' set the internal element filter with values
+' TBD
+!unquoted procedure PUMLASetElementFilterOutTag($tag)
+'!$pum_global_element_filter_out_stereotype = $stereotype
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+' TBD
+!unquoted procedure PUMLASetElementFilterInTag($tag)
+'!$pum_global_element_filter_out_stereotype = $stereotype
+!endprocedure
+
+' TBD: "AddElementFilter..." to add more than one
+'      attribute to the filter
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+' TBD
+!unquoted procedure PUMLASetElementFilterOutTagValue($tag, $value)
+'!$pum_global_element_filter_out_stereotype = $stereotype
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' set the internal element filter with values
+' TBD
+!unquoted procedure PUMLASetElementFilterInTagValue($tag, $value)
+'!$pum_global_element_filter_out_stereotype = $stereotype
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
 ' define re-usable asset
 !unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes="")
 !global $pum_global_current_rua_alias = $alias
@@ -889,12 +897,14 @@ class $name_alias $stereotypes
 ' ############################################
 ' ---------------------------------------------
 ' define re-usable asset description note
-!unquoted procedure PUMLARUADescr($alias_descr)
+' $pos can be: r (right), l (left), u (up), d (down)
+' default for $pos is d.
+!unquoted procedure PUMLARUADescr($alias_descr, $pos="d")
 !global $pum_global_current_rua_descr = $alias_descr
 !if (%not($PUMVarShowDescr))
     remove $alias_descr
 !else
-    $pum_global_current_rua_alias .d. $alias_descr
+    $pum_global_current_rua_alias .$pos. $alias_descr
 !endif
 !endprocedure
 

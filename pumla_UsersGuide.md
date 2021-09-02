@@ -105,8 +105,11 @@ You do not need to specify the type as parameter, just the name which acts also 
 Create a special re-usable class asset. If you create a class with this macro, it allows its instances to inherit the
 methods and attributes defined in this class.
 
-### `PUMLARUADescr($alias_descr)`
-Links a description with the given alias to the re-usable asset.
+### `PUMLARUADescr($alias_descr, $pos (optional))`
+Links a description with the given alias to the re-usable asset. With `$pos` you can define the
+position of the note in relation to the re-usable asset. It can be "u" for "up" (above the element), 
+"l" for "left" (of the element), "r" for "right" (of the element) and "d" for "down" (below the
+element). If $pos is not set, the default is "d".
 
 ### `PUMLARUAInternals() {...}`
 Creates an "internals" section within the re-usable asset. The internals can be filtered out with the global variable
