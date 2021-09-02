@@ -56,3 +56,141 @@ PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alia
 !endif
 !endprocedure
 
+' ############################################
+' ---------------------------------------------
+' check filter type conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutElementTypeShow($elem)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_type != "")
+    !if ($elem.type == $pum_global_element_filter_out_type)
+        !$internal_retval = %true()
+    !endif
+!endif
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter stereotype conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutElementStereotypeShow($elem)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_stereotype != "")
+    !foreach $st in $elem.stereotypes
+    !if ($st == $pum_global_element_filter_out_stereotype)
+        !$internal_retval = %true()
+    !endif
+    !endfor
+!endif
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter conditions for the given element.
+' return false if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutShowElement($elem)
+!local $internal_retval = %true()
+
+!if ((_PUMLACheckFilterOutElementTypeShow($elem)) || (_PUMLACheckFilterOutElementStereotypeShow($elem)))
+    !$internal_retval = %false()
+!endif
+
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter conditions for the given element.
+' return false if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInShowElement($elem)
+!local $internal_retval = %true()
+!if ($pum_global_element_filter_in_type != "")
+    !if ($elem.type != $pum_global_element_filter_in_type)
+        !$internal_retval = %false()
+    !endif
+!endif
+!return $internal_retval
+!endfunction
+
+!unquoted function _PUMIsStatic($elemalias)
+!$retval = %true()
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !if ($el.kind == "dynamic")
+            !$retval = %false()
+        !endif
+    !endif
+!endfor
+!return $retval
+!endfunction
+
+
+
+' ############################################
+' ---------------------------------------------
+' create an instance of an element that exists
+' in the json model repo. Internal txt creation.
+!unquoted function _PUMLACreateInstanceOf($elemalias, $instalias, $instname)
+!$retval = "ERROR"
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !if ($PUMVarShowInstantiationRel)
+            !$iname = $instname
+        !else
+            !$iname = $instname + " (" + $el.name + ")"
+        !endif
+        $elt = "ERROR - no valid type"
+        !if (($el.type  == "-") || ($el.type  == ""))
+            !$elt = "rectangle"
+        !else
+            !$elt = $el.type
+        !endif
+        !$sts = ""
+        !foreach $st in $el.stereotypes
+            !$sts = $sts + " <<" + $st + ">>"
+        !endfor
+        !$retval = $elt + ' "' + $iname + '" as ' + $instalias + ' <<instance>> ' + $sts
+    !endif
+!endfor
+!return $retval
+!endfunction
+
+
+' ############################################
+' ---------------------------------------------
+' default footer with pumla git repo reference.
+' can be overwritten or turned off with the
+' global variable.
+!if ($PUMVarShowPUMLAFooterNote)
+center footer created with help of **pumla**: https://github.com/DrMarkusVoss/pumla
+!endif
+
+
+' ############################################
+' ---------------------------------------------
+' add a tagged value to to element referenced by its alias
+!unquoted procedure PUMLATestNewTVs($elemalias)
+!$notestr = "-"
+!foreach $el in $allelems.elements
+    !if ($el.alias == $elemalias)
+        !foreach $tv in $el.taggedvalues
+            !$notestr = $notestr + " \n" + "tag=" + $tv.tag + "; values = " + $tv.values
+        !endfor
+        note as n987
+            $notestr
+        end note
+    !endif
+!endfor
+!endprocedure
+
+
