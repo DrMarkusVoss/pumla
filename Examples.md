@@ -119,12 +119,20 @@ definition of a re-usable class:
 [./test/examples/CWeather/CWeather.puml](./test/examples/CWeather/CWeather.puml)
 
 See here, how instances of the class element are created, which is similar to the
-creation of other instances:
+creation of other instances. But with this mechanisms the instances do not get the
+methods and attributes from its parent class:
 
 [./test/examples/CWeather/WeatherInstances.puml](./test/examples/CWeather/WeatherInstances.puml)
 
+As CWeather is modelled as "FullyInstantiatableClass", you can also create instances
+that inherit the methods and attributes of CWeather, see the definition of these
+instances here:
+
+[./test/examples/CWeather/FurtherWeatherInstances.puml](./test/examples/CWeather/FurtherWeatherInstances.puml)
+
 See here how the class, the class instances and another non-class-diagram-compatible
-element are mixed on one diagram:
+element are mixed on one diagram. You also see the difference between the two different
+instantiation mechanisms.
 
 [./test/examples/classesExample1.puml](./test/examples/classesExample1.puml)
 

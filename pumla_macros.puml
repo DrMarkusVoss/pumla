@@ -368,7 +368,7 @@ PUMLARemoveAllElementsOfStereotype("instance")
         !if ($PUMVarShowInstantiationRel)
             !$iname = $instname
         !else
-            !$iname = $instname + "::" + $el.name
+            !$iname = $instname + " (" + $el.name + ")"
         !endif
         $elt = "ERROR - no valid type"
         !if (($el.type  == "-") || ($el.type  == ""))
