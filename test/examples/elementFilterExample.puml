@@ -43,10 +43,15 @@ PUMLASetAsComponentDiagram()
 ' appears, it is of type "node". All other elements that
 ' are put on are filtered out, because they are "component"s.
 'PUMLASetElementFilterOutType("component")
-PUMLASetElementFilterOutType("node")
+'PUMLASetElementFilterOutType("node")
 'PUMLASetElementFilterInType("node")
 
-PUMLASetElementFilterOutStereotype("external System")
+'PUMLASetElementFilterInTagValue("SysVariant", "")
+'PUMLASetElementFilterOutTag("SysVariant")
+
+'PUMLASetElementFilterInType("node")
+
+'PUMLASetElementFilterOutStereotype("external System")
 ' put the following elements on the diagram:
 
 ' type = "component"

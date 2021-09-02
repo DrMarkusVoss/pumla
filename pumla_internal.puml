@@ -90,19 +90,30 @@ PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alia
 !return $internal_retval
 !endfunction
 
+
 ' ############################################
 ' ---------------------------------------------
-' check filter conditions for the given element.
-' return false if the element shall not be
+' check filter tag/value conditions for the given element.
+' return true if the element shall not be
 ' shown but filtered out.
 '
-!unquoted function _PUMLACheckFilterOutShowElement($elem)
-!local $internal_retval = %true()
-
-!if ((_PUMLACheckFilterOutElementTypeShow($elem)) || (_PUMLACheckFilterOutElementStereotypeShow($elem)))
-    !$internal_retval = %false()
+!unquoted function _PUMLACheckFilterOutElementTagValueShow($elem)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_tv_tag != "")
+    !foreach $tagvalue in $elem.taggedvalues
+        !if ($tagvalue.tag == $pum_global_element_filter_out_tv_tag)
+            !if ($pum_global_element_filter_out_tv_value == "")
+                !$internal_retval = %true()
+            !else
+                !foreach $tvv in $tagvalue.values
+                    !if ($tvv == $pum_global_element_filter_out_tv_value)
+                        !$internal_retval = %true()
+                    !endif
+                !endfor
+            !endif
+        !endif
+    !endfor
 !endif
-
 !return $internal_retval
 !endfunction
 
@@ -112,13 +123,103 @@ PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alia
 ' return false if the element shall not be
 ' shown but filtered out.
 '
-!unquoted function _PUMLACheckFilterInShowElement($elem)
+!unquoted function _PUMLACheckFilterOutShowElement($elem)
 !local $internal_retval = %true()
+
+!if ((_PUMLACheckFilterOutElementTypeShow($elem)) || (_PUMLACheckFilterOutElementStereotypeShow($elem)) || (_PUMLACheckFilterOutElementTagValueShow($elem)))
+    !$internal_retval = %false()
+!endif
+
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter type conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInElementTypeShow($elem)
+!local $internal_retval = %false()
 !if ($pum_global_element_filter_in_type != "")
     !if ($elem.type != $pum_global_element_filter_in_type)
-        !$internal_retval = %false()
+        !$internal_retval = %true()
     !endif
 !endif
+!return $internal_retval
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' check filter stereotype conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInElementStereotypeShow($elem)
+!local $internal_retval = %true()
+!if ($pum_global_element_filter_in_stereotype != "")
+    !foreach $st in $elem.stereotypes
+    !if ($st == $pum_global_element_filter_in_stereotype)
+        !$internal_retval = %false()
+    !endif
+    !endfor
+!else
+    !$internal_retval = %false()
+!endif
+!return $internal_retval
+!endfunction
+
+
+' ############################################
+' ---------------------------------------------
+' check filter tag/value conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInElementTagValueShow($elem)
+!local $internal_retval = %true()
+!if ($pum_global_element_filter_in_tv_tag != "")
+    !foreach $tagvalue in $elem.taggedvalues
+        !if ($tagvalue.tag == $pum_global_element_filter_in_tv_tag)
+            !if ($pum_global_element_filter_in_tv_value == "")
+                !$internal_retval = %false()
+            !else
+                !foreach $tvv in $tagvalue.values
+                    !if ($tvv == $pum_global_element_filter_in_tv_value)
+                        !$internal_retval = %false()
+                    !endif
+                !endfor
+            !endif
+        !endif
+    !endfor
+!else
+    !$internal_retval = %false()
+!endif
+!return $internal_retval
+!endfunction
+
+
+
+
+' ############################################
+' ---------------------------------------------
+' check filter conditions for the given element.
+' return false if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterInShowElement($elem)
+!local $internal_retval = %true()
+
+!if ((_PUMLACheckFilterInElementTypeShow($elem)) || (_PUMLACheckFilterInElementStereotypeShow($elem)) || (_PUMLACheckFilterInElementTagValueShow($elem)))
+    !$internal_retval = %false()
+!endif
+
+
+'!if ($pum_global_element_filter_in_type != "")
+'    !if ($elem.type != $pum_global_element_filter_in_type)
+'        !$internal_retval = %false()
+'    !endif
+'!endif
 !return $internal_retval
 !endfunction
 

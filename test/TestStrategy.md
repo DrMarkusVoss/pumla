@@ -28,3 +28,9 @@ So for each new feature that gets implemented:
   is, compare it with the already rendered pictures stored in test/examples/pics.
   If the new feature leads to changed diagrams compared to the ones in test/examples/pics
   then save an updated version of the picture in the folder, if the content is ok.
+
+The examples under test/examples are not only used for testing the different features, 
+but also part of the pumla documentation. The examples are explained and referenced
+from the Examples.md in the main folder. That way, these are not only feature tests, but
+are re-used as examples for explaining how to use the different pumla features. So we
+have a nice synergy here.

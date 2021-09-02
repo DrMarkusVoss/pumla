@@ -101,3 +101,8 @@ Here is a first rough overview:
 See here:
 
 [Link to pumla wiki with roadmap](https://github.com/DrMarkusVoss/pumla/wiki)
+
+### `pumla` Test Strategy
+Here is a rough description of the test strategy:
+
+[Link to pumla test strategy document](./test/TestStrategy.md)

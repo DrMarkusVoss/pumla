@@ -32,8 +32,11 @@
     of PlantUML description, but it is a very general "re-use"
     problem. So if I will address that problem, I will setup a separate
     project for that.
- 
+  
 ## Context
+Re-use of model elements that are described using PlantUML.
+
+See the following image to get an idea of the big picture:
 
 ![](./01_context/pumla_context.png)
 
