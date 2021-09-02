@@ -406,10 +406,29 @@ tbd
 ### `PUMLASetElementFilterInStereotype($stereotype : string)`
 tbd
 
+### `PUMLASetElementFilterOutTag($tag : string)`
+tbd
+
+### `PUMLASetElementFilterInTag($tag : string)`
+tbd
+
+### `PUMLASetElementFilterOutTagValue($tag : string, $value : string)`
+tbd
+
+### `PUMLASetElementFilterInTagValue($tag : string, $value : string)`
+tbd
+
+### `PUMLAResetFilters()`
+Reset all filter values to default, which is "" or %false().
+
 ## Working around some PlantUML limitations
 
 ### `PUMLASetAsComponentDiagram()`
 tbd
+
+### `PUMLASetAsClassDiagram()`
+tbd
+
 ---
 
 ## Global Variables

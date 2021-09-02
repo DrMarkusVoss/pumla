@@ -60,9 +60,6 @@
 !endprocedure
 
 
-
-
-
 ' ############################################
 ' ---------------------------------------------
 ' put the referenced element onto the diagram
@@ -153,7 +150,7 @@ allowmixing
 !unquoted procedure PUMLAPutAllClasses()
 !foreach $el in $allelems.elements
     !if ($el.type == "class")
-        _PUMPutElement($el.path,$el.filename)
+        _PUMPutElementFiltered($el.path,$el.filename)
     !endif
 !endfor
 !endprocedure
@@ -166,7 +163,7 @@ allowmixing
 !if ($el.kind == "static")
     !foreach $s in $el.stereotypes
         !if ($s == $st)
-            _PUMPutElement($el.path,$el.filename)
+            _PUMPutElementFiltered($el.path,$el.filename)
         !endif
     !endfor
 !endif
@@ -726,7 +723,6 @@ remove class193242153453236632191729533452
 ' ############################################
 ' ---------------------------------------------
 ' set the internal element filter with values
-' TBD
 !unquoted procedure PUMLASetElementFilterOutTag($tag)
 !$pum_global_element_filter_out_tv_tag = $tag
 !$pum_global_element_filter_out_tv_value = ""
@@ -735,19 +731,14 @@ remove class193242153453236632191729533452
 ' ############################################
 ' ---------------------------------------------
 ' set the internal element filter with values
-' TBD
 !unquoted procedure PUMLASetElementFilterInTag($tag)
 !$pum_global_element_filter_in_tv_tag = $tag
 !$pum_global_element_filter_in_tv_value = ""
 !endprocedure
 
-' TBD: "AddElementFilter..." to add more than one
-'      attribute to the filter
-
 ' ############################################
 ' ---------------------------------------------
 ' set the internal element filter with values
-' TBD
 !unquoted procedure PUMLASetElementFilterOutTagValue($tag, $value)
 !$pum_global_element_filter_out_tv_tag = $tag
 !$pum_global_element_filter_out_tv_value = $value
@@ -756,7 +747,6 @@ remove class193242153453236632191729533452
 ' ############################################
 ' ---------------------------------------------
 ' set the internal element filter with values
-' TBD
 !unquoted procedure PUMLASetElementFilterInTagValue($tag, $value)
 !$pum_global_element_filter_in_tv_tag = $tag
 !$pum_global_element_filter_in_tv_value = $value
@@ -874,4 +864,32 @@ PUMLACreateInstanceError($classalias)
 %set_variable_value("$classname_instancename", "$classname_instancename")
 !endprocedure
 
+
+' ############################################
+' ---------------------------------------------
+' reset all filter values to their default
+' ("" or %false())
+'
+!unquoted procedure PUMLAResetFilters()
+!$pum_global_element_filter_out_type = ""
+!$pum_global_element_filter_in_type = ""
+
+!$pum_global_element_filter_out_stereotype = ""
+!$pum_global_element_filter_in_stereotype = ""
+
+!$pum_global_element_filter_out_instclass = ""
+!$pum_global_element_filter_in_instclass = ""
+
+!$pum_global_element_filter_out_tv_tag = ""
+!$pum_global_element_filter_in_tv_tag = ""
+
+!$pum_global_element_filter_out_tv_value = ""
+!$pum_global_element_filter_in_tv_value = ""
+
+!$pum_global_element_filter_out_static = %false()
+!$pum_global_element_filter_in_static = %false()
+
+!$pum_global_element_filter_out_dynamic = %false()
+!$pum_global_element_filter_in_dynamic = %false()
+!endprocedure
 

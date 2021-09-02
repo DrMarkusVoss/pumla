@@ -273,6 +273,7 @@ Example diagram:
 
 
 ### E#15: Using Diagram Filters
+### E#15.1: Filter-Out Elements
 See the following PlantUML code where two diagram filters are
 applied to elements of type "node" and elements of stereotype
 "external System". Therefore, out of the 4 elements put onto
@@ -283,6 +284,17 @@ the diagram only 2 are shown, the other 2 are filtered out:
 Example diagram:
 
 ![](./test/examples/pics/elementFilterExample.png)
+
+### E#15.2: Filter-In Elements
+The following example uses Filter-In macros with tag/value filtering.
+Furthermore in this example, the filter values are changes in the mid
+of the diagram.
+
+[./test/examples/advancedFilterExample.puml](./test/examples/advancedFilterExample.puml)
+
+See the note in the diagram for details:
+
+![](./test/examples/pics/advancedFilterExample.png)
 
 
 ### E#16: Error Notes

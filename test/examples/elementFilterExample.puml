@@ -38,12 +38,13 @@ end note
 ' diagram where we have these circles as interfaces.
 PUMLASetAsComponentDiagram()
 
-' sets the element filter for this diagram to "component".
-' that is why on this diagram only "Temperature System"
-' appears, it is of type "node". All other elements that
-' are put on are filtered out, because they are "component"s.
+' sets the element filter out for this diagram to "node".
+' that is why on this diagram only "Temp. Converter"
+' and "Temperature Sensor B (dC)"
+' appears, as it is of type "component". All other elements that
+' are put on are filtered out, because they are "node"s.
 'PUMLASetElementFilterOutType("component")
-'PUMLASetElementFilterOutType("node")
+PUMLASetElementFilterOutType("node")
 'PUMLASetElementFilterInType("node")
 
 'PUMLASetElementFilterInTagValue("SysVariant", "")
@@ -55,15 +56,19 @@ PUMLASetAsComponentDiagram()
 ' put the following elements on the diagram:
 
 ' type = "component"
+' stereotype = "block", "external System"
 PUMLAPutElement(tempSensorB)
 
 ' type = "component"
+' stereotype = "block"
 PUMLAPutElement(tempConverter)
 
 ' type = "node"
+' stereotype = "block"
 PUMLAPutElement(tempSys)
 
 ' type = "component"
+' stereotype = "block"
 PUMLAPutElement(tempSensorBdC)
 
 @enduml
