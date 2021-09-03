@@ -7,10 +7,11 @@
 
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowDescr = %false()
 ' even with tagged values not shown on a diagram,
 ' we can reference the elements by their
 ' tags and values.
-!$PUMVarShowTaggedValues = %false()
+'!$PUMVarShowTaggedValues = %false()
 !$PUMVarShowTaggedValues = %true()
 
 title Example using tagged values on relations

@@ -62,6 +62,21 @@ For more examples showing off the functionality and magic of `pumla` please...
 
 [follow this link to more examples](./Examples.md)
 
+### Installation
+Clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
+system:
+
+`git clone https://github.com/DrMarkusVoss/pumla.git`
+
+Add the main folder of the pumla repo to your path and make the file "pumla.py"
+executable, e.g. by typing this in your terminal (you must be in the 
+main pumla folder for this):
+
+`chmod 777 pumla.py`
+
+That way, it should be possible to call `pumla.py update` from
+every position in your file system.
+
 ### User's Guide
 You can directly dive into the details by taking a look
 into the User's Guide:
@@ -88,6 +103,8 @@ you have fast previews of the `.puml` and markdown files.
   and Unix platform, as I also do not have a Windows test platform 
   at hand anymore. It is proven to run on my Macbook (Mojave)
   with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3.
+- tested with PlantUML library v1.2021.7 (via the PyCharm Plugin 
+  "PlantUML integration" version 5.5.1)
 
 ### `pumla` Architecture
 The `pumla` Architecture is also documented using `pumla`.
