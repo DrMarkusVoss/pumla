@@ -53,7 +53,8 @@
 !unquoted procedure PUMLAInjectChildElements($parentalias)
 !foreach $el in $allelems.elements
     !if ($el.parent == $parentalias)
-        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+        _PUMPutElementFiltered($el.path, $el.filename)
+        '!include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
     !endif
 !endfor
 !endprocedure
@@ -89,19 +90,20 @@ PUMLAPutElementErrorCheck($int_suc, $elemalias)
         !$nn = "NN_" + $fn
         note as $nn #white
         {{
-        !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+        _PUMPutElementFiltered($folderpath, $filename)
+        '!include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
         }}
         end note
         %set_variable_value($fn, "%true()")
     !endif
 !else
-    !include $allelems.modelrepopath/%substr($folderpath,2)/$filename
+    _PUMPutElementFiltered($folderpath, $filename)
+    '!include $allelems.modelrepopath/%substr($folderpath,2)/$filename
 !endif
 
 !endprocedure
 
 ' ############################################
-
 ' ---------------------------------------------
 ' put all static elements within the model repo onto
 ' the diagram. Mixing of class & component elements
@@ -115,13 +117,14 @@ PUMLAPutElementErrorCheck($int_suc, $elemalias)
             !$nn = "NN_" + $fn
             note as $nn #white
             {{
-            !include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
+            _PUMPutElementFiltered($el.path, $el.filename)
+            '!include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
             }}
             end note
             %set_variable_value($fn, "%true()")
         !endif
     !else
-        _PUMPutElement($el.path,$el.filename)
+        _PUMPutElementFiltered($el.path,$el.filename)
     !endif
 !endif
 !endfor
@@ -639,7 +642,7 @@ rectangle "$felname" as $elemalias
 !if ($PUMVarShowBodyInternalsDyn)
 note bottom of $elemalias #white
 {{
-    _PUMPutElement($felpath, $felfn)
+    _PUMPutElementFiltered($felpath, $felfn)
 }}
 end note
 !endif
@@ -854,7 +857,9 @@ PUMLAReUsableAsset($classname_i, $alias, class, $stereotyps)
 '!$classname_instancename = $instalias
 !foreach $el in $allelems.elements
     !if ($el.alias==$classalias)
-        !includesub $allelems.modelrepopath/%substr($el.path,2)/$el.filename!BODY
+        !if ((_PUMLACheckFilterOutShowElement($el)) && (_PUMLACheckFilterInShowElement($el)))
+            !includesub $allelems.modelrepopath/%substr($el.path,2)/$el.filename!BODY
+        !endif
         !$int_suc = %true()
     !endif
 !endfor

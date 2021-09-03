@@ -22,6 +22,8 @@ PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")
 
 PUMLAInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
+PUMLAInterface("temp_dF", temp_dF_displayTemp, displayTemp, "in")
+
 !if ($PUMVarShowDescr)
 note bottom of displayTemp
     Gets as input a temperature in

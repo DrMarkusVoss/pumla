@@ -2,19 +2,18 @@
 !include modelrepo_json.puml
 !include ./../../pumla_macros.puml
 !$PUMVarShowDescr = %false()
-!$PUMVarShowTaggedValues = %false()
+!$PUMVarShowTaggedValues = %true()
 !$PUMVarShowInstantiationRel = %true()
 
 title nice diagram
 
+'PUMLASetElementFilterInTagValue("Vendor", "C Ltd.")
 
-PUMLAPutElement("MyNewClass1")
+'PUMLAPutAllElementsWithTagValue("Vendor", "C Ltd.")
 
-PUMLAPutElement("CWeather")
-PUMLAPutElement("w1")
-PUMLAPutRelationsForElement("CWeather")
+'PUMLAPutAllElementsWithTagValue("Vendor", "B Inc.")
 
-
+PUMLAPutElement(tempSensorA)
 
 
 @enduml
