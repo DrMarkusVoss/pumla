@@ -16,11 +16,11 @@ PUMLAReUsableClass("anotherClass", "<<Python>>")
         +my_public_getMethod() : int
 }
 
-!if ($PUMVarShowDescr)
-    note bottom of anotherClass
-        Another class for the examples.
-    end note
-!endif
-PUMLAReUsableAssetFinalize()
+note as ndescr_anotherClass
+    Another class for the examples.
+end note
 
+PUMLARUADescr(ndescr_anotherClass)
+
+PUMLAReUsableAssetFinalize()
 @enduml

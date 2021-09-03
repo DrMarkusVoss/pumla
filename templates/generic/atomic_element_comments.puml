@@ -22,10 +22,11 @@ PUMLARUAPutTaggedValues()
 
 ' this command defines the section for the internal
 ' elements...
+!if ($PUMVarShowBodyInternals)
 PUMLARUAInternals() {
 ' add some internal elements here, like this:
-    [internal element]
-    [another internal element]
+    component internal_element
+    component "another internal element"
     PUMLAPutElement(tempSensorB)
 
 ' "aggregating" its children, meaning others
@@ -37,6 +38,7 @@ PUMLARUAInternals() {
 '  to the alias of the real element)
     PUMLAInjectChildElements(element_alias)
 }
+!endif
 
 ' putting another internal element from
 ' model repo into the internals of this element.

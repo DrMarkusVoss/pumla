@@ -31,11 +31,11 @@ PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
 PUMLAPutTaggedValuesAsNoteToElement(CWeather)
 
-note as tn
+note as ndescr_CWeather
     A class managing weather data.
 end note
 
-PUMLARUADescr(tn)
+PUMLARUADescr(ndescr_CWeather)
 
 PUMLAReUsableAssetFinalize()
 

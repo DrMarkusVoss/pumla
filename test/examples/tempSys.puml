@@ -3,26 +3,27 @@
 !include ./../../pumla_macros.puml
 !include ./../../pumla_tagged_values.puml
 
-!if ($PUMVarShowBody)
-    node "Temperature System" <<block>> as tempSys {
-        PUMLAPutTaggedValues(tempSys)
+PUMLAReUsableAsset("Temperature System", tempSys, node, "<<block>>") {
+
+        PUMLARUAPutTaggedValues()
+
         !if ($PUMVarShowBodyInternals)
+        PUMLARUAInternals() {
             PUMLAInjectChildElements(tempSys)
+        }
         !endif
+}
 
-    }
-!endif
+PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
-PUMLAAddTaggedValue(tempSys, "Vendor", "C Ltd.")
+PUMLARUAInterface("internet", internet_tempSys, "inout")
 
+note as ndescr_tempSys
+    a temperature measurement and
+    displaying system
+end note
 
-PUMLAInterface("internet", internet_tempSys, tempSys, "inout")
+PUMLARUADescr(ndescr_tempSys)
 
-!if ($PUMVarShowDescr)
-    note bottom of tempSys
-        a temperature measurement and
-        displaying system
-    end note
-!endif
-
+PUMLAReUsableAssetFinalize()
 @enduml

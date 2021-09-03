@@ -6,7 +6,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "0.6.5"
+__version__ = "0.7"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -16,7 +16,7 @@ from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updateP
 
 def identifyMe():
     """ information about the executed command """
-    print("pumla v0.6 - by Dr. Markus Voss")
+    print("pumla v0.7 - by Dr. Markus Voss")
 
 def parseSysArg(sysarg):
     """ parses the given command line arguments """

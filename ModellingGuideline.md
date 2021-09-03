@@ -180,6 +180,18 @@ scanner and it makes sense as a naming convention anyway.
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things
 should not be included in the atomic model element definitions.
 
+## Rule: Do not use the shortcut definition for components, e.g. `[comp]` in pumla files.
+The shortcut for the definition of a component like e.g. `[comp]` shall not be used
+in pumla files, e.g. for the definition of internal elements. Use the explicit
+definition like `component comp` instead.
+
+### *Rationale*
+It doesn't work. Somehow the shortcut is handled differently by PlantUML and leads to 
+not understandable errors in some PlantUML diagrams. As the pumla files contain elements
+that shall be re-used in different contexts, the shortcut definition might work in your
+current examples and the asset definition itself, but might cause trouble in
+future re-use scenarios or diagrams that will be created later. 
+
 ## Rule: Do not use implicit PlantUML type definitions for re-usable model element definitions
 Instead, explicitly specify the type of the element by writing it down.
 

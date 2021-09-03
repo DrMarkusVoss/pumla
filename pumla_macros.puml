@@ -36,6 +36,7 @@
 !$pum_global_element_filter_in_dynamic = %false()
 
 !$pum_global_current_rua_alias = ""
+!$pum_global_previous_rua_alias = ""
 !$pum_global_current_rua_internals = ""
 !$pum_global_current_rua_tvnote = ""
 !$pum_global_current_rua_descr = ""
@@ -494,7 +495,7 @@ PUMLAInterface($ifname, $ifalias, $pum_global_current_rua_alias, $type)
 ' DEPRECATION: DO NOT USE THIS FUNCTION ANYMORE
 ' USE INSTEAD: PUMLAInterface
 !unquoted procedure PUMLAPutInterface($ifname, $ifalias, $elemalias, $type="")
-PUMLAInterface($ifname, $ifalias, $elemalias, $type="")
+PUMLAInterface($ifname, $ifalias, $elemalias, $type)
 !endprocedure
 
 ' ############################################
@@ -759,6 +760,7 @@ remove class193242153453236632191729533452
 ' ---------------------------------------------
 ' define re-usable asset
 !unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
 !global $pum_global_current_rua_alias = $alias
 %set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
 $type "$name" as $alias $stereotypes
@@ -768,6 +770,7 @@ $type "$name" as $alias $stereotypes
 ' ---------------------------------------------
 ' define re-usable asset
 !unquoted procedure PUMLAReUsableClass($name_alias, $stereotypes="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
 !global $pum_global_current_rua_alias = $name_alias
 class $name_alias $stereotypes
 !endprocedure
@@ -820,7 +823,7 @@ rectangle "Internals" as $body_internals
     !$ints = $pum_global_current_rua_internals
     $tvnote .[hidden]d. $ints
 !endif
-!$pum_global_current_rua_alias = ""
+!global $pum_global_current_rua_alias = $pum_global_previous_rua_alias
 !$pum_global_current_rua_tvnote = ""
 !$pum_global_current_rua_descr = ""
 !$pum_global_current_rua_internals = ""

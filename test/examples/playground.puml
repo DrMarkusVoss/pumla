@@ -13,7 +13,7 @@ title nice diagram
 
 'PUMLAPutAllElementsWithTagValue("Vendor", "B Inc.")
 
-PUMLAPutElement(tempSensorA)
+PUMLAPutAllElements()
 
 
 @enduml

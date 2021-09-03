@@ -38,7 +38,6 @@ PUMLAPutElement("w1")
 PUMLAPutElement("w3")
 
 PUMLAPutElement("w4")
-'PUMLAPutElement(w5)
 
 ' make the instantiation relations visible
 ' make sure that the corresponding global

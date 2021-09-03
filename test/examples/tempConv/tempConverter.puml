@@ -5,29 +5,31 @@
 !include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
-!if ($PUMVarShowBody)
-component "Temp. Converter" <<block>>  as tempConverter {
+PUMLAReUsableAsset("Temp. Converter", tempConverter, component, "<<block>>") {
 
-    PUMLAPutTaggedValues(tempConverter)
+    PUMLARUAPutTaggedValues()
 
     !if ($PUMVarShowBodyInternals)
-    [conversionModule]
-    [formulaLib]
+    PUMLARUAInternals() {
+        component conversionModule
+        component formulaLib
+    }
     !endif
 }
-!endif
 
-PUMLAAddTaggedValue(tempConverter, "Vendor", "C Ltd.")
 
-PUMLAInterface("temp_dC", temp_dC_tempConverter, tempConverter, "out")
-PUMLAInterface("temp_dF", temp_dF_tempConverter, tempConverter, "in")
+PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
-!if ($PUMVarShowDescr)
-note bottom of tempConverter
+PUMLARUAInterface("temp_dC", temp_dC_tempConverter, "out")
+PUMLARUAInterface("temp_dF", temp_dF_tempConverter, "in")
+
+note as ndescr_tempConverter
     Perform a conversion from
     degree Fahrenheit to degree
     Celsius.
 end note
-!endif
 
+PUMLARUADescr(ndescr_tempConverter)
+
+PUMLAReUsableAssetFinalize()
 @enduml

@@ -52,7 +52,7 @@ PUMLASetElementFilterOutType("node")
 
 'PUMLASetElementFilterInType("node")
 
-'PUMLASetElementFilterOutStereotype("external System")
+PUMLASetElementFilterOutStereotype("external System")
 ' put the following elements on the diagram:
 
 ' type = "component"

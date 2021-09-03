@@ -9,14 +9,16 @@ PUMLAReUsableAsset("Element Name", element_alias, component, "<<block>>") {
 
 PUMLARUAPutTaggedValues()
 
+!if ($PUMVarShowBodyInternals)
 PUMLARUAInternals() {
 
-    [internal element]
-    [another internal element]
+    component internal_element
+    component "another internal element"
     PUMLAPutElement(tempSensorB)
 
     PUMLAInjectChildElements(element_alias)
 }
+!endif
 
     PUMLAPutInternalElement(tempSensorA)
 }

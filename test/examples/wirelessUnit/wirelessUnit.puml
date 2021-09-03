@@ -4,33 +4,30 @@
 !include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
-!if ($PUMVarShowBody)
+PUMLAReUsableAsset("Wireless Unit", wirelessUnit, rectangle, "<<block>> <<external System>>") {
 
-rectangle "Wireless Unit" <<block>> <<external System>>  as wirelessUnit {
-
-    PUMLAPutTaggedValues(wirelessUnit)
+    PUMLARUAPutTaggedValues()
 
     !if ($PUMVarShowBodyInternals)
-    [transmitter]
-    [receiver]
+    PUMLARUAInternals() {
+        component transmitter
+        component receiver
+    }
     !endif
-
 }
-!endif
 
-PUMLAAddTaggedValue(wirelessUnit, "Vendor", "XY")
-PUMLAAddTaggedValue(wirelessUnit, "SecurityClass", "Alpha")
-PUMLAAddTaggedValue(wirelessUnit, "Frequency Range", "5 GHz")
+PUMLARUAAddTaggedValue("Vendor", "XY")
+PUMLARUAAddTaggedValue("SecurityClass", "Alpha")
+PUMLARUAAddTaggedValue("Frequency Range", "5 GHz")
 
-PUMLAInterface("internet", internet_wirelessUnit, wirelessUnit, "inout")
+PUMLARUAInterface("internet", internet_wirelessUnit, "inout")
 
-!if ($PUMVarShowDescr)
-
-note bottom of wirelessUnit
+note as ndescr_wirelessUnit
     provide a wireless connection
     to the internet.
 end note
 
-!endif
+PUMLARUADescr(ndescr_wirelessUnit)
 
+PUMLAReUsableAssetFinalize()
 @enduml

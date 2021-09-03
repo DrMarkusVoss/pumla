@@ -401,22 +401,32 @@ shall be deactivated for further lines, set type to the empty string,
 "".
 
 ### `PUMLASetElementFilterOutStereotype($stereotype : string)`
-tbd
+Filter-out all elements of the given stereotype on the following macro
+calls that put elements on the diagram.
 
 ### `PUMLASetElementFilterInStereotype($stereotype : string)`
-tbd
+Filter-in all elements of the given stereotype on the following macro
+calls that put elements on the diagram. All elements of other
+stereotype are filtered out.
 
 ### `PUMLASetElementFilterOutTag($tag : string)`
-tbd
+Filter-out all elements that have the given tag (not caring about its
+value) on the following macro calls that put elements on the diagram.
 
 ### `PUMLASetElementFilterInTag($tag : string)`
-tbd
+Filter-in all elements that have the given tag (not caring about its
+value) on the following macro calls that put elements on the diagram.
+All elements without the given tag will be filtered out.
 
 ### `PUMLASetElementFilterOutTagValue($tag : string, $value : string)`
-tbd
+Filter-out all elements that have the given tag/value combination
+on the following macro calls that put elements on the diagram.
+
 
 ### `PUMLASetElementFilterInTagValue($tag : string, $value : string)`
-tbd
+Filter-in all elements that have the given tag/value combination
+on the following macro calls that put elements on the diagram.
+All elements without the given tag/value combination will be filtered out.
 
 ### `PUMLAResetFilters()`
 Reset all filter values to default, which is "" or %false().
@@ -424,10 +434,15 @@ Reset all filter values to default, which is "" or %false().
 ## Working around some PlantUML limitations
 
 ### `PUMLASetAsComponentDiagram()`
-tbd
+Workaround some "flexible behaviour" of PlantUML. You can call this
+at the beginning of a diagram in order to state it clearly as component
+diagram. Therefore, when putting classes on the diagram you will get
+PlantUML errors (unless you use "allowmixing", which brings along other
+downsides). This prevents PlantUML from automatically deciding upon the
+first element which kind of diagram you have.
 
 ### `PUMLASetAsClassDiagram()`
-tbd
+Same as above, but makes the diagram a class diagram.
 
 ---
 

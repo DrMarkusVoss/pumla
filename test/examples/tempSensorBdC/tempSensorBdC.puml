@@ -5,21 +5,19 @@
 !include ./../../../pumla_tagged_values.puml
 !include ./../modelrepo_json.puml
 
-!if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
-component "Temperature Sensor B (dC)" <<block>> as tempSensorBdC {
-    PUMLAPutTaggedValues(tempSensorBdC)
-    ' the elements put here should have no or
-    ' no other parent
+PUMLAReUsableAsset("Temperature Sensor B (dC)", tempSensorBdC, component, "<<block>>") {
+    PUMLARUAPutTaggedValues()
 
     ' if you do not need the relation you could also do it with this:
     PUMLAPutInternalElement(tempSensorB)
     PUMLAPutInternalElement(tempConverter)
 }
-!endif
 
-PUMLAAddTaggedValue(tempSensorBdC, "Vendor", "C Ltd.")
+' define an interface and connect it
+PUMLARUAInterface("temp_dC", temp_dC_tempSensorBdC, "out")
 
+PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
 ' define usage relation towards the internal elements
 PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")
@@ -32,23 +30,20 @@ PUMLAAddTaggedValue("tempSensorBdCRel#2", "SysVariant", "B2")
 PUMLAAddTaggedValue("tempSensorBdCRel#3", "SysVariant", "B3")
 PUMLAAddTaggedValue("tempSensorBdCRel#4", "SysVariant", "B3")
 
-
-' define an interface and connect it
-PUMLAInterface("temp_dC", temp_dC_tempSensorBdC, tempSensorBdC, "out")
-
 ' define connection between the internal elements interface and
 ' this element
 PUMLAConnection(temp_dC_tempConverter, "--", temp_dC_tempSensorBdC, "", "C#2")
 ' define connection between both internal elements (their interfaces)
 PUMLAConnection(temp_dF_tempSensorB, "--", temp_dF_tempConverter, "", "C#3")
 
-!if ($PUMVarShowDescr)
-note bottom of tempSensorBdC
+note as ndescr_tempSensorBdC
     Temperature Sensor of company B
     combined with the converter to
     provide the temperature in degree
     Celsius.
 end note
-!endif
 
+PUMLARUADescr(ndescr_tempSensorBdC)
+
+PUMLAReUsableAssetFinalize()
 @enduml
