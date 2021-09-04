@@ -4,33 +4,28 @@
 !include ./../../pumla_macros.puml
 !include ./../../pumla_tagged_values.puml
 
-!if ($PUMVarShowTaggedValues)
-    AddTaggedValue("Vendor", "XY")
-    AddTaggedValue("SecurityClass", "Alpha")
-    AddTaggedValue("Frequency Range", "5 GHz")
-!endif
-
-
-rectangle "Temp. Display" <<block>> as displayTemp {
+rectangle "Element Name" <<block>> as element_alias {
     PUMLAPutTaggedValues()
 
     !if ($PUMVarShowBodyInternals)
-        [display]
-        [conversion]
-        PUMLAInjectChildElements(displayTemp)
+        component display
+        component conversion
+        PUMLAInjectChildElements(element_alias)
     !endif
 
     PUMLAPutInternalElement(tempSensorA)
 }
 
+PUMLAAddTaggedValue(element_alias, "Vendor", "XY")
+PUMLAAddTaggedValue(element_alias, "SecurityClass", "Alpha")
+PUMLAAddTaggedValue(element_alias, "Frequency Range", "5 GHz")
 
 ' the interface alias should be <interface_name>_<modelelement_alias>
-PUMLAPutInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
+PUMLAInterface("some_interface", some_interface_element_alias, element_alias, "in")
 
 !if ($PUMVarShowDescr)
-    note bottom of displayTemp
-        Gets as input a temperature in
-        degree Celsius or Fahrenheit, or both.
+    note bottom of element_alias
+        Description of the re-usable element.
     end note
 !endif
 
