@@ -1,7 +1,7 @@
 # pumla
 ![](./arch/pumla_logo.png)
 
-`pumla` = PlantUML Manager, v0.7
+`pumla` = PlantUML Manager, v0.8
 
 ### Idea
 It seems that PlantUML is quite liked by a lot of software developers. With PlantUML they do
