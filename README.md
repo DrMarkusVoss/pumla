@@ -1,4 +1,6 @@
 # pumla
+![](./arch/pumla_logo.png)
+
 `pumla` = PlantUML Manager, v0.7
 
 ### Idea
@@ -63,10 +65,15 @@ For more examples showing off the functionality and magic of `pumla` please...
 [follow this link to more examples](./Examples.md)
 
 ### Installation
-Clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
+- to get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
 `git clone https://github.com/DrMarkusVoss/pumla.git`
+
+- to get a complete and consistent set of pumla python tool, macros, examples and guidelines, download
+  the latest release here:
+
+    [pumla Releases - click here](https://github.com/DrMarkusVoss/pumla/releases)
 
 Add the main folder of the pumla repo to your path and make the file "pumla.py"
 executable, e.g. by typing this in your terminal (you must be in the 
