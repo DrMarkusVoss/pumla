@@ -75,6 +75,11 @@ system:
 
     [pumla Releases - click here](https://github.com/DrMarkusVoss/pumla/releases)
 
+In order to render the ".puml" files to diagrams, you need an installation of PlantUML, or
+you use a corresponding Plugin in your Development Environment (e.g. PlantUML integration
+for PyCharm). pumla is not triggering the render process itself, you have to do it
+manually if you have a separate PlantUML installation or the IDE Plugin will do it for you.
+
 Add the main folder of the pumla repo to your path and make the file "pumla.py"
 executable, e.g. by typing this in your terminal (you must be in the 
 main pumla folder for this):
