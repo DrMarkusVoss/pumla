@@ -1,181 +1,110 @@
-import sys
-import os
+import pytest
+from pathlib import Path
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
 from pumla.control.cmd_utils import *
 
-class TestPumlaCmdUtils:
-    def __init__(self):
-        self.oldpath = os.path.abspath(os.curdir)
-        mypath = os.path.dirname(__file__)
-        if (not(mypath == "")):
-            os.chdir(mypath)
-        pass
 
-    def printSeparation(self):
-        print("---------------------------------")
-
-    def test_01_findAllPUMLAFiles(self):
-        print("test_01_findAllPumlaFiles()")
-        expected_result = ['./../examples/tempSys.puml',
-                           './../examples/reusableClass1.puml',
-                           './../examples/tempSysInstances.puml',
-                           './../examples/tempSensorB/tempSensorB.puml',
-                           './../examples/tempSensorB/publicState.puml',
-                           './../examples/anotherClass/anotherClass.puml',
-                           './../examples/CWeather/CWeather.puml',
-                           './../examples/CWeather/FurtherWeatherInstances.puml',
-                           './../examples/CWeather/WeatherInstances.puml',
-                           './../examples/wirelessUnit/wirelessUnit.puml',
-                           './../examples/connections/connections_tempSys_Var_B.puml',
-                           './../examples/connections/connections_tempSys_Var_A.puml',
-                           './../examples/connections/connections_tempSys_Var_B2.puml',
-                           './../examples/tempSensorA/tempSensorA.puml',
-                           './../examples/tempSensorA/internalSequence.puml',
-                           './../examples/tempSensorBdC/tempSensorBdC.puml',
-                           './../examples/displayTemp/displayTemp.puml',
-                           './../examples/tempConv/tempConverter.puml']
-
-        result = findAllPUMLAFiles("./../examples")
-        #print(result)
-        if (result == expected_result):
-            print("test passed!")
-        else:
-            print("test failed!")
-        self.printSeparation()
-
-    def test_02_parsePUMLAFile(self):
-        print("test_02_parsePUMLAFile()")
-        filename = "./../examples/tempConv/tempConverter.puml"
-        exp_result_name = "Temp. Converter"
-        exp_result_alias = "tempConverter"
-        exp_result_parent = "tempSys"
-        exp_result_filename = "tempConverter.puml"
-
-        test_passed = True
-
-        pels, rels, cons, tvs = parsePUMLAFile(filename)
-        result_elem = pels[0]
-
-        if (not(result_elem.name == exp_result_name)):
-            test_passed = False
-
-        if (not(result_elem.alias == exp_result_alias)):
-            test_passed = False
-
-        if (not(result_elem.parent == exp_result_parent)):
-            test_passed = False
-
-        if (not(result_elem.filename == exp_result_filename)):
-            test_passed = False
-
-        if (test_passed):
-            print("test passed!")
-        else:
-            print("test failed!")
-        self.printSeparation()
+@pytest.fixture
+def examples_path():
+    return Path(__file__).parent.parent / "examples"
 
 
-    def test_03_findStereoTypesInLine(self):
-        print("test_03_findStereoTypesInLine()")
-        test_passed = False
-        line = 'rectangle "huhu" <<block>> <<component>><<external System>> as hu {'
-        expected_result = ['block', 'component', 'external System']
-        result = findStereoTypesInLine(line)
-        #print(result)
-        if (result == expected_result):
-            test_passed = True
-        else:
-            test_passed = False
+def test_01_findAllPUMLAFiles(examples_path):
+    expected_result = sorted(
+        [
+            examples_path / "tempSys.puml",
+            examples_path / "reusableClass1.puml",
+            examples_path / "tempSysInstances.puml",
+            examples_path / "tempSensorB/tempSensorB.puml",
+            examples_path / "tempSensorB/publicState.puml",
+            examples_path / "anotherClass/anotherClass.puml",
+            examples_path / "CWeather/CWeather.puml",
+            examples_path / "CWeather/FurtherWeatherInstances.puml",
+            examples_path / "CWeather/WeatherInstances.puml",
+            examples_path / "wirelessUnit/wirelessUnit.puml",
+            examples_path / "connections/connections_tempSys_Var_B.puml",
+            examples_path / "connections/connections_tempSys_Var_A.puml",
+            examples_path / "connections/connections_tempSys_Var_B2.puml",
+            examples_path / "tempSensorA/tempSensorA.puml",
+            examples_path / "tempSensorA/internalSequence.puml",
+            examples_path / "tempSensorBdC/tempSensorBdC.puml",
+            examples_path / "displayTemp/displayTemp.puml",
+            examples_path / "tempConv/tempConverter.puml",
+        ]
+    )
 
-        if (test_passed):
-            print("test passed!")
-        else:
-            print("test failed!")
-        self.printSeparation()
+    result = findAllPUMLAFiles(str(examples_path))
+    result = sorted(map(Path, result))
 
-    def getAliasFromFileContent(self, line):
-        global alias
-        alias = None
-
-        gd = {"alias" : alias}
-        alias_code = line.strip("'").strip(" ")
-        #print("ac = " + alias_code)
-        # will fill the alias variable with content from file.
-        exec(alias_code, gd)
-
-        #print(gd["alias"])
-
-        return gd["alias"]
-
-    def getExpectedResultFromFileContent(self, line):
-        global expected_result
-        expected_result = None
-        exp_res_code = line.strip("'").strip(" ")
-        erd = {"expected_result": expected_result}
-        # will fill the expected result variable with content from file.
-        exec(exp_res_code, erd)
-        #print("er code = " + exp_res_code)
-        #print(erd["expected_result"])
-
-        return erd["expected_result"]
-
-    def test_04_findElementNameAndTypeInText(self):
-        print("test_04_findElementNameAndTypeInText()")
-
-        test_04_pathname = "./test_files_04"
-        for files in os.walk(test_04_pathname):
-            for f in files[2]:
-                # make sure not to test the README.md
-                if (".puml" in f):
-                    fn = test_04_pathname + "/" + f.strip(".")
-                    print("Test file = " + fn)
-                    file = open(fn)
-                    text = file.read()
-                    file.close()
-
-                    all_lines = text.split("\n")
-                    # first line will contains the expected result
-                    alias = self.getAliasFromFileContent(all_lines[0])
-                    # second line will contain the expected result
-                    expected_result = self.getExpectedResultFromFileContent(all_lines[1])
-                    lines = all_lines[2:]
-                    result = findElementNameAndTypeInText(lines, alias)
-
-                    if (result == expected_result):
-                        test_passed = True
-                    else:
-                        test_passed = False
-                    if (test_passed):
-                        print("test passed!")
-                    else:
-                        print("test failed!")
-                        print(result)
-                        print(expected_result)
-                    self.printSeparation()
+    assert result == expected_result
 
 
+def test_02_parsePUMLAFile(examples_path):
+    filename = examples_path / "tempConv/tempConverter.puml"
+    exp_result_name = "Temp. Converter"
+    exp_result_alias = "tempConverter"
+    exp_result_parent = "tempSys"
+    exp_result_filename = "tempConverter.puml"
 
-    def backToOldPath(self):
-        os.chdir(self.oldpath)
+    pels, rels, cons, tvs = parsePUMLAFile(str(filename))
+    result_elem = pels[0]
 
-    def cleanup(self):
-        self.backToOldPath()
+    assert result_elem.name == exp_result_name
 
-    def executeTests(self):
-        self.test_01_findAllPUMLAFiles()
-        self.test_02_parsePUMLAFile()
-        self.test_03_findStereoTypesInLine()
-        self.test_04_findElementNameAndTypeInText()
+    assert result_elem.alias == exp_result_alias
 
-        # needs to be at the end of this method
-        self.cleanup()
+    assert result_elem.parent == exp_result_parent
+
+    assert result_elem.filename == exp_result_filename
 
 
-def getTestClass():
-    return TestPumlaCmdUtils
+def test_03_findStereoTypesInLine():
+    line = 'rectangle "huhu" <<block>> <<component>><<external System>> as hu {'
+    expected_result = ["block", "component", "external System"]
+    result = findStereoTypesInLine(line)
 
-if __name__ == "__main__":
-    tc = TestPumlaCmdUtils()
-    tc.executeTests()
+    assert result == expected_result
 
+
+def getAliasFromFileContent(line):
+    global alias
+    alias = None
+
+    gd = {"alias": alias}
+    alias_code = line.strip("'").strip(" ")
+    # print("ac = " + alias_code)
+    # will fill the alias variable with content from file.
+    exec(alias_code, gd)
+
+    # print(gd["alias"])
+
+    return gd["alias"]
+
+
+def getExpectedResultFromFileContent(line):
+    global expected_result
+    expected_result = None
+    exp_res_code = line.strip("'").strip(" ")
+    erd = {"expected_result": expected_result}
+    # will fill the expected result variable with content from file.
+    exec(exp_res_code, erd)
+    # print("er code = " + exp_res_code)
+    # print(erd["expected_result"])
+
+    return erd["expected_result"]
+
+
+def test_04_findElementNameAndTypeInText():
+    test_04_pathname = Path(__file__).parent / "test_files_04"
+    for fn in sorted(test_04_pathname.glob("*.puml")):
+        print(f"Test file = {fn}")
+        all_lines = fn.read_text().splitlines(False)
+
+        # first line will contains the expected result
+        alias = getAliasFromFileContent(all_lines[0])
+        # second line will contain the expected result
+        expected_result = getExpectedResultFromFileContent(all_lines[1])
+        lines = all_lines[2:]
+        result = findElementNameAndTypeInText(lines, alias)
+
+        assert result == expected_result
