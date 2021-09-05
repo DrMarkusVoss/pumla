@@ -1,41 +1,6 @@
-[tool.poetry]
-name = "pumla"
-version = "0.8.0"
-description = "Command Line Tool for the PlantUML extension to enable architecture element re-usability."
-authors = ["Dr. Markus Voss (private person)"]
-license = "GPL-3.0-only"
-readme = "README.md"
-repository = "https://github.com/DrMarkusVoss/pumla"
-homepage = "https://github.com/DrMarkusVoss/pumla"
-documentation = "https://github.com/DrMarkusVoss/pumla"
-classifiers = [
-    "Intended Audience :: Developers",
-    "Natural Language :: English",
-    "Environment :: Console",
-    "License :: OSI Approved :: GPL License",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-    "Topic :: Utilities",
-]
-
-[tool.poetry.dependencies]
-python = ">=3.8.0,<4.0"
-setuptools = {version = "*", optional = true}
-
-[tool.poetry.dev-dependencies]
-mypy = "0.910"
-pylint = "2.10.2"
-
-[tool.poetry.scripts]
-pumla = "pumla.main:main"
-
 [build-system]
-requires = ["setuptools>=40.1.0", "poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [tool.mypy]
 python_version = 3.8

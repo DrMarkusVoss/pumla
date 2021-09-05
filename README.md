@@ -68,7 +68,11 @@ For more examples showing off the functionality and magic of `pumla` please...
 - to get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
-`git clone https://github.com/DrMarkusVoss/pumla.git`
+```
+git clone https://github.com/DrMarkusVoss/pumla.git
+cd pumla
+pip install .
+```
 
 - to get a complete and consistent set of pumla python tool, macros, examples and guidelines, download
   the latest release here:
