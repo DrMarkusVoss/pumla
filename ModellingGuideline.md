@@ -26,8 +26,8 @@ Define instances in separate files. Instance files may contain more than one
 instance definition for convenience, also that brings with it
 some drawbacks: when putting an instance from a file with more
 instances defined in it onto a diagram, then all the instances
-appear on the diagram. You have to remove the unwanted instances
-then by hand (via PlantUML "remove" command).
+appear on the diagram. You then have to remove the unwanted instances
+by hand (via PlantUML "remove" command).
 
 PlantUML has limitations regarding the mixing of static and dynamic
 elements. `pumla` works around that with macros that encapsulate the 
@@ -166,14 +166,14 @@ parsing and scanning. Therefore, it might be removed later.
 
 ## Rule: Each `pumla` file should have the name of the alias of the model element.
 Each `pumla` file should have the name of the alias of the model element it is describing.
-If in an `pumla` file the model element has no alias, then it should have no whitespaces 
+If in a `pumla` file the model element has no alias, then it should have no whitespaces 
 or special characters in it and therefore the name can and should be used as filename.
 
 ### *Rationale*
 Same as previous rule, it simplifies the implementation of the parser and file
 scanner and it makes sense as a naming convention anyway.
 
-## Rule: No layout adoptions in atomic `pumla` files
+## Rule: No layout adaptations in atomic `pumla` files
 `pumla` files for atomic model elements should not contain layout, coloring and skin definitions.
 
 ### *Rationale*
@@ -225,7 +225,7 @@ hello ..> huhu
 Then you can also exchange the names or the arrows without the diagram changing its character
 and without having the elements "huhu" and "hello" switch their type. Instead you might get 
 a PlantUML error, because mixing elemts like activities and classes might not be allowed.
-And for pumla this is much easier to parse this element definition. So in order not to 
+And for pumla it is much easier to parse this element definition. So in order not to 
 rewrite the complete PlantUML parser, this is a mandatory rule for pumla files. For 
 re-usable element definitions, the "save every character"-use-case might also not be so 
 relevant, because in that use-case I guess you prefer clarity and explicity.

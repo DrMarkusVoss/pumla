@@ -18,7 +18,7 @@ scale 0.7
 !$PUMVarShowTaggedValues = %true()
 !$PUMVarShowImplicitRels = %true()
 
-title Show a system configuration by combining elements from the model epository
+title Show a system configuration by combining elements from the model repository
 
 ' put all "block" elements onto the diagram.
 ' you could also put each element with a single

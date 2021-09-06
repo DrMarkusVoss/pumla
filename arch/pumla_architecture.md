@@ -16,8 +16,8 @@
     other extension was not sufficient for the re-use Use Case,
     therefore, an additional python command line tool was needed,
     but it does not introduce a new language but just gathers 
-    necessary (but still PlantUML conformant coded) information
-    in another PlantUML-conformant and readable representation
+    necessary (but still PlantUML conforming coded) information
+    in another PlantUML-conforming and readable representation
     (global variables in JSON format).
 - **Keep the scope of `pumla` to the "re-use" aspect, do not try
   to extend it for other use cases.**
