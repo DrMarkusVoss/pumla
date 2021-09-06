@@ -1,5 +1,5 @@
-' alias = "otherAbstractClass"
-' expected_result = ("otherAbstractClass", "abstract class", ["C++"])
+' glob_alias = "otherAbstractClass"
+' glob_expected_result = ("otherAbstractClass", "abstract class", ["C++"])
 'PUMLAMR
 @startuml
 '!include ./../../../pumla_macros.puml

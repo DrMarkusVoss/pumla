@@ -1,5 +1,5 @@
-' alias = "HelloMyFriend"
-' expected_result = ("hello my friend", "component", ["block", "weird"])
+' glob_alias = "HelloMyFriend"
+' glob_expected_result = ("hello my friend", "component", ["block", "weird"])
 @startuml
 
 component "hello my friend" <<block>> <<weird>> as HelloMyFriend

@@ -7,10 +7,12 @@ from pumla.control.cmd_utils import *
 
 @pytest.fixture
 def examples_path():
+    """get the path to the examples for the tests."""
     return Path(__file__).parent.parent / "examples"
 
 
 def test_01_findAllPUMLAFiles(examples_path):
+    """test the method: findAllPUMLAFiles(...)"""
     expected_result = sorted(
         [
             examples_path / "tempSys.puml",
@@ -33,7 +35,6 @@ def test_01_findAllPUMLAFiles(examples_path):
             examples_path / "tempConv/tempConverter.puml",
         ]
     )
-
     result = findAllPUMLAFiles(str(examples_path))
     result = sorted(map(Path, result))
 
@@ -41,6 +42,7 @@ def test_01_findAllPUMLAFiles(examples_path):
 
 
 def test_02_parsePUMLAFile(examples_path):
+    """test the method: parsePUMLAFile(...)"""
     filename = examples_path / "tempConv/tempConverter.puml"
     exp_result_name = "Temp. Converter"
     exp_result_alias = "tempConverter"
@@ -60,6 +62,7 @@ def test_02_parsePUMLAFile(examples_path):
 
 
 def test_03_findStereoTypesInLine():
+    """test the method: findStereoTypesInLine(...)"""
     line = 'rectangle "huhu" <<block>> <<component>><<external System>> as hu {'
     expected_result = ["block", "component", "external System"]
     result = findStereoTypesInLine(line)
@@ -68,10 +71,10 @@ def test_03_findStereoTypesInLine():
 
 
 def getAliasFromFileContent(line):
-    global alias
-    alias = None
+    global glob_alias
+    glob_alias = None
 
-    gd = {"alias": alias}
+    gd = {"glob_alias": glob_alias}
     alias_code = line.strip("'").strip(" ")
     # print("ac = " + alias_code)
     # will fill the alias variable with content from file.
@@ -79,20 +82,20 @@ def getAliasFromFileContent(line):
 
     # print(gd["alias"])
 
-    return gd["alias"]
+    return gd["glob_alias"]
 
 
 def getExpectedResultFromFileContent(line):
-    global expected_result
-    expected_result = None
+    global glob_expected_result
+    glob_expected_result = None
     exp_res_code = line.strip("'").strip(" ")
-    erd = {"expected_result": expected_result}
+    erd = {"glob_expected_result": glob_expected_result}
     # will fill the expected result variable with content from file.
     exec(exp_res_code, erd)
     # print("er code = " + exp_res_code)
     # print(erd["expected_result"])
 
-    return erd["expected_result"]
+    return erd["glob_expected_result"]
 
 
 def test_04_findElementNameAndTypeInText():

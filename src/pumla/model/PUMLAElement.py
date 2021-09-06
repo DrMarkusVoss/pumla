@@ -1,4 +1,4 @@
-
+"""Class describing a model element."""
 class PUMLAElement:
     """ class describing an atomic PUMLA model element """
 
@@ -11,7 +11,7 @@ class PUMLAElement:
         self.filename = "-"
         self.path = "-"
         self.stereotypes = []
-        self.isInstance = False
+        self.is_instance = False
         self.instance_class_alias = "-"
         # can be "static" or "dynamic"
         self.kind = "-"
@@ -29,7 +29,7 @@ class PUMLAElement:
         return self.kind
 
     def setInstance(self):
-        self.isInstance = True
+        self.is_instance = True
 
     def setInstanceClassAlias(self, ic):
         self.instance_class_alias = ic
@@ -97,7 +97,7 @@ class PUMLAElement:
 
     def addTaggedValue(self, tag, value):
         """add a tagged value."""
-        if (tag in self.tagged_values):
+        if tag in self.tagged_values:
             self.tagged_values[tag].append(value)
         else:
             self.tagged_values[tag] = [value]
@@ -112,7 +112,7 @@ class PUMLAElement:
         print("alias: " + self.alias)
         print("type: " + self.type)
         sts = "-"
-        if (len(self.stereotypes) > 0):
+        if len(self.stereotypes) > 0:
             sts = "" + self.stereotypes[0]
             for i in range(len(self.stereotypes)-1):
                 sts = sts + ", " + self.stereotypes[i+1]

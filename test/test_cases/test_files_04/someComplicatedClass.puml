@@ -1,5 +1,5 @@
-' alias = "someComplicatedClass"
-' expected_result = ("someComplicatedClass", "class", ["Python"])
+' glob_alias = "someComplicatedClass"
+' glob_expected_result = ("someComplicatedClass", "class", ["Python"])
 'PUMLAMR
 @startuml
 '!include ./../../../pumla_macros.puml
