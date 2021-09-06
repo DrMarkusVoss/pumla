@@ -1,13 +1,13 @@
-!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "pumla preprocessor macros", "alias": "pppm", "type": "rectangle", "stereotypes": ["PlantUML", "preprocessor macros"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./", "filename": "pumla_macros_arch.puml"},
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla_restructure/pumla", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "pumla preprocessor macros", "alias": "pppm", "type": "rectangle", "stereotypes": ["PlantUML", "preprocessor macros"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./", "filename": "pumla_macros_arch.puml"},
  {"name": "pumla", "alias": "pumla", "type": "", "stereotypes": ["application", "python"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "pumla.puml"},
- {"name": "model", "alias": "pumlaModel", "type": "rectangle", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./modules/", "filename": "pumlaModel.puml"},
- {"name": "control", "alias": "pumlaControl", "type": "rectangle", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./modules/", "filename": "pumlaControl.puml"},
- {"name": "PUMLARelation.py", "alias": "pumlaRelation", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./modules/model/", "filename": "pumlaRelation.puml"},
- {"name": "PUMLAElement.py", "alias": "pumlaElement", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./modules/model/", "filename": "pumlaElement.puml"},
- {"name": "PUMLAConnection.py", "alias": "pumlaConnection", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./modules/model/", "filename": "pumlaConnection.puml"},
- {"name": "cmd_utils.py", "alias": "cmdUtils", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaControl", "instclassalias": "-", "path": "./modules/control/", "filename": "cmdUtils.puml"}]}
+ {"name": "model", "alias": "pumlaModel", "type": "rectangle", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./src/pumla/", "filename": "pumlaModel.puml"},
+ {"name": "control", "alias": "pumlaControl", "type": "rectangle", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumla", "instclassalias": "-", "path": "./src/pumla/", "filename": "pumlaControl.puml"},
+ {"name": "PUMLARelation.py", "alias": "pumlaRelation", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./src/pumla/model/", "filename": "pumlaRelation.puml"},
+ {"name": "PUMLAElement.py", "alias": "pumlaElement", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./src/pumla/model/", "filename": "pumlaElement.puml"},
+ {"name": "PUMLAConnection.py", "alias": "pumlaConnection", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaModel", "instclassalias": "-", "path": "./src/pumla/model/", "filename": "pumlaConnection.puml"},
+ {"name": "cmd_utils.py", "alias": "cmdUtils", "type": "class", "stereotypes": ["module", "python"], "kind": "static", "parent": "pumlaControl", "instclassalias": "-", "path": "./src/pumla/control/", "filename": "cmdUtils.puml"}]}
 
-!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla_restructure/pumla", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
 
-!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla_restructure/pumla", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
 

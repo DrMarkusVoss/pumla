@@ -68,29 +68,28 @@ For more examples showing off the functionality and magic of `pumla` please...
 - to get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
-```
-git clone https://github.com/DrMarkusVoss/pumla.git
-cd pumla
-pip install .
-```
+    ```
+    git clone https://github.com/DrMarkusVoss/pumla.git
+    cd pumla
+    pip install .
+    ```
+  - after that you should be able to call `pumla <cmd>` at any place, e.g. `pumla update`.
 
 - to get a complete and consistent set of pumla python tool, macros, examples and guidelines, download
   the latest release here:
 
     [pumla Releases - click here](https://github.com/DrMarkusVoss/pumla/releases)
 
-In order to render the ".puml" files to diagrams, you need an installation of PlantUML, or
-you use a corresponding Plugin in your Development Environment (e.g. PlantUML integration
-for PyCharm). pumla is not triggering the render process itself, you have to do it
-manually if you have a separate PlantUML installation or the IDE Plugin will do it for you.
-
-Add the main folder of the pumla repo to your path and make the file "pumla.py"
-executable, e.g. by typing this in your terminal (you must be in the 
-main pumla folder for this):
-
-`chmod 777 pumla.py`
-
-That way, it should be possible to call `pumla.py update` from
+    - In order to render the ".puml" files to diagrams, you need an installation of PlantUML, or
+    you use a corresponding Plugin in your Development Environment (e.g. PlantUML integration
+    for PyCharm). pumla is not triggering the render process itself, you have to do it
+    manually if you have a separate PlantUML installation or the IDE Plugin will do it for you.
+    
+    - Add the main folder of the pumla repo to your path and make the file "pumla.py"
+    executable, e.g. by typing this in your terminal (you must be in the 
+    main pumla folder for this):
+    - `chmod 777 pumla.py`
+    - That way, it should be possible to call `pumla.py update` from
 every position in your file system.
 
 ### User's Guide

@@ -17,7 +17,7 @@
 !if ($PUMVarShowDescr)
     note bottom of pumla
         The command line interface of **pumla**.
-        Call **"python pumla.py update"** to scan the
+        Call **"pumla update"** to scan the
         source code repository, find re-usable
         pumla model description files and fill the
         model repository (_json.puml file).
