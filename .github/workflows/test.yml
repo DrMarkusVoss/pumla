@@ -16,6 +16,7 @@ jobs:
     - name: install dependencies
       run: |
         pip install flake8 pytest
+        pip install .
     - name: run tests
       run:
         pytest
