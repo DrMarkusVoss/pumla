@@ -21,4 +21,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint `find $PWD -type f |grep .py$|xargs`
-        
+

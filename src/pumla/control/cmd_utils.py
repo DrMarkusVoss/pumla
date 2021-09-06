@@ -1,3 +1,4 @@
+"""The pumla command line tool util functions."""
 import os
 import json
 from pumla.model.PUMLAElement import PUMLAElement
@@ -22,15 +23,15 @@ def isPumlKeywordInLine(line):
     retval = False
 
     for kw in puml_deployment_keywords:
-        if (kw in line):
+        if kw in line:
             retval = True
 
     for kw in puml_class_keywords:
-        if (kw in line):
+        if kw in line:
             retval = True
 
     for kw in puml_dyn_keywords:
-        if (kw in line):
+        if kw in line:
             retval = True
 
 
@@ -41,7 +42,7 @@ def isInBlacklist(path, blacklist):
         given blacklist list."""
     retval = False
     for e in blacklist:
-        if (e in path):
+        if e in path:
             retval = True
     return retval
 
@@ -52,7 +53,7 @@ def findAllPUMLAFiles(path):
 
     blacklistfilename = path + "/pumla_blacklist.txt"
     #print(blacklistfilename)
-    if (os.path.isfile(blacklistfilename)):
+    if os.path.isfile(blacklistfilename):
         #print("blacklist found\n")
         file = open(blacklistfilename)
         text = file.read()
@@ -67,7 +68,7 @@ def findAllPUMLAFiles(path):
     # and put all PUMLA files into a list
     for dirpath, dirs, files in os.walk(path):
         for filename in files:
-            if (not(isInBlacklist(dirpath, blacklist))):
+            if not isInBlacklist(dirpath, blacklist):
                 #print(dirpath)
                 fname = os.path.join(dirpath, filename)
                 # a PUMLA file must end with '.puml' (see Modelling Guideline)
@@ -75,7 +76,7 @@ def findAllPUMLAFiles(path):
                     with open(fname) as myfile:
                         line = myfile.read()
                         # a PUMLA file must have that first comment line (see Modelling Guideline)
-                        if (line.startswith("'PUMLAMR")):
+                        if line.startswith("'PUMLAMR"):
                             pumlafiles.append(fname)
 
     #return the list of PUMLA files found
@@ -86,14 +87,14 @@ def findTaggedValuesInText(lines):
 
     ret_cons = []
     for e in lines:
-        if ("PUMLAAddTaggedValue" in e):
+        if "PUMLAAddTaggedValue" in e:
             s1 = e.replace("PUMLAAddTaggedValue", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s4) > 2):
+            if len(s4) > 2:
                 al_tv = {s5[0] : {s5[1] : s5[2]}}
                 rettvs.append(al_tv)
 
@@ -104,14 +105,14 @@ def findRUATaggedValuesInText(lines, rua_alias):
 
     ret_cons = []
     for e in lines:
-        if ("PUMLARUAAddTaggedValue" in e):
+        if "PUMLARUAAddTaggedValue" in e:
             s1 = e.replace("PUMLARUAAddTaggedValue", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s4) > 1):
+            if len(s4) > 1:
                 al_tv = {rua_alias : {s5[0] : s5[1]}}
                 rettvs.append(al_tv)
 
@@ -131,7 +132,8 @@ def findStereoTypesInLine(line):
     return stypes
 
 def findElementNameAndTypeInText(lines, alias):
-    """ find the real name, type and stereotype(s) of the model element with given alias in given line """
+    """ find the real name, type and stereotype(s) of the model
+        element with given alias in given line """
     # return value with '-' as default
     elem_name = "-"
     elem_type = "-"
@@ -141,7 +143,7 @@ def findElementNameAndTypeInText(lines, alias):
     # it is tricky to find the element definition as the alias name might also occur in
     # a comment or note.
     for e in lines:
-        if (findit in e):
+        if findit in e:
             stypes = findStereoTypesInLine(e)
 
             for sts in stypes:
@@ -149,16 +151,16 @@ def findElementNameAndTypeInText(lines, alias):
 
             # a definition of a name that needs an alias is put in '"',
             # therefore there must be two '"' and the name is in between
-            if ('"' in e):
+            if '"' in e:
                 splt = e.rsplit('"')
                 # the name must be in the middle, so in list item 2 of 3
-                if (len(splt) == 3):
+                if len(splt) == 3:
                     # element name is the second item, list starts at 0
                     elem_name = splt[1]
                     elem_type = splt[0].strip()
 
 
-        elif ((str(alias) in e) and (not("'" in e)) and (not('"' in e)) and (isPumlKeywordInLine(e))):
+        elif (str(alias) in e) and (not("'" in e)) and (not('"' in e)) and (isPumlKeywordInLine(e)):
             stypes = findStereoTypesInLine(e)
             elem_name = alias
 
@@ -174,14 +176,14 @@ def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     ret_rels = []
     for e in lines:
-        if ("PUMLARelation" in e):
+        if "PUMLARelation" in e:
             s1 = e.replace("PUMLARelation", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s4)>4):
+            if len(s4)>4:
                 pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
                 pr.setPath(path)
                 pr.setFilename(filename)
@@ -193,14 +195,14 @@ def findConnections(lines, path, filename):
     """ find PUMLA connection definitions in given lines. """
     ret_cons = []
     for e in lines:
-        if ("PUMLAConnection" in e):
+        if "PUMLAConnection" in e:
             s1 = e.replace("PUMLAConnection", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s4)>4):
+            if len(s4)>4:
                 pr = PUMLAConnection(s5[4], s5[0], s5[1], s5[2], s5[3])
                 pr.setPath(path)
                 pr.setFilename(filename)
@@ -212,29 +214,29 @@ def findInstances(lines, path, filename, kind):
     """ find PUMLA instance definitions in given lines. """
     ret_instances = []
     for e in lines:
-        if ("PUMLAInstanceOf(" in e):
+        if "PUMLAInstanceOf(" in e:
             s1 = e.replace("PUMLAInstanceOf", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s5) > 1):
+            if len(s5) > 1:
                 pr = PUMLAElement()
                 pr.setInstance()
                 pr.addStereotype("instance")
                 pr.setInstanceClassAlias(s5[0])
                 pr.setAlias(s5[1])
 
-                if (kind == "static"):
+                if kind == "static":
                     pr.setKindStatic()
-                elif (kind == "dynamic"):
+                elif kind == "dynamic":
                     pr.setKindDynamic()
                 else:
                     print("FindInstances:Error: no meaningful element kind.")
                     pass
 
-                if (len(s5) > 2):
+                if len(s5) > 2:
                     pr.setName(s5[2])
                 else:
                     pr.setName(s5[1])
@@ -242,23 +244,23 @@ def findInstances(lines, path, filename, kind):
                 pr.setFilename(filename)
                 ret_instances.append(pr)
 
-        if ("PUMLAFullInstanceOf(" in e):
+        if "PUMLAFullInstanceOf(" in e:
             s1 = e.replace("PUMLAFullInstanceOf", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
 
-            if (len(s5) > 1):
+            if len(s5) > 1:
                 pr = PUMLAElement()
                 pr.setInstance()
                 pr.addStereotype("instance")
                 pr.setInstanceClassAlias(s5[0])
                 pr.setAlias(s5[1])
 
-                if (kind == "static"):
+                if kind == "static":
                     pr.setKindStatic()
-                elif (kind == "dynamic"):
+                elif kind == "dynamic":
                     pr.setKindDynamic()
                 else:
                     print("FindInstances:Error: no meaningful element kind.")
@@ -442,7 +444,6 @@ def parsePUMLAFile(filename):
             # all other information can be found in filename (Modelling Guideline)
             # and file contents.
             pel.setFilename(el_fn)
-            # TODO: check here for PUMLAReUsableAsset
             # only if not found, check for old syntax...
             success, el_name, el_alias, el_type, el_stereotypes = findReUsableAssetDefinition(lines)
             pel.setPath(el_path)
