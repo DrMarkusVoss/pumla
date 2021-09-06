@@ -100,7 +100,7 @@ into the User's Guide:
 
 ### Modelling Guideline
 This guideline gives you hints and rules in order to write
-`pumla` conformant PlantUML files, so that you can get the 
+`pumla` conforming PlantUML files, so that you can get the 
 benefit of model element and diagram re-use:
 
 [Link to Modelling Guideline](./ModellingGuideline.md)
