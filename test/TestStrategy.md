@@ -1,7 +1,8 @@
 # `pumla` Test Strategy
 
 There are two kinds of tests that are done:
-- automated tests as python scripts: With these the relevant functions of
+- automated tests as python scripts using the `pytest` framework:
+  With these the relevant functions of
   the pumla python command line tool are tested.
 - the example diagrams in the test/examples folder: here overall tests are 
   performed, but they are manual. You have to check that all the example
