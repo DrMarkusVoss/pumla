@@ -37,7 +37,7 @@ at the current folder location and traverses from here through all underlying
 folders for all `.puml` files. If you want to exclude certain folders from the search,
 you can name these in a `pumla_blacklist.txt` file. The .puml files found will be parsed and if they are 
 pumla files, their relevant content will be extracted and stored in the 
-`modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the the given
+`modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the given
 filename. Each call will overwrite the existing `{modelrepo | diagramrepo}_json.puml`
 files, therefore they should not be modified by hand,
 because changes will get lost. These repository files are the basis for the

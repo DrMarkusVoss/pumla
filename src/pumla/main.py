@@ -10,64 +10,88 @@ __version__ = "0.8.0"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
-import sys
+import argparse
 import os
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
-def identifyMe():
+
+def identifyMe(parser):
     """ information about the executed command """
-    print("pumla v0.8 - by Dr. Markus Voss")
+    print(parser.description)
 
-def parseSysArg(sysarg):
-    """ parses the given command line arguments """
-    # no parameter - default behaviour: show all pumla files in subdirs
-    if (len(sysarg) == 1):
-        print("all pumla files in subdirs:")
-        pfls = findAllPUMLAFiles(os.path.curdir)
-        for e in pfls:
-            print(e)
+
+def cmd_listelements(args):
+    print("\nPUMLA elements:\n")
+    # pfls = list of PUMLA files
+    pfls = findAllPUMLAFiles(os.path.curdir)
+
+    # pelems = list of PUMLA elements
+    pelems = []
+
+    # parse each PUMLA file
+    # and fill PUMLA elements list
+    for fn in pfls:
+        # pel = PUMLA element
+        (pels, rels, cons, tvs) = parsePUMLAFile(fn)
+        for pel in pels:
+            pelems.append(pel)
+
+    # print out the details of each
+    # element of the PUMLA elements list
+    for e in pelems:
+        e.printMe()
+        print("")
+
+
+def cmd_update(args):
+    """create/update/overwrite the pumla model repository"""
+    print("updating...")
+    (success, efn) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    if success:
+        print("model repo file: " + efn)
+        print("done.")
     else:
-        if (sysarg[1] == "listelements"):
-            print("\nPUMLA elements:\n")
-            # pfls = list of PUMLA files
-            pfls = findAllPUMLAFiles(os.path.curdir)
+        print("failed.")
 
-            # pelems = list of PUMLA elements
-            pelems = []
 
-            # parse each PUMLA file
-            # and fill PUMLA elements list
-            for fn in pfls:
-                # pel = PUMLA element
-                (pels, rels, cons, tvs) = parsePUMLAFile(fn)
-                for pel in pels:
-                    pelems.append(pel)
+def cmd_listfiles():
+    print("all pumla files in subdirs:")
+    pfls = findAllPUMLAFiles(os.path.curdir)
+    for e in pfls:
+        print(e)
 
-            # print out the details of each
-            # element of the PUMLA elements list
-            for e in pelems:
-                #print(e)
-                e.printMe()
-                print("")
-
-        elif (sysarg[1] == "update"):
-            print("updating...")
-            # if there is another command line argument after the update command...
-            if (len(sysarg) > 2):
-                # take 3rd command line argument as filename for model repo JSON file
-                mrefilename = sysarg[2]
-            else:
-                # setup the default filename to store the JSON model repo
-                mrefilename = os.path.curdir + "/modelrepo_json.puml"
-
-            # create/update/overwrite the pumla model repository
-            (success, efn) = updatePUMLAMR(os.path.curdir, mrefilename)
-            if (success):
-                print("model repo file: " + efn)
-                print("done.")
-            else:
-                print("failed.")
 
 def main():
-    identifyMe()
-    parseSysArg(sys.argv)
+    """ parses and executes the given command line arguments """
+    parser = argparse.ArgumentParser(
+        description=f"pumla v{__version__} - by {__author__}"
+    )
+    subparsers = parser.add_subparsers(
+        title="Available commands",
+        metavar="",
+        help="Call without command to list available `pumla` files.",
+    )
+    parser_listelements = subparsers.add_parser(
+        "listelements",
+        help="list all `pumla` model elements and diagrams of the model repository and diagram repository",
+    )
+    parser_listelements.set_defaults(func=cmd_listelements)
+    parser_update = subparsers.add_parser(
+        "update",
+        help="(re-)generate `modelrepo_json.puml` with updated info from `pumla` model elements found in repository.",
+    )
+    parser_update.add_argument(
+        "mrefilename",
+        help="filename for model repo JSON file",
+        nargs="?",
+        default=os.path.curdir + "/modelrepo_json.puml",
+    )
+    parser_update.set_defaults(func=cmd_update)
+
+    args = parser.parse_args()
+    identifyMe(parser)
+    try:
+        args.func(args)
+    except AttributeError:
+        # no parameter - default behaviour: show all pumla files in subdirs
+        cmd_listfiles()
