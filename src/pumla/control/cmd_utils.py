@@ -1,8 +1,8 @@
 import os
 import json
-from modules.model.PUMLAElement import PUMLAElement
-from modules.model.PUMLARelation import PUMLARelation
-from modules.model.PUMLAConnection import PUMLAConnection
+from pumla.model.PUMLAElement import PUMLAElement
+from pumla.model.PUMLARelation import PUMLARelation
+from pumla.model.PUMLAConnection import PUMLAConnection
 
 puml_deployment_keywords = ["actor", "agent", "artifact", "boundary", "card", "circle", "cloud",
                             "collections", "component", "control", "database", "entity", "file",

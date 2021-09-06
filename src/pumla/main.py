@@ -12,7 +12,7 @@ __status__ = "Development"
 
 import sys
 import os
-from modules.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
 def identifyMe():
     """ information about the executed command """
@@ -68,7 +68,6 @@ def parseSysArg(sysarg):
             else:
                 print("failed.")
 
-
-if __name__ == "__main__":
+def main():
     identifyMe()
     parseSysArg(sys.argv)

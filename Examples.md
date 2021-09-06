@@ -2,7 +2,7 @@
 These are diagrams from the `./test/examples` section. You find the
 source code of the .puml files that form the example model repository
 there. In order to get the example running on your computer, you need
-to run "`python ./../../pumla.py update`" in the examples directory, 
+to run "`pumla update`" in the examples directory, 
 because the paths in the model repo file (./test/examples/modelrepo_json.puml)
 need to be updated to the directory structure on your computer. Currently
 the model repo file has the paths from the structure as I have it on my
