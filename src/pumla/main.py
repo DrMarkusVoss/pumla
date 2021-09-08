@@ -67,7 +67,7 @@ def main():
         description=f"pumla v{__version__} - by {__author__}"
     )
     subparsers = parser.add_subparsers(
-        title="Available commands",
+        title="available commands",
         metavar="",
         help="One of these commands must be used in order to execute pumla functionality:",
     )
