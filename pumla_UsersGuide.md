@@ -22,11 +22,21 @@ online available documentation on PlantUML.
 The following commands are offered:
 
 ### `pumla`
+Called without any other argument, pumla writes out to the console the help
+information for the usage of `pumla` that you would also get with
+`pumla --help`.
+
+### `pumla -h` or `pumla --help`
+Prints out a help text with information on the correct usage of `pumla` to 
+the command line.
+
+### `pumla files`
 Called without any other argument, pumla writes out to the console a
 list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
 (PUMLA-ModelRepo) or `'PUMLADR` (PUMLA-DiagramRepo) in the first line of the file).
 
-### `pumla listelements`
+
+### `pumla elements`
 Writes out to the console all `pumla` model elements and diagrams of 
 the model repository and diagram repository, with all their relevant 
 attributes.
