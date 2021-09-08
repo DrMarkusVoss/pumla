@@ -6,7 +6,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "0.8.0"
+__version__ = "0.8.1"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -54,7 +54,7 @@ def cmd_update(args):
         print("failed.")
 
 
-def cmd_listfiles():
+def cmd_listfiles(args):
     print("all pumla files in subdirs:")
     pfls = findAllPUMLAFiles(os.path.curdir)
     for e in pfls:
@@ -69,13 +69,20 @@ def main():
     subparsers = parser.add_subparsers(
         title="Available commands",
         metavar="",
-        help="Call without command to list available `pumla` files.",
+        help="One of these commands must be used in order to execute pumla functionality:",
     )
     parser_listelements = subparsers.add_parser(
-        "listelements",
-        help="list all `pumla` model elements and diagrams of the model repository and diagram repository",
+        "elements",
+        help="list all `pumla` model elements of the model repository repository",
     )
     parser_listelements.set_defaults(func=cmd_listelements)
+
+    parser_listfiles = subparsers.add_parser(
+        "files",
+        help="list all `pumla` marked model files of the model repository",
+    )
+    parser_listfiles.set_defaults(func=cmd_listfiles)
+
     parser_update = subparsers.add_parser(
         "update",
         help="(re-)generate `modelrepo_json.puml` with updated info from `pumla` model elements found in repository.",
@@ -93,5 +100,5 @@ def main():
     try:
         args.func(args)
     except AttributeError:
-        # no parameter - default behaviour: show all pumla files in subdirs
-        cmd_listfiles()
+        # no parameter - default behaviour: show help
+        parser.print_help()
