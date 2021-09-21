@@ -1,3 +1,15 @@
+# this is a folder with a lot of pumla
+# files, but they are examples and used
+# for the tests
 ./test
+
+# here resulting architecture diagrams are
+# stored. There the pumla elements will
+# be used. But the architecture model elements
+# shall be described were the code is.
 ./arch
+
+# the templates folder of course also contains
+# pumla files and must be ignored for the
+# architecture repo of pumla itself.
 ./templates

@@ -45,8 +45,11 @@ attributes.
 This is the most important command. It scans the source code repository starting
 at the current folder location and traverses from here through all underlying
 folders for all `.puml` files. If you want to exclude certain folders from the search,
-you can name these in a `pumla_blacklist.txt` file. The .puml files found will be parsed and if they are 
-pumla files, their relevant content will be extracted and stored in the 
+you can name these in a `pumla_blacklist.txt` file. You can also have comments in the
+blacklist file using `#` as first character of the line. But comments must be
+standalone lines, you cannot put a comment behind a path or filename. 
+The .puml files found will be parsed
+and if they are pumla files, their relevant content will be extracted and stored in the 
 `modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the given
 filename. Each call will overwrite the existing `{modelrepo | diagramrepo}_json.puml`
 files, therefore they should not be modified by hand,
@@ -54,6 +57,21 @@ because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
 way.
+
+### `pumla getjson <subcommand>`
+Prints out a JSON data structure containing the request elements (by subcommand).
+There is no other output to the command line than the JSON data structure, so you can 
+use this command to integrate pumla with other tools via a JSON data interface. As
+the output to the command line shall be in-sync with the pumla model repository .puml
+file, a `pumla update` is done implicitly also.
+
+The following subcommands are supported:
+- `pumla getjson elements`: Get a list in JSON format with all elements of the pumla
+  model repository.
+- `pumla getjson relations`: Get a list in JSON format with all relations of the pumla
+  model repository.
+- `pumla getjson connections`: Get a list in JSON format with all connections of the pumla
+  model repository.
 
 ---
 

@@ -59,8 +59,11 @@ def findAllPUMLAFiles(path):
         text = file.read()
         #print(text)
         file.close()
-        for li in text.split():
-            blacklist.append(path + li.strip("."))
+        for li in text.splitlines():
+            # comments in blacklist start with the hash,
+            # they are ignored
+            if not li.startswith("#") and not li == "" :
+                blacklist.append(path + li.strip("."))
         #print(blacklist)
 
 

@@ -1,4 +1,9 @@
 #!/usr/bin/python
+#
+# Original pumla source code developed by Dr. Markus Voss in 2021.
+# Original pumla repository:
+# https://github.com/DrMarkusVoss/pumla
+#
 """Command Line Tool for the PlantUML extension to enable architecture
 element re-usability.
 """
@@ -6,13 +11,16 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "0.8.1"
+__version__ = "0.8.2"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
 import argparse
 import os
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+
+parser = None
+parser_getjson = None
 
 def identifyMe(parser):
     """ information about the executed command """
@@ -44,8 +52,9 @@ def cmdListElements(args):
 
 def cmdUpdate(args):
     """create/update/overwrite the pumla model repository"""
+    identifyMe(parser)
     print("updating...")
-    (success, efn) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    (success, efn, a, b, c) = updatePUMLAMR(os.path.curdir, args.mrefilename)
     if success:
         print("model repo file: " + efn)
         print("done.")
@@ -54,6 +63,7 @@ def cmdUpdate(args):
 
 
 def cmdListFiles(args):
+    identifyMe(parser)
     print("all pumla files in subdirs:")
     pfls = findAllPUMLAFiles(os.path.curdir)
     for e in pfls:
@@ -68,7 +78,6 @@ def getJSONElementsCLI(args):
         # silent command line output if failed
         print("")
 
-
 def getJSONRelationsCLI(args):
     """ print out a list of all model relations of the repo to the command line """
     (success, efn, jsonelems, jsonrels, jsoncons) = updatePUMLAMR(os.path.curdir, args.mrefilename)
@@ -78,10 +87,8 @@ def getJSONRelationsCLI(args):
         # silent command line output if failed
         print("")
 
-
 def getJSONConnectionsCLI(args):
     """ print out a list of all model connections of the repo to the command line """
-
     (success, efn, jsonelems, jsonrels, jsoncons) = updatePUMLAMR(os.path.curdir, args.mrefilename)
     if success:
         print(jsoncons)
@@ -90,18 +97,20 @@ def getJSONConnectionsCLI(args):
         print("")
 
 def getJSON(args):
-    print("Call with one of the mandatory sub-commands, e.g.")
-    print("pumla getjson elements\n")
-    print("Call ")
-    print("pumla getjson -h")
-    print("for help.")
-
+    identifyMe(parser)
+    print("")
+    parser_getjson.print_help()
 
 def main():
     """ parses and executes the given command line arguments """
+    global parser
+    global parser_getjson
+
     parser = argparse.ArgumentParser(
-        description=f"pumla v{__version__} - by {__author__}"
+        description=f"pumla v{__version__} - by {__author__}",
     )
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s v' + __version__)
+
     subparsers = parser.add_subparsers(
         title="available commands",
         metavar="",
@@ -133,7 +142,8 @@ def main():
 
     parser_getjson = subparsers.add_parser(
         "getjson",
-        help="get a JSON list of the requested elements, relations or connections. Call 'pumla getjson -h' \
+        help="get a JSON-formatted list of the requested elements on the command line, relations or "
+             "connections. Call 'pumla getjson -h' \
              for help on the available subcommands.",
     )
     parser_getjson.set_defaults(func=getJSON)
@@ -181,14 +191,11 @@ def main():
     parser_getjson_connections.set_defaults(func=getJSONConnectionsCLI)
 
     args = parser.parse_args()
-    identifyMe(parser)
+
     try:
         args.func(args)
     except AttributeError as ae:
         # no parameter - default behaviour: show help
         parser.print_help()
-        print("\nError: " + str(ae))
-        print(parser)
-
 
 
