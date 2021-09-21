@@ -1,10 +1,8 @@
 'PUMLAMR
 'PUMLAPARENT: tempSys
 @startuml
-!include ./../../../pumla_macros.puml
+!include ./../pumla_macros.puml
 !include ./../modelrepo_json.puml
-!include ./../../../pumla_tagged_values.puml
-
 
 PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
     PUMLARUAPutTaggedValues()

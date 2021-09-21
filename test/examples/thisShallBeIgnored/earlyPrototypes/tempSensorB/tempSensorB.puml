@@ -1,6 +1,6 @@
 'PUMLAMR
 @startuml
-!include ./../../../../../pumla_macros.puml
+!include ./../../../pumla_macros.puml
 !if ($PUMVarShowBody)
 'add block definition with internals here, e.g.:
 component "Temperature Sensor B Prototype" <<block>> <<external System>> as tempSensorB {

@@ -2,7 +2,7 @@
 ' the following 2 files gets generated when you call
 ' "pumla update" in this directory
 !include modelrepo_json.puml
-!include ./../../pumla_macros.puml
+!include pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
 !include ./../../templates/sysml/skin.puml

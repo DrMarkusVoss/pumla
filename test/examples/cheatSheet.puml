@@ -2,7 +2,7 @@
 ' the following file gets generated when you call
 ' "pumla update" in this directory
 !include modelrepo_json.puml
-!include ./../../pumla_macros.puml
+!include pumla_macros.puml
 !include ./../../templates/sysml/skin.puml
 
 title Cheat Sheet Example

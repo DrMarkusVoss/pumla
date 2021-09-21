@@ -1,0 +1,6 @@
+' THIS IS AN AUTOMATICALLY GENERATED FILE BY pumla init
+' DO NOT CHANGE MANUALLY!
+' TO ADOPT THE PATHS TO YOUR SYSTEM, CALL pumla init AGAIN
+' IN THE FOLDER OF THIS FILE HERE!
+!include /Users/mvoss/Desktop/git/github/pumla/pumla_macros_global.puml
+!include /Users/mvoss/Desktop/git/github/pumla/pumla_tagged_values.puml

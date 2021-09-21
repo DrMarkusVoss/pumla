@@ -1,6 +1,6 @@
 'PUMLAMR
 @startuml
-!include ./../../pumla_macros.puml
+!include pumla_macros.puml
 
 PUMLAReUsableClass("MyNewClass1", "<<Python>>")
 {
