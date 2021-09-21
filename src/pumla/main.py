@@ -27,6 +27,17 @@ def identifyMe(parser):
     print(parser.description)
 
 
+def cmdInit(args):
+    print("init")
+    print(os.path.abspath(os.path.curdir))
+    print(main.__code__.co_filename)
+    mypath_main = main.__code__.co_filename
+    pumla_module_path = mypath_main.replace("src/pumla/main.py", "")
+    print(pumla_module_path)
+
+def cmdCreatePumlaFile(args):
+    pass
+
 def cmdListElements(args):
     print("\nPUMLA elements:\n")
     # pfls = list of PUMLA files
@@ -116,6 +127,13 @@ def main():
         metavar="",
         help="One of these commands must be used in order to execute pumla functionality:",
     )
+
+    parser_init = subparsers.add_parser(
+        "init",
+        help="initialise a source code folder as root for a pumla model repository.",
+    )
+    parser_init.set_defaults(func=cmdInit)
+
     parser_listelements = subparsers.add_parser(
         "elements",
         help="list all `pumla` model elements of the model repository repository.",
