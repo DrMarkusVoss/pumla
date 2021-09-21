@@ -14,13 +14,12 @@ import argparse
 import os
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 
-
 def identifyMe(parser):
     """ information about the executed command """
     print(parser.description)
 
 
-def cmd_listelements(args):
+def cmdListElements(args):
     print("\nPUMLA elements:\n")
     # pfls = list of PUMLA files
     pfls = findAllPUMLAFiles(os.path.curdir)
@@ -43,7 +42,7 @@ def cmd_listelements(args):
         print("")
 
 
-def cmd_update(args):
+def cmdUpdate(args):
     """create/update/overwrite the pumla model repository"""
     print("updating...")
     (success, efn) = updatePUMLAMR(os.path.curdir, args.mrefilename)
@@ -54,11 +53,48 @@ def cmd_update(args):
         print("failed.")
 
 
-def cmd_listfiles(args):
+def cmdListFiles(args):
     print("all pumla files in subdirs:")
     pfls = findAllPUMLAFiles(os.path.curdir)
     for e in pfls:
         print(e)
+
+def getJSONElementsCLI(args):
+    """ print out a list of all model elements of the repo to the command line """
+    (success, efn, jsonelems, jsonrels, jsoncons) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    if success:
+        print(jsonelems)
+    else:
+        # silent command line output if failed
+        print("")
+
+
+def getJSONRelationsCLI(args):
+    """ print out a list of all model relations of the repo to the command line """
+    (success, efn, jsonelems, jsonrels, jsoncons) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    if success:
+        print(jsonrels)
+    else:
+        # silent command line output if failed
+        print("")
+
+
+def getJSONConnectionsCLI(args):
+    """ print out a list of all model connections of the repo to the command line """
+
+    (success, efn, jsonelems, jsonrels, jsoncons) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    if success:
+        print(jsoncons)
+    else:
+        # silent command line output if failed
+        print("")
+
+def getJSON(args):
+    print("Call with one of the mandatory sub-commands, e.g.")
+    print("pumla getjson elements\n")
+    print("Call ")
+    print("pumla getjson -h")
+    print("for help.")
 
 
 def main():
@@ -73,15 +109,15 @@ def main():
     )
     parser_listelements = subparsers.add_parser(
         "elements",
-        help="list all `pumla` model elements of the model repository repository",
+        help="list all `pumla` model elements of the model repository repository.",
     )
-    parser_listelements.set_defaults(func=cmd_listelements)
+    parser_listelements.set_defaults(func=cmdListElements)
 
     parser_listfiles = subparsers.add_parser(
         "files",
-        help="list all `pumla` marked model files of the model repository",
+        help="list all `pumla` marked model files of the model repository.",
     )
-    parser_listfiles.set_defaults(func=cmd_listfiles)
+    parser_listfiles.set_defaults(func=cmdListFiles)
 
     parser_update = subparsers.add_parser(
         "update",
@@ -93,12 +129,66 @@ def main():
         nargs="?",
         default=os.path.curdir + "/modelrepo_json.puml",
     )
-    parser_update.set_defaults(func=cmd_update)
+    parser_update.set_defaults(func=cmdUpdate)
+
+    parser_getjson = subparsers.add_parser(
+        "getjson",
+        help="get a JSON list of the requested elements, relations or connections. Call 'pumla getjson -h' \
+             for help on the available subcommands.",
+    )
+    parser_getjson.set_defaults(func=getJSON)
+
+    parser_getjsonsubparser = parser_getjson.add_subparsers(
+        title = "available sub-commands",
+        metavar="",
+        help="",
+    )
+
+    parser_getjson_elements = parser_getjsonsubparser.add_parser(
+        "elements",
+        help="get a JSON list of all elements of the model repo on the command line.",
+    )
+    parser_getjson_elements.add_argument(
+        "mrefilename",
+        help="filename for model repo JSON file",
+        nargs="?",
+        default=os.path.curdir + "/modelrepo_json.puml",
+    )
+    parser_getjson_elements.set_defaults(func=getJSONElementsCLI)
+
+    parser_getjson_relations = parser_getjsonsubparser.add_parser(
+        "relations",
+        help="get a JSON list of all relations of the model repo on the command line.",
+    )
+    parser_getjson_relations.add_argument(
+        "mrefilename",
+        help="filename for model repo JSON file",
+        nargs="?",
+        default=os.path.curdir + "/modelrepo_json.puml",
+    )
+    parser_getjson_relations.set_defaults(func=getJSONRelationsCLI)
+
+    parser_getjson_connections = parser_getjsonsubparser.add_parser(
+        "connections",
+        help="get a JSON list of all connections of the model repo on the command line.",
+    )
+    parser_getjson_connections.add_argument(
+        "mrefilename",
+        help="filename for model repo JSON file",
+        nargs="?",
+        default=os.path.curdir + "/modelrepo_json.puml",
+    )
+    parser_getjson_connections.set_defaults(func=getJSONConnectionsCLI)
 
     args = parser.parse_args()
     identifyMe(parser)
     try:
         args.func(args)
-    except AttributeError:
+    except AttributeError as ae:
         # no parameter - default behaviour: show help
         parser.print_help()
+        print("\nError: " + str(ae))
+        print(parser)
+
+
+

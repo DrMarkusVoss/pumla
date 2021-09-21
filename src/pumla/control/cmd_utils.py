@@ -752,4 +752,4 @@ def updatePUMLAMR(path, mrefilename):
         fil.write(txtcon_lines[len(txtcon_lines)-1] + "\n\n")
     fil.close()
 
-    return True, mrefilename
+    return True, mrefilename, jsonelemdict, jsonreldict, jsoncondict
