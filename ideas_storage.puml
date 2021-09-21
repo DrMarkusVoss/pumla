@@ -127,6 +127,7 @@ PutAllElementsWith property for
 - defined stereotype
 - defined type
 end note
+note right of n12 #back:lightGreen : **DONE: Filters**
 
 note as n13 #lightgreen
 **Idea:** Blacklist of directories that shall not be scanned by pumla,
@@ -143,10 +144,12 @@ concrete values of the tagged values.
 
 Inheritance concept for tagged values.
 end note
+note right of n14 #back:lightGreen : **DONE**
 
 note as n15
 inheritance of methods from classes for instances?
 end note
+note right of n15 #back:lightGreen : **DONE**
 
 note as n16 #lightgreen
 Pre-update python hook to provide the basic model elements

@@ -21,5 +21,5 @@ jobs:
         pip install .
     - name: Analysing the code with pylint
       run: |
-        pylint `find $PWD -type f |grep .py$|xargs`
+        pylint `find $PWD/src/pumla -type f |grep .py$|xargs`
 
