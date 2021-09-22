@@ -72,7 +72,7 @@ system:
     cd pumla
     pip install .
 
-- after that you should be able to call `pumla <cmd>` at any place, e.g. `pumla update`.
+After that you should be able to call `pumla <cmd>` at any place, e.g. `pumla init` or `pumla update`. 
 
 ### Working with the examples
 In order to play around with the examples, you need to initialise the examples repository
