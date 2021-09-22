@@ -17,6 +17,27 @@ puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
                        "collections", "participant", "activity", "partition"]
 
 
+def createPumlaMacrosFile(mainpath):
+    curpath = os.path.abspath(os.path.curdir)
+    print("Path to initialise: " + curpath)
+    print("Path of pumla installation: " + mainpath)
+    # filename for the pumla macros in the
+    # source code repo where it gets
+    # initialised
+    pumla_macros_fn = "pumla_macros.puml"
+    pm_comment = "' THIS IS AN AUTOMATICALLY GENERATED FILE BY pumla init \n"
+    pm_comment = pm_comment + "' DO NOT CHANGE MANUALLY!\n"
+    pm_comment = pm_comment + "' TO ADOPT THE PATHS TO YOUR SYSTEM, CALL pumla init AGAIN\n"
+    pm_comment = pm_comment + "' IN THE FOLDER OF THIS FILE HERE!\n"
+    pm_include_macros = "!include " + mainpath + "pumla_macros_global.puml\n"
+    pm_include_tv = "!include " + mainpath + "pumla_tagged_values.puml\n"
+    with open(pumla_macros_fn, "w") as fil:
+        fil.write(pm_comment)
+        fil.write(pm_include_macros)
+        fil.write(pm_include_tv)
+    fil.close()
+
+
 def isPumlKeywordInLine(line):
     """check whether one of the deployment diagram element keywords
         is contained in the given string line."""

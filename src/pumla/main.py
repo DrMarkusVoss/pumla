@@ -17,7 +17,7 @@ __status__ = "Development"
 
 import argparse
 import os
-from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR, createPumlaMacrosFile
 
 parser = None
 parser_getjson = None
@@ -28,14 +28,14 @@ def identifyMe(parser):
 
 
 def cmdInit(args):
-    print("init")
-    print(os.path.abspath(os.path.curdir))
-    print(main.__code__.co_filename)
+    print("initialisng source code repository for pumla usage...")
     mypath_main = main.__code__.co_filename
     pumla_module_path = mypath_main.replace("src/pumla/main.py", "")
-    print(pumla_module_path)
+    createPumlaMacrosFile(pumla_module_path)
+    print("done.")
 
-def cmdCreatePumlaFile(args):
+
+def cmdCreateNewPumlaFile(args):
     pass
 
 def cmdListElements(args):
