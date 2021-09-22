@@ -68,11 +68,10 @@ For more examples showing off the functionality and magic of `pumla` please...
 To get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
-    ```
     git clone https://github.com/DrMarkusVoss/pumla.git
     cd pumla
     pip install .
-    ```
+
 - after that you should be able to call `pumla <cmd>` at any place, e.g. `pumla update`.
 
 ### Working with the examples
