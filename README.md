@@ -65,32 +65,29 @@ For more examples showing off the functionality and magic of `pumla` please...
 [follow this link to more examples](./Examples.md)
 
 ### Installation
-- to get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
+To get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
-    ```
     git clone https://github.com/DrMarkusVoss/pumla.git
     cd pumla
     pip install .
-    ```
-  - after that you should be able to call `pumla <cmd>` at any place, e.g. `pumla update`.
 
-- to get a complete and consistent set of pumla python tool, macros, examples and guidelines, download
-  the latest release here:
+- after that you should be able to call `pumla <cmd>` at any place, e.g. `pumla update`.
 
-    [pumla Releases - click here](https://github.com/DrMarkusVoss/pumla/releases)
-
-    - In order to render the ".puml" files to diagrams, you need an installation of PlantUML, or
-    you use a corresponding Plugin in your Development Environment (e.g. PlantUML integration
-    for PyCharm). pumla is not triggering the render process itself, you have to do it
-    manually if you have a separate PlantUML installation or the IDE Plugin will do it for you.
-    
-    - Add the main folder of the pumla repo to your path and make the file "pumla.py"
-    executable, e.g. by typing this in your terminal (you must be in the 
-    main pumla folder for this):
-    - `chmod 777 pumla.py`
-    - That way, it should be possible to call `pumla.py update` from
-every position in your file system.
+### Working with the examples
+In order to play around with the examples, you need to initialise the examples repository
+  to work on your system. To do that, take the following steps starting in the pumla
+package root directory (after following the installation steps, you are already there):
+  ```
+  cd test/examples/
+  pumla init
+  pumla update
+  ```
+The "init" step creates or updates the file "pumla_macros.puml", that connects your repo
+with the pumla installation/deployment on your computer.
+  
+The "update" step creates or updates the modelrepo_json.puml with the current content of
+the examples repository and also considers the file structure/paths on your computer.
 
 ### User's Guide
 You can directly dive into the details by taking a look

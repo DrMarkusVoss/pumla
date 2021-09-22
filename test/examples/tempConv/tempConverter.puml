@@ -1,8 +1,7 @@
 'PUMLAMR
 'PUMLAPARENT: tempSys
 @startuml
-!include ./../../../pumla_macros.puml
-!include ./../../../pumla_tagged_values.puml
+!include ./../pumla_macros.puml
 !include ./../modelrepo_json.puml
 
 PUMLAReUsableAsset("Temp. Converter", tempConverter, component, "<<block>>") {

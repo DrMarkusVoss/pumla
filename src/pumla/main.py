@@ -17,7 +17,7 @@ __status__ = "Development"
 
 import argparse
 import os
-from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR, createPumlaMacrosFile
 
 parser = None
 parser_getjson = None
@@ -26,6 +26,16 @@ def identifyMe(parser):
     """ information about the executed command """
     print(parser.description)
 
+
+def cmdInit(args):
+    print("initialisng source code repository for pumla usage...")
+    mypath_main = main.__code__.co_filename
+    pumla_module_path = mypath_main.replace("src/pumla/main.py", "")
+    createPumlaMacrosFile(pumla_module_path)
+    print("done.")
+
+def cmdCreateNewPumlaFile(args):
+    pass
 
 def cmdListElements(args):
     print("\nPUMLA elements:\n")
@@ -116,6 +126,13 @@ def main():
         metavar="",
         help="One of these commands must be used in order to execute pumla functionality:",
     )
+
+    parser_init = subparsers.add_parser(
+        "init",
+        help="initialise a source code folder as root for a pumla model repository.",
+    )
+    parser_init.set_defaults(func=cmdInit)
+
     parser_listelements = subparsers.add_parser(
         "elements",
         help="list all `pumla` model elements of the model repository repository.",

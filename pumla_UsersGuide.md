@@ -30,16 +30,23 @@ information for the usage of `pumla` that you would also get with
 Prints out a help text with information on the correct usage of `pumla` to 
 the command line.
 
-### `pumla files`
-Called without any other argument, pumla writes out to the console a
-list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
-(PUMLA-ModelRepo) or `'PUMLADR` (PUMLA-DiagramRepo) in the first line of the file).
+### `pumla -v` or `pumla --version`
+Prints out version information of `pumla` to 
+the command line.
 
+### `pumla init`
+Initialises a source code repository where the search for pumla model files
+shall start. At the location where it is called also the file `pumla_macros.puml`
+is generated. You include this file in order to get the macros to access your
+model repository. It is an "include-forward" to the relevant files containing
+the macros of your pumla installation. 
 
-### `pumla elements`
-Writes out to the console all `pumla` model elements and diagrams of 
-the model repository and diagram repository, with all their relevant 
-attributes.
+When you use a version control system like e.g. git, you do not check in the 
+`pumla_macros.puml` file, as its content is dependent on the specific deployment
+of the pumla package in your file system (where you installed pumla). So, first
+thing after you checkout a source code repository that also contains pumla-modelled
+elements, you call `pumla init` in the root folder of that repository (if not
+another folder is defined by the source code projects documentation).
 
 ### `pumla update`
 This is the most important command. It scans the source code repository starting
@@ -57,6 +64,26 @@ because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
 way.
+
+The generated `modelrepo_json.puml` should also not be checked-in into a version
+control system, as it contains absolute paths that are different on every computer
+where the source code is checked out. Therefore, after a fresh checkout/clone of 
+a source code repository, first thing to do is call `pumla init` to create a link
+to the pumla macros to access the model repository JSON database, the second
+thing to do is call `pumla update` to scan the source code repository for pumla
+files and create the `modelrepo_json.puml` file. After that you can use the
+model repository to create diagrams and are able to use all the macro commands 
+explained in the following chapters.
+
+### `pumla files`
+Called without any other argument, pumla writes out to the console a
+list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
+(PUMLA-ModelRepo) or `'PUMLADR` (PUMLA-DiagramRepo) in the first line of the file).
+
+### `pumla elements`
+Writes out to the console all `pumla` model elements and diagrams of 
+the model repository and diagram repository, with all their relevant 
+attributes.
 
 ### `pumla getjson <subcommand>`
 Prints out a JSON data structure containing the request elements (by subcommand).

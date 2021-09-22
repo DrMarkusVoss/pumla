@@ -1,7 +1,7 @@
 'PUMLAMR
 'PUMLAPARENT: pumla
 @startuml
-!include ./../pumla_macros.puml
+!include ./../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
     rectangle "control" <<module>> <<python>> as pumlaControl {

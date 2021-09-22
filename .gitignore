@@ -10,6 +10,9 @@ mrtest_json.puml
 # C extensions
 *.so
 
+# this needs to be generated on each system by calling: pumla init
+test/examples/pumla_macros.puml
+
 # Distribution / packaging
 .Python
 build/

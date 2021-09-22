@@ -1,8 +1,8 @@
 'PUMLAMR
 'PUMLAPARENT: -
 @startuml
-!include ./pumla_macros.puml
-!include ./modelrepo_json.puml
+!include pumla_macros.puml
+!include modelrepo_json.puml
 
 !if ($PUMVarShowBody)
     rectangle "pumla.py" <<application>> <<python>> as pumla {
