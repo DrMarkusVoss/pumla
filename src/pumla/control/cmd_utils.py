@@ -21,6 +21,7 @@ def createPumlaMacrosFile(mainpath):
     curpath = os.path.abspath(os.path.curdir)
     print("Path to initialise: " + curpath)
     print("Path of pumla installation: " + mainpath)
+
     # filename for the pumla macros in the
     # source code repo where it gets
     # initialised

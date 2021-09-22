@@ -34,7 +34,6 @@ def cmdInit(args):
     createPumlaMacrosFile(pumla_module_path)
     print("done.")
 
-
 def cmdCreateNewPumlaFile(args):
     pass
 
