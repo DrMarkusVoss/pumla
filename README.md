@@ -84,10 +84,14 @@ package root directory (after following the installation steps, you are already 
   pumla update
   ```
 The "init" step creates or updates the file "pumla_macros.puml", that connects your repo
-with the pumla installation/deployment on your computer.
+with the pumla installation/deployment on your computer. This step must only be executed 
+once after a checkout/clone.
   
 The "update" step creates or updates the modelrepo_json.puml with the current content of
-the examples repository and also considers the file structure/paths on your computer.
+the examples repository and also considers the file structure/paths on your computer. This
+step needs to be executed everytime you changed something on the model repository, e.g.
+added a new re-usable architecture model element or changed an existing one.
+
 
 ### User's Guide
 You can directly dive into the details by taking a look
