@@ -76,7 +76,8 @@ system:
 
 ### Working with the examples
 In order to play around with the examples, you need to initialise the examples repository
-  to work on your system. To do that, take the following steps:
+  to work on your system. To do that, take the following steps starting in the pumla
+package root directory (after following the installation steps, you are already there):
   ```
   cd test/examples/
   pumla init
