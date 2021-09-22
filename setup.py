@@ -2,7 +2,6 @@
 import os
 
 from setuptools import setup, find_packages
-from pumla.main import createPumlaMacrosFile
 
 setup(
     packages=find_packages(where="src"),
