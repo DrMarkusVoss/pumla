@@ -1,11 +1,11 @@
 'PUMLAMR
 'PUMLAPARENT: pumla
 @startuml
-!include ./pumla_macros.puml
+!include pumla_macros.puml
 
 PUMLAReUsableAsset("pumla preprocessor macros", pppm, rectangle, "<<PlantUML>> <<preprocessor macros>>") {
 
-    PUMLAReUsableAssetInternals() {
+    PUMLARUAInternals() {
 
         file "pumla_global_cfg.puml" as pppcfg {
         }
@@ -13,7 +13,7 @@ PUMLAReUsableAsset("pumla preprocessor macros", pppm, rectangle, "<<PlantUML>> <
         }
         file "pumla_tagged_values.puml" as pptv {
         }
-        file "pumla_macros.puml" as ppm {
+        file "pumla_macros_global.puml" as ppm {
         }
     }
 }
@@ -23,7 +23,7 @@ note as tn723492387
     extend the PlantUML language.
 end note
 
-PUMLAReUsableAssetDescr(tn723492387)
+PUMLARUADescr(tn723492387)
 
 PUMLAReUsableAssetFinalize()
 

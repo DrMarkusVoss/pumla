@@ -1,7 +1,7 @@
 'PUMLAMR
 'PUMLAPARENT: pumlaModel
 @startuml
-!include ./../../pumla_macros.puml
+!include ./../../../pumla_macros.puml
 
 !if ($PUMVarShowBody)
     class "PUMLAConnection.py" as pumlaConnection <<module>> <<python>>  {
