@@ -69,15 +69,11 @@ File: simpleElement.puml
 PUMLAReUsableAsset("A simple Element", simpleElement, component, "<<block>>") {
     PUMLARUAPutTaggedValues()
 
-    !if ($PUMVarShowBodyInternals)
     PUMLARUAInternals() {
-
         component compA
         component "compB"
         component "signal processing"
-
     }
-    !endif
 }
 
 PUMLARUAAddTaggedValue("Vendor", "A GmbH")

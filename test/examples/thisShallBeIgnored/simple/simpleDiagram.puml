@@ -4,7 +4,7 @@
 
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %false()
-!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternals = %false()
 !$PUMVarShowTaggedValues = %true()
 
 title Put a re-usable element onto the diagram
