@@ -49,6 +49,9 @@ with other applications and documents during software development.
 
 ### Simple example
 #### Defining a re-usable element
+Of course you need to have `pumla` installed. See further below for 
+installation instructions.
+
 Create a folder for the example. Change into that folder.
 Call `pumla init`. A file called `pumla_macros.puml` should
 have been created in the folder.
