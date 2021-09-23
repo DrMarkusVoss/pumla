@@ -106,7 +106,7 @@ the code of the file rendered to a diagram like this:
 
 
 
-### Re-using the element on another diagram
+#### Re-using the element on another diagram
 Create a PlantUML diagram like this: 
 
 File: simpleDiagram.puml
