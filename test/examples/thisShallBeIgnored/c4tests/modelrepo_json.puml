@@ -1,0 +1,6 @@
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/c4tests", "modelrepofile": "./modelrepo_json.puml", "elements": []}
+
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/c4tests", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "REL#publicStateToIF", "start": "'(publicState", "end": "temp_dF_tempSensorB", "reltype": "..>", "reltxt": "provides", "path": "./", "filename": "simplePerson.puml"}]}
+
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/c4tests", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+

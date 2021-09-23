@@ -5,6 +5,6 @@
 !include /Users/mvoss/Desktop/git/github/pumla/pumla_macros_global.puml
 !include /Users/mvoss/Desktop/git/github/pumla/pumla_tagged_values.puml
 
-!if %file_exists("/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/simple/pumla_project_config.puml")
+!if %file_exists("/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/c4tests/pumla_project_config.puml")
 !include pumla_project_config.puml
 !endif

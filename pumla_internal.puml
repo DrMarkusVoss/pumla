@@ -273,7 +273,7 @@ PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alia
 ' can be overwritten or turned off with the
 ' global variable.
 !if ($PUMVarShowPUMLAFooterNote)
-center footer created with help of **pumla**: https://github.com/DrMarkusVoss/pumla
+center footer created with help of **pumla** $PUMLAVersionNumber: https://github.com/DrMarkusVoss/pumla
 !endif
 
 

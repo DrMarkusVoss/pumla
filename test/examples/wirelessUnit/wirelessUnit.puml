@@ -7,12 +7,10 @@ PUMLAReUsableAsset("Wireless Unit", wirelessUnit, rectangle, "<<block>> <<extern
 
     PUMLARUAPutTaggedValues()
 
-    !if ($PUMVarShowBodyInternals)
     PUMLARUAInternals() {
         component transmitter
         component receiver
     }
-    !endif
 }
 
 PUMLARUAAddTaggedValue("Vendor", "XY")

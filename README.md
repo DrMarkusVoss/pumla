@@ -52,11 +52,12 @@ with other applications and documents during software development.
 Of course you need to have `pumla` installed. See further below for 
 installation instructions.
 
-Create a folder for the example. Change into that folder.
-Call `pumla init`. A file called `pumla_macros.puml` should
+Then:
+- Create a folder for the example.
+- Change into that folder. 
+- Call `pumla init`. A file called `pumla_macros.puml` should
 have been created in the folder.
-
-Then create a file like this:
+- Create a file like this:
 
 File: simpleElement.puml
 
@@ -124,16 +125,16 @@ title Put a re-usable element onto the diagram
 PUMLAPutElement(simpleElement)
 
 note as n1
-The re-usable element "simpleElement"
-is put onto the diagram.
-
-Via the global variables, showing the
-description of the element as well as
-the interfaces is turned off.
-
-So you have a different, more restrained
-view on the element on this diagram.
-end note
+    The re-usable element "simpleElement"
+    is put onto the diagram.
+    
+    Via the global variables, showing the
+    description of the element as well as
+    the interfaces is turned off.
+    
+    So you have a different, more restrained
+    view on the element on this diagram.
+    end note
 @enduml
 ```
 This works out of the box, as everything the diagram needs is already
@@ -152,6 +153,7 @@ For more examples showing off the functionality and magic of `pumla` please...
 [follow this link to more examples](./Examples.md)
 
 ### Installation
+#### Install latest development
 To get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
 system:
 
@@ -160,6 +162,19 @@ system:
     pip install .
 
 After that you should be able to call `pumla <cmd>` at any place, e.g. `pumla init` or `pumla update`. 
+
+#### Install an official release
+The following instructions work only for release equal to or newer than 0.8.3. For installation of
+older releases, please read the installation instructions in the README.md of the
+downloaded archive.
+
+To get a release, do the following: 
+
+- go to the Release page, choose a release version and download the
+corresponding Source Code archive (.zip or .tar.gz).
+- extract the archive
+- change to the unpacked pumla folder, e.g. `cd pumla-0.8.3`
+- install pumla with: `pip install .`
 
 ### Working with the examples
 In order to play around with the examples, you need to initialise the examples repository
@@ -205,7 +220,7 @@ you have fast previews of the `.puml` and markdown files.
   file paths handling in a way that it works across Windows
   and Unix platform, as I also do not have a Windows test platform 
   at hand anymore. It is proven to run on my Macbook (Mojave)
-  with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3.
+  with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3 and pip3.
 - tested with PlantUML library v1.2021.7 (via the PyCharm Plugin 
   "PlantUML integration" version 5.5.1)
 

@@ -8,12 +8,10 @@ PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
     PUMLARUAPutTaggedValues()
 
-    !if ($PUMVarShowBodyInternals)
     PUMLARUAInternals() {
         component display
         component conversion
     }
-    !endif
 }
 
 
@@ -33,5 +31,5 @@ note bottom of displayTemp
     only one value is given as input.
 end note
 !endif
-
+PUMLAReUsableAssetFinalize()
 @enduml

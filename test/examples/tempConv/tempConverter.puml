@@ -8,12 +8,10 @@ PUMLAReUsableAsset("Temp. Converter", tempConverter, component, "<<block>>") {
 
     PUMLARUAPutTaggedValues()
 
-    !if ($PUMVarShowBodyInternals)
     PUMLARUAInternals() {
         component conversionModule
         component formulaLib
     }
-    !endif
 }
 
 

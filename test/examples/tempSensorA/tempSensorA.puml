@@ -7,7 +7,6 @@
 PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") {
     PUMLARUAPutTaggedValues()
 
-    !if ($PUMVarShowBodyInternals)
     PUMLARUAInternals() {
 
         component getSignal
@@ -16,7 +15,6 @@ PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") 
 
         PUMLAPutInternalDynElement(internalSequence)
     }
-    !endif
 }
 
 PUMLARUAAddTaggedValue("Vendor", "A GmbH")

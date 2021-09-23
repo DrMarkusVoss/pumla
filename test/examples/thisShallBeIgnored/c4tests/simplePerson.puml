@@ -1,0 +1,23 @@
+'PUMLAMR
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+!include <c4/C4_Container>
+
+Person(simplePerson, "Simple Person", "People that need products") {
+    PUMLAPutTaggedValues(simplePerson)
+
+    !if ($PUMVarShowBodyInternals)
+        component "internal elements"
+    !endif
+}
+
+PUMLAAddTaggedValue(simplePerson, "Age", "30-49")
+
+!if ($PUMVarShowDescr)
+note bottom of simplePerson
+    A person defined as C4 model actor.
+end note
+!endif
+%version()
+@enduml

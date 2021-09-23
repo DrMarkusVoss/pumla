@@ -32,10 +32,15 @@ def createPumlaMacrosFile(mainpath):
     pm_comment = pm_comment + "' IN THE FOLDER OF THIS FILE HERE!\n"
     pm_include_macros = "!include " + mainpath + "pumla_macros_global.puml\n"
     pm_include_tv = "!include " + mainpath + "pumla_tagged_values.puml\n"
+    pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
+    pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
+    pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
+
     with open(pumla_macros_fn, "w") as fil:
         fil.write(pm_comment)
         fil.write(pm_include_macros)
         fil.write(pm_include_tv)
+        fil.write(pm_include_project_cfg)
     fil.close()
 
 

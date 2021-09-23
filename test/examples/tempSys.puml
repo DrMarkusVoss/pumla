@@ -1,6 +1,7 @@
 'PUMLAMR
 @startuml
 !include pumla_macros.puml
+!include modelrepo_json.puml
 
 PUMLAReUsableAsset("Temperature System", tempSys, node, "<<block>>") {
 
@@ -11,6 +12,7 @@ PUMLAReUsableAsset("Temperature System", tempSys, node, "<<block>>") {
             PUMLAInjectChildElements(tempSys)
         }
         !endif
+
 }
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
