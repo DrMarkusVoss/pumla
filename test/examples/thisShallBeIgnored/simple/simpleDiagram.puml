@@ -1,0 +1,27 @@
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowTaggedValues = %true()
+
+title Put a re-usable element onto the diagram
+
+' put the "simpleElement" from the model repository
+' onto the diagram
+PUMLAPutElement(simpleElement)
+
+note as n1
+The re-usable element "simpleElement"
+is put onto the diagram.
+
+Via the global variables, showing the
+description of the element as well as
+the interfaces is turned off.
+
+So you have a different, more restrained
+view on the element on this diagram.
+end note
+@enduml

@@ -48,16 +48,102 @@ with other applications and documents during software development.
 ## Getting Started
 
 ### Simple example
-See this example diagram description, putting
-all elements of the example model repository with stereotype "block" 
-onto the diagram. Then some relations are added and unnecessary elements
-removed.
+#### Defining a re-usable element
+Create a folder for the example. Change into that folder.
+Call `pumla init`. A file called `pumla_macros.puml` should
+have been created in the folder.
 
-[./test/examples/easyAllElementsOverview.puml](./test/examples/easyAllElementsOverview.puml)
+Then create a file like this:
 
-... leading to this diagram:
+File: simpleElement.puml
+```
+'PUMLAMR
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
 
-![](./test/examples/pics/easyAllElementsOverview.png)
+PUMLAReUsableAsset("A simple Element", simpleElement, component, "<<block>>") {
+    PUMLARUAPutTaggedValues()
+
+    !if ($PUMVarShowBodyInternals)
+    PUMLARUAInternals() {
+
+        component compA
+        component "compB"
+        component "signal processing"
+
+    }
+    !endif
+}
+
+PUMLARUAAddTaggedValue("Vendor", "A GmbH")
+
+PUMLARUAInterface("interfaceA", ifA_simpleELement, "out")
+
+note as dn_simpleElement
+    Example of a simple element.
+    This can be re-used.
+end note
+
+PUMLARUADescr(dn_simpleElement)
+
+PUMLAReUsableAssetFinalize()
+@enduml
+```
+After saving the file, call `pumla update`. The model repository database
+got created in a file called `modelrepo_json.puml`. The model repo
+contains the "simpleElement" that you created. So this can now easily
+be re-used on other diagrams, see next step.
+
+If you are using a PlantUML plugin in your editor, you directly see
+the code of the file rendered to a diagram like this:
+
+![](./test/examples/thisShallBeIgnored/simple/pics/simpleElement.png)
+
+
+
+### Re-using the element on another diagram
+Create a PlantUML diagram like this: 
+
+File: simpleDiagram.puml
+```PlantUML
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowTaggedValues = %true()
+
+title Put a re-usable element onto the diagram
+
+' put the "simpleElement" from the model repository
+' onto the diagram
+PUMLAPutElement(simpleElement)
+
+note as n1
+The re-usable element "simpleElement"
+is put onto the diagram.
+
+Via the global variables, showing the
+description of the element as well as
+the interfaces is turned off.
+
+So you have a different, more restrained
+view on the element on this diagram.
+end note
+@enduml
+```
+This works out of the box, as everything the diagram needs is already
+there, the `pumla_macros.puml` as well as the model repo containing the
+"simpleElement".
+
+Again, in your editor with PlantUML plugin or when rendering the file 
+explicitly with PlantUML, your diagram looks like this:
+
+![](./test/examples/thisShallBeIgnored/simple/pics/simpleDiagram.png)
+
 
 ### Further examples
 For more examples showing off the functionality and magic of `pumla` please...

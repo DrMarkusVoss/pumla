@@ -1,0 +1,32 @@
+'PUMLAMR
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+PUMLAReUsableAsset("A simple Element", simpleElement, component, "<<block>>") {
+    PUMLARUAPutTaggedValues()
+
+    !if ($PUMVarShowBodyInternals)
+    PUMLARUAInternals() {
+
+        component compA
+        component "compB"
+        component "signal processing"
+
+    }
+    !endif
+}
+
+PUMLARUAAddTaggedValue("Vendor", "A GmbH")
+
+PUMLARUAInterface("interfaceA", ifA_simpleELement, "out")
+
+note as dn_simpleElement
+    Example of a simple element.
+    This can be re-used.
+end note
+
+PUMLARUADescr(dn_simpleElement)
+
+PUMLAReUsableAssetFinalize()
+@enduml

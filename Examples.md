@@ -72,9 +72,17 @@ purpose (see example from the main page).
 <img src="./test/examples/pics/instantiationExample_false.png" width="50%"/>
 
 ### E#4: Show dedicated elements, hide some unwanted internal ones
-[./test/examples/easyOverviewSysVarB.puml](./test/examples/easyOverviewSysVarB.puml)
+See this example diagram description, putting
+all elements of the example model repository with stereotype "block" 
+onto the diagram. Then some relations are added and unnecessary elements
+removed.
 
-![](./test/examples/pics/easyOverviewSysVarB.png)
+[./test/examples/easyAllElementsOverview.puml](./test/examples/easyAllElementsOverview.puml)
+
+... leading to this diagram:
+
+![](./test/examples/pics/easyAllElementsOverview.png)
+
 
 ### E#5: Definition of a re-usable model element
 [./test/examples/wirelessUnit/wirelessUnit.puml](./test/examples/wirelessUnit/wirelessUnit.puml)
