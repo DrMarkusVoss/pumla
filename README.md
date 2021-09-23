@@ -56,7 +56,8 @@ have been created in the folder.
 Then create a file like this:
 
 File: simpleElement.puml
-```
+
+```PlantUML
 'PUMLAMR
 @startuml
 !include pumla_macros.puml
@@ -106,6 +107,7 @@ the code of the file rendered to a diagram like this:
 Create a PlantUML diagram like this: 
 
 File: simpleDiagram.puml
+
 ```PlantUML
 @startuml
 !include pumla_macros.puml
