@@ -7,12 +7,9 @@ PUMLAReUsableAsset("Temperature System", tempSys, node, "<<block>>") {
 
         PUMLARUAPutTaggedValues()
 
-        !if ($PUMVarShowBodyInternals)
         PUMLARUAInternals() {
             PUMLAInjectChildElements(tempSys)
         }
-        !endif
-
 }
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
