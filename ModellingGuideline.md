@@ -135,6 +135,21 @@ file: helloworld_rel.puml
 helloworld-->displayText : uses
 @enduml
 ```
+
+## Rule: Atomic model element desciptions shall not contain a title.
+The rule says it all. You shall not define a (diagram) title in an atomic model 
+element description.
+
+### *Rationale*
+The model element will be included in diagrams. Therefore, if the atomic
+element descriptions would contain a title, the included elements would 
+override the diagram title, and the last element included/put on a diagram
+would win and define the title of the diagram. As we want to re-use the
+elements on different diagrams and the diagram title to be defined by the 
+diagram itself, the atomic model element descriptions need to be free of 
+a title definition.
+
+
 ## Rule: Mark your model repository
 The files that form your re-usable model repository shall be explicitly
 marked with the following first line in the puml file:
