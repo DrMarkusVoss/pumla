@@ -1,6 +1,7 @@
 """The pumla command line tool util functions."""
 import os
 import json
+import shutil
 from pumla.model.PUMLAElement import PUMLAElement
 from pumla.model.PUMLARelation import PUMLARelation
 from pumla.model.PUMLAConnection import PUMLAConnection
@@ -19,7 +20,7 @@ puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
 
 def createPumlaMacrosFile(mainpath):
     curpath = os.path.abspath(os.path.curdir)
-    print("Path to initialise: " + curpath)
+    print("Path to initialise: " + curpath + "/")
     print("Path of pumla installation: " + mainpath)
 
     # filename for the pumla macros in the
@@ -42,6 +43,27 @@ def createPumlaMacrosFile(mainpath):
         fil.write(pm_include_tv)
         fil.write(pm_include_project_cfg)
     fil.close()
+
+def createPumlaBlacklistFile():
+    '''create an empty pumla_blacklist.txt file'''
+    curpath = os.path.abspath(os.path.curdir)
+    print("Creating pumla_blacklist.txt here: " + curpath + "/")
+
+    # filename for the pumla macros in the
+    # source code repo where it gets
+    # initialised
+    pumla_blacklist_fn = "pumla_blacklist.txt"
+    pm_comment = "# add here folders and files to be ignored\n# for a pumla update scan\n\n"
+    with open(pumla_blacklist_fn, "w") as fil:
+        fil.write(pm_comment)
+    fil.close()
+
+def createPumlaProjectConfigFile(mainpath):
+    curpath = os.path.abspath(os.path.curdir) + "/"
+    print("Creating pumla_global_cfg.puml file here: " + curpath)
+    srcfile = mainpath + "pumla_global_cfg.puml"
+    destfile = curpath + "pumla_project_config.puml"
+    shutil.copy(srcfile, destfile)
 
 
 def isPumlKeywordInLine(line):

@@ -17,6 +17,8 @@ PUMLAReUsableAsset("Temperature Sensor B (dC)", tempSensorBdC, component, "<<blo
 PUMLARUAInterface("temp_dC", temp_dC_tempSensorBdC, "out")
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
+PUMLARUAAddTaggedValue("Arch Level", "1")
+
 
 ' define usage relation towards the internal elements
 PUMLARelation(tempSensorBdC, "..>", tempSensorB, "use", "tempSensorBdCRel#1")

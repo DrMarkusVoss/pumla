@@ -95,14 +95,12 @@ PUMLAPutElementErrorCheck($int_suc, $elemalias)
         note as $nn #white
         {{
         _PUMPutElementFiltered($folderpath, $filename)
-        '!include $allelems.modelrepopath/%substr($el.path,2)/$el.filename
         }}
         end note
         %set_variable_value($fn, "%true()")
     !endif
 !else
     _PUMPutElementFiltered($folderpath, $filename)
-    '!include $allelems.modelrepopath/%substr($folderpath,2)/$filename
 !endif
 
 !endprocedure

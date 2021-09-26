@@ -6,6 +6,7 @@
 !include ./../../templates/sysml/skin.puml
 
 !$PUMVarShowBodyInternals = %false()
+!$PUMVarShowInterfaces = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowDescr = %false()
 ' even with tagged values not shown on a diagram,

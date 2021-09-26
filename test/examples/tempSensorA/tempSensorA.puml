@@ -18,6 +18,8 @@ PUMLAReUsableAsset("Temperature Sensor A", tempSensorA, component, "<<block>>") 
 }
 
 PUMLARUAAddTaggedValue("Vendor", "A GmbH")
+PUMLARUAAddTaggedValue("Arch Level", "1")
+
 
 PUMLARUAInterface("temp_dC", temp_dC_tempSensorA, "out")
 

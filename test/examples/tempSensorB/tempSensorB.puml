@@ -31,6 +31,8 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
 PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B1")
 PUMLAAddTaggedValue(tempSensorB, "SysVariant", "B2")
 PUMLAAddTaggedValue(tempSensorB, "Vendor", "B Inc.")
+PUMLAAddTaggedValue(tempSensorB, "Arch Level", "1")
+
 
 PUMLAInterface("temp_dF", temp_dF_tempSensorB, tempSensorB, "out")
 PUMLARelation(publicState, "..>", temp_dF_tempSensorB, "provides", "REL#publicStateToIF")

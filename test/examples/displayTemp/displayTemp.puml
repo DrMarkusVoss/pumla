@@ -17,6 +17,8 @@ PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
 PUMLAAddTaggedValue(displayTemp, "Vendor", "C Ltd.")
 PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")
+PUMLAAddTaggedValue(displayTemp, "Arch Level", "1")
+
 
 PUMLAInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
 
