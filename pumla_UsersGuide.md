@@ -72,9 +72,9 @@ blacklist file using `#` as first character of the line. But comments must be
 standalone lines, you cannot put a comment behind a path or filename. 
 The .puml files found will be parsed
 and if they are pumla files, their relevant content will be extracted and stored in the 
-`modelrepo_json.puml` (and tbd: `diagramrepo_json.puml`) file or the given
-filename. Each call will overwrite the existing `{modelrepo | diagramrepo}_json.puml`
-files, therefore they should not be modified by hand,
+`modelrepo_json.puml` file or the given
+filename. Each call will overwrite the existing `modelrepo_json.puml`
+file, therefore they should not be modified by hand,
 because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
@@ -126,11 +126,6 @@ The following special comments (file markings), macros and global variables are 
 This comment put into the first line of a `.puml` file marks the file
 as `pumla` model element description that shall be part of the re-usable
 model repository.
-
-### tbd: `'PUMLADR`
-This comment put into the first line of a .puml file marks the file
-as pumla diagram element description that shall be part of the re-usable
-diagram repository.
 
 ### `'PUMLAPARENT: <elem_alias>`
 This comment in the second line under the `'PUMLAMR` marks that
@@ -433,12 +428,10 @@ Adds a tag/value pair to the tagged value table of the
 ### `PUMLAPutTaggedValues( elemalias : string)`
 Puts the tagged value table enclosed by a rectangle in place.
 
-Requires including `pumla_tagged_values.puml`.
 
 ### `PUMLARUAPutTaggedValues( )`
 Puts the tagged value table enclosed by a rectangle in place.
 
-Requires including `pumla_tagged_values.puml`.
 
 ## Diagram Filters
 
@@ -637,17 +630,9 @@ Include this file in your PlantUML diagram files or
 `pumla` model element description files to use the
 `pumla` extension macros.
 
-### `pumla_tagged_values.puml`
-Include this file to make use of the pumla tagged value
-extension. This only needs to be included where the tagged
-values are defined, not on every diagram where the
-element containing the tagged values is placed.
-
 ### `modelrepo_json.puml`
 Include this file wherever you access the model repository
 with the `pumla` Extension Macros.
 
-### tbd: `diagramrepo_json.puml`
-Include this file wherever you access the diagram repository
-with the `pumla` Extension Macros.
+
 

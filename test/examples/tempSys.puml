@@ -13,6 +13,7 @@ PUMLAReUsableAsset("Temperature System", tempSys, node, "<<block>>") {
 }
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
+PUMLARUAAddTaggedValue("Arch Level", "0")
 
 PUMLARUAInterface("internet", internet_tempSys, "inout")
 

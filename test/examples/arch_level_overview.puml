@@ -1,0 +1,19 @@
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowInterfaces = %false()
+
+title Architecture Levels Elements Overview
+
+rectangle "Level 0 Elements" as l0 {
+PUMLAPutAllElementsWithTagValue("Arch Level", "0")
+}
+
+rectangle "Level 1 Elements"  as l1 {
+PUMLAPutAllElementsWithTagValue("Arch Level", "1")
+}
+
+@enduml
