@@ -1,4 +1,4 @@
- 'modify this to how you like it.
+' modify this to how you like it.
 
 ' turn on (true) or off (false) the default
 ' pumla advertising footer. Can also be
@@ -16,5 +16,5 @@
 ' choose the color of the tagged values
 ' table. Color names have to be written
 ' in small letters.
-!$PUMColorTaggedValues = orange
+!$PUMColorTaggedValues = lightgreen
 
