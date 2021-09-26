@@ -48,6 +48,21 @@ thing after you checkout a source code repository that also contains pumla-model
 elements, you call `pumla init` in the root folder of that repository (if not
 another folder is defined by the source code projects documentation).
 
+### `pumla setupprj`
+This command prepares your projects source code repository to use pumla architecture
+models. It is a convenience command, as it creates some files for you as starting point,
+that you would need to setup otherwise manually.
+
+Currently, the following things will be done:
+- an empty `pumla_blacklist.txt` file is created, where you can enter folders and files
+  that shall be ignored during the `pumla update` scan. E.g. if you have examples folders
+  you may want to exclude them from your official projects architecture documentation.
+- a pumla config file `pumla_project_config.puml` that allows to have a project-specific
+  override of default values for pumla global variables. E.g. here you can decide that you
+  want to have "Error Notes" turned off for your whole project as default (of course you
+  can override it again in a diagram in your project).
+- the init step is executed. See above `pumla init` description to see what happens there.
+
 ### `pumla update`
 This is the most important command. It scans the source code repository starting
 at the current folder location and traverses from here through all underlying

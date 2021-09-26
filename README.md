@@ -55,8 +55,10 @@ installation instructions.
 Then:
 - Create a folder for the example.
 - Change into that folder. 
-- Call `pumla init`. A file called `pumla_macros.puml` should
-have been created in the folder.
+- Call `pumla setupprj`. That prepares your example folder as a project
+  containing a pumla architecture documentation. 3 files should
+have been created in the folder:  `pumla_macros.puml`,
+  `pumla_blacklist.txt` and `pumla_project_config.puml`.
 - Create a file like this:
 
 File: simpleElement.puml

@@ -19,7 +19,7 @@
 !$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowImplicitRels = %true()
 
-title All Classes from Model Repository
+title Mixing classes and other elements from Model Repository
 
 ' if you want to mix classes and other elements
 ' on a diagram you need to do this:

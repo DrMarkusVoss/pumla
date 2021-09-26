@@ -17,7 +17,8 @@ __status__ = "Development"
 
 import argparse
 import os
-from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR, createPumlaMacrosFile
+from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile, createPumlaProjectConfigFile
 
 parser = None
 parser_getjson = None
@@ -26,18 +27,42 @@ def identifyMe(parser):
     """ information about the executed command """
     print(parser.description)
 
+def getPumlaInstallationPath():
+    pipath = ""
+
+    mypath_main = main.__code__.co_filename
+    pipath = mypath_main.replace("src/pumla/main.py", "")
+
+    return pipath
 
 def cmdInit(args):
-    print("initialisng source code repository for pumla usage...")
-    mypath_main = main.__code__.co_filename
-    pumla_module_path = mypath_main.replace("src/pumla/main.py", "")
-    createPumlaMacrosFile(pumla_module_path)
+    '''initialise a source code repository that contains pumla architecture
+       documentation for use on a new system. E.g. deal with different
+       installation pathes of the source code repo and the pumla
+       installation.'''
+    identifyMe(parser)
+    print("initialising source code repository for pumla usage...")
+    createPumlaMacrosFile(getPumlaInstallationPath())
     print("done.")
+
+def cmdSetupPrj(args):
+    '''setup a source code repository to use pumla as architecture
+       documentation tool. E.g. create a pumla_blacklist.txt and a
+       pumla_project_config.puml, and calls init step afterwards.'''
+    identifyMe(parser)
+    print("Setup project repository for pumla usage...")
+    createPumlaBlacklistFile()
+    createPumlaProjectConfigFile(getPumlaInstallationPath())
+    print("initialising source code repository for pumla usage...")
+    createPumlaMacrosFile(getPumlaInstallationPath())
+    print("done.")
+
 
 def cmdCreateNewPumlaFile(args):
     pass
 
 def cmdListElements(args):
+    identifyMe(parser)
     print("\nPUMLA elements:\n")
     # pfls = list of PUMLA files
     pfls = findAllPUMLAFiles(os.path.curdir)
@@ -132,6 +157,12 @@ def main():
         help="initialise a source code folder as root for a pumla model repository.",
     )
     parser_init.set_defaults(func=cmdInit)
+
+    parser_setupprj = subparsers.add_parser(
+        "setupprj",
+        help="create an environment to use pumla as architecture documentation tool in the current project repository.",
+    )
+    parser_setupprj.set_defaults(func=cmdSetupPrj)
 
     parser_listelements = subparsers.add_parser(
         "elements",
