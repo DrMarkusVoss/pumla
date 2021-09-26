@@ -1,7 +1,0 @@
-@startuml
-!$alldiags = { "diagrams": [
-  {"name": "Overview", "type" : "structure", "path" : "." , "filename" : "tempSys.puml"},
-  {"name" : "Timing", "type" : "behaviour", "path": "./displayTemp", "filename": "displayTemp.puml"}
-  ]
-}
-@enduml
