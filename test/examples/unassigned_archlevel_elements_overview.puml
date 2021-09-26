@@ -1,0 +1,21 @@
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowInterfaces = %false()
+
+title Unassigned Arch Level Elements Overview
+
+' filter out all elements that have
+' an "Arch Level" tag
+PUMLASetElementFilterOutTag("Arch Level")
+
+rectangle "Unassigned Arch Level Elements" as ual {
+' the ones not filtered out do not have an assignment
+PUMLAPutAllElements()
+}
+
+
+@enduml

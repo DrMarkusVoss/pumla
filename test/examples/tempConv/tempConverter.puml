@@ -16,6 +16,8 @@ PUMLAReUsableAsset("Temp. Converter", tempConverter, component, "<<block>>") {
 
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
+PUMLARUAAddTaggedValue("Arch Level", "1")
+
 
 PUMLARUAInterface("temp_dC", temp_dC_tempConverter, "out")
 PUMLARUAInterface("temp_dF", temp_dF_tempConverter, "in")

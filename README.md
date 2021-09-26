@@ -136,7 +136,8 @@ note as n1
     
     So you have a different, more restrained
     view on the element on this diagram.
-    end note
+end note
+
 @enduml
 ```
 This works out of the box, as everything the diagram needs is already

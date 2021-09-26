@@ -16,6 +16,7 @@ PUMLAReUsableAsset("Wireless Unit", wirelessUnit, rectangle, "<<block>> <<extern
 PUMLARUAAddTaggedValue("Vendor", "XY")
 PUMLARUAAddTaggedValue("SecurityClass", "Alpha")
 PUMLARUAAddTaggedValue("Frequency Range", "5 GHz")
+PUMLARUAAddTaggedValue("Arch Level", "0")
 
 PUMLARUAInterface("internet", internet_wirelessUnit, "inout")
 
