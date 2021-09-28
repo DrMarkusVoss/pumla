@@ -48,6 +48,23 @@ thing after you checkout a source code repository that also contains pumla-model
 elements, you call `pumla init` in the root folder of that repository (if not
 another folder is defined by the source code projects documentation).
 
+### `pumla setup`
+This command needs to be called right after installation of pumla with:
+
+"`pip install .`" or "`pip install -e .`"
+
+The command must be executed from the root folder of the pumla release archive or
+pumla git repository. It makes sure, that the installation of the pumla python CLI
+tool knows where the pumla folder with the macros is, as it needs to access for
+certain commands, like e.g. `pumla init`. Also, a version consistency check is 
+performed. 
+
+The installation procedure should be followed as described on the README.md.
+
+### `pumla checksetup`
+Checks the pumla setup. Evaluates the consistency of the version numbers of the 
+pumla python CLI tool and the macros, as well as the right setup of the paths.
+
 ### `pumla setupprj`
 This command prepares your projects source code repository to use pumla architecture
 models. It is a convenience command, as it creates some files for you as starting point,
