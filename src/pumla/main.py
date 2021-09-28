@@ -68,7 +68,7 @@ def cmdSetup(args):
     identifyMe(parser)
     print("setup pumla for usage on this machine...")
 
-    versionsOK = pumlaVersionCheck(__version__)
+    versionsOK = pumlaVersionCheck(getPumlaInstallationPath(), __version__)
 
     if versionsOK:
         pumlaSetup(getPumlaInstallationPath())
