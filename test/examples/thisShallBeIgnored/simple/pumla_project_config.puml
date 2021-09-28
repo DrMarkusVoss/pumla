@@ -16,5 +16,5 @@
 ' choose the color of the tagged values
 ' table. Color names have to be written
 ' in small letters.
-!$PUMColorTaggedValues = orange
+!$PUMColorTaggedValues = lightgreen
 

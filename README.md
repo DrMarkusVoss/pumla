@@ -163,6 +163,7 @@ system:
     git clone https://github.com/DrMarkusVoss/pumla.git
     cd pumla
     pip install -e .
+    pumla setup
 
 After that you should be able to call `pumla <cmd>` at any place, e.g. `pumla init` or `pumla update`. 
 
@@ -177,7 +178,8 @@ To get a release, do the following:
 corresponding Source Code archive (.zip or .tar.gz).
 - extract the archive
 - change to the unpacked pumla folder, e.g. `cd pumla-0.8.3`
-- install pumla with: `pip install -e .`
+- install pumla with: `pip install .`
+- call from same folder: `pumla setup`
 
 ### Working with the examples
 In order to play around with the examples, you need to initialise the examples repository

@@ -1,4 +1,4 @@
-!$PUMLAVersionNumber = "v0.8.3"
+!$PUMLAVersionNumber = "v0.8.4"
 
 !include pumla_global_cfg.puml
 !include pumla_internal.puml

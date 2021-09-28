@@ -12,6 +12,8 @@ mrtest_json.puml
 
 # this needs to be generated on each system by calling: pumla init
 test/examples/pumla_macros.puml
+pumla_macros_path.txt
+pumla_macros.puml
 
 # Distribution / packaging
 .Python
