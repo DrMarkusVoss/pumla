@@ -11,7 +11,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "0.8.3"
+__version__ = "0.8.4"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -76,6 +76,19 @@ def cmdSetup(args):
     else:
         print("failed.")
 
+def cmdCheckSetup(args):
+    '''check the setup and installation of pumla python CLI tool and
+       pumla macros as well as path setup on this machine.'''
+    identifyMe(parser)
+    print("checking pumla installation on this machine...")
+
+    versionsOK = pumlaVersionCheck(getPumlaInstallationPath(), __version__)
+
+    if versionsOK:
+        print("pumla setup is OK.")
+        print("done.")
+    else:
+        print("failed.")
 
 def cmdSetupPrj(args):
     '''setup a source code repository to use pumla as architecture
@@ -200,6 +213,13 @@ def main():
              "installed with pip.",
     )
     parser_setup.set_defaults(func=cmdSetup)
+
+    parser_checksetup = subparsers.add_parser(
+        "checksetup",
+        help="check whether the current installation of pumla python CLI tool is consistent"
+             "with the pumla macros file and the paths are setup all right.",
+    )
+    parser_checksetup.set_defaults(func=cmdCheckSetup)
 
     parser_setupprj = subparsers.add_parser(
         "setupprj",
