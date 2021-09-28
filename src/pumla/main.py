@@ -18,7 +18,8 @@ __status__ = "Development"
 import argparse
 import os
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
-from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile, createPumlaProjectConfigFile
+from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile
+from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
 
 parser = None
 parser_getjson = None
@@ -28,10 +29,20 @@ def identifyMe(parser):
     print(parser.description)
 
 def getPumlaInstallationPath():
+    '''return the path to the python pumla CLI tool installation.'''
     pipath = ""
 
     mypath_main = main.__code__.co_filename
-    pipath = mypath_main.replace("src/pumla/main.py", "")
+
+    # this is the case for a 'pip install -e .' case
+    if ("src/pumla/main.py" in mypath_main):
+        pipath = mypath_main.replace("src/pumla/main.py", "")
+    # this is the case for a 'pip install .' case
+    elif ("site-packages/pumla/main.py" in mypath_main):
+        pipath = mypath_main.replace("main.py", "")
+    # if we're here, we have a problem because of unforeseen installation circumstances...
+    else:
+        print("pumla error: Could not determine pumla installation path.\nPlease raise a bug-ticket at: https://github.com/DrMarkusVoss/pumla")
 
     return pipath
 
@@ -42,8 +53,29 @@ def cmdInit(args):
        installation.'''
     identifyMe(parser)
     print("initialising source code repository for pumla usage...")
-    createPumlaMacrosFile(getPumlaInstallationPath())
-    print("done.")
+    success = createPumlaMacrosFile(getPumlaInstallationPath())
+    if success:
+        print("done.")
+    else:
+        print("failed.")
+
+
+def cmdSetup(args):
+    '''setup this computer for usage of pumla. Therefore, the python CLI
+       tool needs to be connected with the pumla PlantUML macros.
+       Therefore a file at CLI binary location needs to be placed that
+       refers to the path of the pumla PlantUML macros.'''
+    identifyMe(parser)
+    print("setup pumla for usage on this machine...")
+
+    versionsOK = pumlaVersionCheck(getPumlaInstallationPath(), __version__)
+
+    if versionsOK:
+        pumlaSetup(getPumlaInstallationPath())
+        print("done.")
+    else:
+        print("failed.")
+
 
 def cmdSetupPrj(args):
     '''setup a source code repository to use pumla as architecture
@@ -52,10 +84,13 @@ def cmdSetupPrj(args):
     identifyMe(parser)
     print("Setup project repository for pumla usage...")
     createPumlaBlacklistFile()
-    createPumlaProjectConfigFile(getPumlaInstallationPath())
+    pcfsuccess = createPumlaProjectConfigFile(getPumlaInstallationPath())
     print("initialising source code repository for pumla usage...")
-    createPumlaMacrosFile(getPumlaInstallationPath())
-    print("done.")
+    pmfsuccess = createPumlaMacrosFile(getPumlaInstallationPath())
+    if pcfsuccess and pmfsuccess:
+        print("done.")
+    else:
+        print("failed.")
 
 
 def cmdCreateNewPumlaFile(args):
@@ -157,6 +192,14 @@ def main():
         help="initialise a source code folder as root for a pumla model repository.",
     )
     parser_init.set_defaults(func=cmdInit)
+
+    parser_setup = subparsers.add_parser(
+        "setup",
+        help="setup pumla for usage on this machine. Must be called from root folder "
+             "of a cloned pumla repo or a downloaded release archive after pumla has been "
+             "installed with pip.",
+    )
+    parser_setup.set_defaults(func=cmdSetup)
 
     parser_setupprj = subparsers.add_parser(
         "setupprj",

@@ -2,7 +2,7 @@
 These are diagrams from the `./test/examples` section. You find the
 source code of the .puml files that form the example model repository
 there. In order to get the example running on your computer, you need
-to run "`pumla update`" in the examples directory, 
+to run first `pumla init`, then `pumla update`" in the examples directory, 
 because the paths in the model repo file (./test/examples/modelrepo_json.puml)
 need to be updated to the directory structure on your computer. Currently
 the model repo file has the paths from the structure as I have it on my
@@ -10,6 +10,9 @@ machine. You can't run the pumla update from the main path of pumla, as
 it is setup to update the architecture model repo of the pumla tool itself.
 The examples section will be ignored from the top level. So you have to go
 down to the examples and call the pumla update from that directory.
+
+If you are changing the contents of the examples to play around, in order for a
+change to become alive, you need to call `pumla update` again. cd 
 
 ## E#0: Create Re-usable Elements
 Here are examples for defining elements, that can be easily re-used on different

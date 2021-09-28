@@ -17,32 +17,59 @@ puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "ci
 puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
                        "collections", "participant", "activity", "partition"]
 
+def readPumlaMacrosPathFromFile(mainpath):
+    '''read the path of the pumla macros location from the file "pumla_macros_path.txt".'''
+    pmpath = ""
+    success = True
+    pmpf = mainpath + "pumla_macros_path.txt"
+    if os.path.isfile(pmpf):
+        file = open(pmpf)
+        firstline = file.readline()
+        file.close()
+        pmpath = firstline.strip()
+    else:
+        print("pumla error: pumla not yet properly installed. File 'pumla_macros_path.txt' not found.")
+        print("             Please call 'pumla setup' in the pumla source directory.")
+        success = False
+
+    return success, pmpath
 
 def createPumlaMacrosFile(mainpath):
-    curpath = os.path.abspath(os.path.curdir)
-    print("Path to initialise: " + curpath + "/")
-    print("Path of pumla installation: " + mainpath)
+    '''create a trampoline include file to include the pumla macros for
+       a project at whatever location.'''
+    success = True
+    pmpsuccess, pumla_macros_path = readPumlaMacrosPathFromFile(mainpath)
+    if pmpsuccess:
+        curpath = os.path.abspath(os.path.curdir)
+        print("Path to initialise: " + curpath + "/")
+        print("Path of pumla installation: " + mainpath)
+        print("Path of pumla macros: " + pumla_macros_path)
 
-    # filename for the pumla macros in the
-    # source code repo where it gets
-    # initialised
-    pumla_macros_fn = "pumla_macros.puml"
-    pm_comment = "' THIS IS AN AUTOMATICALLY GENERATED FILE BY pumla init \n"
-    pm_comment = pm_comment + "' DO NOT CHANGE MANUALLY!\n"
-    pm_comment = pm_comment + "' TO ADOPT THE PATHS TO YOUR SYSTEM, CALL pumla init AGAIN\n"
-    pm_comment = pm_comment + "' IN THE FOLDER OF THIS FILE HERE!\n"
-    pm_include_macros = "!include " + mainpath + "pumla_macros_global.puml\n"
-    pm_include_tv = "!include " + mainpath + "pumla_tagged_values.puml\n"
-    pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
-    pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
-    pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
+        # filename for the pumla macros in the
+        # source code repo where it gets
+        # initialised
+        pumla_macros_fn = "pumla_macros.puml"
+        pm_comment = "' THIS IS AN AUTOMATICALLY GENERATED FILE BY pumla init \n"
+        pm_comment = pm_comment + "' DO NOT CHANGE MANUALLY!\n"
+        pm_comment = pm_comment + "' TO ADOPT THE PATHS TO YOUR SYSTEM, CALL pumla init AGAIN\n"
+        pm_comment = pm_comment + "' IN THE FOLDER OF THIS FILE HERE!\n"
+        pm_include_macros = "!include " + pumla_macros_path + "pumla_macros_global.puml\n"
+        pm_include_tv = "!include " + pumla_macros_path + "pumla_tagged_values.puml\n"
+        pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
+        pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
+        pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
 
-    with open(pumla_macros_fn, "w") as fil:
-        fil.write(pm_comment)
-        fil.write(pm_include_macros)
-        fil.write(pm_include_tv)
-        fil.write(pm_include_project_cfg)
-    fil.close()
+        with open(pumla_macros_fn, "w") as fil:
+            fil.write(pm_comment)
+            fil.write(pm_include_macros)
+            fil.write(pm_include_tv)
+            fil.write(pm_include_project_cfg)
+        fil.close()
+    else:
+        success = False
+
+    return success
+
 
 def createPumlaBlacklistFile():
     '''create an empty pumla_blacklist.txt file'''
@@ -59,12 +86,62 @@ def createPumlaBlacklistFile():
     fil.close()
 
 def createPumlaProjectConfigFile(mainpath):
-    curpath = os.path.abspath(os.path.curdir) + "/"
-    print("Creating pumla_global_cfg.puml file here: " + curpath)
-    srcfile = mainpath + "pumla_global_cfg.puml"
-    destfile = curpath + "pumla_project_config.puml"
-    shutil.copy(srcfile, destfile)
+    '''create a project-specific default file for pumla global variables.'''
+    success = True
+    pmpsuccess, pmp = readPumlaMacrosPathFromFile(mainpath)
+    if pmpsuccess:
+        curpath = os.path.abspath(os.path.curdir) + "/"
+        print("Creating pumla_global_cfg.puml file here: " + curpath)
+        srcfile = pmp + "pumla_global_cfg.puml"
+        destfile = curpath + "pumla_project_config.puml"
+        shutil.copy(srcfile, destfile)
+    else:
+        success = False
 
+    return success
+
+
+def pumlaSetup(mainpath):
+    '''create the pumla_macros_path.txt file at the location of the pumla installation
+       referring to the current directory.'''
+    curpath = os.path.abspath(os.path.curdir) + "/"
+    print("Creating pumla_macros_path.txt here: " + mainpath)
+
+    # filename for the pumla macros in the
+    # source code repo where it gets
+    # initialised
+    pumla_blacklist_fn = mainpath + "pumla_macros_path.txt"
+    pm_comment = curpath + "\n"
+    with open(pumla_blacklist_fn, "w") as fil:
+        fil.write(pm_comment)
+    fil.close()
+
+def pumlaVersionCheck(mainpath, pumla_pycli_version):
+    '''check whether the version of the pumla python CLI tool and the
+       pumla_macros_global.puml are the same.'''
+    success = True
+    pmg = mainpath + "pumla_macros_global.puml"
+    if os.path.isfile(pmg):
+        file = open(pmg)
+        firstline = file.readline()
+        file.close()
+        rm1 = firstline.replace("!$PUMLAVersionNumber =", "")
+        rm2 = rm1.replace("v", "")
+        rm3 = rm2.replace('"', '')
+        pumla_macro_version = rm3.strip()
+        print("pumla macros version: " + pumla_macro_version)
+        print("pumla python CLI tool version: " + pumla_pycli_version)
+
+        if not pumla_macro_version ==  pumla_pycli_version:
+            print("pumla error: installation broken. Different versions of CLI tool and macros.")
+            print("             PLEASE MAKE A CLEAN NEW INSTALL!")
+            success = False
+    else:
+        print("pumla error: installation broken. No 'pumla_macros_global.puml' file found.")
+        print("             PLEASE MAKE A CLEAN NEW INSTALL!")
+        success = False
+
+    return success
 
 def isPumlKeywordInLine(line):
     """check whether one of the deployment diagram element keywords
