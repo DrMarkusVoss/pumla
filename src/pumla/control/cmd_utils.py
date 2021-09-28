@@ -116,11 +116,12 @@ def pumlaSetup(mainpath):
         fil.write(pm_comment)
     fil.close()
 
-def pumlaVersionCheck(mainpath, pumla_pycli_version):
+def pumlaVersionCheck(pumla_pycli_version):
     '''check whether the version of the pumla python CLI tool and the
        pumla_macros_global.puml are the same.'''
     success = True
-    pmg = mainpath + "pumla_macros_global.puml"
+    curpath = os.path.abspath(os.path.curdir) + "/"
+    pmg = curpath + "pumla_macros_global.puml"
     if os.path.isfile(pmg):
         file = open(pmg)
         firstline = file.readline()
