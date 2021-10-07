@@ -450,18 +450,16 @@ def findReUsableAssetDefinition(lines):
             s1 = e.replace("PUMLAReUsableAsset", "")
             s11 = s1.strip("{}")
             s2 = s11.strip("(")
-            s21 = s2.strip(")")
-            s3 = s21.split(",")
+            s21 = s2.strip()
+            s22 = s21.strip(")")
+            s3 = s22.split(",")
             s4 = [ix.strip() for ix in s3]
             s5 = [ix.strip('"') for ix in s4]
-            s6 = [ix.strip('{') for ix in s5]
-            s7 = [ix.strip(')') for ix in s6]
-            s8 = [ix.strip('"') for ix in s7]
-            el_name = s8[0]
-            el_alias = s8[1]
-            el_type = s8[2]
+            el_name = s5[0]
+            el_alias = s5[1]
+            el_type = s5[2]
 
-            st = s8[3].strip(" ")
+            st = s5[3].strip(" ")
             st1 = st.split(">>")
             st2 = [ist.strip() for ist in st1]
             st3 = [ist.strip("<<") for ist in st2]

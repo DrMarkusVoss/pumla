@@ -20,7 +20,7 @@
  {"name": "Temperature Sensor A", "alias": "tempSensorA", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorA/", "filename": "tempSensorA.puml", "taggedvalues": [{"tag": "Vendor", "values": ["A GmbH"]},
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "**Internal Sequence**", "alias": "internalSequence", "type": "participant", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorA", "instclassalias": "-", "path": "./tempSensorA/", "filename": "internalSequence.puml"},
- {"name": "Temperature Sensor B (dC", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
+ {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Brightness", "values": ["300 Nits"]},
