@@ -1,0 +1,150 @@
+!include <c4/C4_Container.puml>
+
+!unquoted procedure PUMLAC4Person($alias, $label, $descr="", $sprite="", $tags="", $link="")
+Person($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Person_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+Person_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System($alias, $label, $descr="", $sprite="", $tags="", $link="")
+System($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+System_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemDb($alias, $label, $descr="", $sprite="", $tags="", $link="")
+SystemDb($alias, $label, $descr, $sprite, $tag, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemQueue($alias, $label, $descr="", $sprite="", $tags="", $link="")
+SystemQueue($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemDb_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+SystemDb_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemQueue_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+SystemQueue_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Enterprise_Boundary($alias, $label, $tags="", $link="")
+Enterprise_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System_Boundary($alias, $label, $tags="", $link="")
+System_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+
+!unquoted procedure PUMLAC4Container($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Container($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerDb($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ContainerDb($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerQueue($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ContainerQueue($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Container_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Container_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerDb_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ContainerDb_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerQueue_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ContainerQueue_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Container_Boundary($alias, $label, $tags="", $link="")
+Container_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Component($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Component($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentDb($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ComponentDb($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentQueue($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ComponentQueue($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Component_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Component_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentDb_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ComponentDb_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentQueue_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+ComponentQueue_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Deployment_Node($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node_L($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Deployment_Node_L($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node_R($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Deployment_Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Node($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node_L($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Node_L($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node_R($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_Back($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_Back($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure Rel_Back_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_Back_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_D($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_D($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_U($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_U($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_L($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_L($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_R($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+Rel_R($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure

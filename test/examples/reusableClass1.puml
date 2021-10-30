@@ -2,8 +2,7 @@
 @startuml
 !include pumla_macros.puml
 
-PUMLAReUsableClass("MyNewClass1", "<<Python>>")
-{
+PUMLAReUsableClass("MyNewClass1", "<<Python>>")  {
     +sayHelloToTheWorld()
 }
 

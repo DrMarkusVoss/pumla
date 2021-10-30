@@ -1,4 +1,5 @@
 @startuml
+
 !$BGCOLOR=Light
 !theme sketchy-outline
 [comp1] --> [comp2] : uses\n<size: 8>{"SysVariant": ["B1", "B2"]}
@@ -6,6 +7,9 @@
 !$ary={"txt": ["huhu"]}
 
 [$ary.txt[0]]
+
+rectangle "heloo" <<huhu>> as helo
+
 
 '!$ary.txt[0] ?= "ha"
 !$aru = "hua"

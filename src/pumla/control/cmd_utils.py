@@ -2,6 +2,7 @@
 import os
 import json
 import shutil
+import re
 from pumla.model.PUMLAElement import PUMLAElement
 from pumla.model.PUMLARelation import PUMLARelation
 from pumla.model.PUMLAConnection import PUMLAConnection
@@ -436,9 +437,73 @@ def parsePUMLAFileMarkings(lines):
 
     return retdict_filemarkings
 
-
 def findReUsableAssetDefinition(lines):
+    """find pumla RUA definitions in the given lines. According to rules, there is only
+       one RUA element allowed per file. With this algo, the last found definition wins.
+       But it is an error anyways, if there is more."""
 
+    # TBD: error messages when more than one RUA definition is found in a file.
+
+    # the regex patterns
+    pattern_rua = r'PUMLAReUsableAsset\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_ruaclass = r'PUMLAReUsableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_ruainst = r'PUMLAFullyInstantiatableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_sts = r'<<[\w\s]+>>'
+
+    success = False
+    el_name = ""
+    el_alias = ""
+    el_type = ""
+    el_stereotypes = []
+
+    for e in lines:
+        result_rua = re.findall(pattern_rua, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_rua:
+            el_name = result_rua[0][0]
+            el_alias = result_rua[0][1]
+            el_type = result_rua[0][2]
+
+            if not result_rua[0][4] == "":
+                stslist = re.findall(pattern_sts, result_rua[0][4])
+
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
+            success = True
+
+        result_ruaclass = re.findall(pattern_ruaclass, e)
+        if result_ruaclass:
+            el_alias = result_ruaclass[0][0]
+            el_name = el_alias
+            el_type = "class"
+
+            if not result_ruaclass[0][2] == "":
+                stslist = re.findall(pattern_sts, result_ruaclass[0][2])
+
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
+            success = True
+
+        result_ruainstclass = re.findall(pattern_ruainst, e)
+        if result_ruainstclass:
+            el_alias = result_ruainstclass[0][0]
+            el_name = el_alias
+            el_type = "class"
+
+            if not result_ruainstclass[0][2] == "":
+                stslist = re.findall(pattern_sts, result_ruainstclass[0][2])
+
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
+            success = True
+
+    return success, el_name, el_alias, el_type, el_stereotypes
+
+
+def findReUsableAssetDefinition_old(lines):
     success = False
     el_name = ""
     el_alias = ""
