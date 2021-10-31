@@ -1,0 +1,10 @@
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Administration User", "alias": "administrationUser", "type": "C4Person", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./users/", "filename": "administrationUser.puml"},
+ {"name": "Anonymous User", "alias": "anonymousUser", "type": "C4Person_Ext", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./users/", "filename": "anonymousUser.puml"},
+ {"name": "Aggregated User", "alias": "aggregatedUser", "type": "C4Person", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./users/", "filename": "aggregatedUser.puml"},
+ {"name": "Remote Control", "alias": "remoteControl", "type": "C4Person", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./remoteControl/", "filename": "remoteControl.puml", "taggedvalues": [{"tag": "Vendor", "values": ["D GmbH"]},
+ {"tag": "Arch Level", "values": ["1"]}]}]}
+
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
+
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+

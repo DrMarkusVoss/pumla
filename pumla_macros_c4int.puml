@@ -1,10 +1,16 @@
 !include <c4/C4_Container.puml>
 
 !unquoted procedure PUMLAC4Person($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
 Person($alias, $label, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Person_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
 Person_Ext($alias, $label, $descr, $sprite, $tags, $link)
 !endprocedure
 

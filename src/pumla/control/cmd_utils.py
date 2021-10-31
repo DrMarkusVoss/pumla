@@ -437,6 +437,14 @@ def parsePUMLAFileMarkings(lines):
 
     return retdict_filemarkings
 
+def findReUsableC4Definition(lines):
+    """find a pumla reusable C4 element definition in the given lines."""
+    # the regex patterns
+    pattern_c4person = r'PUMLAC4Person\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*, (.*)\)'
+    for e in lines:
+        result_rua = re.findall(pattern_c4person, e)
+        print(result_rua)
+
 def findReUsableAssetDefinition(lines):
     """find pumla RUA definitions in the given lines. According to rules, there is only
        one RUA element allowed per file. With this algo, the last found definition wins.
@@ -449,6 +457,9 @@ def findReUsableAssetDefinition(lines):
     pattern_ruaclass = r'PUMLAReUsableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_ruainst = r'PUMLAFullyInstantiatableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_sts = r'<<[\w\s]+>>'
+
+    pattern_c4person = r'PUMLAC4Person\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    pattern_c4person_ext = r'PUMLAC4Person_Ext\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
     success = False
     el_name = ""
@@ -499,6 +510,22 @@ def findReUsableAssetDefinition(lines):
                     if (est != ""):
                         el_stereotypes.append(est.strip("<>"))
             success = True
+
+        result_c4person = re.findall(pattern_c4person, e)
+        if result_c4person:
+            el_alias = result_c4person[0][0]
+            el_name = result_c4person[0][1]
+            el_type = "C4Person"
+            success = True
+
+        result_c4person_ext = re.findall(pattern_c4person_ext, e)
+        if result_c4person_ext:
+            el_alias = result_c4person_ext[0][0]
+            el_name = result_c4person_ext[0][1]
+            el_type = "C4Person_Ext"
+            success = True
+
+
 
     return success, el_name, el_alias, el_type, el_stereotypes
 

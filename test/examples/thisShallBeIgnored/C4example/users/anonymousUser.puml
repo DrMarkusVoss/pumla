@@ -1,0 +1,10 @@
+'PUMLAMR
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAC4Person_Ext(anonymousUser, "Anonymous User")
+
+PUMLAReUsableAssetFinalize()
+
+@enduml
