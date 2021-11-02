@@ -1,0 +1,11 @@
+'PUMLAMR
+'PUMLAPARENT: techtribes
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAC4Container(updater, "Updater", "Java 7 Console App", "Updates profiles, tweets, GitHub repos and content on a scheduled basis")
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

@@ -12,4 +12,8 @@ PUMLAPutElement(aggregatedUser)
 ' the "techtribes" system boundary.
 PUMLAPutElement(techtribes)
 
+PUMLAPutElement(twitter)
+PUMLAPutElement(blogs)
+PUMLAPutElement(github)
+
 @enduml

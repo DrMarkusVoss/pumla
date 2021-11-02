@@ -312,7 +312,7 @@ def findElementNameAndTypeInText(lines, alias):
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
-def findRelations(lines, path, filename):
+def findRelations_old(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     ret_rels = []
     for e in lines:
@@ -330,6 +330,44 @@ def findRelations(lines, path, filename):
                 ret_rels.append(pr)
 
     return ret_rels
+
+def findRelations(lines, path, filename):
+    """ find PUMLA relation definitions in given lines. """
+    pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
+    pattern_pumlac4rel = r'PUMLAC4Rel_U\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
+
+    ret_rels = []
+    for e in lines:
+        if "PUMLARelation" in e:
+            s1 = e.replace("PUMLARelation", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if len(s4) > 4:
+                pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_rels.append(pr)
+
+        result_c4rel = re.findall(pattern_pumlac4rel, e)
+        if result_c4rel:
+            print("YUUUUUUUUUUUUH!")
+            #(self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            if len(result_c4rel[0]) > 2:
+                label = result_c4rel[0][2]
+            if len(result_c4rel[0]) > 3:
+                techn = result_c4rel[0][3]
+            pr = PUMLARelation(result_c4rel[0][0], result_c4rel[0][1], "C4Rel->>", label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+    return ret_rels
+
 
 def findConnections(lines, path, filename):
     """ find PUMLA connection definitions in given lines. """
@@ -470,6 +508,7 @@ def findReUsableAssetDefinition(lines):
     pattern_c4system_boundary = r'PUMLAC4System_Boundary\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
     pattern_c4container = r'PUMLAC4Container\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
     pattern_c4container_db = r'PUMLAC4ContainerDb\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    pattern_c4system_ext = r'PUMLAC4System_Ext\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
     success = False
     el_name = ""
@@ -555,6 +594,15 @@ def findReUsableAssetDefinition(lines):
             el_name = result_c4container_db[0][1]
             el_type = "C4ContainerDb"
             success = True
+
+
+        result_c4system_ext = re.findall(pattern_c4system_ext, e)
+        if result_c4system_ext:
+            el_alias = result_c4system_ext[0][0]
+            el_name = result_c4system_ext[0][1]
+            el_type = "C4System_Ext"
+            success = True
+
 
 
 
@@ -688,6 +736,7 @@ def serializePUMLARelationsToDict(rels, mrpath, mrfilename):
         tmpdict["end"] = e.getEnd()
         tmpdict["reltype"] = e.getRelType()
         tmpdict["reltxt"] = e.getRelTxt()
+        tmpdict["techntxt"] = e.getTechnTxt()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
         tvs = e.getTaggedValuesMRJSONFormat()

@@ -1,0 +1,11 @@
+'PUMLAMR
+'PUMLAPARENT: techtribes
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAC4Container(filesystem, "File System", "FAT32", "Stores search indexes")
+
+PUMLAReUsableAssetFinalize()
+
+@enduml
