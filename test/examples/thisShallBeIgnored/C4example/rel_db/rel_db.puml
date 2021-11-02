@@ -1,0 +1,11 @@
+'PUMLAMR
+'PUMLAPARENT: techtribes
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAC4ContainerDb(rel_db, "Relational Database", "MySQL 5.5.x", "Stores people, tribes, tribe membership, talks, events, jobs, badges, GitHub repos, etc.")
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

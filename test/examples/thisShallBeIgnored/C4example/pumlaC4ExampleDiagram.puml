@@ -1,0 +1,15 @@
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+' add the users to the diagram
+PUMLAPutElement(anonymousUser)
+PUMLAPutElement(administrationUser)
+PUMLAPutElement(aggregatedUser)
+
+' add the "system", "techtribes.js":
+' that one includes everything within
+' the "techtribes" system boundary.
+PUMLAPutElement(techtribes)
+
+@enduml

@@ -18,3 +18,11 @@
 ' in small letters.
 !$PUMColorTaggedValues = lightgreen
 
+' choose whether to use the extension
+' for C4 model or not.
+' The alignment of text in notes gets
+' somehow its own life then and the
+' text gets centered ignoring CRs of
+' the user.
+!$PUMUseC4Model = %true()
+

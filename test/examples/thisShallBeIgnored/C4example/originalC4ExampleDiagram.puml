@@ -2,6 +2,8 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 ' uncomment the following line and comment the first to use locally
 ' !include C4_Container.puml
+' an original example by Simon Brown from his C4 model website, remodeled
+' by the C4 Plantuml extension.
 
 LAYOUT_TOP_DOWN()
 'LAYOUT_AS_SKETCH()

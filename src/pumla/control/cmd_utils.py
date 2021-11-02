@@ -59,12 +59,19 @@ def createPumlaMacrosFile(mainpath):
         pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
         pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
         pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
+        # the C4 integration needs to be included after the project-specific config, as that
+        # sets the global variable that defines whether the C4 model integration shall be
+        # included or not
+        pm_include_c4int = "\n!if ($PUMUseC4Model == %true())\n"
+        pm_include_c4int = pm_include_c4int + "!include "+ pumla_macros_path +"pumla_macros_c4int.puml\n"
+        pm_include_c4int = pm_include_c4int + "!endif\n"
 
         with open(pumla_macros_fn, "w") as fil:
             fil.write(pm_comment)
             fil.write(pm_include_macros)
             fil.write(pm_include_tv)
             fil.write(pm_include_project_cfg)
+            fil.write(pm_include_c4int)
         fil.close()
     else:
         success = False
@@ -460,6 +467,9 @@ def findReUsableAssetDefinition(lines):
 
     pattern_c4person = r'PUMLAC4Person\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
     pattern_c4person_ext = r'PUMLAC4Person_Ext\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    pattern_c4system_boundary = r'PUMLAC4System_Boundary\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    pattern_c4container = r'PUMLAC4Container\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    pattern_c4container_db = r'PUMLAC4ContainerDb\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
     success = False
     el_name = ""
@@ -524,6 +534,29 @@ def findReUsableAssetDefinition(lines):
             el_name = result_c4person_ext[0][1]
             el_type = "C4Person_Ext"
             success = True
+
+        result_c4sytem_boundary = re.findall(pattern_c4system_boundary, e)
+        if result_c4sytem_boundary:
+            el_alias = result_c4sytem_boundary[0][0]
+            el_name = result_c4sytem_boundary[0][1]
+            el_type = "C4System_Boundary"
+            success = True
+
+        result_c4container = re.findall(pattern_c4container, e)
+        if result_c4container:
+            el_alias = result_c4container[0][0]
+            el_name = result_c4container[0][1]
+            el_type = "C4Container"
+            success = True
+
+        result_c4container_db = re.findall(pattern_c4container_db, e)
+        if result_c4container_db:
+            el_alias = result_c4container_db[0][0]
+            el_name = result_c4container_db[0][1]
+            el_type = "C4ContainerDb"
+            success = True
+
+
 
 
 
