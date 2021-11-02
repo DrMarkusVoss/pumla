@@ -529,7 +529,13 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
                     !$reladr = "\n{" +  $tvs + "}"
                 !endif
                !endif
-            $el.start $el.reltype $el.end : $el.reltxt $reladr
+            !if ($el.reltype == "C4Rel->>")
+                Rel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+            !elseif ($el.reltype == "C4Rel_U->>")
+                Rel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+            !else
+                $el.start $el.reltype $el.end : $el.reltxt $reladr
+            !endif
             ' set global variable to indicate that the relation
             ' is already put onto the diagram
             %set_variable_value($$el.id, "%true()")

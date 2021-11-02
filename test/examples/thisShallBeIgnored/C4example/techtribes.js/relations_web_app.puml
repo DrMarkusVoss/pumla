@@ -5,4 +5,10 @@ PUMLAC4Rel("webapp_rel1", web_app, rel_db, "Reads from and writes to", "SQL/JDBC
 PUMLAC4Rel("webapp_rel2", web_app, filesystem, "Reads from")
 PUMLAC4Rel("webapp_rel3", web_app, nosql, "Reads from", "MongoDB wire protocol, port 27017")
 
+' the standard pumla tagged values can be applied also to C4 relations.
+' tagged values visually get added as C4_Rel description text
+' but can be considered by pumla. Therefore, the pumla tagged values
+' are much more powerful.
+PUMLAAddTaggedValue("webapp_rel3", "SysVariant", "A")
+
 @enduml

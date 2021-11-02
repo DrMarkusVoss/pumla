@@ -1,6 +1,9 @@
 @startuml
 !include pumla_macros.puml
 !include modelrepo_json.puml
+LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
 
 ' add the users to the diagram
 PUMLAPutElement(anonymousUser)
@@ -15,5 +18,9 @@ PUMLAPutElement(techtribes)
 PUMLAPutElement(twitter)
 PUMLAPutElement(blogs)
 PUMLAPutElement(github)
+
+PUMLAPutAllRelations()
+
+Lay_R(rel_db, filesystem)
 
 @enduml

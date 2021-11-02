@@ -354,7 +354,6 @@ def findRelations(lines, path, filename):
 
         result_c4rel = re.findall(pattern_pumlac4rel, e)
         if result_c4rel:
-            print("YUUUH")
             #(self, id, start, reltype, end, reltxt="", techntxt="")
             label = ""
             techn = ""
