@@ -334,7 +334,8 @@ def findRelations_old(lines, path, filename):
 def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
-    pattern_pumlac4rel = r'PUMLAC4Rel_U\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
+    pattern_pumlac4rel = r'PUMLAC4Rel\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4rel_u = r'PUMLAC4Rel_U\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
 
     ret_rels = []
     for e in lines:
@@ -353,15 +354,25 @@ def findRelations(lines, path, filename):
 
         result_c4rel = re.findall(pattern_pumlac4rel, e)
         if result_c4rel:
-            print("YUUUUUUUUUUUUH!")
+            print("YUUUH")
             #(self, id, start, reltype, end, reltxt="", techntxt="")
             label = ""
             techn = ""
-            if len(result_c4rel[0]) > 2:
-                label = result_c4rel[0][2]
-            if len(result_c4rel[0]) > 3:
-                techn = result_c4rel[0][3]
-            pr = PUMLARelation(result_c4rel[0][0], result_c4rel[0][1], "C4Rel->>", label, techn)
+            label = result_c4rel[0][3]
+            techn = result_c4rel[0][5]
+            pr = PUMLARelation(result_c4rel[0][0], result_c4rel[0][1], "C4Rel->>", result_c4rel[0][2], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+        result_c4rel_u = re.findall(pattern_pumlac4rel_u, e)
+        if result_c4rel_u:
+            #(self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4rel_u[0][3]
+            techn = result_c4rel_u[0][5]
+            pr = PUMLARelation(result_c4rel_u[0][0], result_c4rel_u[0][1], "C4Rel_U->>", result_c4rel_u[0][2], label, techn)
             pr.setPath(path)
             pr.setFilename(filename)
             ret_rels.append(pr)

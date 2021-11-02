@@ -13,7 +13,12 @@
  {"name": "techtribes.js", "alias": "techtribes", "type": "C4System_Boundary", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./techtribes.js/", "filename": "techtribes.puml"},
  {"name": "Relational Database", "alias": "rel_db", "type": "C4ContainerDb", "stereotypes": [], "kind": "static", "parent": "techtribes", "instclassalias": "-", "path": "./rel_db/", "filename": "rel_db.puml"}]}
 
-!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "updater_rel2", "start": "updater", "end": "filesystem", "reltype": "C4Rel->>", "reltxt": "Writes to", "techntxt": "", "path": "./techtribes.js/", "filename": "relations_updater.puml"}]}
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "updater_rel1", "start": "updater", "end": "rel_db", "reltype": "C4Rel_U->>", "reltxt": "Reads from and writes data to", "techntxt": "SQL/JDBC, port 3306", "path": "./techtribes.js/", "filename": "relations_updater.puml"},
+ {"id": "updater_rel2", "start": "updater", "end": "filesystem", "reltype": "C4Rel_U->>", "reltxt": "Writes to", "techntxt": "", "path": "./techtribes.js/", "filename": "relations_updater.puml"},
+ {"id": "updater_rel3", "start": "updater", "end": "nosql", "reltype": "C4Rel_U->>", "reltxt": "Reads from and writes to", "techntxt": "MongoDB wire protocol, port 27017", "path": "./techtribes.js/", "filename": "relations_updater.puml"},
+ {"id": "webapp_rel1", "start": "web_app", "end": "rel_db", "reltype": "C4Rel->>", "reltxt": "Reads from and writes to", "techntxt": "SQL/JDBC, port 3306", "path": "./techtribes.js/", "filename": "relations_web_app.puml"},
+ {"id": "webapp_rel2", "start": "web_app", "end": "filesystem", "reltype": "C4Rel->>", "reltxt": "Reads from", "techntxt": "", "path": "./techtribes.js/", "filename": "relations_web_app.puml"},
+ {"id": "webapp_rel3", "start": "web_app", "end": "nosql", "reltype": "C4Rel->>", "reltxt": "Reads from", "techntxt": "MongoDB wire protocol, port 27017", "path": "./techtribes.js/", "filename": "relations_web_app.puml"}]}
 
 !$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
 

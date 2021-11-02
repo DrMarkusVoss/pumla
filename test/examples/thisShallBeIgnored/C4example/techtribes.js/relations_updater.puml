@@ -5,7 +5,4 @@ PUMLAC4Rel_U("updater_rel1", updater, rel_db, "Reads from and writes data to", "
 PUMLAC4Rel_U("updater_rel2", updater, filesystem, "Writes to")
 PUMLAC4Rel_U("updater_rel3", updater, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
 
-PUMLAC4Rel("updater_rel4", updater, twitter, "Gets profile information and tweets from", "HTTPS")
-PUMLAC4Rel("updater_rel5", updater, github, "Gets information about public code repositories from", "HTTPS")
-PUMLAC4Rel("updater_rel6", updater, blogs, "Gets content using RSS and Atom feeds from", "HTTP")
 @enduml
