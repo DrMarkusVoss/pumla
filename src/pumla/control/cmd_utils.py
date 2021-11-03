@@ -18,6 +18,11 @@ puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "ci
 puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
                        "collections", "participant", "activity", "partition"]
 
+c4_static_keywords = ["Container", "ContainerDb", "Person", "Person_Ext", "System", "System_Ext",
+                      "System_Boundary"]
+
+c4_dynamic_keywords = ["Rel", "Rel_U", "Rel_D", "Rel_R", "Rel_L", "Rel_Back"]
+
 def readPumlaMacrosPathFromFile(mainpath):
     '''read the path of the pumla macros location from the file "pumla_macros_path.txt".'''
     pmpath = ""
@@ -334,8 +339,7 @@ def findRelations_old(lines, path, filename):
 def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
-    pattern_pumlac4rel = r'PUMLAC4Rel\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
-    pattern_pumlac4rel_u = r'PUMLAC4Rel_U\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4rel_gen = r'PUMLAC4Rel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
 
     ret_rels = []
     for e in lines:
@@ -352,26 +356,14 @@ def findRelations(lines, path, filename):
                 pr.setFilename(filename)
                 ret_rels.append(pr)
 
-        result_c4rel = re.findall(pattern_pumlac4rel, e)
-        if result_c4rel:
+        result_c4rel_gen = re.findall(pattern_pumlac4rel_gen, e)
+        if result_c4rel_gen:
             #(self, id, start, reltype, end, reltxt="", techntxt="")
             label = ""
             techn = ""
-            label = result_c4rel[0][3]
-            techn = result_c4rel[0][5]
-            pr = PUMLARelation(result_c4rel[0][0], result_c4rel[0][1], "C4Rel->>", result_c4rel[0][2], label, techn)
-            pr.setPath(path)
-            pr.setFilename(filename)
-            ret_rels.append(pr)
-
-        result_c4rel_u = re.findall(pattern_pumlac4rel_u, e)
-        if result_c4rel_u:
-            #(self, id, start, reltype, end, reltxt="", techntxt="")
-            label = ""
-            techn = ""
-            label = result_c4rel_u[0][3]
-            techn = result_c4rel_u[0][5]
-            pr = PUMLARelation(result_c4rel_u[0][0], result_c4rel_u[0][1], "C4Rel_U->>", result_c4rel_u[0][2], label, techn)
+            label = result_c4rel_gen[0][4]
+            techn = result_c4rel_gen[0][6]
+            pr = PUMLARelation(result_c4rel_gen[0][1], result_c4rel_gen[0][2], "C4Rel" + result_c4rel_gen[0][0] + "->>", result_c4rel_gen[0][3], label, techn)
             pr.setPath(path)
             pr.setFilename(filename)
             ret_rels.append(pr)
@@ -492,13 +484,6 @@ def parsePUMLAFileMarkings(lines):
 
     return retdict_filemarkings
 
-def findReUsableC4Definition(lines):
-    """find a pumla reusable C4 element definition in the given lines."""
-    # the regex patterns
-    pattern_c4person = r'PUMLAC4Person\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*, (.*)\)'
-    for e in lines:
-        result_rua = re.findall(pattern_c4person, e)
-        print(result_rua)
 
 def findReUsableAssetDefinition(lines):
     """find pumla RUA definitions in the given lines. According to rules, there is only
@@ -513,12 +498,8 @@ def findReUsableAssetDefinition(lines):
     pattern_ruainst = r'PUMLAFullyInstantiatableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_sts = r'<<[\w\s]+>>'
 
-    pattern_c4person = r'PUMLAC4Person\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
-    pattern_c4person_ext = r'PUMLAC4Person_Ext\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
-    pattern_c4system_boundary = r'PUMLAC4System_Boundary\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
-    pattern_c4container = r'PUMLAC4Container\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
-    pattern_c4container_db = r'PUMLAC4ContainerDb\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
-    pattern_c4system_ext = r'PUMLAC4System_Ext\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
+    # generic regex pattern for static C4 elements
+    pattern_c4static_gen = r'PUMLAC4(\w+)\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
     success = False
     el_name = ""
@@ -570,53 +551,13 @@ def findReUsableAssetDefinition(lines):
                         el_stereotypes.append(est.strip("<>"))
             success = True
 
-        result_c4person = re.findall(pattern_c4person, e)
-        if result_c4person:
-            el_alias = result_c4person[0][0]
-            el_name = result_c4person[0][1]
-            el_type = "C4Person"
-            success = True
-
-        result_c4person_ext = re.findall(pattern_c4person_ext, e)
-        if result_c4person_ext:
-            el_alias = result_c4person_ext[0][0]
-            el_name = result_c4person_ext[0][1]
-            el_type = "C4Person_Ext"
-            success = True
-
-        result_c4sytem_boundary = re.findall(pattern_c4system_boundary, e)
-        if result_c4sytem_boundary:
-            el_alias = result_c4sytem_boundary[0][0]
-            el_name = result_c4sytem_boundary[0][1]
-            el_type = "C4System_Boundary"
-            success = True
-
-        result_c4container = re.findall(pattern_c4container, e)
-        if result_c4container:
-            el_alias = result_c4container[0][0]
-            el_name = result_c4container[0][1]
-            el_type = "C4Container"
-            success = True
-
-        result_c4container_db = re.findall(pattern_c4container_db, e)
-        if result_c4container_db:
-            el_alias = result_c4container_db[0][0]
-            el_name = result_c4container_db[0][1]
-            el_type = "C4ContainerDb"
-            success = True
-
-
-        result_c4system_ext = re.findall(pattern_c4system_ext, e)
-        if result_c4system_ext:
-            el_alias = result_c4system_ext[0][0]
-            el_name = result_c4system_ext[0][1]
-            el_type = "C4System_Ext"
-            success = True
-
-
-
-
-
+        result_c4static_gen = re.findall(pattern_c4static_gen, e)
+        if result_c4static_gen:
+            if result_c4static_gen[0][0] in c4_static_keywords:
+                el_alias = result_c4static_gen[0][1]
+                el_name = result_c4static_gen[0][2]
+                el_type = "C4" + result_c4static_gen[0][0]
+                success = True
 
     return success, el_name, el_alias, el_type, el_stereotypes
 
