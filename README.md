@@ -102,7 +102,7 @@ be re-used on other diagrams, see next step.
 If you are using a PlantUML plugin in your editor, you directly see
 the code of the file rendered to a diagram like this:
 
-![](./test/examples/thisShallBeIgnored/simple/pics/simpleElement.png)
+![](test/examples/WheatherStation/thisShallBeIgnored/simple/pics/simpleElement.png)
 
 
 
@@ -148,7 +148,7 @@ there, the `pumla_macros.puml` as well as the model repo containing the
 Again, in your editor with PlantUML plugin or when rendering the file 
 explicitly with PlantUML, your diagram looks like this:
 
-![](./test/examples/thisShallBeIgnored/simple/pics/simpleDiagram.png)
+![](test/examples/WheatherStation/thisShallBeIgnored/simple/pics/simpleDiagram.png)
 
 
 ### Further examples

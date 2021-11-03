@@ -2,7 +2,7 @@
 
 !include modelrepo_json.puml
 !include pumla_macros.puml
-!include ./../../templates/sysml/skin.puml
+!include ./../../../templates/sysml/skin.puml
 
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %true()

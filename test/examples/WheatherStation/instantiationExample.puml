@@ -5,7 +5,7 @@
 !include pumla_macros.puml
 ' this template skin colors instances for some
 ' types in LightYellow
-!include ./../../templates/sysml/skin.puml
+!include ./../../../templates/sysml/skin.puml
 
 !$PUMVarShowDescr = %false()
 !$PUMVarShowInterfaces = %false()

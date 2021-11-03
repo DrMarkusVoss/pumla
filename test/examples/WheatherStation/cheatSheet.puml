@@ -3,20 +3,15 @@
 ' "pumla update" in this directory
 !include modelrepo_json.puml
 !include pumla_macros.puml
-!include ./../../templates/sysml/skin.puml
+!include ./../../../templates/sysml/skin.puml
 
-!$PUMVarShowBodyInternals = %true()
-!$PUMVarShowBodyInternalsDyn = %false()
-
-title Cheat Sheet with all attributes example
+title Cheat Sheet Example
 
 ' this commands gives you an overview
 ' on the contents of the model repository
-' with all the available attributes. you
-' can use it to keep the overview of the
-' details and manage your architectural
-' artefacts.
-PUMLACheatSheetAllAttributes()
+' along with the alias names that you can
+' use to access/re-use the elements.
+PUMLACheatSheet()
 
 ' ahh... now I know that the element I need
 ' has the alias "wirelessUnit"...

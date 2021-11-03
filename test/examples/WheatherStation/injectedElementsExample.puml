@@ -1,7 +1,7 @@
 @startuml
 !include modelrepo_json.puml
 !include pumla_macros.puml
-!include ./../../templates/sysml/skin.puml
+!include ./../../../templates/sysml/skin.puml
 
 !$PUMVarShowDescr = %true()
 !$PUMVarShowInterfaces = %true()
