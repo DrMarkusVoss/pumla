@@ -20,14 +20,14 @@ So for each new feature that gets implemented:
   automated tests need to be executed and passed. If new functions are implemented
   in the context of the command line tool, add an automated test to test this function
   as a test case under test/test_cases and integrate it into the "test_all.py".
-- perform a "pumla update" on the model repository in the test/examples folder.
-  Then check all diagrams (not only the "new feature diagram) under test/examples
+- perform a "pumla update" on the model repository in the test/examples/<example> folder.
+  Then check all diagrams (not only the "new feature diagram) under test/examples/<example>
   that they still show the content that is
   intended when rendered with PlantUML, because the changes for the new feature
   might accidentally break some other feature. So check that also the other features
   are still working. If you are not sure anymore, what the intended content of a diagram
-  is, compare it with the already rendered pictures stored in test/examples/pics.
-  If the new feature leads to changed diagrams compared to the ones in test/examples/pics
+  is, compare it with the already rendered pictures stored in test/examples/<example>/pics.
+  If the new feature leads to changed diagrams compared to the ones in test/examples/<example>/pics
   then save an updated version of the picture in the folder, if the content is ok.
 
 The examples under test/examples are not only used for testing the different features, 
