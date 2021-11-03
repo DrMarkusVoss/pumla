@@ -18,8 +18,13 @@ puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "ci
 puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
                        "collections", "participant", "activity", "partition"]
 
-c4_static_keywords = ["Container", "ContainerDb", "Person", "Person_Ext", "System", "System_Ext",
-                      "System_Boundary"]
+c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_Ext", "ContainerDb_Ext",
+                      "ContainerQueue_Ext", "Container_Boundary", "Component", "ComponentDb", "ComponentQueue",
+                      "Component_Ext", "ComponentDb_Ext", "ComponentQueue_Ext", "Deployment_Node",
+                      "Deployment_Node_L", "Deployment_Node_R", "Node", "Node_L", "Node_R",
+                      "Person", "Person_Ext", "System", "System_Ext",
+                      "System_Boundary", "SystemDb", "SystemQueue", "SystemDb_Ext", "SystemQueue_Ext",
+                      "Enterprise_Boundary"]
 
 c4_dynamic_keywords = ["Rel", "Rel_U", "Rel_D", "Rel_R", "Rel_L", "Rel_Back"]
 

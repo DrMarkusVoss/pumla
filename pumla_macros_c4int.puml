@@ -124,7 +124,7 @@ Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-Rel($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+'Rel($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_Back($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
@@ -140,17 +140,17 @@ Rel_Back_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_D($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-Rel_D($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+'Rel_D($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_U($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-Rel_U($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+'Rel_U($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_L($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-Rel_L($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+'Rel_L($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_R($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-Rel_R($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+'Rel_R($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
 !endprocedure
