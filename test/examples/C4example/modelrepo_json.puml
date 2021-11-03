@@ -1,4 +1,4 @@
-!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Web Application", "alias": "web_app", "type": "C4Container", "stereotypes": [], "kind": "static", "parent": "techtribes", "instclassalias": "-", "path": "./web_app/", "filename": "web_app.puml"},
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/C4example", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Web Application", "alias": "web_app", "type": "C4Container", "stereotypes": [], "kind": "static", "parent": "techtribes", "instclassalias": "-", "path": "./web_app/", "filename": "web_app.puml"},
  {"name": "Blogs", "alias": "blogs", "type": "C4System_Ext", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./ext_systems/", "filename": "blogs.puml"},
  {"name": "Twitter", "alias": "twitter", "type": "C4System_Ext", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./ext_systems/", "filename": "twitter.puml"},
  {"name": "GitHub", "alias": "github", "type": "C4System_Ext", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./ext_systems/", "filename": "github.puml"},
@@ -13,7 +13,7 @@
  {"name": "techtribes.js", "alias": "techtribes", "type": "C4System_Boundary", "stereotypes": [], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./techtribes.js/", "filename": "techtribes.puml"},
  {"name": "Relational Database", "alias": "rel_db", "type": "C4ContainerDb", "stereotypes": [], "kind": "static", "parent": "techtribes", "instclassalias": "-", "path": "./rel_db/", "filename": "rel_db.puml"}]}
 
-!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "overall_users_rel1", "start": "anonymousUser", "end": "web_app", "reltype": "C4Rel->>", "reltxt": "Uses", "techntxt": "HTTPS", "path": "./", "filename": "relations_overall_system.puml"},
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/C4example", "modelrelationrepofile": "./modelrepo_json.puml", "relations": [{"id": "overall_users_rel1", "start": "anonymousUser", "end": "web_app", "reltype": "C4Rel->>", "reltxt": "Uses", "techntxt": "HTTPS", "path": "./", "filename": "relations_overall_system.puml"},
  {"id": "overall_users_rel2", "start": "aggregatedUser", "end": "web_app", "reltype": "C4Rel->>", "reltxt": "Uses", "techntxt": "HTTPS", "path": "./", "filename": "relations_overall_system.puml"},
  {"id": "overall_users_rel3", "start": "administrationUser", "end": "web_app", "reltype": "C4Rel->>", "reltxt": "Uses", "techntxt": "HTTPS", "path": "./", "filename": "relations_overall_system.puml"},
  {"id": "overall_extsys_rel1", "start": "updater", "end": "twitter", "reltype": "C4Rel->>", "reltxt": "Gets profile information and tweets from", "techntxt": "HTTPS", "path": "./", "filename": "relations_overall_system.puml"},
@@ -26,5 +26,5 @@
  {"id": "webapp_rel2", "start": "web_app", "end": "filesystem", "reltype": "C4Rel->>", "reltxt": "Reads from", "techntxt": "", "path": "./techtribes.js/", "filename": "relations_web_app.puml"},
  {"id": "webapp_rel3", "start": "web_app", "end": "nosql", "reltype": "C4Rel->>", "reltxt": "Reads from", "techntxt": "MongoDB wire protocol, port 27017", "path": "./techtribes.js/", "filename": "relations_web_app.puml", "taggedvalues": [{"tag": "SysVariant", "values": ["A"]}]}]}
 
-!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/thisShallBeIgnored/C4example", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/C4example", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
 
