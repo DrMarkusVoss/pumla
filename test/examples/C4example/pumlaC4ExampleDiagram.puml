@@ -21,6 +21,8 @@ PUMLAPutElement(github)
 
 PUMLAPutAllRelations()
 
+PUMLACheatSheetAllAttributes()
+
 Lay_R(rel_db, filesystem)
 
 @enduml
