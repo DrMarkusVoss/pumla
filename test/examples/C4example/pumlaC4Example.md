@@ -68,7 +68,11 @@ their own folder `ext_systems`, each in their own file.
 
 The relations are split up. The overall relations, connecting the outside
 of the system with the system itself are modelled here in this file:
+
 [./relations_overall_system.puml](relations_overall_system.puml)
+
+It contains the relations from the users to the system and from the system
+to the external systems.
 
 The relations that combine the different "child" elements of the `techtribes`
 system are stored in the `techtribes.js` folder, sorted in two files. One 
@@ -88,3 +92,20 @@ The relations starting at the `updater` element are stored in this file:
 [./techtribes.js/relations_updater.puml](techtribes.js/relations_updater.puml)
 
 That makes the example complete.
+
+For the resulting diagram in this file...
+
+[pumla C4 example diagram Source](pumlaC4ExampleDiagram.puml)
+
+... first the users are added one by one. Then the `techtribes` system 
+element is added, and with that one, all it's children are also included.
+So the elements inside the `techtribes` element must not be put onto
+the diagram explicitly. Then the external systems are added one by one
+(twitter, github, blogs). After that the relations are added. You could
+add the relations one by one referencing them by their alias/ID, but I 
+made a shortcut and just added all relations in one macro call
+(`PUMLAPutAllRelations`), as there were no relations defined that I don't
+want to see on the diagram. 
+
+After that, just the CheatSheet were added and a C4 layout call (taken over
+from the original C4-PlantUML example) is there.
