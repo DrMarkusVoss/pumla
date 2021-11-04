@@ -529,10 +529,27 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
                     !$reladr = "\n{" +  $tvs + "}"
                 !endif
                !endif
-            !if ($el.reltype == "C4Rel->>")
-                Rel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
-            !elseif ($el.reltype == "C4Rel_U->>")
-                Rel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+            !if (%substr($el.reltype, 0, 2) == "C4")
+                ' multiple preprocessing is not easily possible with PlantUML.
+                ' as the C4 Rel's are also macros, I cannot generate a string
+                ' but have to call the right macro directly.
+                !if ($el.reltype  == "C4Rel")
+                    Rel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_U")
+                    Rel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_D")
+                    Rel_D($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_L")
+                    Rel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_R")
+                    Rel_R($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Back")
+                    Rel_Back($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Neighbor")
+                    Rel_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Back_Neighbor")
+                    Rel_Back_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !endif
             !else
                 $el.start $el.reltype $el.end : $el.reltxt $reladr
             !endif

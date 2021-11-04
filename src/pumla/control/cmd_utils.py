@@ -26,7 +26,7 @@ c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_E
                       "System_Boundary", "SystemDb", "SystemQueue", "SystemDb_Ext", "SystemQueue_Ext",
                       "Enterprise_Boundary"]
 
-c4_dynamic_keywords = ["Rel", "Rel_U", "Rel_D", "Rel_R", "Rel_L", "Rel_Back"]
+c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 
 def readPumlaMacrosPathFromFile(mainpath):
     '''read the path of the pumla macros location from the file "pumla_macros_path.txt".'''
@@ -345,6 +345,7 @@ def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
     pattern_pumlac4rel_gen = r'PUMLAC4Rel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4rel_spec = r'PUMLAC4Rel(_\w+)\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
 
     ret_rels = []
     for e in lines:
@@ -368,10 +369,23 @@ def findRelations(lines, path, filename):
             techn = ""
             label = result_c4rel_gen[0][4]
             techn = result_c4rel_gen[0][6]
-            pr = PUMLARelation(result_c4rel_gen[0][1], result_c4rel_gen[0][2], "C4Rel" + result_c4rel_gen[0][0] + "->>", result_c4rel_gen[0][3], label, techn)
+            pr = PUMLARelation(result_c4rel_gen[0][1], result_c4rel_gen[0][2], "C4Rel" + result_c4rel_gen[0][0], result_c4rel_gen[0][3], label, techn)
             pr.setPath(path)
             pr.setFilename(filename)
             ret_rels.append(pr)
+
+        result_c4rel_spec = re.findall(pattern_pumlac4rel_spec, e)
+        if result_c4rel_spec:
+            if ("Rel" + result_c4rel_spec[0][0]) in c4_dynamic_keywords:
+                #(self, id, start, reltype, end, reltxt="", techntxt="")
+                label = ""
+                techn = ""
+                label = result_c4rel_spec[0][4]
+                techn = result_c4rel_spec[0][6]
+                pr = PUMLARelation(result_c4rel_spec[0][1], result_c4rel_spec[0][2], "C4Rel" + result_c4rel_spec[0][0], result_c4rel_spec[0][3], label, techn)
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_rels.append(pr)
 
     return ret_rels
 
