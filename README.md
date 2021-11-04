@@ -102,8 +102,7 @@ be re-used on other diagrams, see next step.
 If you are using a PlantUML plugin in your editor, you directly see
 the code of the file rendered to a diagram like this:
 
-![](test/examples/WheatherStation/thisShallBeIgnored/simple/pics/simpleElement.png)
-
+![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleElement.png)
 
 
 #### Re-using the element on another diagram
@@ -148,13 +147,23 @@ there, the `pumla_macros.puml` as well as the model repo containing the
 Again, in your editor with PlantUML plugin or when rendering the file 
 explicitly with PlantUML, your diagram looks like this:
 
-![](test/examples/WheatherStation/thisShallBeIgnored/simple/pics/simpleDiagram.png)
+![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleDiagram.png)
 
 
 ### Further examples
-For more examples showing off the functionality and magic of `pumla` please...
+For more examples showing off the functionality and magic of `pumla`, see the following examples:
 
-[follow this link to more examples](./Examples.md)
+### WeatherStation examples
+This is a comprehensive set with a bigger model and a lot of different diagrams. Follow the
+following link to an overview on these examples:
+
+[follow this link to the WeatherStation examples](./Examples.md)
+
+### C4 example
+This is an advanced example showing how to re-use C4 model elements with `pumla`. Follow this link
+to an overview and description an that example:
+
+[follow this link to the C4 example](./test/examples/C4example/pumlaC4Example.md)
 
 ### Installation
 #### Install latest development
@@ -191,12 +200,12 @@ In order to play around with the examples, you need to initialise the examples r
 package root directory (after following the installation steps, you are already there):
 
 ---
-#### Example: WheatherStation 
+#### Example: WeatherStation 
 This is a comprehensive example showing off the *standard* PlantUML and pumla 
 features.
 
   ```
-  cd test/examples/WheatherStation
+  cd test/examples/WeatherStation
   pumla init
   pumla update
   ```

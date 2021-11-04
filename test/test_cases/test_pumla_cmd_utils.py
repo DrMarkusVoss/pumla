@@ -8,7 +8,7 @@ from pumla.control.cmd_utils import *
 @pytest.fixture
 def examples_path():
     """get the path to the examples for the tests."""
-    return Path(__file__).parent.parent / "examples/WheatherStation"
+    return Path(__file__).parent.parent / "examples/WeatherStation"
 
 
 def test_01_findAllPUMLAFiles(examples_path):

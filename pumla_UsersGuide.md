@@ -524,6 +524,91 @@ first element which kind of diagram you have.
 ### `PUMLASetAsClassDiagram()`
 Same as above, but makes the diagram a class diagram.
 
+
+## C4 Model 
+In order to enable the access to the C4 model **pumla** macros, you have 
+to set the respective global variable to "true" in your project specific 
+config file, like this:
+
+```
+!$PUMUseC4Model = %true()
+```
+
+This is needed to automatically include the necessary C4 preprocessor
+files of the [C4 PlantUML extension](https://github.com/plantuml-stdlib/C4-PlantUML).
+But that also comes with a drawback, as it automatically switches the
+alignment in notes etc. to a "centered alignment". Therefore, **pumla**
+makes it "switchable", so that you can turn on the C4 extension if you
+want and need it.
+
+When switched on, you can use all the macros of the C4-PlantUML extension, but they
+are meant just for coding diagrams, not models. In order to make the C4 model elements
+re-usable, you need to use the special **pumla** C4 macros described in the 
+following sections. You can also mix them.
+
+### Elements
+The following C4 elements can be created in a re-usable way:
+- ContainerContainerDb
+- ContainerQueue
+- Container_Ext
+- ContainerDb_Ext
+- ContainerQueue_Ext
+- Container_Boundary
+- Component
+- ComponentDb
+- ComponentQueue
+- Component_Ext
+- ComponentDb_Ext
+- ComponentQueue_Ext
+- Deployment_Node
+- Deployment_Node_L
+- Deployment_Node_R
+- Node
+- Node_L
+- Node_R
+- Person
+- Person_Ext
+- System
+- System_Ext
+- System_Boundary
+- SystemDb
+- SystemQueue
+- SystemDb_Ext
+- SystemQueue_Ext
+- Enterprise_Boundary
+
+The corresponding `pumla` elements just have a `PUMLAC4` as prefix. Furthermore,
+almost all of these have the same syntax and sematics in their macro calls.
+Therefore, it is explained just on a few examples:
+
+### `PUMLAC4Container($alias, "$label", "$techn"="", "$descr"="", $sprite="", $tags="", $link="")`
+Elements like "Container", "Component", etc. all have a syntax like this. The `$alias` is for
+referencing the element, same as with all other **pumla** macros.
+`$label` is the same as the name of the other **pumla** elements. It may contain 
+whitespaces and special characters, but should be put in "". With C4-PlantUML, the description
+is not done as a separate note, but put into the element itself. It is given not separately, but
+at element construction time with the `$descr` argument. The `$techn` string argument is meant to
+be a label for the technology used (e.g. "HTTPS").
+
+### `PUMLAC4System_Boundary($alias, $label, $tags="", $link="")`
+The "*_Boundary" elements have less arguments, like this macro here.
+
+### Relations
+The following C4 relations are supported:
+- `Rel`, `Rel_U`, `Rel_D`, `Rel_R`, `Rel_L`, `Rel_Back`, `Rel_Neighbor`, `Rel_Back_Neighbor`
+- `BiRel`, `BiRel_U`, `BiRel_D`, `BiRel_R`, `BiRel_L`, `BiRel_Neighbor`
+
+Again, to create a re-usable version of the C4 relations you have to add
+the prefix `PUMLAC4` before the respective relation name. They have all
+the same syntax and semantics, like in this example:
+
+### `PUMLAC4Rel($alias, $from, $to, "$label", "$techn"="", "$descr"="", $sprite="", $tags="", $link="")`
+Like the standard relations and connections from **pumla**, also the re-usable C4 relations get
+an `$alias` to reference them in order to re-use them. `$from` and `$to` are the aliases of the
+source and target element for the relation. `$label` is for a short descriptive text (e.g. "uses"),
+`$techn` is meant to describe the technology used (with a string) and `$descr` is meant to be a longer
+description text.
+
 ---
 
 ## Global Variables
