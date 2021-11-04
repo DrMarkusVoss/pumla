@@ -549,6 +549,18 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
                     Rel_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
                 !elseif ($el.reltype  == "C4Rel_Back_Neighbor")
                     Rel_Back_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel")
+                    BiRel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_U")
+                    BiRel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_D")
+                    BiRel_D($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_L")
+                    BiRel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_R")
+                    BiRel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr
+                !elseif ($el.reltype  == "C4BiRel_Neighbor")
+                    BiRel_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
                 !endif
             !else
                 $el.start $el.reltype $el.end : $el.reltxt $reladr

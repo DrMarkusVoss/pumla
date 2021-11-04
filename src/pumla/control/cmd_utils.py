@@ -346,6 +346,8 @@ def findRelations(lines, path, filename):
     pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
     pattern_pumlac4rel_gen = r'PUMLAC4Rel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
     pattern_pumlac4rel_spec = r'PUMLAC4Rel(_\w+)\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4birel_neigh = r'PUMLAC4BiRel_Neighbor\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4birel_gen = r'PUMLAC4BiRel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
 
     ret_rels = []
     for e in lines:
@@ -386,6 +388,32 @@ def findRelations(lines, path, filename):
                 pr.setPath(path)
                 pr.setFilename(filename)
                 ret_rels.append(pr)
+
+        result_c4birel_gen = re.findall(pattern_pumlac4birel_gen, e)
+        if result_c4birel_gen:
+            # (self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4birel_gen[0][4]
+            techn = result_c4birel_gen[0][6]
+            pr = PUMLARelation(result_c4birel_gen[0][1], result_c4birel_gen[0][2], "C4BiRel" + result_c4birel_gen[0][0],
+                               result_c4birel_gen[0][3], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+        result_c4birel_neigh = re.findall(pattern_pumlac4birel_neigh, e)
+        if result_c4birel_neigh:
+            # (self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4birel_neigh[0][3]
+            techn = result_c4birel_neigh[0][5]
+            pr = PUMLARelation(result_c4birel_neigh[0][0], result_c4birel_neigh[0][1], "C4BiRel_Neigh",
+                               result_c4birel_neigh[0][2], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
 
     return ret_rels
 

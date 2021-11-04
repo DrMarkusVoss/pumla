@@ -1,7 +1,7 @@
 'PUMLAMR
 @startuml
 
-PUMLAC4Rel("overall_users_rel1", anonymousUser, web_app, "Uses", "HTTPS")
+PUMLAC4BiRel("overall_users_rel1", anonymousUser, web_app, "Uses", "HTTPS")
 PUMLAC4Rel("overall_users_rel2", aggregatedUser, web_app, "Uses", "HTTPS")
 PUMLAC4Rel("overall_users_rel3", administrationUser, web_app, "Uses", "HTTPS")
 
