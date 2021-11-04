@@ -63,10 +63,10 @@ element their parent, using the corresponding **pumla** file marking
 (`PUMLAPARENT: techtribes`).
 
 The users are all modelled in the same `users` folder, each in their own file. Same
-for the external systems (twitter, blogs, github), the are modelled in
+for the external systems (twitter, blogs, github), they are modelled in
 their own folder `ext_systems`, each in their own file.
 
-The relations are split up. The overall relations, connecting the outside
+The relations are split up. The overall relations connecting the outside
 of the system with the system itself are modelled here in this file:
 
 [./relations_overall_system.puml](relations_overall_system.puml)
@@ -107,5 +107,5 @@ made a shortcut and just added all relations in one macro call
 (`PUMLAPutAllRelations`), as there were no relations defined that I don't
 want to see on the diagram. 
 
-After that, just the CheatSheet were added and a C4 layout call (taken over
+After that, just the CheatSheet was added and a C4 layout call (taken over
 from the original C4-PlantUML example) is there.
