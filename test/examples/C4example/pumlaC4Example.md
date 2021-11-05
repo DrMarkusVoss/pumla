@@ -19,7 +19,7 @@ And here is how it looks like:
 
 And now here is the example coded in a re-usable manner with **pumla**:
 
-[pumla C4 Example Source Folder](https://github.com/DrMarkusVoss/pumla/tree/C4support_issueNo15/test/examples/C4example)
+[pumla C4 Example Source Folder](https://github.com/DrMarkusVoss/pumla/tree/main/test/examples/C4example)
 
 [pumla C4 example diagram Source](pumlaC4ExampleDiagram.puml)
 
