@@ -1,4 +1,8 @@
 !include <c4/C4_Container.puml>
+!include <c4/C4_Component.puml>
+!include <c4/C4_Deployment.puml>
+!include <c4/C4_Dynamic.puml>
+
 
 !unquoted procedure PUMLAC4Person($alias, $label, $descr="", $sprite="", $tags="", $link="")
 !global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
