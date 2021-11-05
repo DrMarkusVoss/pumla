@@ -1,8 +1,8 @@
 @startuml
 !include pumla_macros.puml
 !include modelrepo_json.puml
+
 LAYOUT_TOP_DOWN()
-'LAYOUT_AS_SKETCH()
 LAYOUT_WITH_LEGEND()
 
 ' add the users to the diagram
@@ -15,14 +15,14 @@ PUMLAPutElement(aggregatedUser)
 ' the "techtribes" system boundary.
 PUMLAPutElement(techtribes)
 
+' add the external systems to the diagram
 PUMLAPutElement(twitter)
 PUMLAPutElement(blogs)
 PUMLAPutElement(github)
 
+' add all relations to the diagram
 PUMLAPutAllRelations()
 
-PUMLACheatSheetAllAttributes()
-
+' final layout adoption
 Lay_R(rel_db, filesystem)
-
 @enduml

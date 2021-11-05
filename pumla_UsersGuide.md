@@ -267,16 +267,29 @@ This macro creates a note with a table that shows the contents of the model
 repository. It puts all elements with all attributes into a table to help
 you manage your architecture elements and artefacts.
 
+### `PUMLACheatSheetTaggedValues()`
+This macro creates a note with a table that shows the contents of the model
+repository, the names and aliases of all model elements along with the tagged
+values. That way you easily can see which model elements you can re-use and
+what their alias and their attached tagged values are to access them. 
+
 ### `PUMLARelCheatSheetAllAttributes()`
 This macro creates a note with a table that shows the contents of the relations
 of the model repository. It puts all relations with all attributes into a table to help
 you manage your architecture relations and artefacts.
+
+### `PUMLARelCheatSheetTaggedValues()`
+Similar to previous, but instead of information about file path and file name you
+get the list of tagged values that are attached to each of the relations.
 
 ### `PUMLAConCheatSheetAllAttributes()`
 This macro creates a note with a table that shows the contents of the connections
 of the model repository. It puts all relations with all attributes into a table to help
 you manage your architecture relations and artefacts.
 
+### `PUMLAConCheatSheetTaggedValues()`
+Similar to previous, but instead of information about file path and file name you
+get the list of tagged values that are attached to each of the connections.
 
 ## Putting Re-usable Elements onto Diagrams
 

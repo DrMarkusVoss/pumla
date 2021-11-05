@@ -355,6 +355,29 @@ note as PUMLAUPCheatSheetAllAttributes
 end note
 !endprocedure
 
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the model repository
+' along with the tagged values that you can
+' use to access/re-use the elements.
+!unquoted procedure PUMLACheatSheetTaggedValues()
+note as PUMLAUPCheatSheetTV
+    **PUMLA Cheat Sheet**
+
+    **Model Repository contents:**
+    |= name |= alias |= tagged values |
+!foreach $el in $allelems.elements
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.name | $el.alias | $tvs |
+!endfor
+end note
+!endprocedure
+
 ' ############################################
 ' ---------------------------------------------
 ' this commands gives you an overview
@@ -380,6 +403,32 @@ end note
 ' ############################################
 ' ---------------------------------------------
 ' this commands gives you an overview
+' on the contents of the relations repository.
+' It puts all elements with all tagged values into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLARelCheatSheetTaggedValues()
+note as PUMLAUPRelCheatSheetTaggedValues
+    **PUMLA Relations Cheat Sheet with all attributes**
+
+    Model Repository Path: $allrelations.modelrelationrepopath
+    Model Repository File: $allrelations.modelrelationrepofile
+
+    **Model Relations Repository contents:**
+    |= alias |= start |= type |= end |= text |= tagged values |
+!foreach $el in $allrelations.relations
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.id | $el.start | $el.reltype | $el.end | $el.reltxt | $tvs |
+!endfor
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
 ' on the contents of the connections repository.
 ' It puts all elements with all attributes into
 ' a table to help you manage your architecture
@@ -395,6 +444,32 @@ note as PUMLAUPConCheatSheetAllAttributes
     |= alias |= start |= type |= end |= text |= filename |= path |
 !foreach $el in $allconnections.connections
     | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $el.filename | $el.path |
+!endfor
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the connections repository.
+' It puts all elements with all attributes into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLAConCheatSheetTaggedValues()
+note as PUMLAUPConCheatSheetTaggedValues
+    **PUMLA Connections Cheat Sheet with all attributes**
+
+    Model Repository Path: $allconnections.modelconnectionrepopath
+    Model Repository File: $allconnections.modelconnectionrepofile
+
+    **Model Connections Repository contents:**
+    |= alias |= start |= type |= end |= text |= tagged values |
+!foreach $el in $allconnections.connections
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $tvs |
 !endfor
 end note
 !endprocedure
