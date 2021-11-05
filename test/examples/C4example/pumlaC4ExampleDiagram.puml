@@ -23,6 +23,8 @@ PUMLAPutElement(github)
 ' add all relations to the diagram
 PUMLAPutAllRelations()
 
+' show the elements of the model repository
+PUMLACheatSheetAllAttributes()
 ' final layout adoption
 Lay_R(rel_db, filesystem)
 @enduml
