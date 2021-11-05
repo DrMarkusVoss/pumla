@@ -1,0 +1,22 @@
+@startuml
+' the following file gets generated when you call
+' "pumla update" in this directory
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+title Cheat Sheet Example
+
+' this commands gives you an overview
+' on the contents of the model repository
+' along with the alias names that you can
+' use to access/re-use the elements.
+PUMLACheatSheet()
+
+' ahh... now I know that the element I need
+' has the alias "wirelessUnit"...
+' I put it on the diagram and then I can
+' comment out the cheat sheet.
+PUMLAPutElement(wirelessUnit)
+
+@enduml

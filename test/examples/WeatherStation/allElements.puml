@@ -1,0 +1,36 @@
+@startuml
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %true()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowInstantiationRel = %true()
+!$PUMVarShowImplicitRels = %true()
+!$PUMTaggedValuesNoteToElementAlignment = right
+
+scale 0.5
+
+title Overview of all elements and their relations of the model repo
+
+'put all elements of json-repo onto the diagram
+PUMLAPutAllElements()
+
+'put all relations between static elements
+'of the json-repo onto the diagram
+PUMLAPutAllStaticRelations()
+
+note bottom of displayTemp
+    this is an additional note to
+    the imported "displayTemp".
+    Wanna know how to know the name
+    "displayTemp"? Use the
+    **"PUMLACheatSheet"** command,
+    see separate example.
+end note
+
+@enduml

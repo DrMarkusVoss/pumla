@@ -1,0 +1,27 @@
+'PUMLAMR
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+
+PUMLAC4Person(remoteControl, "Remote Control", "A remote control is not a person.") {
+
+    PUMLARUAPutTaggedValues()
+
+}
+
+PUMLARUAAddTaggedValue("Vendor", "D GmbH")
+PUMLARUAAddTaggedValue("Arch Level", "1")
+
+
+note as tn_remoteControl
+    A remote control element,
+    modelled as a re-usable
+    C4 model element.
+end note
+
+PUMLARUADescr(tn_remoteControl)
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

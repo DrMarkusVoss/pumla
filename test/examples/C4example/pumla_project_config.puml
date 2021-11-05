@@ -23,6 +23,6 @@
 ' The alignment of text in notes gets
 ' somehow its own life then and the
 ' text gets centered ignoring CRs of
-' the user. Therefore, default is false.
-!$PUMUseC4Model = %false()
+' the user.
+!$PUMUseC4Model = %true()
 

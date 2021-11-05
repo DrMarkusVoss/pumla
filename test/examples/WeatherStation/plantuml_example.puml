@@ -1,0 +1,35 @@
+@startuml
+
+!$BGCOLOR=Light
+!theme sketchy-outline
+[comp1] --> [comp2] : uses\n<size: 8>{"SysVariant": ["B1", "B2"]}
+
+!$ary={"txt": ["huhu"]}
+
+[$ary.txt[0]]
+
+rectangle "heloo" <<huhu>> as helo
+!$strcomp = "[HEEEELLLOOOO]"
+$strcomp
+!$str1="C4Rel"
+!$str2="C4Rel_U"
+[%substr($str2, 0, 2) huhu]
+[$str2 adad]
+!$strres = %substr($str2, 2, %strlen($str2)-2)
+!$strtyp = %substr($str1, 0, 2)
+[$strres]
+[$strtyp]
+'!$ary.txt[0] ?= "ha"
+!$aru = "hua"
+[$aru]
+%set_variable_value("$my_variable" + %string(1), "some_value")
+[$my_variable1]
+
+note as huhua
+
+|= huhu |= haha |= trala |
+| 1 | 2 | 3|
+| 4 | 5 |  |
+
+end note
+@enduml

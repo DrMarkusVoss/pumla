@@ -1,0 +1,11 @@
+'PUMLAMR
+'PUMLAPARENT: techtribes
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAC4ContainerDb(nosql, "NoSQL Data Store", "MongoDB 2.2.x", "Stores from RSS/Atom feeds (blog posts) and tweets")
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

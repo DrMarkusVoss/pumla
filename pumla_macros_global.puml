@@ -1,4 +1,4 @@
-!$PUMLAVersionNumber = "v0.8.5"
+!$PUMLAVersionNumber = "v0.8.6"
 
 !include pumla_global_cfg.puml
 !include pumla_internal.puml
@@ -355,6 +355,29 @@ note as PUMLAUPCheatSheetAllAttributes
 end note
 !endprocedure
 
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the model repository
+' along with the tagged values that you can
+' use to access/re-use the elements.
+!unquoted procedure PUMLACheatSheetTaggedValues()
+note as PUMLAUPCheatSheetTV
+    **PUMLA Cheat Sheet**
+
+    **Model Repository contents:**
+    |= name |= alias |= tagged values |
+!foreach $el in $allelems.elements
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.name | $el.alias | $tvs |
+!endfor
+end note
+!endprocedure
+
 ' ############################################
 ' ---------------------------------------------
 ' this commands gives you an overview
@@ -380,6 +403,32 @@ end note
 ' ############################################
 ' ---------------------------------------------
 ' this commands gives you an overview
+' on the contents of the relations repository.
+' It puts all elements with all tagged values into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLARelCheatSheetTaggedValues()
+note as PUMLAUPRelCheatSheetTaggedValues
+    **PUMLA Relations Cheat Sheet with all attributes**
+
+    Model Repository Path: $allrelations.modelrelationrepopath
+    Model Repository File: $allrelations.modelrelationrepofile
+
+    **Model Relations Repository contents:**
+    |= alias |= start |= type |= end |= text |= tagged values |
+!foreach $el in $allrelations.relations
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.id | $el.start | $el.reltype | $el.end | $el.reltxt | $tvs |
+!endfor
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
 ' on the contents of the connections repository.
 ' It puts all elements with all attributes into
 ' a table to help you manage your architecture
@@ -395,6 +444,32 @@ note as PUMLAUPConCheatSheetAllAttributes
     |= alias |= start |= type |= end |= text |= filename |= path |
 !foreach $el in $allconnections.connections
     | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $el.filename | $el.path |
+!endfor
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' this commands gives you an overview
+' on the contents of the connections repository.
+' It puts all elements with all attributes into
+' a table to help you manage your architecture
+' artefacts.
+!unquoted procedure PUMLAConCheatSheetTaggedValues()
+note as PUMLAUPConCheatSheetTaggedValues
+    **PUMLA Connections Cheat Sheet with all attributes**
+
+    Model Repository Path: $allconnections.modelconnectionrepopath
+    Model Repository File: $allconnections.modelconnectionrepofile
+
+    **Model Connections Repository contents:**
+    |= alias |= start |= type |= end |= text |= tagged values |
+!foreach $el in $allconnections.connections
+    !$tvs = ""
+    !foreach $tv in $el.taggedvalues
+        !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]" + "  "
+    !endfor
+    | $el.id | $el.start | $el.contype | $el.end | $el.contxt | $tvs |
 !endfor
 end note
 !endprocedure
@@ -529,7 +604,42 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
                     !$reladr = "\n{" +  $tvs + "}"
                 !endif
                !endif
-            $el.start $el.reltype $el.end : $el.reltxt $reladr
+            !if (%substr($el.reltype, 0, 2) == "C4")
+                ' multiple preprocessing is not easily possible with PlantUML.
+                ' as the C4 Rel's are also macros, I cannot generate a string
+                ' but have to call the right macro directly.
+                !if ($el.reltype  == "C4Rel")
+                    Rel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_U")
+                    Rel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_D")
+                    Rel_D($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_L")
+                    Rel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_R")
+                    Rel_R($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Back")
+                    Rel_Back($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Neighbor")
+                    Rel_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4Rel_Back_Neighbor")
+                    Rel_Back_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel")
+                    BiRel($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_U")
+                    BiRel_U($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_D")
+                    BiRel_D($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_L")
+                    BiRel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !elseif ($el.reltype  == "C4BiRel_R")
+                    BiRel_L($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr
+                !elseif ($el.reltype  == "C4BiRel_Neighbor")
+                    BiRel_Neighbor($el.start, $el.end, $el.reltxt, $el.techntxt, $reladr)
+                !endif
+            !else
+                $el.start $el.reltype $el.end : $el.reltxt $reladr
+            !endif
             ' set global variable to indicate that the relation
             ' is already put onto the diagram
             %set_variable_value($$el.id, "%true()")

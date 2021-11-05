@@ -1,0 +1,261 @@
+!include <c4/C4_Container.puml>
+
+!unquoted procedure PUMLAC4Person($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Person($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Person_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Person_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+System($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+System_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemDb($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+SystemDb($alias, $label, $descr, $sprite, $tag, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemQueue($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+SystemQueue($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemDb_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+SystemDb_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4SystemQueue_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+SystemQueue_Ext($alias, $label, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Enterprise_Boundary($alias, $label, $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Enterprise_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4System_Boundary($alias, $label, $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+System_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+
+!unquoted procedure PUMLAC4Container($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Container($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerDb($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ContainerDb($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerQueue($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ContainerQueue($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Container_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Container_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerDb_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ContainerDb_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ContainerQueue_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ContainerQueue_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Container_Boundary($alias, $label, $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Container_Boundary($alias, $label, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Component($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Component($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentDb($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ComponentDb($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentQueue($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ComponentQueue($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Component_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Component_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentDb_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ComponentDb_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4ComponentQueue_Ext($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+ComponentQueue_Ext($alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Deployment_Node($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node_L($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Deployment_Node_L($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Deployment_Node_R($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Deployment_Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Node($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node_L($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Node_L($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Node_R($alias, $label, $type="", $descr="", $sprite="", $tags="", $link="")
+!global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
+!global $pum_global_current_rua_alias = $alias
+%set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
+Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_Back($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_Back($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure Rel_Back_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_Back_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_D($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_D($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_U($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_U($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_L($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_L($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4Rel_R($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'Rel_R($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel_U($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel_D($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel_R($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel_L($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure PUMLAC4BiRel_Neighbor($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
+'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure

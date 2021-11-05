@@ -1,0 +1,8 @@
+'PUMLAMR
+@startuml
+
+PUMLAC4Rel_U("updater_rel1", updater, rel_db, "Reads from and writes data to", "SQL/JDBC, port 3306")
+PUMLAC4Rel_U("updater_rel2", updater, filesystem, "Writes to")
+PUMLAC4Rel_U("updater_rel3", updater, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+@enduml

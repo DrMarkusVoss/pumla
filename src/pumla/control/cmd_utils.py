@@ -2,6 +2,7 @@
 import os
 import json
 import shutil
+import re
 from pumla.model.PUMLAElement import PUMLAElement
 from pumla.model.PUMLARelation import PUMLARelation
 from pumla.model.PUMLAConnection import PUMLAConnection
@@ -16,6 +17,16 @@ puml_class_keywords = ["abstract", "abstract class", "annotation", "circle", "ci
 
 puml_dyn_keywords = ["actor", "boundary", "control", "entity", "database",
                        "collections", "participant", "activity", "partition"]
+
+c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_Ext", "ContainerDb_Ext",
+                      "ContainerQueue_Ext", "Container_Boundary", "Component", "ComponentDb", "ComponentQueue",
+                      "Component_Ext", "ComponentDb_Ext", "ComponentQueue_Ext", "Deployment_Node",
+                      "Deployment_Node_L", "Deployment_Node_R", "Node", "Node_L", "Node_R",
+                      "Person", "Person_Ext", "System", "System_Ext",
+                      "System_Boundary", "SystemDb", "SystemQueue", "SystemDb_Ext", "SystemQueue_Ext",
+                      "Enterprise_Boundary"]
+
+c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 
 def readPumlaMacrosPathFromFile(mainpath):
     '''read the path of the pumla macros location from the file "pumla_macros_path.txt".'''
@@ -58,12 +69,19 @@ def createPumlaMacrosFile(mainpath):
         pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
         pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
         pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
+        # the C4 integration needs to be included after the project-specific config, as that
+        # sets the global variable that defines whether the C4 model integration shall be
+        # included or not
+        pm_include_c4int = "\n!if ($PUMUseC4Model == %true())\n"
+        pm_include_c4int = pm_include_c4int + "!include "+ pumla_macros_path +"pumla_macros_c4int.puml\n"
+        pm_include_c4int = pm_include_c4int + "!endif\n"
 
         with open(pumla_macros_fn, "w") as fil:
             fil.write(pm_comment)
             fil.write(pm_include_macros)
             fil.write(pm_include_tv)
             fil.write(pm_include_project_cfg)
+            fil.write(pm_include_c4int)
         fil.close()
     else:
         success = False
@@ -304,7 +322,7 @@ def findElementNameAndTypeInText(lines, alias):
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
-def findRelations(lines, path, filename):
+def findRelations_old(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
     ret_rels = []
     for e in lines:
@@ -322,6 +340,83 @@ def findRelations(lines, path, filename):
                 ret_rels.append(pr)
 
     return ret_rels
+
+def findRelations(lines, path, filename):
+    """ find PUMLA relation definitions in given lines. """
+    pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
+    pattern_pumlac4rel_gen = r'PUMLAC4Rel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4rel_spec = r'PUMLAC4Rel(_\w+)\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4birel_neigh = r'PUMLAC4BiRel_Neighbor\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+    pattern_pumlac4birel_gen = r'PUMLAC4BiRel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
+
+    ret_rels = []
+    for e in lines:
+        if "PUMLARelation" in e:
+            s1 = e.replace("PUMLARelation", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if len(s4) > 4:
+                pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_rels.append(pr)
+
+        result_c4rel_gen = re.findall(pattern_pumlac4rel_gen, e)
+        if result_c4rel_gen:
+            #(self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4rel_gen[0][4]
+            techn = result_c4rel_gen[0][6]
+            pr = PUMLARelation(result_c4rel_gen[0][1], result_c4rel_gen[0][2], "C4Rel" + result_c4rel_gen[0][0], result_c4rel_gen[0][3], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+        result_c4rel_spec = re.findall(pattern_pumlac4rel_spec, e)
+        if result_c4rel_spec:
+            if ("Rel" + result_c4rel_spec[0][0]) in c4_dynamic_keywords:
+                #(self, id, start, reltype, end, reltxt="", techntxt="")
+                label = ""
+                techn = ""
+                label = result_c4rel_spec[0][4]
+                techn = result_c4rel_spec[0][6]
+                pr = PUMLARelation(result_c4rel_spec[0][1], result_c4rel_spec[0][2], "C4Rel" + result_c4rel_spec[0][0], result_c4rel_spec[0][3], label, techn)
+                pr.setPath(path)
+                pr.setFilename(filename)
+                ret_rels.append(pr)
+
+        result_c4birel_gen = re.findall(pattern_pumlac4birel_gen, e)
+        if result_c4birel_gen:
+            # (self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4birel_gen[0][4]
+            techn = result_c4birel_gen[0][6]
+            pr = PUMLARelation(result_c4birel_gen[0][1], result_c4birel_gen[0][2], "C4BiRel" + result_c4birel_gen[0][0],
+                               result_c4birel_gen[0][3], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+        result_c4birel_neigh = re.findall(pattern_pumlac4birel_neigh, e)
+        if result_c4birel_neigh:
+            # (self, id, start, reltype, end, reltxt="", techntxt="")
+            label = ""
+            techn = ""
+            label = result_c4birel_neigh[0][3]
+            techn = result_c4birel_neigh[0][5]
+            pr = PUMLARelation(result_c4birel_neigh[0][0], result_c4birel_neigh[0][1], "C4BiRel_Neigh",
+                               result_c4birel_neigh[0][2], label, techn)
+            pr.setPath(path)
+            pr.setFilename(filename)
+            ret_rels.append(pr)
+
+    return ret_rels
+
 
 def findConnections(lines, path, filename):
     """ find PUMLA connection definitions in given lines. """
@@ -438,6 +533,20 @@ def parsePUMLAFileMarkings(lines):
 
 
 def findReUsableAssetDefinition(lines):
+    """find pumla RUA definitions in the given lines. According to rules, there is only
+       one RUA element allowed per file. With this algo, the last found definition wins.
+       But it is an error anyways, if there is more."""
+
+    # TBD: error messages when more than one RUA definition is found in a file.
+
+    # the regex patterns
+    pattern_rua = r'PUMLAReUsableAsset\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_ruaclass = r'PUMLAReUsableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_ruainst = r'PUMLAFullyInstantiatableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_sts = r'<<[\w\s]+>>'
+
+    # generic regex pattern for static C4 elements
+    pattern_c4static_gen = r'PUMLAC4(\w+)\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
     success = False
     el_name = ""
@@ -446,80 +555,59 @@ def findReUsableAssetDefinition(lines):
     el_stereotypes = []
 
     for e in lines:
-        if ("PUMLAReUsableAsset(" in e):
-            s1 = e.replace("PUMLAReUsableAsset", "")
-            s11 = s1.strip("{}")
-            s2 = s11.strip("(")
-            s21 = s2.strip()
-            s22 = s21.strip(")")
-            s3 = s22.split(",")
-            s4 = [ix.strip() for ix in s3]
-            s5 = [ix.strip('"') for ix in s4]
-            el_name = s5[0]
-            el_alias = s5[1]
-            el_type = s5[2]
+        result_rua = re.findall(pattern_rua, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_rua:
+            el_name = result_rua[0][0]
+            el_alias = result_rua[0][1]
+            el_type = result_rua[0][2]
 
-            st = s5[3].strip(" ")
-            st1 = st.split(">>")
-            st2 = [ist.strip() for ist in st1]
-            st3 = [ist.strip("<<") for ist in st2]
+            if not result_rua[0][4] == "":
+                stslist = re.findall(pattern_sts, result_rua[0][4])
 
-            for est in st3:
-                if (est != ""):
-                    el_stereotypes.append(est)
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
             success = True
 
-        if ("PUMLAReUsableClass(" in e):
-            s1 = e.replace("PUMLAReUsableClass", "")
-            s11 = s1.strip("{}")
-            s2 = s11.strip("(")
-            s21 = s2.strip(")")
-            s3 = s21.split(",")
-            s4 = [ix.strip() for ix in s3]
-            s5 = [ix.strip('"') for ix in s4]
-            s6 = [ix.strip('{') for ix in s5]
-            s7 = [ix.strip(')') for ix in s6]
-            s8 = [ix.strip('"') for ix in s7]
-            el_alias = s8[0]
+        result_ruaclass = re.findall(pattern_ruaclass, e)
+        if result_ruaclass:
+            el_alias = result_ruaclass[0][0]
             el_name = el_alias
             el_type = "class"
 
-            st = s8[1].strip(" ")
-            st1 = st.split(">>")
-            st2 = [ist.strip() for ist in st1]
-            st3 = [ist.strip("<<") for ist in st2]
+            if not result_ruaclass[0][2] == "":
+                stslist = re.findall(pattern_sts, result_ruaclass[0][2])
 
-            for est in st3:
-                if (est != ""):
-                    el_stereotypes.append(est)
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
             success = True
 
-        if ("PUMLAFullyInstantiatableClass(" in e):
-            s1 = e.replace("PUMLAFullyInstantiatableClass", "")
-            s11 = s1.strip("{}")
-            s2 = s11.strip("(")
-            s21 = s2.strip(")")
-            s3 = s21.split(",")
-            s4 = [ix.strip() for ix in s3]
-            s5 = [ix.strip('"') for ix in s4]
-            s6 = [ix.strip('{') for ix in s5]
-            s7 = [ix.strip(')') for ix in s6]
-            s8 = [ix.strip('"') for ix in s7]
-            el_alias = s8[0]
+        result_ruainstclass = re.findall(pattern_ruainst, e)
+        if result_ruainstclass:
+            el_alias = result_ruainstclass[0][0]
             el_name = el_alias
             el_type = "class"
 
-            st = s8[1].strip(" ")
-            st1 = st.split(">>")
-            st2 = [ist.strip() for ist in st1]
-            st3 = [ist.strip("<<") for ist in st2]
+            if not result_ruainstclass[0][2] == "":
+                stslist = re.findall(pattern_sts, result_ruainstclass[0][2])
 
-            for est in st3:
-                if (est != ""):
-                    el_stereotypes.append(est)
+                for est in stslist:
+                    if (est != ""):
+                        el_stereotypes.append(est.strip("<>"))
             success = True
+
+        result_c4static_gen = re.findall(pattern_c4static_gen, e)
+        if result_c4static_gen:
+            if result_c4static_gen[0][0] in c4_static_keywords:
+                el_alias = result_c4static_gen[0][1]
+                el_name = result_c4static_gen[0][2]
+                el_type = "C4" + result_c4static_gen[0][0]
+                success = True
 
     return success, el_name, el_alias, el_type, el_stereotypes
+
 
 def parsePUMLAFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
@@ -646,6 +734,7 @@ def serializePUMLARelationsToDict(rels, mrpath, mrfilename):
         tmpdict["end"] = e.getEnd()
         tmpdict["reltype"] = e.getRelType()
         tmpdict["reltxt"] = e.getRelTxt()
+        tmpdict["techntxt"] = e.getTechnTxt()
         tmpdict["path"] = e.getPath()
         tmpdict["filename"] = e.getFilename()
         tvs = e.getTaggedValuesMRJSONFormat()

@@ -1,0 +1,43 @@
+@startuml
+
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+scale 0.7
+
+!$PUMVarShowDescr = %true()
+' by default the global variables are "true",
+' so the following lines could also be removed.
+' they are just there so that you can toggle them
+' and try out the effect it has.
+!$PUMVarShowInterfaces = %true()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowImplicitRels = %true()
+
+title Show a system configuration by combining elements from the model repository
+
+' put all "block" elements onto the diagram.
+' you could also put each element with a single
+' statement onto the diagram, then you do not
+' have to remove things that you do not need...
+PUMLAPutAllElementsOfStereotype("block")
+
+' I do not need the instances...
+PUMLARemoveAllInstances()
+
+' for this diagram I do not want so see the
+' following elements (that are also "block"s)
+remove tempSensorA
+remove temp_dC_tempSensorA
+
+PUMLAPutConnection("CON#_SYS_VAR_B")
+PUMLAPutConnection("C#2")
+PUMLAPutConnection("C#3")
+
+internet_tempSys -- internet_wirelessUnit
+
+@enduml

@@ -1,0 +1,31 @@
+'PUMLAMR
+@startuml
+!include ../pumla_macros.puml
+!include ../modelrepo_json.puml
+
+PUMLAReUsableAsset("Wireless Unit", wirelessUnit, rectangle, "<<block>> <<external System>>") {
+
+    PUMLARUAPutTaggedValues()
+
+    PUMLARUAInternals() {
+        component transmitter
+        component receiver
+    }
+}
+
+PUMLARUAAddTaggedValue("Vendor", "XY")
+PUMLARUAAddTaggedValue("SecurityClass", "Alpha")
+PUMLARUAAddTaggedValue("Frequency Range", "5 GHz")
+PUMLARUAAddTaggedValue("Arch Level", "0")
+
+PUMLARUAInterface("internet", internet_wirelessUnit, "inout")
+
+note as ndescr_wirelessUnit
+    provide a wireless connection
+    to the internet.
+end note
+
+PUMLARUADescr(ndescr_wirelessUnit)
+
+PUMLAReUsableAssetFinalize()
+@enduml

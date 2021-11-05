@@ -1,0 +1,6 @@
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/WheatherStation/thisShallBeIgnored/simple", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "A simple Element", "alias": "simpleElement", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "simpleElement.puml", "taggedvalues": [{"tag": "Vendor", "values": ["A GmbH"]}]}]}
+
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/WheatherStation/thisShallBeIgnored/simple", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
+
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/WheatherStation/thisShallBeIgnored/simple", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+

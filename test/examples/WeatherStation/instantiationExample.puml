@@ -1,0 +1,76 @@
+@startuml
+' the following file gets generated when you call
+' "pumla update" in this directory
+!include modelrepo_json.puml
+!include pumla_macros.puml
+' this template skin colors instances for some
+' types in LightYellow
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %false()
+
+' this following flag allows to show/not show the automatically
+' created relation between the instance and its "class"
+!$PUMVarShowInstantiationRel = %true()
+
+title Example for creating an instance of an \n element from the model repository
+
+scale 0.8
+
+' create the instance "ts1" of model element with alias "tempSys".
+' the name contains whitespaces, therefore name and alias are
+' not equal and this version of the macro is called.
+PUMLACreateAndPutInstanceOf(tempSys, ts1, "ts1 professional")
+
+' create another instance "ts2" from same model element.
+' the instance name equals the alias, therefore is not
+' allowed to contain whitespaces.
+PUMLACreateAndPutInstanceOf(tempSys, ts2)
+
+' the instance inherits the stereotypes of the
+' model element it is derived from.
+PUMLACreateAndPutInstanceOf(wirelessUnit, wu1)
+
+' tSys1 and tSys2 are defined in the same file.
+' putting one of them on the diagram automatically
+' puts also the second one. if you do not want that,
+' put them in different files or remove one of them
+' at the end of the diagram.
+PUMLAPutElement(tSys1)
+
+' for this diagram I am only interested in tSys1. As
+' tSys1 and tSys2 are defined in one PlantUML file,
+' with putting tSys1 I get them both and then have
+' to remove the one I don't want. if this happens often
+' you should think about defining these instances in
+' separate files.
+remove tSys2
+
+PUMLAPutElement(tempSys)
+
+' different ways of putting the relations
+'PUMLAPutRelationsForElement(tSys1)
+'PUMLAPutRelation(REL#tSys2tempSys)
+PUMLAPutRelationsForElement(tempSys)
+
+note left of ts2
+    Toggle the **PUMVarShowInstantiationRel**
+    variable ($) to **true/false** to see the
+    difference between the two kinds of
+    instantiation mechanism.
+end note
+
+note left of ts1
+    you can attach notes
+    to the instance or use
+    it in any other way by
+    referring to the alias.
+end note
+
+' I can still connect or relate my re-usable elements
+' in the classic PlantUML way by referencing them
+' by their alias.
+ts1 <..> ts2 : some interaction
+@enduml

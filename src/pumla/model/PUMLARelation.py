@@ -1,12 +1,13 @@
 
 class PUMLARelation:
     ''' store PUMLA relations '''
-    def __init__(self, id, start, reltype, end, reltxt=""):
+    def __init__(self, id, start, reltype, end, reltxt="", techntxt=""):
         self.id = id
         self.start = start
         self.end = end
         self.reltype = reltype
         self.reltxt = reltxt
+        self.techntxt = techntxt
         self.path = "-"
         self.filename = "-"
         # tagged values is a dict are like
@@ -28,6 +29,9 @@ class PUMLARelation:
 
     def getRelTxt(self):
         return self.reltxt
+
+    def getTechnTxt(self):
+        return self.techntxt
 
     def getPath(self):
         return self.path

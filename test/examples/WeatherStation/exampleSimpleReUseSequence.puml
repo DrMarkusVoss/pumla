@@ -1,0 +1,20 @@
+@startuml
+' the following file gets generated when you call
+' "pumla update" in this directory
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternalsDyn = %true()
+
+title Example on how to re-use an existing sequence
+
+' put the re-usable sequence onto the diagram
+PUMLAPutElement(internalSequence)
+
+' now you can only put other sequences on the diagram
+' as the diagram turned automatically into a sequence
+' diagram.
+
+@enduml

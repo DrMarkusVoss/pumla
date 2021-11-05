@@ -1,0 +1,41 @@
+@startuml
+' the following 2 files gets generated when you call
+' "pumla update" in this directory
+!include modelrepo_json.puml
+!include pumla_macros.puml
+' this template skin colors instances for some
+' types in LightYellow
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %false()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowBody = %true()
+
+' this following flag allows to show/not show the automatically
+' created relation between the instance and its "class"
+!$PUMVarShowInstantiationRel = %true()
+
+title Example showing explicit relations of the model repository
+
+' put 3 elements from the model repo to the diagram
+PUMLAPutElement(tempSensorBdC)
+PUMLAPutElement(tempSensorB)
+PUMLAPutElement(tempConverter)
+
+' add all the relations for tempSensorBdC.
+' it uses the 2 other elements.
+PUMLAPutRelationsForElement(tempSensorBdC)
+'PUMLAPutRelation(tempSensorBdCRel#1)
+'PUMLAPutRelation(tempSensorBdCRel#2)
+
+' we also have a cheat sheet for the relations
+' model repo, but only the "all attributes" version
+' as the only thing you might not care for are the
+' filename and path, the rest is typically always of
+' interest.
+PUMLARelCheatSheetAllAttributes()
+
+@enduml

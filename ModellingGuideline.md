@@ -136,7 +136,7 @@ helloworld-->displayText : uses
 @enduml
 ```
 
-## Rule: Atomic model element desciptions shall not contain a title.
+## Rule: Atomic model element descriptions shall not contain a title.
 The rule says it all. You shall not define a (diagram) title in an atomic model 
 element description.
 
