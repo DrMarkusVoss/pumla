@@ -205,57 +205,99 @@ Node_R($alias, $label, $type, $descr, $sprite, $tags, $link)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_Back($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_Back($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure Rel_Back_Neighbor($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_Back_Neighbor($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_D($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_D($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_U($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_U($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_L($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_L($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4Rel_R($alias, $from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'Rel_R($from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel_U($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel_D($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel_R($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel_L($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
 
 !unquoted procedure PUMLAC4BiRel_Neighbor($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="")
-'$getRel("<<-->>", $from, $to, $label, $techn, $descr, $sprite, $tags, $link)
+' empty implementation by intention!
+' the relation will be stored in the model repository.
+' to see it on a diagram, you need to put it there
+' using PUMLAPutRelation(...)
 !endprocedure
