@@ -1,4 +1,4 @@
-# `pumla` usage examples
+# `pumla` WeatherStation examples
 These are diagrams from the `./test/examples/WeatherStation` section. You find the
 source code of the .puml files that form the example model repository
 there. In order to get the example running on your computer, you need
