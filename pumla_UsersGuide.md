@@ -229,7 +229,7 @@ in the same file the `PUMLAReUsableAsset/Class` has been called.
 
 ## Creating Re-usable Relations and Connections
 
-### `PUMLARelation(startalias : string, endalias : string, "reltype" : string, "reltxt" : string (optional), "relid" : string (optional))`
+### `PUMLARelation(startalias : string, "reltype" : string, endalias : string, "reltxt" : string (optional), "relid" : string (optional))`
 Creates a re-usable relation between the two elements starting at element with alias
 `startalias` and end at element with alias `endalias`. The type of relation can be any PlantUML
 compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
@@ -238,7 +238,7 @@ unique identifier to reference to the relation. If not given, `pumla` automatica
 id by combining start and end alias. This relation is created only in the model repo and will be
 filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
 
-### `PUMLAConnection(startalias : string, endalias : string, "contype" : string, "contxt" : string (optional), "conid" : string (optional))`
+### `PUMLAConnection(startalias : string, "contype" : string, endalias : string, "contxt" : string (optional), "conid" : string (optional))`
 Creates a connection between the two interfaces starting at interface with alias
 `startalias` and end at interface with alias `endalias`. The type of connection can be any PlantUML
 compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
