@@ -4,7 +4,7 @@
 !include ./../modelrepo_json.puml
 
 !startsub BODY
-PUMLAFullyInstantiatableClass(CWeather, "<<Python>>")
+PUMLAFullyInstantiableClass(CWeather, "<<Python>>")
 {
         ' private functions and members
         ' are considered internal

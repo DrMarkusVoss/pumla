@@ -78,9 +78,9 @@ def createPumlaMacrosFile(mainpath):
 
         with open(pumla_macros_fn, "w") as fil:
             fil.write(pm_comment)
+            fil.write(pm_include_project_cfg)
             fil.write(pm_include_macros)
             fil.write(pm_include_tv)
-            fil.write(pm_include_project_cfg)
             fil.write(pm_include_c4int)
         fil.close()
     else:

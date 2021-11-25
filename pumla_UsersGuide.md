@@ -183,7 +183,7 @@ Create a re-usable class asset. One special thing here is that name and alias ar
 This means you can only use characters for the name that also work for the alias (no whitespace, no special characters).
 You do not need to specify the type as parameter, just the name which acts also as alias and stereotypes if needed.
 
-### `PUMLAFullyInstantiatableClass($classname : string, $stereotypes : string (optional)) {...}`
+### `PUMLAFullyInstantiableClass($classname : string, $stereotypes : string (optional)) {...}`
 Create a special re-usable class asset. If you create a class with this macro, it allows its instances to inherit the
 methods and attributes defined in this class.
 
@@ -202,6 +202,9 @@ within the brackets `{ ... }`.
 Needs to be called at the end of a file with a re-usable asset description before `@enduml`. This cleans up internal
 global variables and allows multiple re-usable assets to be used, even multiple 
 instances of one re-usable asset.
+
+This needs not to be called at the end of a file where re-usable relations or connections have
+been specified. 
 
 ### `PUMLAFullInstanceOf($classalias : string, $instalias : string)`
 Creates an instance that inherits the internals (methods, attributes) of a class that has been
@@ -229,22 +232,20 @@ in the same file the `PUMLAReUsableAsset/Class` has been called.
 
 ## Creating Re-usable Relations and Connections
 
-### `PUMLARelation(startalias : string, "reltype" : string, endalias : string, "reltxt" : string (optional), "relid" : string (optional))`
+### `PUMLARelation(startalias : string, "reltype" : string, endalias : string, "reltxt" : string, "relid" : string)`
 Creates a re-usable relation between the two elements starting at element with alias
 `startalias` and end at element with alias `endalias`. The type of relation can be any PlantUML
 compatible relation like `"--", "-->", "..>", "<..>", ...`. `reltxt` is a description of the relation that
 will be put next to the relation when put on a diagram. `relid` can be used as
-unique identifier to reference to the relation. If not given, `pumla` automatically creates the
-id by combining start and end alias. This relation is created only in the model repo and will be
+unique identifier to reference to the relation. This relation is created only in the model repo and will be
 filled with a text drawing the relation when put onto a diagram with `PUMLAPutRelation(...)` (or PutAll...). 
 
-### `PUMLAConnection(startalias : string, "contype" : string, endalias : string, "contxt" : string (optional), "conid" : string (optional))`
+### `PUMLAConnection(startalias : string, "contype" : string, endalias : string, "contxt" : string, "conid" : string)`
 Creates a connection between the two interfaces starting at interface with alias
 `startalias` and end at interface with alias `endalias`. The type of connection can be any PlantUML
 compatible relation or connection like `"--", "-->", "..>", "<..>", ...`. `contxt` is a description of the connection that
 will be put next to the relation when put on a diagram. `conid` can be used as
-unique identifier to reference to the connection. If not given, `pumla` automatically creates the
-id by combining start and end alias. This connection is created only in the model repo and will be
+unique identifier to reference to the connection. This connection is created only in the model repo and will be
 filled with a text drawing the relation when put onto a diagram with `PUMLAPutConnection(...)` (or PutAll...). 
 
 ## Overview on the Model Repository of Re-usable Elements

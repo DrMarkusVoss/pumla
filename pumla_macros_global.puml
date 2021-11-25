@@ -1,6 +1,5 @@
 !$PUMLAVersionNumber = "v0.9.0"
 
-!include pumla_global_cfg.puml
 !include pumla_internal.puml
 
 !$PUMVarShowDescr = %true()
@@ -946,7 +945,7 @@ rectangle "Internals" as $body_internals
 ' define a re-usable class that can be instantiated,
 ' with the instances getting automatically all
 ' class attributes.
-!unquoted procedure PUMLAFullyInstantiatableClass($classname, $stereotypes="")
+!unquoted procedure PUMLAFullyInstantiableClass($classname, $stereotypes="")
 !if ($classname_instancename == "$classname_instancename")
     !$alias = $classname
     !$classname_i = $classname

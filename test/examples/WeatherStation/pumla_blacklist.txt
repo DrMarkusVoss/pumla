@@ -1,4 +1,3 @@
-# test folder for the blacklist
-./thisShallBeIgnored
-
+# add here folders and files to be ignored
+# for a pumla update scan
 
