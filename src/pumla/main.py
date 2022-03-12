@@ -144,6 +144,11 @@ def cmdUpdate(args):
     else:
         print("failed.")
 
+def cmdCheckAlias(args):
+    """check whether a given alias name is already used in the
+    current model repository"""
+    print("checking model repository for occurrence of alias name: ", args.aliasnametocheck)
+    print("tbd... checking to be implemented yet...")
 
 def cmdListFiles(args):
     identifyMe(parser)
@@ -238,6 +243,18 @@ def main():
         help="list all `pumla` marked model files of the model repository.",
     )
     parser_listfiles.set_defaults(func=cmdListFiles)
+
+    parser_checkalias = subparsers.add_parser(
+        "checkalias",
+        help="checks whether a give alias name is already used in the current model repository.",
+    )
+
+    parser_checkalias.add_argument(
+        "aliasnametocheck",
+        help="the alias name to check whether it can be used for a new element."
+    )
+
+    parser_checkalias.set_defaults(func=cmdCheckAlias)
 
     parser_update = subparsers.add_parser(
         "update",
