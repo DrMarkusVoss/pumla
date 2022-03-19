@@ -112,3 +112,41 @@ def test_04_findElementNameAndTypeInText():
         result = findElementNameAndTypeInText(lines, alias)
 
         assert result == expected_result
+
+def test_05_checkalias(examples_path):
+    """test the method: checkElsRelsConsForAliasExistence(...)"""
+
+    (success, efn, elements, relations, connections) = updatePUMLAMR(str(examples_path),
+                                                                     str(examples_path) + "/modelrepo_json.puml")
+
+    expected_result_huhu = False
+    expected_result_CWeather = True
+    expected_result_CWheather = False
+    expected_result_rel1 = True
+    expected_result_rel2 = False
+    expected_result_con1 = True
+    expected_result_con2 = False
+
+    observed_result_huhu = checkElsRelsConsForAliasExistence(elements, relations, connections, "huhu")
+    observed_result_CWeather = checkElsRelsConsForAliasExistence(elements, relations, connections, "CWeather")
+    observed_result_CWheather = checkElsRelsConsForAliasExistence(elements, relations, connections, "CWheather")
+    observed_result_rel1 = checkElsRelsConsForAliasExistence(elements, relations, connections, "REL#w3CWeather")
+    observed_result_con1 = checkElsRelsConsForAliasExistence(elements, relations, connections, "CON#_SYS_VAR_B2")
+    observed_result_rel2 = checkElsRelsConsForAliasExistence(elements, relations, connections, "REL#w3CWheather")
+    observed_result_con2 = checkElsRelsConsForAliasExistence(elements, relations, connections, "CON_SYS_VAR_B2")
+
+
+
+    assert observed_result_huhu == expected_result_huhu
+
+    assert observed_result_CWeather == expected_result_CWeather
+
+    assert observed_result_CWheather == expected_result_CWheather
+
+    assert observed_result_rel1 == expected_result_rel1
+
+    assert observed_result_rel2 == expected_result_rel2
+
+    assert observed_result_con1 == expected_result_con1
+
+    assert observed_result_con2 == expected_result_con2

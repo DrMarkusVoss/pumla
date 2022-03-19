@@ -25,11 +25,14 @@ $strcomp
 %set_variable_value("$my_variable" + %string(1), "some_value")
 [$my_variable1]
 
+[hello][[http://plantuml.com{Optional tooltip} This label is printed]]
+
 note as huhua
 
 |= huhu |= haha |= trala |
 | 1 | 2 | 3|
 | 4 | 5 |  |
+[hello]
 
 end note
 @enduml

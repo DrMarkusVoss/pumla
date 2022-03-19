@@ -23,6 +23,7 @@ component "Temperature Sensor B" <<block>> <<external System>> as tempSensorB {
     !endif
 
     PUMLAPutInternalDynElement(publicState)
+
 }
 !endif
 

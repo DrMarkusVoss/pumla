@@ -28,6 +28,29 @@ c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_E
 
 c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 
+def checkElsRelsConsForAliasExistence(elements, relations, connections, aliasnametocheck):
+    '''search the given lists of elements, relations and connections for the existence of an alias or id with
+    the given aliasnametocheck'''
+    alias_already_existing = False
+    print("now checking for alias: ", aliasnametocheck)
+    for el in elements["elements"]:
+        if el["alias"] == aliasnametocheck:
+            alias_already_existing = True
+            print("alias already exists for this element:")
+            print(el)
+    for rel in relations["relations"]:
+        if rel["id"] == aliasnametocheck:
+            alias_already_existing = True
+            print("alias already exists as id for this relation:")
+            print(rel)
+    for con in connections["connections"]:
+        if con["id"] == aliasnametocheck:
+            alias_already_existing = True
+            print("alias already exists as id for this connection:")
+            print(con)
+
+    return alias_already_existing
+
 def readPumlaMacrosPathFromFile(mainpath):
     '''read the path of the pumla macros location from the file "pumla_macros_path.txt".'''
     pmpath = ""
@@ -542,7 +565,7 @@ def findReUsableAssetDefinition(lines):
     # the regex patterns
     pattern_rua = r'PUMLAReUsableAsset\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_ruaclass = r'PUMLAReUsableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
-    pattern_ruainst = r'PUMLAFullyInstantiatableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
+    pattern_ruainst = r'PUMLAFullyInstantiableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_sts = r'<<[\w\s]+>>'
 
     # generic regex pattern for static C4 elements

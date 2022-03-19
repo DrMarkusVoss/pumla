@@ -20,6 +20,7 @@ import os
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
 from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile
 from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
+from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
 
 parser = None
 parser_getjson = None
@@ -144,6 +145,25 @@ def cmdUpdate(args):
     else:
         print("failed.")
 
+def cmdCheckAlias(args):
+    """check whether a given alias name is already used in the
+    current model repository"""
+    print("checking model repository for occurrence of alias name: ", args.aliasnametocheck)
+
+    alias_already_existing = False
+
+    #identifyMe(parser)
+    print("first updating model repository...")
+    (success, efn, elements, relations, connections) = updatePUMLAMR(os.path.curdir, os.path.curdir + "/modelrepo_json.puml")
+    if success:
+        print("model repo file: " + efn)
+        print("done.")
+        alias_already_existing = checkElsRelsConsForAliasExistence(elements, relations, connections, args.aliasnametocheck)
+        if not alias_already_existing:
+            print("alias '" + args.aliasnametocheck + "' can be used as an alias or id for a new element, relation or connection.")
+    else:
+        print("checking failed due to update failure.")
+
 
 def cmdListFiles(args):
     identifyMe(parser)
@@ -238,6 +258,18 @@ def main():
         help="list all `pumla` marked model files of the model repository.",
     )
     parser_listfiles.set_defaults(func=cmdListFiles)
+
+    parser_checkalias = subparsers.add_parser(
+        "checkalias",
+        help="checks whether a give alias name is already used in the current model repository.",
+    )
+
+    parser_checkalias.add_argument(
+        "aliasnametocheck",
+        help="the alias name to check whether it can be used for a new element."
+    )
+
+    parser_checkalias.set_defaults(func=cmdCheckAlias)
 
     parser_update = subparsers.add_parser(
         "update",

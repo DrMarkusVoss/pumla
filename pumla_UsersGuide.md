@@ -132,6 +132,11 @@ The following subcommands are supported:
 - `pumla getjson connections`: Get a list in JSON format with all connections of the pumla
   model repository.
 
+### `pumla checkalias <alias_name_to_check>`
+First executes an update, then checks if the given `<alias_name_to_check>` is already existing/in use as alias
+or id in the  current model repository. If not, it can be used as an alias for a new model element, relation
+or connection.
+
 ---
 
 ## PlantUML Extension
