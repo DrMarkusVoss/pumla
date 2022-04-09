@@ -57,7 +57,17 @@ with other applications and documents during software development.
 ## Getting Started
 
 ### Simple example
+Here is a quick example from scratch to show you how to use pumla to make
+re-use of PlantUML-modelled elements. It consists of two steps: first you
+model the element in PlantUML with little pumla-specific adders to make it
+re-usable. Then as second step, you create a new diagram where you just 
+re-use the element you modelled before on that diagram by putting it there
+with just one pumla command. See the following chapters for the details:
+
 #### Defining a re-usable element
+<details>
+<summary>click to expand!</summary>
+
 Of course you need to have `pumla` installed. See further below for 
 installation instructions.
 
@@ -112,8 +122,12 @@ the code of the file rendered to a diagram like this:
 
 ![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleElement.png)
 
+</details>
 
 #### Re-using the element on another diagram
+<details>
+<summary>click to expand!</summary>
+
 Create a PlantUML diagram like this: 
 
 File: simpleDiagram.puml
@@ -157,8 +171,9 @@ explicitly with PlantUML, your diagram looks like this:
 
 ![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleDiagram.png)
 
+</details>
 
-### Further examples
+### Further, more extensive examples
 For more examples showing off the functionality and magic of `pumla`, see the following examples:
 
 ### WeatherStation examples
