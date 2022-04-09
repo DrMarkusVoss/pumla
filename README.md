@@ -25,6 +25,8 @@ Therefore, in order to enable systematic re-use for architecture models with Pla
 this systematic re-use.
 
 ### Goals, Use Cases & Principles
+<details>
+<summary>click to expand!</summary>
 - Architecture modelling of bigger software solutions using PlantUML
 - Have the same model elements in different diagrams as single source entities
 - Keep the architecture descriptions close to the Source Code --> Architecture as text
@@ -35,15 +37,18 @@ this systematic re-use.
   sequence diagrams with deployment diagrams.
 - Create an arc42 architecture documentation based on common PlantUML description patterns
   with almost no effort.
+</details>
 
 ### Context Diagram
-Here's an overview of the idea. It's solution is in parts still
-unclear, but it evolves.
+<details>
+<summary>click to expand!</summary>
+Here's an overview of the idea. 
 
 In blue you can see the parts developed as `pumla` and how they interact
 with other applications and documents during software development.
 
 ![](./arch/01_context/pumla_context.png)
+</details>
 
 ---
 ## Getting Started
