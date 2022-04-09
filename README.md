@@ -188,6 +188,56 @@ to an overview and description an that example:
 
 [follow this link to the C4 example](./test/examples/C4example/pumlaC4Example.md)
 
+### Working with the examples
+In order to play around with the previously mentioned examples, you need to initialise the examples
+repository to work on your system. To do that, take the following steps starting in the pumla
+package root directory (after following the installation steps of the next chapter, you are already
+there):
+
+<details>
+<summary>click to expand: Example: WeatherStation</summary>
+
+---
+#### Example: WeatherStation 
+This is a comprehensive example showing off the *standard* PlantUML and pumla 
+features.
+
+  ```
+  cd test/examples/WeatherStation
+  pumla init
+  pumla update
+  ```
+
+</details>
+
+<details>
+<summary>click to expand: Example: C4example</summary>
+
+---
+#### Example: C4example
+This is an example to show how the C4model extension of PlantUML can be used and also
+C4model elements can be made re-usable.
+
+  ```
+  cd test/examples/C4example
+  pumla init
+  pumla update
+  ```
+
+---
+
+The "init" step in both examples creates or updates the file "pumla_macros.puml",
+that connects your repo with the pumla installation/deployment on your computer.
+This step must only be executed once after a checkout/clone.
+  
+The "update" step creates or updates the modelrepo_json.puml with the current content of
+the examples repository and also considers the file structure/paths on your computer. This
+step needs to be executed everytime you changed something on the model repository, e.g.
+added a new re-usable architecture model element or changed an existing one.
+
+</details>
+
+
 ### Installation
 #### Install latest development
 To get the latest developments, clone this git repo to a place somewhere on your Mac/Raspberry Pi or other Unix-like
@@ -213,47 +263,6 @@ corresponding Source Code archive (.zip or .tar.gz).
 - change to the unpacked pumla folder, e.g. `cd pumla-0.8.3`
 - install pumla with: `pip install .`
 - call from same folder: `pumla setup`
-
-### Working with the examples
-There are basically 2 big examples, both containing multiple re-usable elements and 
-several diagrams using them.
-
-In order to play around with the examples, you need to initialise the examples repository
-  to work on your system. To do that, take the following steps starting in the pumla
-package root directory (after following the installation steps, you are already there):
-
----
-#### Example: WeatherStation 
-This is a comprehensive example showing off the *standard* PlantUML and pumla 
-features.
-
-  ```
-  cd test/examples/WeatherStation
-  pumla init
-  pumla update
-  ```
-
-#### Example: C4example
-This is an example to show how the C4model extension of PlantUML can be used and also
-C4model elements can be made re-usable.
-
-  ```
-  cd test/examples/C4example
-  pumla init
-  pumla update
-  ```
-
----
-
-The "init" step in both examples creates or updates the file "pumla_macros.puml",
-that connects your repo with the pumla installation/deployment on your computer.
-This step must only be executed once after a checkout/clone.
-  
-The "update" step creates or updates the modelrepo_json.puml with the current content of
-the examples repository and also considers the file structure/paths on your computer. This
-step needs to be executed everytime you changed something on the model repository, e.g.
-added a new re-usable architecture model element or changed an existing one.
-
 
 ### User's Guide
 You can directly dive into the details by taking a look
