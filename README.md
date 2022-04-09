@@ -195,7 +195,7 @@ package root directory (after following the installation steps of the next chapt
 there):
 
 <details>
-<summary>click to expand: Example: WeatherStation</summary>
+<summary>click to expand: prepare example "WeatherStation"</summary>
 
 ---
 #### Example: WeatherStation 
@@ -211,7 +211,7 @@ features.
 </details>
 
 <details>
-<summary>click to expand: Example: C4example</summary>
+<summary>click to expand: prepare example "C4example"</summary>
 
 ---
 #### Example: C4example
@@ -225,6 +225,11 @@ C4model elements can be made re-usable.
   ```
 
 ---
+
+</details>
+
+<details>
+<summary>click to expand: Explanation to preparation of both examples</summary>
 
 The "init" step in both examples creates or updates the file "pumla_macros.puml",
 that connects your repo with the pumla installation/deployment on your computer.
