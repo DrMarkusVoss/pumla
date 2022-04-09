@@ -28,6 +28,8 @@ this systematic re-use.
 <details>
 <summary>click to expand!</summary>
 
+---
+
 - Architecture modelling of bigger software solutions using PlantUML
 - Have the same model elements in different diagrams as single source entities
 - Keep the architecture descriptions close to the Source Code --> Architecture as text
@@ -39,11 +41,15 @@ this systematic re-use.
 - Create an arc42 architecture documentation based on common PlantUML description patterns
   with almost no effort.
 
+---
+
 </details>
 
 ### Context Diagram
 <details>
 <summary>click to expand!</summary>
+
+---
 
 Here's an overview of the idea. 
 
@@ -51,6 +57,9 @@ In blue you can see the parts developed as `pumla` and how they interact
 with other applications and documents during software development.
 
 ![](./arch/01_context/pumla_context.png)
+
+---
+
 </details>
 
 ---
@@ -67,6 +76,8 @@ with just one pumla command. See the following chapters for the details:
 #### Defining a re-usable element
 <details>
 <summary>click to expand!</summary>
+
+---
 
 Of course you need to have `pumla` installed. See further below for 
 installation instructions.
@@ -122,11 +133,15 @@ the code of the file rendered to a diagram like this:
 
 ![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleElement.png)
 
+---
+
 </details>
 
 #### Re-using the element on another diagram
 <details>
 <summary>click to expand!</summary>
+
+---
 
 Create a PlantUML diagram like this: 
 
@@ -171,6 +186,8 @@ explicitly with PlantUML, your diagram looks like this:
 
 ![](test/examples/WeatherStation/thisShallBeIgnored/simple/pics/simpleDiagram.png)
 
+---
+
 </details>
 
 ### Further, more extensive examples
@@ -208,6 +225,8 @@ features.
   pumla update
   ```
 
+---
+
 </details>
 
 <details>
@@ -231,6 +250,7 @@ C4model elements can be made re-usable.
 <details>
 <summary>click to expand: Explanation to preparation of both examples</summary>
 
+---
 The "init" step in both examples creates or updates the file "pumla_macros.puml",
 that connects your repo with the pumla installation/deployment on your computer.
 This step must only be executed once after a checkout/clone.
@@ -239,6 +259,8 @@ The "update" step creates or updates the modelrepo_json.puml with the current co
 the examples repository and also considers the file structure/paths on your computer. This
 step needs to be executed everytime you changed something on the model repository, e.g.
 added a new re-usable architecture model element or changed an existing one.
+
+---
 
 </details>
 
