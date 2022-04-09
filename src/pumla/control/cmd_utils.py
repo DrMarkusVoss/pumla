@@ -37,11 +37,20 @@ def installPlantUMLJAR(mainpath):
     '''downloads the PlantUML JAR file and places it into a pumla command line tool installation directory.'''
     print("downloading...")
     target_filename = mainpath + "plantuml-jar/plantuml.jar"
-    print(target_filename)
-    r = requests.get(plantuml_jar_download_destiniation)
-    with open(target_filename, 'wb') as f:
-        f.write(r.content)
-    succ = exists(target_filename)
+
+    succ = False
+    if (exists(target_filename)):
+        print("Error: the PlantUML JAR file is already installed.")
+        print("       If you want it to get updated, please delete the existing JAR file ")
+        print("       from the following location manually and call the installation command")
+        print("       again.")
+        print(target_filename)
+        succ = False
+    else:
+        r = requests.get(plantuml_jar_download_destiniation)
+        with open(target_filename, 'wb') as f:
+            f.write(r.content)
+        succ = exists(target_filename)
     return succ
 
 
