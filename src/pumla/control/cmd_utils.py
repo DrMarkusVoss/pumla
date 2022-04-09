@@ -3,6 +3,8 @@ import os
 import json
 import shutil
 import re
+import requests
+from os.path import exists
 from pumla.model.PUMLAElement import PUMLAElement
 from pumla.model.PUMLARelation import PUMLARelation
 from pumla.model.PUMLAConnection import PUMLAConnection
@@ -27,6 +29,21 @@ c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_E
                       "Enterprise_Boundary"]
 
 c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
+
+# this is the PlantUML JAR file that will be downloaded to use it for diagram generation
+plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2022.3/plantuml-1.2022.3.jar"
+
+def installPlantUMLJAR(mainpath):
+    '''downloads the PlantUML JAR file and places it into a pumla command line tool installation directory.'''
+    print("downloading...")
+    target_filename = mainpath + "plantuml-jar/plantuml.jar"
+    print(target_filename)
+    r = requests.get(plantuml_jar_download_destiniation)
+    with open(target_filename, 'wb') as f:
+        f.write(r.content)
+    succ = exists(target_filename)
+    return succ
+
 
 def checkElsRelsConsForAliasExistence(elements, relations, connections, aliasnametocheck):
     '''search the given lists of elements, relations and connections for the existence of an alias or id with

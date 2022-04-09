@@ -21,6 +21,7 @@ from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUM
 from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile
 from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
 from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
+from pumla.control.cmd_utils import installPlantUMLJAR
 
 parser = None
 parser_getjson = None
@@ -105,6 +106,21 @@ def cmdSetupPrj(args):
         print("done.")
     else:
         print("failed.")
+
+
+def cmdInstallPlantUML(args):
+    '''download the PlantUML JAR library and put it into a directory
+       under the pumla command line tool installation.'''
+    identifyMe(parser)
+    print("Installing PlantUML JAR file:")
+    pumpath = getPumlaInstallationPath()
+    ipj_success = installPlantUMLJAR(pumpath)
+
+    if ipj_success:
+        print("done.")
+    else:
+        print("failed.")
+
 
 
 def cmdCreateNewPumlaFile(args):
@@ -240,6 +256,13 @@ def main():
              "with the pumla macros file and the paths are setup all right.",
     )
     parser_checksetup.set_defaults(func=cmdCheckSetup)
+
+    parser_installplantuml = subparsers.add_parser(
+        "installplantuml",
+        help="downloads the PlantUML JAR file and puts it into a dedicated directory within the"
+             "pumla command line tool installation."
+    )
+    parser_installplantuml.set_defaults(func=cmdInstallPlantUML)
 
     parser_setupprj = subparsers.add_parser(
         "setupprj",

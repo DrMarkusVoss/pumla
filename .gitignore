@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# plantuml jar file
+./plantuml-jar/plantuml.jar
+
 # testfile
 mrtest_json.puml
 ./modelrepo_json.puml
