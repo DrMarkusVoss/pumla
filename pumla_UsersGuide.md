@@ -107,6 +107,10 @@ files and create the `modelrepo_json.puml` file. After that you can use the
 model repository to create diagrams and are able to use all the macro commands 
 explained in the following chapters.
 
+### `pumla installplantuml`
+Downloads a compatible version of the PlantUML JAR file and places it into
+a dedicated folder within the pumla command line tool installation.
+
 ### `pumla files`
 Called without any other argument, pumla writes out to the console a
 list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
