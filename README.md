@@ -279,9 +279,16 @@ installation):
 If PlantUML has been installed that way successfully, you can use the pumla
 command line tool to generate corresponding picture files like this:
 
+Change to an example source file folder:
   ```
   cd test/examples/WeatherStation/anotherClass
+  ```
+Generate a picture file (default is .png):
+```
   pumla gendiagram ./anotherClass.puml
+  ```
+Generate an SVG picture file:
+```
   pumla gendiagram ./anotherClass.puml svg
   ```
 
