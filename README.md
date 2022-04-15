@@ -265,9 +265,10 @@ added a new re-usable architecture model element or changed an existing one.
 </details>
 
 ### Simplified PlantUML diagram generation
-In order to generating picture files (like .png) for the text-based diagram
+In order to easily generate picture files (like .png) for the text-based diagram
 sources (PlantUML or pumla files), pumla has an easy-to-use installation
-mechanism. This downloads and installs a compatible PlantUML JAR version. To
+mechanism for the PlantUML JAR lib. This downloads and installs a compatible version
+of the PlantUML JAR lib. To
 install that just call the following command (only needed once after pumla
 installation):
 
