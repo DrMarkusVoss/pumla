@@ -33,6 +33,18 @@ c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 # this is the PlantUML JAR file that will be downloaded to use it for diagram generation
 plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2022.3/plantuml-1.2022.3.jar"
 
+def gendiagram(mainpath, inputpuml, outputname, picformat):
+    pumljar_filename = mainpath + "plantuml-jar/plantuml.jar"
+    if not exists(pumljar_filename):
+        print("Error: Diagram cannot be generated. PlantUML JAR is not yet installed.")
+        print("       Install the PlantUML JAR with the following command before:")
+        print("       pumla installplantuml")
+    else:
+        formatext = "-" + picformat
+        os.system("java -jar " + pumljar_filename + " " + inputpuml + " " + formatext)
+        print("creating diagram for: " + inputpuml)
+        print("done.")
+
 def installPlantUMLJAR(mainpath):
     '''downloads the PlantUML JAR file and places it into a pumla command line tool installation directory.'''
     print("downloading...")

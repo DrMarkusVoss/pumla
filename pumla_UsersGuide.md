@@ -111,6 +111,18 @@ explained in the following chapters.
 Downloads a compatible version of the PlantUML JAR file and places it into
 a dedicated folder within the pumla command line tool installation.
 
+### `pumla gendiagram <filename_with_path> <picture_format>`
+Generates a picture from the filename that is a PlantUML or pumla source file.
+For the picture formats you can choose from the following website(just type the format,
+without "-t" or "-"), chapter "Types of Output File":
+
+[https://plantuml.com/de/command-line](https://plantuml.com/de/command-line)
+
+Hint: If you encounter problems during the generation of the picture, you can activate
+the "verbose" logging feature of PlantUML. Instead of a picture format give "v" as
+a parameter. It will then try to generate a .png file but the logging information
+is put to the command line output.
+
 ### `pumla files`
 Called without any other argument, pumla writes out to the console a
 list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`

@@ -264,6 +264,25 @@ added a new re-usable architecture model element or changed an existing one.
 
 </details>
 
+### Simplified PlantUML diagram generation
+In order to generating picture files (like .png) for the text-based diagram
+sources (PlantUML or pumla files), pumla has an easy-to-use installation
+mechanism. This downloads and installs a compatible PlantUML JAR version. To
+install that just call the following command (only needed once after pumla
+installation):
+
+  ```
+  pumla installplantuml
+  ```
+
+If PlantUML has been installed that way successfully, you can use the pumla
+command line tool to generate corresponding picture files like this:
+
+  ```
+  cd test/examples/WeatherStation/anotherClass
+  pumla gendiagram ./anotherClass.puml
+  pumla gendiagram ./anotherClass.puml svg
+  ```
 
 ### Installation
 #### Install latest development
@@ -319,6 +338,9 @@ you have fast previews of the `.puml` and markdown files.
   with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3 and pip3.
 - tested with PlantUML library v1.2021.7 (via the PyCharm Plugin 
   "PlantUML integration" version 5.5.1)
+- tested with PlantUML library v1.2022.1 (via the PyCharm Plugin 
+  "PlantUML integration" version 5.7.1)
+- tested with PlantUML library v1.2022.3
 
 ### `pumla` Architecture
 The `pumla` Architecture is also documented using `pumla`.

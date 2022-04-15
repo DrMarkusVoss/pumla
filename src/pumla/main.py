@@ -22,6 +22,7 @@ from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistF
 from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
 from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
 from pumla.control.cmd_utils import installPlantUMLJAR
+from pumla.control.cmd_utils import gendiagram
 
 parser = None
 parser_getjson = None
@@ -121,6 +122,12 @@ def cmdInstallPlantUML(args):
     else:
         print("failed.")
 
+
+def cmdGenDiagram(args):
+    identifyMe(parser)
+    print("Generating a diagram picture file for a PlantUML or pumla file.")
+    pumpath = getPumlaInstallationPath()
+    gendiagram(pumpath, args.inputfile, ".", args.picformat)
 
 
 def cmdCreateNewPumlaFile(args):
@@ -263,6 +270,22 @@ def main():
              "pumla command line tool installation."
     )
     parser_installplantuml.set_defaults(func=cmdInstallPlantUML)
+
+    parser_gendiagram = subparsers.add_parser(
+        "gendiagram",
+        help="generates a .png file for the given PlantUML or pumla file. "
+    )
+    parser_gendiagram.add_argument(
+        "inputfile",
+        help="the PlantUML or pumla file to process."
+    )
+    parser_gendiagram.add_argument(
+        "picformat",
+        help="the format of the output picture file. Default='png', others available 'txt' and 'svg'.",
+        nargs="?",
+        default="png",
+    )
+    parser_gendiagram.set_defaults(func=cmdGenDiagram)
 
     parser_setupprj = subparsers.add_parser(
         "setupprj",
