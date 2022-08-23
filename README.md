@@ -190,8 +190,12 @@ explicitly with PlantUML, your diagram looks like this:
 
 </details>
 
-### Further, more extensive examples
+### Further examples
 For more examples showing off the functionality and magic of `pumla`, see the following examples:
+
+
+### Simple Hierarchical System
+[follow this link to the Simple Hierarchical System example](test/examples/simple/hierarchicalSystem/ExampleSimpleHierarchicalSystem.md)
 
 ### WeatherStation examples
 This is a comprehensive set with a bigger model and a lot of different diagrams. Follow the
@@ -344,11 +348,10 @@ you have fast previews of the `.puml` and markdown files.
   and Unix platform, as I also do not have a Windows test platform 
   at hand anymore. It is proven to run on my Macbook (Mojave)
   with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3 and pip3.
-- tested with PlantUML library v1.2021.7 (via the PyCharm Plugin 
-  "PlantUML integration" version 5.5.1)
-- tested with PlantUML library v1.2022.1 (via the PyCharm Plugin 
-  "PlantUML integration" version 5.7.1)
-- tested with PlantUML library v1.2022.3
+- tested with PlantUML library v1.2022.6 (via the PyCharm Plugin 
+  "PlantUML integration" version 5.16.1)
+- **needs at least the PlantUML v1.2022.2**, as now use of the %splitstr()
+  preprocessor feature is made that was introduced then
 
 ### `pumla` Architecture
 The `pumla` Architecture is also documented using `pumla`.

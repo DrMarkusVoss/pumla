@@ -423,6 +423,15 @@ non-re-usable instance of a re-usable element. So it is a convencience function
 simplifying the instantiation process with at the same time creating
 the proper relation between instance and class element.
 
+### `PUMLAInjectChildElements( alias : string )`
+This macro puts all elements into this place, that call the given `alias` their parent (via the file markings mechanism
+`'PUMLAPARENT: <elem_alias>`). Typically this is called
+from within the definition of a re-usable element, where you want to inject elements that are defined somewhere else
+and that you do not want to name explicitly here. That way, you can define in some other place the "child elements", 
+and with this macro they are injected into the body of the parent (who calls this macro). This is a mechanism to allow
+kind of a "responsibility/ownership" thing, to prevent that at some point in the git repo someone extends the model
+of another owner with some internals just by naming "system" the parent.  So the "system" owner (as parent) has to
+explicitly allow the children to come in, so the "PUMLAInjectChildElements(...)" is the kind of door-opener for that.
 
 ## Putting Re-usable Relations and Connections onto Diagrams
 
@@ -545,6 +554,12 @@ All elements without the given tag/value combination will be filtered out.
 
 ### `PUMLAResetFilters()`
 Reset all filter values to default, which is "" or %false().
+
+### `PUMLARUAHideInternalsOfElement( $alias : string )`
+Allows to filter out/not show the internals of a re-usable asset element given with `$alias`, even if the 
+global variable `$PUMVarShowBodyInternals` is true. With this macro, the given alias is added to the list of elements
+of which not to show the internals. In order to show internals for that element within the scope of the same diagram
+again, the "filter list" has to be resetted with the next macro.
 
 ## Working around some PlantUML limitations
 

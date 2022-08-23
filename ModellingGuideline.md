@@ -189,7 +189,8 @@ Same as previous rule, it simplifies the implementation of the parser and file
 scanner and it makes sense as a naming convention anyway.
 
 ## Rule: No layout adaptations in atomic `pumla` files
-`pumla` files for atomic model elements should not contain layout, coloring and skin definitions.
+`pumla` files for atomic model elements should not contain layout, coloring and skin definitions, as well as
+global variable definitions.
 
 ### *Rationale*
 In order to be able to put different skins, layouts and coloring to the elements later, these kinds of things

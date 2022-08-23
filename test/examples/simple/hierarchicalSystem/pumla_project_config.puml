@@ -1,0 +1,28 @@
+' modify this to how you like it.
+
+' turn on (true) or off (false) the default
+' pumla advertising footer. Can also be
+' overwritten in each diagram with own
+' footer.
+!$PUMVarShowPUMLAFooterNote = %true()
+
+' turn on (true) or off (false) the
+' Error Note generation. With error
+' notes you get information about a
+' failed pumla command in a red note
+' on the diagram.
+!$PUMVarShowPUMLAErrorNotes = %true()
+
+' choose the color of the tagged values
+' table. Color names have to be written
+' in small letters.
+!$PUMColorTaggedValues = lightgreen
+
+' choose whether to use the extension
+' for C4 model or not.
+' The alignment of text in notes gets
+' somehow its own life then and the
+' text gets centered ignoring CRs of
+' the user. Therefore, default is false.
+!$PUMUseC4Model = %false()
+

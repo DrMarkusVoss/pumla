@@ -1,0 +1,12 @@
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+title Overview System with some internals
+
+PUMLARUAHideInternalsOfElement(subsystemB)
+
+PUMLAPutElement(system)
+
+
+@enduml

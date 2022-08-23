@@ -1,0 +1,18 @@
+'PUMLAMR
+'PUMLAPARENT: system
+
+@startuml
+!include pumla_macros.puml
+!include modelrepo_json.puml
+
+
+PUMLAReUsableAsset("Subsystem B", subsystemB , component) {
+    PUMLARUAInternals() {
+
+        component moduleY
+    }
+}
+
+PUMLAReUsableAssetFinalize()
+
+@enduml

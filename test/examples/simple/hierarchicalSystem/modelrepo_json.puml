@@ -1,0 +1,9 @@
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/hierarchicalSystem", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Subsystem A", "alias": "subsystemA", "type": "component", "stereotypes": [], "kind": "static", "parent": "system", "instclassalias": "-", "path": "./", "filename": "subsystemA.puml"},
+ {"name": "System", "alias": "system", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./", "filename": "system.puml"},
+ {"name": "Subsystem C", "alias": "subsystemC", "type": "component", "stereotypes": [], "kind": "static", "parent": "system", "instclassalias": "-", "path": "./", "filename": "subsystemC.puml"},
+ {"name": "Subsystem B", "alias": "subsystemB", "type": "component", "stereotypes": [], "kind": "static", "parent": "system", "instclassalias": "-", "path": "./", "filename": "subsystemB.puml"}]}
+
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/hierarchicalSystem", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
+
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/hierarchicalSystem", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+

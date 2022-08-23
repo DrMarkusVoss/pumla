@@ -4,7 +4,7 @@
 !include modelrepo_json.puml
 !include <c4/C4_Container>
 
-Person(simplePerson, "Simple Person", "People that need products") {
+PUMLAC4Person(simplePerson, "Simple Person", "People that need products") {
     PUMLAPutTaggedValues(simplePerson)
 
     !if ($PUMVarShowBodyInternals)

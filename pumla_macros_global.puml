@@ -1,4 +1,4 @@
-!$PUMLAVersionNumber = "v0.9.1"
+!$PUMLAVersionNumber = "v0.9.2"
 
 !include pumla_internal.puml
 
@@ -38,9 +38,12 @@
 
 !$pum_global_current_rua_alias = ""
 !$pum_global_previous_rua_alias = ""
+!$pum_global_prev_previous_rua_alias = ""
 !$pum_global_current_rua_internals = ""
 !$pum_global_current_rua_tvnote = ""
 !$pum_global_current_rua_descr = ""
+
+!$pum_global_hide_internals_list = "<PUMLALISTROOTELEMENT>"
 
 !$pum_global_instance_adder = ""
 
@@ -870,6 +873,7 @@ remove class193242153453236632191729533452
 ' ---------------------------------------------
 ' define re-usable asset
 !unquoted procedure PUMLAReUsableAsset($name, $alias, $type, $stereotypes="")
+!global $pum_global_prev_previous_rua_alias = $pum_global_previous_rua_alias
 !global $pum_global_previous_rua_alias = $pum_global_current_rua_alias
 !global $pum_global_current_rua_alias = $alias
 %set_variable_value("$pum_global_rua_elem_" + $alias + "_alias", "%true()")
@@ -904,8 +908,29 @@ class $name_alias $stereotypes
 ' define re-usable asset internal items
 !unquoted procedure PUMLARUAInternals()
 !$body_internals = $pum_global_current_rua_alias + "_internals"
+!$body_internals_hidden = $pum_global_current_rua_alias + "_internals_hidden"
 !global $pum_global_current_rua_internals = $body_internals
-rectangle "Internals" as $body_internals
+rectangle "//internals hidden//" as $body_internals_hidden
+
+rectangle "//internals//" as $body_internals
+!endprocedure
+
+
+' ############################################
+' ---------------------------------------------
+' Hide the elements encapsulated by PUMLARUAInternals
+' for the given element
+!unquoted procedure PUMLARUAHideInternalsOfElement($elem_alias)
+!$pum_global_hide_internals_list = $pum_global_hide_internals_list + "~" + $elem_alias
+!endprocedure
+
+
+' ############################################
+' ---------------------------------------------
+' Reset the list of elements to hide the internals
+' DOES NOT WORK CURRENTLY!
+!unquoted procedure PUMLARUAResetShowInternals()
+!$pum_global_hide_internals_list = "<PUMLALISTROOTELEMENT>"
 !endprocedure
 
 ' ############################################
@@ -924,8 +949,24 @@ rectangle "Internals" as $body_internals
 ' re-usable asset definition (file).
 !unquoted procedure PUMLAReUsableAssetFinalize()
 !$body_internals = $pum_global_current_rua_alias + "_internals"
-!if (%not($PUMVarShowBodyInternals))
+!$body_internals_hidden = $pum_global_current_rua_alias + "_internals_hidden"
+!$notealias = "adgadfhga_" + $pum_global_current_rua_alias
+!if ($PUMVarShowBodyInternals)
+!$hidelist = %splitstr($pum_global_hide_internals_list, "~")
+    !$doHide = %false()
+    !foreach $item in $hidelist
+        !if ($item == $pum_global_current_rua_alias)
+            !$doHide = %true()
+        !endif
+    !endfor
+    !if ($doHide)
+        remove $body_internals
+    !else
+        remove $body_internals_hidden
+    !endif
+!else
     remove $body_internals
+    '!$pum_global_current_rua_internals = $body_internals_hidden
 !endif
 
 !if (($pum_global_current_rua_tvnote != "") && ($pum_global_current_rua_internals != ""))
@@ -934,6 +975,7 @@ rectangle "Internals" as $body_internals
     $tvnote .[hidden]d. $ints
 !endif
 !global $pum_global_current_rua_alias = $pum_global_previous_rua_alias
+!$pum_global_previous_rua_alias = $pum_global_prev_previous_rua_alias
 !$pum_global_current_rua_tvnote = ""
 !$pum_global_current_rua_descr = ""
 !$pum_global_current_rua_internals = ""

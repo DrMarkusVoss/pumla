@@ -12,8 +12,9 @@ title Put a re-usable element onto the diagram
 
 ' put the "simpleElement" from the model repository
 ' onto the diagram
-'PUMLAPutElement(simplePerson)
-!include simplePerson.puml
+PUMLAPutElement(simplePerson)
+
+'!include simplePerson.puml
 
 
 @enduml

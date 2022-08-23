@@ -11,6 +11,7 @@ PUMLAReUsableAsset("Temperature Sensor B (dC)", tempSensorBdC, component, "<<blo
     ' if you do not need the relation you could also do it with this:
     PUMLAPutInternalElement(tempSensorB)
     PUMLAPutInternalElement(tempConverter)
+
 }
 
 ' define an interface and connect it
@@ -47,4 +48,5 @@ end note
 PUMLARUADescr(ndescr_tempSensorBdC)
 
 PUMLAReUsableAssetFinalize()
+
 @enduml
