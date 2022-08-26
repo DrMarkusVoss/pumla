@@ -1,0 +1,34 @@
+
+@startuml
+left to right direction
+
+component "displayTemp" as displayTemp <<block>> {
+
+    portin "temp_dC     " as temp_dC_displayTemp
+    portin "temp_dF     " as temp_dF_displayTemp
+
+    note as displayTemp_TVs
+        some tagged value table
+        would be shown here
+        usually.
+    end note
+
+    rectangle "internals" {
+        component display
+        component conversion
+
+        temp_dC_displayTemp -u-> display
+        temp_dF_displayTemp -> display
+        conversion <-> display
+    }
+}
+
+note bottom of displayTemp
+    Gets as input a temperature in
+    degree Celsius or Fahrenheit, or both.
+    Displays both temperature values.
+    Calls the tempConverter for conversion if
+    only one value is given as input.
+end note
+
+@enduml

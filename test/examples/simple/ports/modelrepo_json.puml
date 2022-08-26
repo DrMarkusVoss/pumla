@@ -1,0 +1,11 @@
+!$allelems = {"modelrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/ports", "modelrepofile": "./modelrepo_json.puml", "elements": [{"name": "Temperature Processing", "alias": "tempProcessing", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./processing/", "filename": "tempProcessing.puml"},
+ {"name": "Temperature Sensor", "alias": "tempSensor", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./sensor/", "filename": "tempSensor.puml", "taggedvalues": [{"tag": "Vendor", "values": ["B GmbH"]},
+ {"tag": "Arch Level", "values": ["1"]}]},
+ {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "-", "instclassalias": "-", "path": "./display/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
+ {"tag": "Brightness", "values": ["300 Nits"]},
+ {"tag": "Arch Level", "values": ["1"]}]}]}
+
+!$allrelations = {"modelrelationrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/ports", "modelrelationrepofile": "./modelrepo_json.puml", "relations": []}
+
+!$allconnections = {"modelconnectionrepopath": "/Users/mvoss/Desktop/git/github/pumla/test/examples/simple/ports", "modelconnectionrepofile": "./modelrepo_json.puml", "connections": []}
+

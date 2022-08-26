@@ -1,0 +1,41 @@
+'PUMLAMR
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
+
+    portin "temp_dC     " as temp_dC_displayTemp
+    portin "temp_dF     " as temp_dF_displayTemp
+
+    PUMLARUAPutTaggedValues()
+
+    PUMLARUAInternals() {
+        component display
+        component conversion
+
+        temp_dC_displayTemp -u-> display
+        temp_dF_displayTemp -> display
+        conversion <-> display
+
+    }
+}
+
+
+PUMLAAddTaggedValue(displayTemp, "Vendor", "C Ltd.")
+PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")
+PUMLAAddTaggedValue(displayTemp, "Arch Level", "1")
+
+
+!if ($PUMVarShowDescr)
+note bottom of displayTemp
+    Gets as input a temperature in
+    degree Celsius or Fahrenheit, or both.
+    Displays both temperature values.
+    Calls the tempConverter for conversion if
+    only one value is given as input.
+end note
+!endif
+PUMLAReUsableAssetFinalize()
+
+@enduml

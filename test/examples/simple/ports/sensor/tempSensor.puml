@@ -1,0 +1,27 @@
+'PUMLAMR
+@startuml
+!include ./../pumla_macros.puml
+!include ./../modelrepo_json.puml
+
+PUMLAReUsableAsset("Temperature Sensor", tempSensor, component, "<<block>>") {
+    PUMLARUAPutTaggedValues()
+    portout "temp_dK_raw     " as tempSensor_temp_dK_raw
+
+
+
+}
+
+
+PUMLAAddTaggedValue(tempSensor, "Vendor", "B GmbH")
+PUMLAAddTaggedValue(tempSensor, "Arch Level", "1")
+
+
+!if ($PUMVarShowDescr)
+note bottom of tempSensor
+    Measure the temperature and outputs it as
+    raw, unfiltered value in Kelvin.
+end note
+!endif
+PUMLAReUsableAssetFinalize()
+
+@enduml
