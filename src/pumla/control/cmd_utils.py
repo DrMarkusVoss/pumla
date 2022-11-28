@@ -31,7 +31,7 @@ c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_E
 c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 
 # this is the PlantUML JAR file that will be downloaded to use it for diagram generation
-plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2022.3/plantuml-1.2022.3.jar"
+plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2022.13/plantuml-1.2022.13.jar"
 
 def gendiagram(mainpath, inputpuml, outputname, picformat):
     pumljar_filename = mainpath + "plantuml-jar/plantuml.jar"

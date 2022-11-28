@@ -1,11 +1,11 @@
 
 @startuml
-left to right direction
+'left to right direction
 
 component "displayTemp" as displayTemp <<block>> {
 
-    portin "temp_dC     " as temp_dC_displayTemp
-    portin "temp_dF     " as temp_dF_displayTemp
+    portin "temp_dC" as temp_dC_displayTemp
+    portin "temp_dF" as temp_dF_displayTemp
 
     note as displayTemp_TVs
         some tagged value table
