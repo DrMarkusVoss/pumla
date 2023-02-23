@@ -6,8 +6,8 @@
 PUMLAReUsableAsset("Temperature Processing", tempProcessing, component, "<<block>>") {
     PUMLARUAPutTaggedValues()
 
-    portin "temp_dK_raw      " as tempProcessing_temp_dK_raw_in
-    portout "temp_dC_filtered     " as tempProcessing_temp_dC_filtered_out
+    portin "temp_dK_raw" as tempProcessing_temp_dK_raw_in
+    portout "temp_dC_filtered" as tempProcessing_temp_dC_filtered_out
 
 
 

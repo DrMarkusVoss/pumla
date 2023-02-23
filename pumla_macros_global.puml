@@ -559,6 +559,7 @@ interface "$ifname" as $ifalias
 $ifalias $constr $elemalias
 !endif
 !endprocedure
+
 ' ############################################
 ' ---------------------------------------------
 ' define a re-usable interface for a re-usable
@@ -566,6 +567,68 @@ $ifalias $constr $elemalias
 ' the diagram.
 !unquoted procedure PUMLARUAInterface($ifname, $ifalias, $type="")
 PUMLAInterface($ifname, $ifalias, $pum_global_current_rua_alias, $type)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable typed interface and put it on
+' the diagram.
+!unquoted procedure PUMLATypedInterface($ifname, $iftype, $ifalias, $elemalias, $type="")
+!if ($PUMVarShowInterfaces)
+!if ($type=="")
+    !$constr = "--"
+!elseif ($type=="in")
+    !$constr = ")-->"
+!elseif ($type=="out")
+    !$constr = "<--"
+!elseif ($type=="inout")
+    !$constr = "<-->"
+!else
+    !$constr= "--"
+!endif
+!$typedif_name = $ifname+"\n(" + $iftype + ")"
+interface "$typedif_name" as $ifalias
+$ifalias $constr $elemalias
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable typed interface for a re-usable
+' asset with the given and put it on
+' the diagram.
+!unquoted procedure PUMLARUATypedInterface($ifname, $iftype, $ifalias, $type="")
+PUMLATypedInterface($ifname, $iftype, $ifalias, $pum_global_current_rua_alias, $type)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable input port (needs to be inside an element)
+!unquoted procedure PUMLAPortIn($portname, $porttype, $portalias)
+!if ($PUMVarShowInterfaces)
+!$typedport_name = $portname+"\n(" + $porttype + ")"
+portin "$typedport_name" as $portalias
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable output port (needs to be inside an element)
+!unquoted procedure PUMLAPortOut($portname, $porttype, $portalias)
+!if ($PUMVarShowInterfaces)
+!$typedport_name = $portname+"\n(" + $porttype + ")"
+portout "$typedport_name" as $portalias
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' define a re-usable port (needs to be inside an element)
+!unquoted procedure PUMLAPort($portname, $porttype, $portalias)
+!if ($PUMVarShowInterfaces)
+!$typedport_name = $portname+"\n(" + $porttype + ")"
+port "$typedport_name" as $portalias
+!endif
 !endprocedure
 
 ' ############################################

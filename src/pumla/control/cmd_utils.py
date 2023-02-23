@@ -31,7 +31,7 @@ c4_static_keywords = ["Container", "ContainerDb", "ContainerQueue", "Container_E
 c4_dynamic_keywords = ["Rel", "Rel_Back", "Rel_Neighbor", "Rel_Back_Neighbor"]
 
 # this is the PlantUML JAR file that will be downloaded to use it for diagram generation
-plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2022.13/plantuml-1.2022.13.jar"
+plantuml_jar_download_destiniation = "https://github.com/plantuml/plantuml/releases/download/v1.2023.1/plantuml-1.2023.1.jar"
 
 def gendiagram(mainpath, inputpuml, outputname, picformat):
     pumljar_filename = mainpath + "plantuml-jar/plantuml.jar"
@@ -383,28 +383,28 @@ def findElementNameAndTypeInText(lines, alias):
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
-def findRelations_old(lines, path, filename):
-    """ find PUMLA relation definitions in given lines. """
-    ret_rels = []
-    for e in lines:
-        if "PUMLARelation" in e:
-            s1 = e.replace("PUMLARelation", "")
-            s2 = s1.strip("()")
-            s3 = s2.split(",")
-            s4 = [ix.strip() for ix in s3]
-            s5 = [ix.strip('"') for ix in s4]
-
-            if len(s4)>4:
-                pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
-                pr.setPath(path)
-                pr.setFilename(filename)
-                ret_rels.append(pr)
-
-    return ret_rels
+# def findRelations_old(lines, path, filename):
+#     """ find PUMLA relation definitions in given lines. """
+#     ret_rels = []
+#     for e in lines:
+#         if "PUMLARelation" in e:
+#             s1 = e.replace("PUMLARelation", "")
+#             s2 = s1.strip("()")
+#             s3 = s2.split(",")
+#             s4 = [ix.strip() for ix in s3]
+#             s5 = [ix.strip('"') for ix in s4]
+#
+#             if len(s4)>4:
+#                 pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
+#                 pr.setPath(path)
+#                 pr.setFilename(filename)
+#                 ret_rels.append(pr)
+#
+#     return ret_rels
 
 def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
-    pattern_pumlarel= r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
+    pattern_pumlarel = r'PUMLARelation\(\s*\"?(\w+)\"?\s*,\s*\"[-<>\.]+\"\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*\)'
     pattern_pumlac4rel_gen = r'PUMLAC4Rel(_[UDLR])?\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
     pattern_pumlac4rel_spec = r'PUMLAC4Rel(_\w+)\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'
     pattern_pumlac4birel_neigh = r'PUMLAC4BiRel_Neighbor\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*)?\)'

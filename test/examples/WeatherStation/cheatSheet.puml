@@ -11,7 +11,11 @@ title Cheat Sheet Example
 ' on the contents of the model repository
 ' along with the alias names that you can
 ' use to access/re-use the elements.
-PUMLACheatSheet()
+'PUMLACheatSheet()
+
+' there is also a variant showing the
+' related tagged values.
+PUMLACheatSheetTaggedValues()
 
 ' ahh... now I know that the element I need
 ' has the alias "wirelessUnit"...

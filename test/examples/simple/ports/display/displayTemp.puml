@@ -5,8 +5,8 @@
 
 PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
-    portin "temp_dC     " as temp_dC_displayTemp
-    portin "temp_dF     " as temp_dF_displayTemp
+    portin "temp_dC\n(hello)" as temp_dC_displayTemp
+    portin "temp_dF" as temp_dF_displayTemp
 
     PUMLARUAPutTaggedValues()
 
@@ -20,7 +20,6 @@ PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
     }
 }
-
 
 PUMLAAddTaggedValue(displayTemp, "Vendor", "C Ltd.")
 PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")

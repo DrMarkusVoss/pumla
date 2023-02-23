@@ -6,6 +6,8 @@
 
 PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
+    PUMLAPort("tempDc", "tempinterface", porttempdc) #orange
+
     PUMLARUAPutTaggedValues()
 
     PUMLARUAInternals() {
@@ -18,9 +20,11 @@ PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 PUMLAAddTaggedValue(displayTemp, "Vendor", "C Ltd.")
 PUMLAAddTaggedValue(displayTemp, "Brightness", "300 Nits")
 PUMLAAddTaggedValue(displayTemp, "Arch Level", "1")
+PUMLAAddTaggedValue(porttempdc, "Vendor", "C Ltd.")
+PUMLAPutTaggedValuesAsNoteToElement(porttempdc)
 
 
-PUMLAInterface("temp_dC", temp_dC_displayTemp, displayTemp, "in")
+PUMLATypedInterface("temp_dC", "hello", temp_dC_displayTemp, displayTemp, "in")
 
 PUMLAInterface("temp_dF", temp_dF_displayTemp, displayTemp, "in")
 
