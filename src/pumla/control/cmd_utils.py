@@ -335,8 +335,8 @@ def findPortsInText(lines, rua_alias):
 
     ret_cons = []
     for e in lines:
-        if "PUMLAPort" in e:
-            s1 = e.replace("PUMLAPort", "")
+        if "PUMLARUAPort" in e:
+            s1 = e.replace("PUMLARUAPort", "")
             s2 = s1.strip("()")
             s3 = s2.split(",")
             s4 = [ix.strip() for ix in s3]
