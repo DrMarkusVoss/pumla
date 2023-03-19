@@ -6,7 +6,7 @@
 
 PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
-    PUMLAPort("tempDc", "tempinterface", porttempdc) #orange
+    PUMLARUAPort("tempDc", "tempinterface", porttempdc) #orange
 
     PUMLARUAPutTaggedValues()
 

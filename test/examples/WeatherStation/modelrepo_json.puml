@@ -22,7 +22,8 @@
  {"name": "**Internal Sequence**", "alias": "internalSequence", "type": "participant", "stereotypes": [], "kind": "dynamic", "parent": "tempSensorA", "instclassalias": "-", "path": "./tempSensorA/", "filename": "internalSequence.puml"},
  {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Arch Level", "values": ["1"]}]},
- {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Brightness", "values": ["300 Nits"]},
+ {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
+ {"tag": "Brightness", "values": ["300 Nits"]},
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "stereotypes": ["block"], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempConv/", "filename": "tempConverter.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Arch Level", "values": ["1"]}]}]}

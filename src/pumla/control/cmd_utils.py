@@ -330,6 +330,25 @@ def findRUATaggedValuesInText(lines, rua_alias):
     return rettvs
 
 
+def findPortsInText(lines, rua_alias):
+    retports = []
+
+    ret_cons = []
+    for e in lines:
+        if "PUMLAPort" in e:
+            s1 = e.replace("PUMLAPort", "")
+            s2 = s1.strip("()")
+            s3 = s2.split(",")
+            s4 = [ix.strip() for ix in s3]
+            s5 = [ix.strip('"') for ix in s4]
+
+            if len(s4) > 1:
+                #                      port alias: [portname, porttype]
+                port = {rua_alias : {s5[2] : [s5[1], s5[2]]}}
+                retports.append(port)
+
+    return retports
+
 def findStereoTypesInLine(line):
     """ find PlantUML stereotype definitions in given line. """
     e = line
