@@ -11,6 +11,9 @@ class PUMLAElement:
         self.filename = "-"
         self.path = "-"
         self.stereotypes = []
+        # list of list:
+        # each element: [<portname>, <porttype>, <portalias>]
+        self.ports = []
         self.is_instance = False
         self.instance_class_alias = "-"
         # can be "static" or "dynamic"
@@ -63,6 +66,12 @@ class PUMLAElement:
     def addStereotype(self, st):
         self.stereotypes.append(st)
 
+    def addPort(self, port):
+        self.ports.append(port)
+
+    def setPorts(self, ports):
+        self.ports = ports
+
     def getName(self):
         return self.name
 
@@ -83,6 +92,9 @@ class PUMLAElement:
 
     def getStereotypes(self):
         return self.stereotypes
+
+    def getPorts(self):
+        return self.ports
 
     def getTaggedValues(self):
         return self.tagged_values
@@ -118,6 +130,7 @@ class PUMLAElement:
                 sts = sts + ", " + self.stereotypes[i+1]
 
         print("stereotypes: " + sts)
+        print("ports: " + str(self.ports))
         print("parent: " + self.parent)
         print("path: " + self.path)
         print("filename: " + self.filename)

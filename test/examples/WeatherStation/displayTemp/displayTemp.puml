@@ -8,6 +8,8 @@ PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
     PUMLARUAPort("tempDc", "tempinterface", porttempdc) #orange
 
+    PUMLARUAPort("tempdF", "tempinterface", porttempdF) #lightblue
+
     PUMLARUAPutTaggedValues()
 
     PUMLARUAInternals() {

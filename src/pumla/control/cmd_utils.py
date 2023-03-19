@@ -625,6 +625,8 @@ def findReUsableAssetDefinition(lines):
     pattern_ruainst = r'PUMLAFullyInstantiableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_sts = r'<<[\w\s]+>>'
 
+    pattern_ruaport = r'PUMLARUAPort\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+
     # generic regex pattern for static C4 elements
     pattern_c4static_gen = r'PUMLAC4(\w+)\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 
@@ -632,7 +634,11 @@ def findReUsableAssetDefinition(lines):
     el_name = ""
     el_alias = ""
     el_type = ""
+    # list of stereotypes (without "<<>>")
     el_stereotypes = []
+    # list of list:
+    # each element: [<portname>, <porttype>, <portalias>]
+    el_ports = []
 
     for e in lines:
         result_rua = re.findall(pattern_rua, e)
@@ -648,6 +654,17 @@ def findReUsableAssetDefinition(lines):
                 for est in stslist:
                     if (est != ""):
                         el_stereotypes.append(est.strip("<>"))
+            success = True
+
+        result_port = re.findall(pattern_ruaport, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_port:
+            port_name = result_port[0][0]
+            port_alias = result_port[0][2]
+            port_type = result_port[0][1]
+
+            el_ports.append([port_name, port_type, port_alias])
+
             success = True
 
         result_ruaclass = re.findall(pattern_ruaclass, e)
@@ -686,7 +703,7 @@ def findReUsableAssetDefinition(lines):
                 el_type = "C4" + result_c4static_gen[0][0]
                 success = True
 
-    return success, el_name, el_alias, el_type, el_stereotypes
+    return success, el_name, el_alias, el_type, el_stereotypes, el_ports
 
 
 def parsePUMLAFile(filename):
@@ -743,7 +760,7 @@ def parsePUMLAFile(filename):
             # and file contents.
             pel.setFilename(el_fn)
             # only if not found, check for old syntax...
-            success, el_name, el_alias, el_type, el_stereotypes = findReUsableAssetDefinition(lines)
+            success, el_name, el_alias, el_type, el_stereotypes, el_ports = findReUsableAssetDefinition(lines)
             pel.setPath(el_path)
             if not(success):
                 el_alias_s = el_fn.split(".")
@@ -764,9 +781,14 @@ def parsePUMLAFile(filename):
                     pel.setName(el_alias)
                 else:
                     pel.setName(el_name)
+
                 pel.setType(el_type)
+
                 for st in el_stereotypes:
                     pel.stereotypes.append(st)
+
+                for p in el_ports:
+                    pel.addPort(p)
                 pels.append(pel)
             rels = findRelations(lines, el_path, el_fn)
             cons = findConnections(lines, el_path, el_fn)
@@ -787,6 +809,7 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
         tmpdict["alias"] = e.getAlias()
         tmpdict["type"] = e.getType()
         tmpdict["stereotypes"] = e.getStereotypes()
+        tmpdict["ports"] = e.getPorts()
         tmpdict["kind"] = e.getKind()
         tmpdict["parent"] = e.getParent()
         tmpdict["instclassalias"] = e.getInstanceClassAlias()
