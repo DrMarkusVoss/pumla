@@ -24,7 +24,7 @@
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "ports": [{"name": "tempDc", "interfacetype": "tempinterface", "type": "inout", "alias": "porttempdc", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Arch Level", "values": ["2", "3"]}]},
- {"name": "tempDc", "interfacetype": "tempinterface", "type": "in", "alias": "porttempdc", "taggedvalues": []}], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
+ {"name": "tempdF", "interfacetype": "tempinterface", "type": "in", "alias": "porttempdF", "taggedvalues": []}], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Brightness", "values": ["300 Nits"]},
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "Temp. Converter", "alias": "tempConverter", "type": "component", "stereotypes": ["block"], "ports": [], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempConv/", "filename": "tempConverter.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},

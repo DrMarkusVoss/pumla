@@ -657,7 +657,7 @@ def findReUsableAssetDefinition(lines):
             portin_alias = result_portin[0][2]
             portin_type = result_portin[0][1]
 
-            el_ports.append({"name": port_name, "interfacetype": port_type, "type": "in", "alias": port_alias, "taggedvalues": []})
+            el_ports.append({"name": portin_name, "interfacetype": portin_type, "type": "in", "alias": portin_alias, "taggedvalues": []})
 
             success = True
 
@@ -668,7 +668,7 @@ def findReUsableAssetDefinition(lines):
             portout_alias = result_portout[0][2]
             portout_type = result_portout[0][1]
 
-            el_ports.append({"name": port_name, "interfacetype": port_type, "type": "out", "alias": port_alias, "taggedvalues": []})
+            el_ports.append({"name": portout_name, "interfacetype": portout_type, "type": "out", "alias": portout_alias, "taggedvalues": []})
 
             success = True
 

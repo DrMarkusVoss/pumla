@@ -353,6 +353,9 @@ note as PUMLAUPCheatSheetAllAttributes
         !$sts="-"
     !endif
     | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.kind | $el.filename | $el.path |
+!foreach $p in $el.ports
+    | $p.name | $p.alias | port $p.type | - | $el.alias | $p.interfacetype | static | $el.filename | $el.path |
+!endfor
 !endfor
 end note
 !endprocedure
