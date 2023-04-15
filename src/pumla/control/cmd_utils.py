@@ -330,25 +330,6 @@ def findRUATaggedValuesInText(lines, rua_alias):
     return rettvs
 
 
-def findPortsInText(lines, rua_alias):
-    retports = []
-
-    ret_cons = []
-    for e in lines:
-        if "PUMLARUAPort" in e:
-            s1 = e.replace("PUMLARUAPort", "")
-            s2 = s1.strip("()")
-            s3 = s2.split(",")
-            s4 = [ix.strip() for ix in s3]
-            s5 = [ix.strip('"') for ix in s4]
-
-            if len(s4) > 1:
-                #                      port alias: [portname, porttype]
-                port = {rua_alias : {s5[2] : [s5[1], s5[2]]}}
-                retports.append(port)
-
-    return retports
-
 def findStereoTypesInLine(line):
     """ find PlantUML stereotype definitions in given line. """
     e = line
@@ -626,6 +607,8 @@ def findReUsableAssetDefinition(lines):
     pattern_sts = r'<<[\w\s]+>>'
 
     pattern_ruaport = r'PUMLARUAPort\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+    pattern_ruaportin = r'PUMLARUAPortIn\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+    pattern_ruaportout = r'PUMLARUAPortOut\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
 
     # generic regex pattern for static C4 elements
     pattern_c4static_gen = r'PUMLAC4(\w+)\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
@@ -663,7 +646,29 @@ def findReUsableAssetDefinition(lines):
             port_alias = result_port[0][2]
             port_type = result_port[0][1]
 
-            el_ports.append([port_name, port_type, port_alias])
+            el_ports.append({"name": port_name, "interfacetype": port_type, "type": "inout", "alias": port_alias, "taggedvalues": []})
+
+            success = True
+
+        result_portin = re.findall(pattern_ruaportin, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_portin:
+            portin_name = result_portin[0][0]
+            portin_alias = result_portin[0][2]
+            portin_type = result_portin[0][1]
+
+            el_ports.append({"name": port_name, "interfacetype": port_type, "type": "in", "alias": port_alias, "taggedvalues": []})
+
+            success = True
+
+        result_portout = re.findall(pattern_ruaportout, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_portout:
+            portout_name = result_portout[0][0]
+            portout_alias = result_portout[0][2]
+            portout_type = result_portout[0][1]
+
+            el_ports.append({"name": port_name, "interfacetype": port_type, "type": "out", "alias": port_alias, "taggedvalues": []})
 
             success = True
 
@@ -911,6 +916,24 @@ def getIndexForElementInList(el_alias, pels):
 
     return retval
 
+def getIndexForPortInList(el_alias, pels):
+    retval_ind = -1
+    retval_pind  = -1
+    index = 0
+    pindex = 0
+
+    for e in pels:
+        for p in e.getPorts():
+            if (p["alias"] == el_alias):
+                retval_ind = index
+                retval_pind = pindex
+            break
+            pindex = pindex + 1
+        pindex = 0
+        index = index + 1
+
+    return retval_ind, retval_pind
+
 def getIndexForConnectionInList(con_id, cons):
     retval = -1
     index = 0
@@ -923,6 +946,17 @@ def getIndexForConnectionInList(con_id, cons):
 
     return retval
 
+def addTaggedValueToPort(port, tag, value):
+    """add a tagged value to a port of a reusable element."""
+    found = False
+    for tvp in port["taggedvalues"]:
+        if tvp["tag"] == tag:
+            found = True
+            tvp["values"].append(value)
+    if not(found):
+        port["taggedvalues"].append({"tag": tag, "values": [value]})
+
+
 def addTaggedValuesToElements(tvs, pels):
 
     if (tvs.__len__() > 0):
@@ -930,15 +964,15 @@ def addTaggedValuesToElements(tvs, pels):
             #print(t)
             for k in t.keys():
                 ind = getIndexForElementInList(k, pels)
-                if (ind == -1):
-                    break
-                #print("el_al = " + pels[ind].getAlias())
-                #pels[ind].printMe()
-                for tv in t[k]:
-                    #print("tv")
-                    #print(tv)
-                    #print(t[k][tv])
-                    pels[ind].addTaggedValue(tv, t[k][tv])
+                pe_ind, pe_pind = getIndexForPortInList(k, pels)
+                if (ind != -1):
+                    for tv in t[k]:
+                        pels[ind].addTaggedValue(tv, t[k][tv])
+                if (pe_ind != -1):
+                    for tv in t[k]:
+                        ports = pels[pe_ind].getPorts()
+                        addTaggedValueToPort(ports[pe_pind], tv, t[k][tv])
+
 
     return pels
 

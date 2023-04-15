@@ -493,6 +493,17 @@ Puts the tagged value table enclosed by a rectangle in place.
 ### `PUMLARUAPutTaggedValues( )`
 Puts the tagged value table enclosed by a rectangle in place.
 
+### `PUMLAPutTaggedValuesAsNoteToElement( elalias : string )`
+Puts the tagged value table as a separate note to the outside of the element.
+Especially helpful for classes, where the tagged value table cannot be 
+shown inside the class element "box".
+
+### `PUMLAPutTaggedValuesAsNoteToPort( elalias : string )`
+Puts the tagged value table as a separate note to the outside of the port,
+as the table cannot be shown within the port element (and would not
+make sense). This is the only way to show the tagged value table
+of a port.
+
 
 ## Diagram Filters
 

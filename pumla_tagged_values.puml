@@ -24,6 +24,36 @@
   !endfor
 !endprocedure
 
+' put the tagged value table for ports with data
+' from modelrepository
+!unquoted procedure _TaggedValuesTableForPorts($elalias)
+|= Tag |= Values |
+!foreach $el in $allelems.elements
+    !if ($el.alias == $pum_global_current_rua_alias)
+        !foreach $p in $el.ports
+            !if ($p.alias == $elalias)
+                !foreach $tv in $p.taggedvalues
+                    !$lmax = 0
+                    !foreach $t in $tv.values
+                        !$lmax = $lmax + 1
+                    !endfor
+                    !$l = 0
+                    !$tvs = ""
+                    !foreach $t in $tv.values
+                        !$tvs = $tvs + $t
+                        !$l = $l + 1
+                        !if ($l < $lmax)
+                            !$tvs = $tvs + ", "
+                        !endif
+                    !endfor
+| $tv.tag | $tvs |
+                !endfor
+            !endif
+        !endfor
+    !endif
+  !endfor
+!endprocedure
+
 ' put the tagged value table into a note
 ' to be included in a non-class element
 !unquoted procedure PUMLAPutTaggedValues($elalias)
@@ -60,6 +90,17 @@ end note
 !$nn = "NN_" + $elalias + "_TV"
 note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
 _TaggedValuesTable($elalias)
+end note
+!endif
+!endprocedure
+
+
+' put the tagged value table as note to a port
+!unquoted procedure PUMLAPutTaggedValuesAsNoteToPort($elalias)
+!if ($PUMVarShowTaggedValues)
+!$nn = "NN_" + $elalias + "_TV"
+note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
+_TaggedValuesTableForPorts($elalias)
 end note
 !endif
 !endprocedure
