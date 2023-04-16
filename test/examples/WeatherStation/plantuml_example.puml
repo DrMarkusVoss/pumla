@@ -8,6 +8,10 @@
 
 [$ary.txt[0]]
 
+!$cnt = 0
+!$cnt = $cnt + 1
+[$cnt]
+
 rectangle "heloo" <<huhu>> as helo
 !$strcomp = "[HEEEELLLOOOO]"
 $strcomp

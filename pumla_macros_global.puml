@@ -327,6 +327,7 @@ end note
 ' a table to help you manage your architecture
 ' artefacts.
 !unquoted procedure PUMLACheatSheetAllAttributes()
+!$cnt=1
 note as PUMLAUPCheatSheetAllAttributes
     **PUMLA Cheat Sheet with all attributes**
 
@@ -334,7 +335,7 @@ note as PUMLAUPCheatSheetAllAttributes
     Model Repository File: $allelems.modelrepofile
 
     **Model Repository contents:**
-    |= name |= alias |= type |= stereotypes |= parent |= instclass |= kind |= filename |= path |
+    |= count |= name |= alias |= type |= stereotypes |= parent |= instclass |= kind |= filename |= path |
 !foreach $el in $allelems.elements
     !$sts = ""
     !$lmax = 0
@@ -352,9 +353,11 @@ note as PUMLAUPCheatSheetAllAttributes
     !if ($sts=="")
         !$sts="-"
     !endif
-    | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.kind | $el.filename | $el.path |
+    | %string($cnt) | $el.name | $el.alias | $el.type | $sts | $el.parent | $el.instclassalias | $el.kind | $el.filename | $el.path |
+    !$cnt = $cnt + 1
 !foreach $p in $el.ports
-    | $p.name | $p.alias | port $p.type | - | $el.alias | $p.interfacetype | static | $el.filename | $el.path |
+    | %string($cnt) | $p.name | $p.alias | port $p.type | - | $el.alias | $p.interfacetype | static | $el.filename | $el.path |
+    !$cnt = $cnt + 1
 !endfor
 !endfor
 end note
