@@ -1,0 +1,56 @@
+@startuml
+' the following file gets generated when you call
+' "pumla update" in this directory
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+
+title Example using an Element Filter
+
+' this is standard PlantUML.
+' Choosing a nice scheme and
+' adopting the background color.
+!$BGCOLOR=LightGrey
+!theme sketchy-outline
+
+' this is PUMLA-specific, the color of tagged value
+' notes
+!$PUMColorTaggedValues = darkgreen
+
+note as note1
+The element type filter for this diagram is set to "node"
+and the element stereotype filter is set to "external System".
+That is why on this diagram only "Temperature Sensor B (dC)"
+and "Temp. Converter" appear. All other elements that are put
+on are filtered out.
+
+Also using the "sketchy-outline" theme here, therefore adopted
+the backgroundcolor for the tagged values note to darkgreen.
+end note
+
+' without this line the interfaces of the component
+' would be displayed as classes. the following
+' command enforces this diagram to be a component
+' diagram where we have these circles as interfaces.
+PUMLASetAsComponentDiagram()
+
+PUMLASetElementFilterOutTagValue("SysVariant", "ddd")
+
+' put the following elements on the diagram:
+
+
+PUMLAPutElement(tempConverter)
+
+PUMLAPutElement(tempSys)
+
+PUMLAPutElement(tempSensorBdC)
+
+' the port porttempdc should be filtered
+' out as it has a tag/value pair "SysVariant"/"B"
+PUMLAPutElement(displayTemp)
+
+@enduml

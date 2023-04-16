@@ -610,6 +610,8 @@ def findReUsableAssetDefinition(lines):
     pattern_ruaportin = r'PUMLARUAPortIn\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
     pattern_ruaportout = r'PUMLARUAPortOut\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
 
+    # todo: parse PUMLA Interfaces and TypedInterfaces
+
     # generic regex pattern for static C4 elements
     pattern_c4static_gen = r'PUMLAC4(\w+)\(\s*\"?(\w+)\"?\s*,\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*(.*)\)'
 

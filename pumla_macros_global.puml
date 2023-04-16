@@ -632,8 +632,10 @@ portout "$typedport_name" as $portalias
 ' define a re-usable port (needs to be inside an element)
 !unquoted procedure PUMLARUAPort($portname, $porttype, $portalias)
 !if ($PUMVarShowInterfaces)
+!if %not(_PUMLACheckFilterOutPortTagValueShow($pum_global_current_rua_alias, $portalias))
 !$typedport_name = $portname+"\n(" + $porttype + ")"
 port "$typedport_name" as $portalias
+!endif
 !endif
 !endprocedure
 

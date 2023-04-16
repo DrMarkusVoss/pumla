@@ -117,6 +117,39 @@ PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alia
 !return $internal_retval
 !endfunction
 
+' ---------------------------------------------
+' check filter tag/value conditions for the given element.
+' return true if the element shall not be
+' shown but filtered out.
+'
+!unquoted function _PUMLACheckFilterOutPortTagValueShow($elemalias, $portalias)
+!local $internal_retval = %false()
+!if ($pum_global_element_filter_out_tv_tag != "")
+    !foreach $el in $allelems.elements
+        !if ($el.alias == $elemalias)
+            !foreach $p in $el.ports
+                !if ($p.alias == $portalias)
+                    !foreach $tagvalue in $p.taggedvalues
+                        !if ($tagvalue.tag == $pum_global_element_filter_out_tv_tag)
+                            !if ($pum_global_element_filter_out_tv_value == "")
+                                !$internal_retval = %true()
+                            !else
+                                !foreach $tvv in $tagvalue.values
+                                    !if ($tvv == $pum_global_element_filter_out_tv_value)
+                                        !$internal_retval = %true()
+                                    !endif
+                                !endfor
+                            !endif
+                        !endif
+                    !endfor
+                !endif
+            !endfor
+        !endif
+    !endfor
+!endif
+!return $internal_retval
+!endfunction
+
 ' ############################################
 ' ---------------------------------------------
 ' check filter conditions for the given element.

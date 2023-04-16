@@ -98,9 +98,11 @@ end note
 ' put the tagged value table as note to a port
 !unquoted procedure PUMLAPutTaggedValuesAsNoteToPort($elalias)
 !if ($PUMVarShowTaggedValues)
+!if %not(_PUMLACheckFilterOutPortTagValueShow($pum_global_current_rua_alias, $elalias))
 !$nn = "NN_" + $elalias + "_TV"
 note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
 _TaggedValuesTableForPorts($elalias)
 end note
+!endif
 !endif
 !endprocedure

@@ -25,10 +25,13 @@ PUMLAAddTaggedValue(displayTemp, "Arch Level", "1")
 PUMLAAddTaggedValue(porttempdc, "Vendor", "C Ltd.")
 PUMLAAddTaggedValue(porttempdc, "Arch Level", "2")
 PUMLAAddTaggedValue(porttempdc, "Arch Level", "3")
+PUMLAAddTaggedValue(porttempdc, "SysVariant", "B")
 PUMLAPutTaggedValuesAsNoteToPort(porttempdc)
 
 
 PUMLATypedInterface("temp_dC", "hello", temp_dC_displayTemp, displayTemp, "in")
+
+PUMLARUATypedInterface("temp_dC_RUA", "hello", temp_dC_displayTemp_RUA , "in")
 
 PUMLAInterface("temp_dF", temp_dF_displayTemp, displayTemp, "in")
 
