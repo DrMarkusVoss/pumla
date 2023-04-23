@@ -612,7 +612,11 @@ PUMLATypedInterface($ifname, $iftype, $ifalias, $pum_global_current_rua_alias, $
 ' define a re-usable input port (needs to be inside an element)
 !unquoted procedure PUMLARUAPortIn($portname, $porttype, $portalias)
 !if ($PUMVarShowInterfaces)
-!$typedport_name = $portname+"\n(" + $porttype + ")"
+!$portifaddr=""
+!if $porttype != ""
+!$portifaddr = "\n(" + $porttype + ")"
+!endif
+!$typedport_name = $portname+$portifaddr
 portin "$typedport_name" as $portalias
 !endif
 !endprocedure
@@ -622,7 +626,11 @@ portin "$typedport_name" as $portalias
 ' define a re-usable output port (needs to be inside an element)
 !unquoted procedure PUMLARUAPortOut($portname, $porttype, $portalias)
 !if ($PUMVarShowInterfaces)
-!$typedport_name = $portname+"\n(" + $porttype + ")"
+!$portifaddr=""
+!if $porttype != ""
+!$portifaddr = "\n(" + $porttype + ")"
+!endif
+!$typedport_name = $portname+$portifaddr
 portout "$typedport_name" as $portalias
 !endif
 !endprocedure
@@ -632,8 +640,12 @@ portout "$typedport_name" as $portalias
 ' define a re-usable port (needs to be inside an element)
 !unquoted procedure PUMLARUAPort($portname, $porttype, $portalias)
 !if ($PUMVarShowInterfaces)
+!$portifaddr=""
+!if $porttype != ""
+!$portifaddr = "\n(" + $porttype + ")"
+!endif
 !if %not(_PUMLACheckFilterOutPortTagValueShow($pum_global_current_rua_alias, $portalias))
-!$typedport_name = $portname+"\n(" + $porttype + ")"
+!$typedport_name = $portname+$portifaddr
 port "$typedport_name" as $portalias
 !endif
 !endif

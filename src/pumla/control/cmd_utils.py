@@ -648,6 +648,10 @@ def findReUsableAssetDefinition(lines):
             port_alias = result_port[0][2]
             port_type = result_port[0][1]
 
+            if port_type == "":
+                port_type = "-"
+
+
             el_ports.append({"name": port_name, "interfacetype": port_type, "type": "inout", "alias": port_alias, "taggedvalues": []})
 
             success = True
@@ -659,6 +663,9 @@ def findReUsableAssetDefinition(lines):
             portin_alias = result_portin[0][2]
             portin_type = result_portin[0][1]
 
+            if portin_type == "":
+                portin_type = "-"
+
             el_ports.append({"name": portin_name, "interfacetype": portin_type, "type": "in", "alias": portin_alias, "taggedvalues": []})
 
             success = True
@@ -669,6 +676,9 @@ def findReUsableAssetDefinition(lines):
             portout_name = result_portout[0][0]
             portout_alias = result_portout[0][2]
             portout_type = result_portout[0][1]
+
+            if portout_type == "":
+                portout_type = "-"
 
             el_ports.append({"name": portout_name, "interfacetype": portout_type, "type": "out", "alias": portout_alias, "taggedvalues": []})
 
