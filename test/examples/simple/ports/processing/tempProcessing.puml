@@ -6,13 +6,10 @@
 PUMLAReUsableAsset("Temperature Processing", tempProcessing, component, "<<block>>") {
     PUMLARUAPutTaggedValues()
 
-    portin "temp_dK_raw" as tempProcessing_temp_dK_raw_in
-    portout "temp_dC_filtered" as tempProcessing_temp_dC_filtered_out
-
-
+    PUMLARUAPortIn("temp_dK_raw", "", tempProcessing_temp_dK_raw_in)
+    PUMLARUAPortOut( "temp_dC_filtered", "", tempProcessing_temp_dC_filtered_out)
 
 }
-
 
 PUMLAAddTaggedValue(tempProcessing, "Vendor", "B GmbH")
 PUMLAAddTaggedValue(tempProcessing, "Arch Level", "1")

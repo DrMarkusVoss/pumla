@@ -130,7 +130,11 @@ class PUMLAElement:
                 sts = sts + ", " + self.stereotypes[i+1]
 
         print("stereotypes: " + sts)
-        print("ports: " + str(self.ports))
+        print("ports:")
+        for p in self.ports:
+            print("\t" + p["name"] + " (" + p["interfacetype"] + ") : " + p["type"])
         print("parent: " + self.parent)
         print("path: " + self.path)
         print("filename: " + self.filename)
+
+

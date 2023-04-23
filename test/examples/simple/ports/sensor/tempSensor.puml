@@ -5,9 +5,7 @@
 
 PUMLAReUsableAsset("Temperature Sensor", tempSensor, component, "<<block>>") {
     PUMLARUAPutTaggedValues()
-    portout "temp_dK_raw" as tempSensor_temp_dK_raw
-
-
+    PUMLARUAPortOut("temp_dK_raw", "", tempSensor_temp_dK_raw)
 
 }
 

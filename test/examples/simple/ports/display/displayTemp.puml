@@ -5,8 +5,11 @@
 
 PUMLAReUsableAsset("displayTemp", displayTemp, component, "<<block>>") {
 
-    portin "temp_dC\n(hello)" as temp_dC_displayTemp
-    portin "temp_dF" as temp_dF_displayTemp
+    PUMLARUAPort("temp_dC", "", temp_dC_displayTemp)
+
+    PUMLARUAPortIn("temp_dF", "", temp_dF_displayTemp)
+
+    PUMLARUAPortIn("tempdF", "tempinterface", porttempdF)
 
     PUMLARUAPutTaggedValues()
 

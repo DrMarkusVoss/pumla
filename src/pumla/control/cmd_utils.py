@@ -606,9 +606,9 @@ def findReUsableAssetDefinition(lines):
     pattern_ruainst = r'PUMLAFullyInstantiableClass\(\s*\"?(\w+)\"?\s*(,\s*\"(\s*(<<[\w\s]+>>\s*)+)\"\s*)?\)'
     pattern_sts = r'<<[\w\s]+>>'
 
-    pattern_ruaport = r'PUMLARUAPort\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
-    pattern_ruaportin = r'PUMLARUAPortIn\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
-    pattern_ruaportout = r'PUMLARUAPortOut\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+    pattern_ruaport = r'PUMLARUAPort\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+    pattern_ruaportin = r'PUMLARUAPortIn\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*\)'
+    pattern_ruaportout = r'PUMLARUAPortOut\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*\)'
 
     # todo: parse PUMLA Interfaces and TypedInterfaces
 
