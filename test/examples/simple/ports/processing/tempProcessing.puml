@@ -13,7 +13,7 @@ PUMLAReUsableAsset("Temperature Processing", tempProcessing, component, "<<block
 
 PUMLAAddTaggedValue(tempProcessing, "Vendor", "B GmbH")
 PUMLAAddTaggedValue(tempProcessing, "Arch Level", "1")
-
+'PUMLARUAPutTaggedValuesAsNoteToElement()
 
 !if ($PUMVarShowDescr)
 note bottom of tempProcessing

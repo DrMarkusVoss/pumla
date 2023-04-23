@@ -33,6 +33,7 @@ PUMLARemoveAllInstances()
 ' following elements (that are also "block"s)
 remove tempSensorA
 remove temp_dC_tempSensorA
+remove tn27
 
 PUMLAPutConnection("CON#_SYS_VAR_B")
 PUMLAPutConnection("C#2")

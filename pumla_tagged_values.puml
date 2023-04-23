@@ -74,12 +74,12 @@ PUMLAPutTaggedValues($pum_global_current_rua_alias)
 !endprocedure
 
 ' put the tagged value table as note to a class
-!unquoted procedure PUMLARUAPutTaggedValuesAsNoteToElement($elalias)
+!unquoted procedure PUMLARUAPutTaggedValuesAsNoteToElement()
 !if ($PUMVarShowTaggedValues)
-!$nn = "NN_" + $elalias + "_TV"
+!$nn = "NN_" + $pum_global_current_rua_alias + "_TV"
 !global $pum_global_current_rua_tvnote = $nn
-note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
-_TaggedValuesTable($elalias)
+note $PUMTaggedValuesNoteToElementAlignment of $pum_global_current_rua_alias #$PUMColorTaggedValues
+_TaggedValuesTable($pum_global_current_rua_alias)
 end note
 !endif
 !endprocedure
@@ -98,11 +98,13 @@ end note
 ' put the tagged value table as note to a port
 !unquoted procedure PUMLAPutTaggedValuesAsNoteToPort($elalias)
 !if ($PUMVarShowTaggedValues)
+!if ($PUMVarShowInterfaces)
 !if %not(_PUMLACheckFilterOutPortTagValueShow($pum_global_current_rua_alias, $elalias))
 !$nn = "NN_" + $elalias + "_TV"
 note $PUMTaggedValuesNoteToElementAlignment of $elalias #$PUMColorTaggedValues
 _TaggedValuesTableForPorts($elalias)
 end note
+!endif
 !endif
 !endif
 !endprocedure

@@ -23,7 +23,7 @@
  {"name": "Temperature Sensor B (dC)", "alias": "tempSensorBdC", "type": "component", "stereotypes": ["block"], "ports": [], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./tempSensorBdC/", "filename": "tempSensorBdC.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Arch Level", "values": ["1"]}]},
  {"name": "displayTemp", "alias": "displayTemp", "type": "component", "stereotypes": ["block"], "ports": [{"name": "tempDc", "interfacetype": "tempinterface", "type": "inout", "alias": "porttempdc", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
- {"tag": "Arch Level", "values": ["2", "3"]},
+ {"tag": "Arch Level", "values": ["2"]},
  {"tag": "SysVariant", "values": ["B"]}]},
  {"name": "tempdF", "interfacetype": "tempinterface", "type": "in", "alias": "porttempdF", "taggedvalues": []}], "kind": "static", "parent": "tempSys", "instclassalias": "-", "path": "./displayTemp/", "filename": "displayTemp.puml", "taggedvalues": [{"tag": "Vendor", "values": ["C Ltd."]},
  {"tag": "Brightness", "values": ["300 Nits"]},

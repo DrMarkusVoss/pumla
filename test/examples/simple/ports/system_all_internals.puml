@@ -19,6 +19,7 @@ PUMLAPutElement(tempProcessing)
 
 PUMLAPutElement(displayTemp)
 
+' connecting the top level elements
 tempSensor_temp_dK_raw -> tempProcessing_temp_dK_raw_in
 tempProcessing_temp_dC_filtered_out -> temp_dC_displayTemp
 

@@ -28,7 +28,7 @@ PUMLAFullyInstantiableClass(CWeather, "<<Python>>")
 
 PUMLARUAAddTaggedValue("Vendor", "C Ltd.")
 
-PUMLARUAPutTaggedValuesAsNoteToElement(CWeather)
+PUMLARUAPutTaggedValuesAsNoteToElement()
 
 note as ndescr_CWeather
     A class managing weather data.
