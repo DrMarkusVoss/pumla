@@ -359,6 +359,10 @@ note as PUMLAUPCheatSheetAllAttributes
     | %string($cnt) | $p.name | $p.alias | port $p.type | - | $el.alias | $p.interfacetype | static | $el.filename | $el.path |
     !$cnt = $cnt + 1
 !endfor
+!foreach $ti in $el.typed_ifs
+    | %string($cnt) | $ti.name | $ti.alias | typed interface $ti.type | - | $el.alias | $ti.interfacetype | static | $el.filename | $el.path |
+    !$cnt = $cnt + 1
+!endfor
 !endfor
 end note
 !endprocedure

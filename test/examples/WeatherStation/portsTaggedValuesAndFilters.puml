@@ -38,7 +38,7 @@ end note
 ' diagram where we have these circles as interfaces.
 PUMLASetAsComponentDiagram()
 
-PUMLASetElementFilterOutTagValue("SysVariant", "ddd")
+PUMLASetElementFilterOutTagValue("SysVariant", "B")
 
 ' put the following elements on the diagram:
 

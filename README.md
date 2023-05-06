@@ -372,7 +372,7 @@ Here is a rough description of the test strategy:
 [Link to pumla test strategy document](./test/TestStrategy.md)
 
 ### Development Note
-Original pumla source code developed by Dr. Markus Voss in 2021.
+Original pumla source code developed by Dr. Markus Voss 2021 - 2023.
 
 Original pumla repository:
 https://github.com/DrMarkusVoss/pumla

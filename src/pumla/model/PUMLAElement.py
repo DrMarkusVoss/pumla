@@ -14,6 +14,7 @@ class PUMLAElement:
         # list of list:
         # each element: [<portname>, <porttype>, <portalias>]
         self.ports = []
+        self.typed_ifs = []
         self.is_instance = False
         self.instance_class_alias = "-"
         # can be "static" or "dynamic"
@@ -69,6 +70,9 @@ class PUMLAElement:
     def addPort(self, port):
         self.ports.append(port)
 
+    def addTypedIf(self, typedif):
+        self.typed_ifs.append(typedif)
+
     def setPorts(self, ports):
         self.ports = ports
 
@@ -95,6 +99,9 @@ class PUMLAElement:
 
     def getPorts(self):
         return self.ports
+
+    def getTypedIfs(self):
+        return self.typed_ifs
 
     def getTaggedValues(self):
         return self.tagged_values
@@ -133,6 +140,9 @@ class PUMLAElement:
         print("ports:")
         for p in self.ports:
             print("\t" + p["name"] + " (" + p["interfacetype"] + ") : " + p["type"])
+        print("typed interfaces:")
+        for ti in self.typed_ifs:
+            print("\t" + ti["name"] + " (" + ti["interfacetype"] + ") : " + p["type"])
         print("parent: " + self.parent)
         print("path: " + self.path)
         print("filename: " + self.filename)

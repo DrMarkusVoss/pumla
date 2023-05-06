@@ -383,24 +383,6 @@ def findElementNameAndTypeInText(lines, alias):
     # return the found element name
     return elem_name, elem_type, elem_stereotypes
 
-# def findRelations_old(lines, path, filename):
-#     """ find PUMLA relation definitions in given lines. """
-#     ret_rels = []
-#     for e in lines:
-#         if "PUMLARelation" in e:
-#             s1 = e.replace("PUMLARelation", "")
-#             s2 = s1.strip("()")
-#             s3 = s2.split(",")
-#             s4 = [ix.strip() for ix in s3]
-#             s5 = [ix.strip('"') for ix in s4]
-#
-#             if len(s4)>4:
-#                 pr = PUMLARelation(s5[4], s5[0], s5[1], s5[2], s5[3])
-#                 pr.setPath(path)
-#                 pr.setFilename(filename)
-#                 ret_rels.append(pr)
-#
-#     return ret_rels
 
 def findRelations(lines, path, filename):
     """ find PUMLA relation definitions in given lines. """
@@ -412,6 +394,7 @@ def findRelations(lines, path, filename):
 
     ret_rels = []
     for e in lines:
+        # Todo: use Regex for PUMLARelation
         if "PUMLARelation" in e:
             s1 = e.replace("PUMLARelation", "")
             s2 = s1.strip("()")
@@ -610,6 +593,8 @@ def findReUsableAssetDefinition(lines):
     pattern_ruaportin = r'PUMLARUAPortIn\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*\)'
     pattern_ruaportout = r'PUMLARUAPortOut\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*\)'
 
+    pattern_ruatypedif = r'PUMLARUATypedInterface\(\s*\"?([\w\s\(\),.;:#/\*\+\[\]\{\}]+)\"?\s*,\s*\"?(\w*)\"?\s*,\s*\"?(\w+)\"?\s*,\s*\"?(\w*)\"?\s*\)'
+
     # todo: parse PUMLA Interfaces and TypedInterfaces
 
     # generic regex pattern for static C4 elements
@@ -624,6 +609,7 @@ def findReUsableAssetDefinition(lines):
     # list of list:
     # each element: [<portname>, <porttype>, <portalias>]
     el_ports = []
+    el_typedifs = []
 
     for e in lines:
         result_rua = re.findall(pattern_rua, e)
@@ -684,6 +670,25 @@ def findReUsableAssetDefinition(lines):
 
             success = True
 
+        result_ruatypedif = re.findall(pattern_ruatypedif, e)
+        # I do not expect more than one finding per line... if so, only the first will be considered.
+        if result_ruatypedif:
+            if_name = result_ruatypedif[0][0]
+            if_alias = result_ruatypedif[0][2]
+            if_type = result_ruatypedif[0][1]
+            typedif_type = result_ruatypedif[0][3]
+
+            if if_type == "":
+                if_type = "-"
+
+            if typedif_type == "":
+                typedif_type = "inout"
+
+            el_typedifs.append({"name": if_name, "interfacetype": if_type, "type": typedif_type, "alias": if_alias,
+                             "taggedvalues": []})
+
+            success = True
+
         result_ruaclass = re.findall(pattern_ruaclass, e)
         if result_ruaclass:
             el_alias = result_ruaclass[0][0]
@@ -720,7 +725,7 @@ def findReUsableAssetDefinition(lines):
                 el_type = "C4" + result_c4static_gen[0][0]
                 success = True
 
-    return success, el_name, el_alias, el_type, el_stereotypes, el_ports
+    return success, el_name, el_alias, el_type, el_stereotypes, el_ports, el_typedifs
 
 
 def parsePUMLAFile(filename):
@@ -777,7 +782,7 @@ def parsePUMLAFile(filename):
             # and file contents.
             pel.setFilename(el_fn)
             # only if not found, check for old syntax...
-            success, el_name, el_alias, el_type, el_stereotypes, el_ports = findReUsableAssetDefinition(lines)
+            success, el_name, el_alias, el_type, el_stereotypes, el_ports, el_typedifs = findReUsableAssetDefinition(lines)
             pel.setPath(el_path)
             if not(success):
                 el_alias_s = el_fn.split(".")
@@ -806,6 +811,10 @@ def parsePUMLAFile(filename):
 
                 for p in el_ports:
                     pel.addPort(p)
+
+                for ti in el_typedifs:
+                    pel.addTypedIf(ti)
+
                 pels.append(pel)
             rels = findRelations(lines, el_path, el_fn)
             cons = findConnections(lines, el_path, el_fn)
@@ -827,6 +836,7 @@ def serializePUMLAElementsToDict(pumla_elements, path, mrfilename):
         tmpdict["type"] = e.getType()
         tmpdict["stereotypes"] = e.getStereotypes()
         tmpdict["ports"] = e.getPorts()
+        tmpdict["typed_ifs"] = e.getTypedIfs()
         tmpdict["kind"] = e.getKind()
         tmpdict["parent"] = e.getParent()
         tmpdict["instclassalias"] = e.getInstanceClassAlias()

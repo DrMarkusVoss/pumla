@@ -31,7 +31,7 @@ PUMLAPutTaggedValuesAsNoteToPort(porttempdc)
 
 PUMLATypedInterface("temp_dC", "hello", temp_dC_displayTemp, displayTemp, "in")
 
-PUMLARUATypedInterface("temp_dC_RUA", "hello", temp_dC_displayTemp_RUA , "in")
+PUMLARUATypedInterface("temp_dC_RUA", "hello", temp_dC_displayTemp_RUA , "")
 
 PUMLAInterface("temp_dF", temp_dF_displayTemp, displayTemp, "in")
 
