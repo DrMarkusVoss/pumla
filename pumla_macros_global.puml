@@ -66,6 +66,24 @@
 !endprocedure
 !endprocedure
 
+' ---------------------------------------------
+' ############################################
+' ---------------------------------------------
+' inject child elements for the current re-usable
+' element
+'
+!unquoted procedure PUMLARUAInjectChildElements()
+!foreach $el in $allelems.elements
+    !if ($el.parent == $pum_global_current_rua_alias)
+        !if ($PUMVarShowBodyInternals)
+            _PUMPutElementFiltered($el.path, $el.filename)
+        !endif
+    !endif
+!endfor
+!endprocedure
+!endprocedure
+
+
 
 ' ############################################
 ' ---------------------------------------------
@@ -768,30 +786,7 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
     !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
-            !if ((%not($el.reltxt == "instance of")) || ($PUMVarShowInstantiationRel))
-                !$reladr=""
-                !if ($PUMVarShowTaggedValues)
-                !$tvs = ""
-                !$cma = ""
-                !foreach $tv in $el.taggedvalues
-                    !$tvs = $tvs + "[" + $tv.tag + ": " + $tv.values + "]"
-                !endfor
-
-                !if ($tvs!= "")
-                    !$reladr = "\n{" +  $tvs + "}"
-                !endif
-                !endif
-                !if ($tag == "")
-                    $el.start $el.reltype $el.end : $el.reltxt $reladr
-                !else
-                    !if ($tv_found == "YES")
-                        $el.start $el.reltype $el.end : $el.reltxt $reladr
-                    !endif
-                !endif
-                ' set global variable to indicate that the relation
-                ' is already put onto the diagram
-                %set_variable_value($$el.id, "%true()")
-            !endif
+            PUMLAPutRelation($el.id)
         !endif
     !endif
 !endfor
