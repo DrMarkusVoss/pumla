@@ -762,6 +762,8 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
 ' to the diagram
 !unquoted procedure PUMLAPutRelationsForElement($elemalias, $reltype="", $tag="", $value="")
 !foreach $el in $allrelations.relations
+    !$tv_found = "NO"
+
     !if ($reltype == "")
         !$reltype = $el.reltype
     !endif
