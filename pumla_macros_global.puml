@@ -785,7 +785,7 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
         !endif
     !endfor
 
-    !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
+    !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype == $reltype) && (($tag == "") || ($tv_found == "YES")))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
             PUMLAPutRelation($el.id)
