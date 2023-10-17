@@ -762,6 +762,8 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
 ' to the diagram
 !unquoted procedure PUMLAPutRelationsForElement($elemalias, $reltype="", $tag="", $value="")
 !foreach $el in $allrelations.relations
+    !$tv_found = "NO"
+
     !if ($reltype == "")
         !$reltype = $el.reltype
     !endif
@@ -783,7 +785,7 @@ PUMLAInterface($ifname, $ifalias, $elemalias, $type)
         !endif
     !endfor
 
-    !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype  == $reltype))
+    !if ((($el.start == $elemalias) || ($el.end == $elemalias)) && ($el.reltype == $reltype) && (($tag == "") || ($tv_found == "YES")))
         ' make sure to not put the same relation twice
         !if (%not(%variable_exists($$el.id)))
             PUMLAPutRelation($el.id)
