@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+/* FILTERED TABLE */
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+/* END FILTERED TABLE */
+
+/* TABS */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* END TABS */
+/* CENTERED IMAGE */
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+/* END CENTERED IMAGE */
+</style>
+
+</head>
+<body>
+<IMG class="displayed" id="myImg" src="./../../../arch/pumla_logo.png" alt="Snow" style="width:100%;max-width:400px">
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Elements')">Elements</button>
+  <button class="tablinks" onclick="openTab(event, 'Diagrams')">Diagrams</button>
+  <button class="tablinks" onclick="openTab(event, 'Functions')">Functions</button>
+</div>
+
+<div id="Elements" class="tabcontent">
+  <h2>Architecture Elements</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:5%;">count</th>
+    <th style="width:35%;">name</th>
+    <th style="width:30%;">alias</th>
+    <th style="width:30%;">stereotype</th>
+  </tr>
+</table>
+<script>
+ var g_fulltext = "none"
+ var g_mr_json
+
+// read the modelrepo and call function to convert it to JSON object
+ fetch('modelrepo_json.puml')
+  .then(response => response.text())
+  .then(text => getJSON(text.replace("!$allelems = ", "")))
+
+// convert a JSON txt string into a JSON object
+// and then add the relevant objecs and attributes to the table
+ function getJSON(txt) {
+   txt1 = txt.split("\n\n")
+   g_fulltext = txt1[0];
+   // console.log(g_fulltext)
+   g_mr_json = JSON.parse(g_fulltext);
+   const tbody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+   for (let i = 0; i<g_mr_json.elements.length; i++) {
+       let row = tbody.insertRow();
+
+       let cell0 = row.insertCell(0);
+       let cell1 = row.insertCell(1);
+       let cell2 = row.insertCell(2);
+       let cell3 = row.insertCell(3);
+
+       cell0.innerHTML = i+1
+       cell1.innerHTML = g_mr_json.elements[i].name;
+       cell2.innerHTML = g_mr_json.elements[i].alias
+       cell3.innerHTML = g_mr_json.elements[i].stereotypes;
+    };
+ }
+
+// function to handle the search filter
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+  }
+  }
+</script>
+</div>
+
+<div id="Diagrams" class="tabcontent">
+  <h3>Diagrams</h3>
+  <p> A list of diagrams or some sorting could be here.</p>
+  playing around with command execution
+    <input type="text" id="commandInput" placeholder="Enter command">
+  <button onclick="executeCommand()">Execute</button>
+  <div id="output"></div>
+
+  <script>
+
+    function executeCommand() {
+      const command = document.getElementById('commandInput').value;
+
+      fetch(`/execute-command?command=${encodeURIComponent(command)}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('output').innerText = data;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</div>
+
+<div id="Functions" class="tabcontent">
+  <h3>Functions</h3>
+  <p>here some pumla actions maybe can be triggered...</p>
+</div>
+
+<script>
+function openTab(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
