@@ -20,7 +20,43 @@ body {font-family: Arial;}
   margin-bottom: 12px;
 }
 
+#myInputC {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myInputR {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
 #myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTableR {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTableC {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
@@ -32,11 +68,37 @@ body {font-family: Arial;}
   padding: 12px;
 }
 
+#myTableR th, #myTableR td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTableC th, #myTableC td {
+  text-align: left;
+  padding: 12px;
+}
+
 #myTable tr {
   border-bottom: 1px solid #ddd;
 }
 
+#myTableR tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTableC tr {
+  border-bottom: 1px solid #ddd;
+}
+
 #myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#myTableR tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#myTableC tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
 /* END FILTERED TABLE */
@@ -93,6 +155,8 @@ IMG.displayed {
 <IMG class="displayed" id="myImg" src="./../../../arch/pumla_logo.png" alt="Snow" style="width:100%;max-width:400px">
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Elements')">Elements</button>
+  <button class="tablinks" onclick="openTab(event, 'Relations')">Relations</button>
+  <button class="tablinks" onclick="openTab(event, 'Connections')">Connections</button>
   <button class="tablinks" onclick="openTab(event, 'Diagrams')">Diagrams</button>
   <button class="tablinks" onclick="openTab(event, 'Functions')">Functions</button>
 </div>
@@ -112,23 +176,35 @@ IMG.displayed {
 </table>
 <script>
  var g_fulltext = "none"
- var g_mr_json
+ var g_mr_json_elems
+ var g_mr_json_rels
+ var g_mr_json_cons
 
 // read the modelrepo and call function to convert it to JSON object
  fetch('modelrepo_json.puml')
   .then(response => response.text())
-  .then(text => getJSON(text.replace("!$allelems = ", "")))
+  .then(text => getJSON(text))
 
 // convert a JSON txt string into a JSON object
 // and then add the relevant objecs and attributes to the table
  function getJSON(txt) {
    txt1 = txt.split("\n\n")
-   g_fulltext = txt1[0];
+   g_fulltext = txt1;
    // console.log(g_fulltext)
-   g_mr_json = JSON.parse(g_fulltext);
+   g_mr_json_elems = JSON.parse(txt1[0].replace("!$allelems = ", ""));
+   g_mr_json_rels = JSON.parse(txt1[1].replace("!$allrelations = ", ""));
+   g_mr_json_cons = JSON.parse(txt1[2].replace("!$allconnections = ", ""));
+
+   setupElems();
+   setupRels();
+   setupCons();
+ }
+
+ function setupElems() {
+
    const tbody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
 
-   for (let i = 0; i<g_mr_json.elements.length; i++) {
+   for (let i = 0; i<g_mr_json_elems.elements.length; i++) {
        let row = tbody.insertRow();
 
        let cell0 = row.insertCell(0);
@@ -137,11 +213,11 @@ IMG.displayed {
        let cell3 = row.insertCell(3);
 
        cell0.innerHTML = i+1
-       cell1.innerHTML = g_mr_json.elements[i].name;
-       cell2.innerHTML = g_mr_json.elements[i].alias
-       cell3.innerHTML = g_mr_json.elements[i].stereotypes;
+       cell1.innerHTML = g_mr_json_elems.elements[i].name;
+       cell2.innerHTML = g_mr_json_elems.elements[i].alias
+       cell3.innerHTML = g_mr_json_elems.elements[i].stereotypes;
     };
- }
+}
 
 // function to handle the search filter
 function myFunction() {
@@ -150,6 +226,120 @@ function myFunction() {
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+  }
+  }
+</script>
+</div>
+
+<div id="Relations" class="tabcontent">
+  <h2>Architecture Relations</h2>
+
+<input type="text" id="myInput" onkeyup="myFunctionR()" placeholder="Search for names.." title="Type in a name">
+
+<table id="myTableR">
+  <tr class="header">
+    <th style="width:5%;">count</th>
+    <th style="width:35%;">id</th>
+    <th style="width:30%;">start</th>
+    <th style="width:30%;">end</th>
+  </tr>
+</table>
+<script>
+
+ function setupRels() {
+
+   const tbodyR = document.getElementById('myTableR').getElementsByTagName('tbody')[0];
+
+   for (let i = 0; i<g_mr_json_rels.relations.length; i++) {
+       let row = tbodyR.insertRow();
+
+       let cell0 = row.insertCell(0);
+       let cell1 = row.insertCell(1);
+       let cell2 = row.insertCell(2);
+       let cell3 = row.insertCell(3);
+
+       cell0.innerHTML = i+1
+       cell1.innerHTML = g_mr_json_rels.relations[i].id;
+       cell2.innerHTML = g_mr_json_rels.relations[i].start
+       cell3.innerHTML = g_mr_json_rels.relations[i].end;
+    };
+}
+
+// function to handle the search filter
+function myFunctionR() {
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+  }
+  }
+</script>
+</div>
+
+<div id="Connections" class="tabcontent">
+  <h2>Architecture Connections</h2>
+
+<input type="text" id="myInputC" onkeyup="myFunctionC()" placeholder="Search for names.." title="Type in a name">
+
+<table id="myTableC">
+  <tr class="header">
+    <th style="width:5%;">count</th>
+    <th style="width:35%;">id</th>
+    <th style="width:30%;">start</th>
+    <th style="width:30%;">end</th>
+  </tr>
+</table>
+<script>
+  function setupCons() {
+
+   const tbodyC = document.getElementById('myTableC').getElementsByTagName('tbody')[0];
+
+   for (let i = 0; i<g_mr_json_cons.connections.length; i++) {
+       let row = tbodyC.insertRow();
+
+       let cell0 = row.insertCell(0);
+       let cell1 = row.insertCell(1);
+       let cell2 = row.insertCell(2);
+       let cell3 = row.insertCell(3);
+
+       cell0.innerHTML = i+1
+       cell1.innerHTML = g_mr_json_cons.connections[i].id;
+       cell2.innerHTML = g_mr_json_cons.connections[i].start
+       cell3.innerHTML = g_mr_json_cons.connections[i].end;
+    };
+}
+// function to handle the search filter
+function myFunctionC() {
+  var input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("myInputC");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTableC");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
