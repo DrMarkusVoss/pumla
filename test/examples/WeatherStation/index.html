@@ -94,6 +94,11 @@ body {font-family: Arial;}
   background-color: #f1f1f1;
 }
 
+#myTable tr.header, #myTable .selected {
+  background-color: lightblue;
+}
+
+
 #myTableR tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
@@ -179,6 +184,9 @@ IMG.displayed {
  var g_mr_json_elems
  var g_mr_json_rels
  var g_mr_json_cons
+ var g_currentselelem
+
+ var g_selected_row = null
 
 // read the modelrepo and call function to convert it to JSON object
  fetch('modelrepo_json.puml')
@@ -216,6 +224,24 @@ IMG.displayed {
        cell1.innerHTML = g_mr_json_elems.elements[i].name;
        cell2.innerHTML = g_mr_json_elems.elements[i].alias
        cell3.innerHTML = g_mr_json_elems.elements[i].stereotypes;
+
+       row.addEventListener("click", function() {
+            // Get the data from the clicked row
+            var cells = this.getElementsByTagName("td");
+            var name = cells[0].innerText;
+            var age = cells[1].innerText;
+
+            // Log the data to the console or do something else
+            console.log("HUHU **");
+            g_currentselelem = g_mr_json_elems.elements[i];
+             // Add 'selected' class to the clicked row
+            if (g_selected_row !== null) {
+                g_selected_row.classList.remove("selected");
+            }
+            this.classList.add("selected");
+            g_selected_row = this
+            openDetailsPopupForm(g_mr_json_elems.elements[i]);
+        });
     };
 }
 
@@ -404,4 +430,135 @@ function openTab(evt, cityName) {
 </script>
 
 </body>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<div class="form-popup" id="myDetailsPopupForm">
+  <form action="/action_page.php" class="form-container">
+    <h2>element details</h2>
+
+    <label for="elementname"><b>name</b></label>
+    <input id="detelemname" type="text" placeholder="tbd" name="elementname" required>
+
+    <label for="elementalias"><b>alias</b></label>
+    <input id="detelemalias" type="text" placeholder="tbd" name="elementalias" required>
+
+    <label for="elementstereotype"><b>stereotype</b></label>
+    <input id="detelemst" type="text" placeholder="tbd" name="elementstereotype" required>
+
+    <label for="elementtype"><b>type</b></label>
+    <input id="detelemtype" type="text" placeholder="tbd" name="elementtype" required>
+
+    <label for="elementtaggedvalues"><b>tagged values</b></label>
+    <input id="detelemtvs" type="text" placeholder="tbd" name="elementtaggedvalues" required>
+
+
+    <button type="button" class="btn cancel" onclick="closeDetailsPopupForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openDetailsPopupForm(elem) {
+console.log("HAHA*");
+  document.getElementById("myDetailsPopupForm").style.display = "block";
+
+  document.getElementById("detelemname").placeholder = elem.name;
+  document.getElementById("detelemalias").placeholder = elem.alias;
+  document.getElementById("detelemst").placeholder = elem.stereotypes;
+  document.getElementById("detelemtype").placeholder = elem.type;
+
+  var tvs = "";
+
+  for (let i = 0; i<elem.taggedvalues.length; i++) {
+    if (tvs != "") {
+      tvs = tvs + ", ";
+    }
+    tvs = tvs + "[" + elem.taggedvalues[i].tag + "=" + elem.taggedvalues[i].values + "]";
+  };
+
+  document.getElementById("detelemtvs").placeholder = tvs;
+
+
+
+}
+
+function closeDetailsPopupForm() {
+  document.getElementById("myDetailsPopupForm").style.display = "none";
+}
+</script>
+
+</body>
+
 </html>
