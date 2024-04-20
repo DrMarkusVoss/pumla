@@ -466,7 +466,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
+.form-container input[type=text], .form-container textarea {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -509,20 +509,29 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <form action="/action_page.php" class="form-container">
     <h2>element details</h2>
 
-    <label for="elementname"><b>name</b></label>
-    <input id="detelemname" type="text" placeholder="tbd" name="elementname" required>
+    <label for="elementname"><b>name</b></label><br>
+    <textarea id="detelemname" name="elementname" rows="1"></textarea><br>
 
-    <label for="elementalias"><b>alias</b></label>
-    <input id="detelemalias" type="text" placeholder="tbd" name="elementalias" required>
+    <label for="elementalias"><b>alias</b></label><br>
+    <textarea id="detelemalias" name="elementalias" rows="1"></textarea><br>
 
     <label for="elementstereotype"><b>stereotype</b></label>
-    <input id="detelemst" type="text" placeholder="tbd" name="elementstereotype" required>
+    <textarea id="detelemst" name="elementstereotype" rows="1"></textarea><br>
 
-    <label for="elementtype"><b>type</b></label>
-    <input id="detelemtype" type="text" placeholder="tbd" name="elementtype" required>
+    <label for="elementtype"><b>type</b></label><br>
+    <textarea id="detelemtype" name="elementtype" rows="1"></textarea><br>
 
-    <label for="elementtaggedvalues"><b>tagged values</b></label>
-    <input id="detelemtvs" type="text" placeholder="tbd" name="elementtaggedvalues" required>
+    <label for="elementtaggedvalues"><b>tagged values</b></label><br>
+    <textarea id="detelemtvs" name="elementtaggedvalues" rows="1"></textarea><br>
+
+    <label for="elementkind"><b>kind</b></label><br>
+    <textarea id="detelemkind" name="elementkind" rows="1"></textarea><br>
+
+    <label for="elementparent"><b>parent</b></label><br>
+    <textarea id="detelemparent" name="elementparent" rows="1"></textarea><br>
+
+    <label for="elementpathfn"><b>path & filename</b></label><br>
+    <textarea id="detelempathfn" name="elementpathfn" rows="1"></textarea><br>
 
 
     <button type="button" class="btn cancel" onclick="closeDetailsPopupForm()">Close</button>
@@ -534,23 +543,26 @@ function openDetailsPopupForm(elem) {
 console.log("HAHA*");
   document.getElementById("myDetailsPopupForm").style.display = "block";
 
-  document.getElementById("detelemname").placeholder = elem.name;
-  document.getElementById("detelemalias").placeholder = elem.alias;
-  document.getElementById("detelemst").placeholder = elem.stereotypes;
-  document.getElementById("detelemtype").placeholder = elem.type;
+  document.getElementById("detelemname").innerHTML = elem.name;
+  document.getElementById("detelemalias").innerHTML = elem.alias;
+  document.getElementById("detelemst").innerHTML = elem.stereotypes;
+  document.getElementById("detelemtype").innerHTML = elem.type;
 
   var tvs = "";
 
-  for (let i = 0; i<elem.taggedvalues.length; i++) {
-    if (tvs != "") {
-      tvs = tvs + ", ";
-    }
-    tvs = tvs + "[" + elem.taggedvalues[i].tag + "=" + elem.taggedvalues[i].values + "]";
+  if (elem.taggedvalues) {
+    for (let i = 0; i<elem.taggedvalues.length; i++) {
+      if (tvs != "") {
+        tvs = tvs + ", ";
+      }
+      tvs = tvs + "[" + elem.taggedvalues[i].tag + "=" + elem.taggedvalues[i].values + "]";
+    };
   };
 
-  document.getElementById("detelemtvs").placeholder = tvs;
-
-
+  document.getElementById("detelemtvs").innerHTML = tvs;
+  document.getElementById("detelemkind").innerHTML = elem.kind;
+  document.getElementById("detelemparent").innerHTML = elem.parent;
+  document.getElementById("detelempathfn").innerHTML = elem.path + elem.filename;
 
 }
 
