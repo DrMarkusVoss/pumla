@@ -468,8 +468,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 /* Full-width input fields */
 .form-container input[type=text], .form-container textarea {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  height: 25px;
+  padding: 5px;
+  margin: 5px 0 10px 0;
   border: none;
   background: #f1f1f1;
 }
@@ -510,28 +511,28 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <h2>element details</h2>
 
     <label for="elementname"><b>name</b></label><br>
-    <textarea id="detelemname" name="elementname" rows="1"></textarea><br>
+    <textarea readonly id="detelemname" name="elementname" rows="1"></textarea><br>
 
     <label for="elementalias"><b>alias</b></label><br>
-    <textarea id="detelemalias" name="elementalias" rows="1"></textarea><br>
+    <textarea readonly id="detelemalias" name="elementalias" rows="1"></textarea><br>
 
     <label for="elementstereotype"><b>stereotype</b></label>
-    <textarea id="detelemst" name="elementstereotype" rows="1"></textarea><br>
+    <textarea readonly id="detelemst" name="elementstereotype" rows="1"></textarea><br>
 
     <label for="elementtype"><b>type</b></label><br>
-    <textarea id="detelemtype" name="elementtype" rows="1"></textarea><br>
+    <textarea readonly id="detelemtype" name="elementtype" rows="1"></textarea><br>
 
     <label for="elementtaggedvalues"><b>tagged values</b></label><br>
-    <textarea id="detelemtvs" name="elementtaggedvalues" rows="1"></textarea><br>
+    <textarea readonly id="detelemtvs" name="elementtaggedvalues" rows="1"></textarea><br>
 
     <label for="elementkind"><b>kind</b></label><br>
-    <textarea id="detelemkind" name="elementkind" rows="1"></textarea><br>
+    <textarea readonly id="detelemkind" name="elementkind" rows="1"></textarea><br>
 
     <label for="elementparent"><b>parent</b></label><br>
-    <textarea id="detelemparent" name="elementparent" rows="1"></textarea><br>
+    <textarea readonly id="detelemparent" name="elementparent" rows="1"></textarea><br>
 
     <label for="elementpathfn"><b>path & filename</b></label><br>
-    <textarea id="detelempathfn" name="elementpathfn" rows="1"></textarea><br>
+    <textarea readonly id="detelempathfn" name="elementpathfn" rows="1"></textarea><br>
 
 
     <button type="button" class="btn cancel" onclick="closeDetailsPopupForm()">Close</button>
@@ -550,12 +551,14 @@ console.log("HAHA*");
 
   var tvs = "";
 
+  document.getElementById("detelemtvs").style = "height: 25px";
   if (elem.taggedvalues) {
     for (let i = 0; i<elem.taggedvalues.length; i++) {
       if (tvs != "") {
-        tvs = tvs + ", ";
+        tvs = tvs + ", \n";
       }
       tvs = tvs + "[" + elem.taggedvalues[i].tag + "=" + elem.taggedvalues[i].values + "]";
+      document.getElementById("detelemtvs").style = "height: " + (25 + 12*(i)) + "px";
     };
   };
 
