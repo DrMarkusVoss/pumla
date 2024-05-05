@@ -153,6 +153,29 @@ IMG.displayed {
     margin-left: auto;
     margin-right: auto }
 /* END CENTERED IMAGE */
+
+/* FUNCTION BUTTON GROUP */
+.btn-group button {
+  background-color: #4f6ca9; /* Green background */
+  border: 1px solid grey; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* FUNCTION BUTTON GROUP END*/
 </style>
 
 </head>
@@ -411,6 +434,33 @@ function myFunctionC() {
 <div id="Functions" class="tabcontent">
   <h3>Functions</h3>
   <p>here some pumla actions maybe can be triggered...</p>
+  <div class="btn-group">
+  <button>update</button>
+  </div>
+  <br>
+  <div class="btn-group">
+  <button>init</button>
+    <button>setup</button>
+    <button>checksetup</button>
+    <button>setupprj</button>
+  </div>
+<br>
+  <div class="btn-group">
+  <button>download & install PlantUML Library</button>
+  </div>
+<br>
+  <div class="btn-group">
+  <button>generate diagram</button>
+  </div>
+<br>
+  <div class="btn-group">
+  <button>generate all diagrams for project</button>
+  </div>
+<br>
+  <div class="btn-group">
+  <button>check alias</button>
+  </div>
+
 </div>
 
 <script>
@@ -462,7 +512,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container {
   max-width: 300px;
   padding: 10px;
-  background-color: white;
+  background-color: lightblue;
 }
 
 /* Full-width input fields */
