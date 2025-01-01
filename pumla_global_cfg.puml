@@ -26,3 +26,10 @@
 ' the user. Therefore, default is false.
 !$PUMUseC4Model = %false()
 
+' choose whether to use the dynamic
+' extension for C4 model or not.
+' This leads to enumerated (automatically
+' numbered) interactions (e.g. number before
+' interaction description).
+!$PUMC4UseDynamicExt = %false()
+

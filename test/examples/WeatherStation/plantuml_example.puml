@@ -11,6 +11,7 @@
 !$cnt = 0
 !$cnt = $cnt + 1
 [$cnt]
+component tralalala
 
 rectangle "heloo" <<huhu>> as helo
 !$strcomp = "[HEEEELLLOOOO]"

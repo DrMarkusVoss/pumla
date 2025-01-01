@@ -1,7 +1,9 @@
 !include <c4/C4_Container.puml>
 !include <c4/C4_Component.puml>
 !include <c4/C4_Deployment.puml>
-!include <c4/C4_Dynamic.puml>
+!if ($PUMC4UseDynamicExt)
+    !include <c4/C4_Dynamic.puml>
+!endif
 
 
 !unquoted procedure PUMLAC4Person($alias, $label, $descr="", $sprite="", $tags="", $link="")
