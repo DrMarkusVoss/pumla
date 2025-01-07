@@ -35,7 +35,7 @@ def getPumlaInstallationPath():
     '''return the path to the python pumla CLI tool installation.'''
     pipath = ""
 
-    mypath_main = main.__code__.co_filename
+    mypath_main = main.__code__.co_filename.replace(os.sep, '/')
 
     # this is the case for a 'pip install -e .' case
     if ("src/pumla/main.py" in mypath_main):
