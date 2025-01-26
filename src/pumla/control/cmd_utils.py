@@ -254,26 +254,29 @@ def isInBlacklist(path, blacklist):
             retval = True
     return retval
 
+def readBlacklist(path, pathfilename):
+    blacklist = []
+    if os.path.isfile(pathfilename):
+        # print("readBlackList: blacklist found\n")
+        file = open(pathfilename)
+        text = file.read()
+        file.close()
+        for li in text.splitlines():
+            # comments in blacklist start with the hash,
+            # they are ignored
+            if not li.startswith("#") and not li == "":
+                blacklist.append(path + li.strip("."))
+
+    return blacklist
+
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
     pumlafiles = []
     blacklist = []
 
     blacklistfilename = path + "/pumla_blacklist.txt"
-    #print(blacklistfilename)
-    if os.path.isfile(blacklistfilename):
-        #print("blacklist found\n")
-        file = open(blacklistfilename)
-        text = file.read()
-        #print(text)
-        file.close()
-        for li in text.splitlines():
-            # comments in blacklist start with the hash,
-            # they are ignored
-            if not li.startswith("#") and not li == "" :
-                blacklist.append(path + li.strip("."))
-        #print(blacklist)
 
+    blacklist = readBlacklist(path, blacklistfilename)
 
     # walk through the file and folder structure
     # and put all PUMLA files into a list

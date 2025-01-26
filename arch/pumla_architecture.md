@@ -56,4 +56,42 @@ See the following image to get an idea of the big picture:
 
 ![](./00_pics/overview_internalstructure.png)
 
+## `pumla` Requirements as Code approach
+In systems engineering, architecture typically is highly connected to requirements engineering. The requirements
+are the base to tell you what is expected from the system. Tests are written against requirements (or are a means
+to describe a requirement). The traceability from architecture elements to requirements is crucial for knowing which
+part of the implementation is intended to do what and why at all. When product variants come into play, the
+start point of the variance is typically already on the requirements. So, not every product variant needs to have
+each requirement fulfilled.
 
+Therefore, bringing requirements engineering and architecture together into one docs-as-code/models-as-code approach
+has the potential to ease the implementation of traceability and therefore simplify systems engineering in software intense
+systems.
+
+### Design Principles & Ideas
+- [ ] requirements as YAML text: YAML better editable and readable for req. documentation as text than JSON
+  - transform internally to JSON to be able to use contents with PlantUML Preprocessing
+- [ ] traceability: in docs only one-directional trace from the lower requirement to the higher requirement (where it has been derived from)
+- [ ] generate bi-directional traceability in „pumla update“ step. create a reqrepo_json.puml file with all collected req from whole project
+    - [ ] have for each req „derived to“ and „derived from“ as keys. „derived to“ is created during the update step
+    - [ ] „derived from“ is documented as key in the YAML files
+- [ ] traceability to architecture artifacts. which arch element realizes a certain requirement.
+    - [ ] realizes is a part of the architecture model, not of the requirement.
+    - [ ] requirements are independent of their implementation
+    - [ ] a requirement belongs to a scope; within the scope it gets broken down
+- [ ] requirements can be structured in features.
+    - [ ] req that belong to a feature can have a loose or high coupling
+    - [ ] loose coupling will be realized with the „child injection“ mechanism
+    - [ ] high coupling by a feature table that directly names reqs that belong to the feature
+    - [ ] feature structure is kind of an architectural step with a composite breakdown view
+- [ ] automatic scope alignment if the req doc is next a single RUA arch spec? or manual scope connection? do we need the scope at all?
+- [ ] PUMLA macros to create diagrams that show all requirements fulfilled by a certain architecture element
+- [ ] PUMLA macros to create feature structure & breakdown views
+- [ ] PUMLA macros to create traceability views
+- [ ] status „aligned“, „new“, „decided“
+    - [ ] whether it is „realized/implemented“ will be decided with the respective test passing
+    - [ ] „rejected“ can be a commit message for deleting the req
+    - [ ] new: indicated a new unreviewed requirement which is there but not yet considered somewhere
+    - [ ] aligned: requirement is reviewed and aligned to be usable, but not yet decided how to be realized
+    - [ ] decided: there is a design decision done on to where and how the requirement shall be realized.
+  

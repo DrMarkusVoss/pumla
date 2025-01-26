@@ -1,0 +1,46 @@
+#PUMLARR
+- type: Requirement
+  alias: REQ_WS1
+  status: decided
+  derived from:
+  taggedvalues:
+    - tag: "Vendor"
+      values:
+      - A Inc.
+      - C Ltd.
+    - tag: "Variant"
+      values: [SysA, SysB]
+  content:
+    This is a requirement towards my Weather Station. The Weather Station shall
+    be able to measure the temperature.
+
+- type: Requirement
+  alias: REQ_WS2
+  status: new
+  derived from:
+  content:
+    This is another requirement. The Weather Station housing shall be blue.
+
+- type: Requirement
+  alias: REQ_WS3
+  status: aligned
+  derived from:
+  content:
+    The Weather Station shall display the measured temperature so that it
+    is conveniently readable by every human.
+
+- type: Requirement
+  alias: REQ_WS4
+  status: aligned
+  derived from:
+  content:
+    It shall be possible to switch the unit of the displayed temperature
+    between degree celsius and Fahrenheit.
+
+- type: Requirement
+  alias: REQ_WS5
+  status: aligned
+  derived from:
+  content:
+    The unit in which the temperature is displayed shall stay as it is even
+    after the batteries and/or the power supply has been removed.
