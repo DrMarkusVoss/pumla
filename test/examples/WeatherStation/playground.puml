@@ -6,7 +6,6 @@
 !foreach $r in $allreqs.reqs
 !if $r.alias == alias
 object $r.alias {
-|= //attribute// |= //content//|
 |= Type | $r.type |
 |= Content | $r.content |
 |= Status  | $r.status |
@@ -14,16 +13,10 @@ object $r.alias {
 !endif
 !if $r.derived_from == alias
 object $r.alias {
-|= //attribute// |= //content//|
 |= Type | $r.type |
 |= Content | $r.content |
 |= Status  | $r.status |
 }
-!endif
-!endfor
-
-!foreach $r in $allreqs.reqs
-!if $r.derived_from !=null
 $r.derived_from  <|-- $r.alias
 !endif
 !endfor
