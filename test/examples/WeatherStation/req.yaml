@@ -27,7 +27,7 @@
   derived from:
   content:
     The Weather Station shall display the measured temperature so that it
-    is conveniently readable by every human.
+    is conveniently readable by a human looking at it in a distance of up to 3m.
 
 - type: Requirement
   alias: REQ_WS4
@@ -35,7 +35,7 @@
   derived from:
   content:
     It shall be possible to switch the unit of the displayed temperature
-    between degree celsius and Fahrenheit.
+    between degree Celsius and Fahrenheit.
 
 - type: Requirement
   alias: REQ_WS5
