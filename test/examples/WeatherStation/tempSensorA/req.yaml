@@ -3,6 +3,6 @@
 - type: Requirement
   alias: REQ_SensorA1
   status: aligned
-  derived from: REQ_WS1
+  derived_from: REQ_WS1
   content:
     The sensor shall be able to measure the temperature of the surrounding air in the room.

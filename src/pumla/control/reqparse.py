@@ -54,23 +54,24 @@ def updatePUMLAReqRepo(path, mrefilename):
     # get put into dict.
     pumlareqslist = []
 
+    # table to create the bi-directional traceability
     derived_table = []
 
     # sum up information from all files in common list
     for f in pumlareqfiles:
         reqs = parsePUMLAReqFile(f)
         for r in reqs:
-            r.update({"derived to": "not yet derived"})
-            r.update({"in file": f})
-            if not r.get("derived from")==None:
-                derived_table.append({"from": r["derived from"], "to":  r.get("alias")})
+            r.update({"derived_to": "not yet derived"})
+            r.update({"in_file": f})
+            if not r.get("derived_from")==None:
+                derived_table.append({"from": r["derived_from"], "to":  r.get("alias")})
             pumlareqslist.append(r)
 
     # update the "derived to" attribute corresponding to the "derived from"
     for e in derived_table:
         for r in pumlareqslist:
             if r.get("alias") == e.get("from"):
-                r.update({"derived to": e.get("to")})
+                r.update({"derived_to": e.get("to")})
 
 
     # make it accessible from within PlantUML.

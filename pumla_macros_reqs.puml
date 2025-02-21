@@ -1,0 +1,11 @@
+' ############################################
+' ---------------------------------------------
+' create the reqs trace starting with the
+' requirement with the given alias
+!unquoted procedure PUMLAPutReqsTraceFor(alias)
+!foreach $r in $allreqs.reqs
+!if ($r.alias == alias)
+    tbd
+!endif
+!endfor
+!endprocedure

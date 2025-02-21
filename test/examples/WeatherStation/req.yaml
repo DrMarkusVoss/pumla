@@ -2,7 +2,7 @@
 - type: Requirement
   alias: REQ_WS1
   status: decided
-  derived from:
+  derived_from:
   taggedvalues:
     - tag: "Vendor"
       values:
@@ -17,14 +17,14 @@
 - type: Requirement
   alias: REQ_WS2
   status: new
-  derived from:
+  derived_from:
   content:
     This is another requirement. The Weather Station housing shall be blue.
 
 - type: Requirement
   alias: REQ_WS3
   status: aligned
-  derived from:
+  derived_from:
   content:
     The Weather Station shall display the measured temperature so that it
     is conveniently readable by a human looking at it in a distance of up to 3m.
@@ -32,7 +32,7 @@
 - type: Requirement
   alias: REQ_WS4
   status: aligned
-  derived from:
+  derived_from:
   content:
     It shall be possible to switch the unit of the displayed temperature
     between degree Celsius and Fahrenheit.
@@ -40,7 +40,7 @@
 - type: Requirement
   alias: REQ_WS5
   status: aligned
-  derived from:
+  derived_from:
   content:
     The unit in which the temperature is displayed shall stay as it is even
     after the batteries and/or the power supply has been removed.
