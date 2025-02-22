@@ -6,11 +6,17 @@
 ' in order to mix them or use them on other
 ' diagrams, "allowmixing" needs to be used.
 !unquoted procedure _PUMLACreateReqObject($alias)
+!$robjid=$alias+"_objid"
+!if %not(%variable_exists($robjid))
+' not sure why this is even working... addressing
+' the $r object should not be possible here...
 object $r.alias {
 |= type | $r.type |
 |= content | $r.content |
 |= status  | $r.status |
 }
+%set_variable_value($robjid, "%true()")
+!endif
 !endprocedure
 
 ' ############################################
@@ -20,7 +26,7 @@ object $r.alias {
 ' recursive way with an iteration counter to
 ' make sure we do not consider elements up the
 ' trace, only down.
-!unquoted procedure _PUMLARecursivePutReqsBreakdownTraceFor($alias, $itcnt)
+!unquoted procedure _PUMLARecursivePutReqsBreakdownTraceFor($alias, $itcnt, $parentalias)
 !$r = null
 !$cnt = %intval($itcnt)
 
@@ -30,12 +36,17 @@ _PUMLACreateReqObject($r.alias)
 
 ' do not go the trace up on the first element, only down
 !if %not($r.derived_from==null) && %not($cnt==0)
-$r.derived_from  <|-- $r.alias
+!foreach $drfr in $r.derived_from
+!if $drfr==$parentalias
+$drfr  <|-- $r.alias
 !endif
+!endfor
+!endif
+
 !$cnt = $cnt + 1
 !if %not($r.derived_to==null)
 !foreach $dtra in $r.derived_to
-_PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt)
+_PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt, $alias)
 !endfor
 !endif
 
@@ -51,7 +62,7 @@ _PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt)
 ' requirement with the given alias in a
 ' recursive way.
 !unquoted procedure PUMLAPutReqsBreakdownTraceFor($alias)
-_PUMLARecursivePutReqsBreakdownTraceFor($alias,0)
+_PUMLARecursivePutReqsBreakdownTraceFor($alias,0, $alias)
 !endprocedure
 
 
@@ -105,7 +116,9 @@ _PUMLACreateReqObject($r.alias)
 !foreach $r in $allreqs.reqs
 _PUMLACreateReqObject($r.alias)
 !if %not($r.derived_from==null)
-$r.derived_from <|-- $r.alias
+!foreach $drfr in $r.derived_from
+$drfr <|-- $r.alias
+!endfor
 !endif
 !endfor
 !endprocedure

@@ -2,7 +2,9 @@
 - type: Requirement
   alias: REQ_SW_CWeather1
   status: decided
-  derived_from: REQ_WS1
+  derived_from:
+    - REQ_WS1
+    - REQ_WS4
   taggedvalues:
     - tag: "Level"
       values: "Software"
@@ -10,3 +12,14 @@
       values: [SysA, SysB]
   content:
     There shall be one central class to manage all data regarding weather.
+
+- type: Requirement
+  alias: REQ_SW_CWeather2
+  status: decided
+  derived_from:
+    - REQ_WS4
+    - REQ_WS1
+    - REQ_SW_CWeather1
+  taggedvalues:
+  content:
+    The Weather class shall be able to converse the data between different units.

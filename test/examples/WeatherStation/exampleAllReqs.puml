@@ -2,6 +2,9 @@
 !include reqsrepo_json.puml
 !include pumla_macros.puml
 
+left to right direction
+'top to bottom direction
+
 ' put all requirement onto a diagram
 ' and show the trace among them.
 PUMLAPutAllReqsBrief()
