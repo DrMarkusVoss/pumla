@@ -2,6 +2,7 @@
 !include pumla_macros.puml
 !include modelrepo_json.puml
 
+
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowInterfaces = %false()

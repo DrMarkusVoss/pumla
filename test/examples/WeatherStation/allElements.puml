@@ -1,5 +1,6 @@
 @startuml
 !include modelrepo_json.puml
+!include reqsrepo_json.puml
 !include pumla_macros.puml
 !include ./../../../templates/sysml/skin.puml
 
@@ -20,6 +21,7 @@ title Overview of all elements and their relations of the model repo
 'put all elements of json-repo onto the diagram
 PUMLAPutAllElements()
 
+PUMLAPutReq(REQ_WS1)
 'put all relations between static elements
 'of the json-repo onto the diagram
 PUMLAPutAllStaticRelations()

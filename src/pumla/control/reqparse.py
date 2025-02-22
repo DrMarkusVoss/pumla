@@ -61,7 +61,7 @@ def updatePUMLAReqRepo(path, mrefilename):
     for f in pumlareqfiles:
         reqs = parsePUMLAReqFile(f)
         for r in reqs:
-            r.update({"derived_to": None})
+            r.update({"derived_to": []})
             r.update({"in_file": f})
             if not r.get("derived_from")==None:
                 derived_table.append({"from": r["derived_from"], "to":  r.get("alias")})
@@ -71,7 +71,9 @@ def updatePUMLAReqRepo(path, mrefilename):
     for e in derived_table:
         for r in pumlareqslist:
             if r.get("alias") == e.get("from"):
-                r.update({"derived_to": e.get("to")})
+                der_to = r.get("derived_to")
+                der_to.append(e.get("to"))
+                r.update({"derived_to": der_to})
 
 
     # make it accessible from within PlantUML.

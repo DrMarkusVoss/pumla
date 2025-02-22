@@ -1,0 +1,12 @@
+#PUMLARR
+- type: Requirement
+  alias: REQ_SW_CWeather1
+  status: decided
+  derived_from: REQ_WS1
+  taggedvalues:
+    - tag: "Level"
+      values: "Software"
+    - tag: "Variant"
+      values: [SysA, SysB]
+  content:
+    There shall be one central class to manage all data regarding weather.

@@ -7,5 +7,12 @@
 ' "realizing" trace.
 PUMLAPutReqsBreakdownTraceFor(REQ_WS1)
 
+PUMLAPutReq(REQ_WS2)
+
+PUMLAPutReqBrief(REQ_WS3)
+
+' these arrows don't make sense, just to test
+REQ_WS2 --> REQ_WS3
+REQ_WS1 --> REQ_WS2
 
 @enduml

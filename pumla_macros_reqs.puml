@@ -1,3 +1,49 @@
+' ############################################
+' ---------------------------------------------
+' create a req as an object with reduced number
+' of attributes.
+' Hint: objects are parts of class diagrams.
+' in order to mix them or use them on other
+' diagrams, "allowmixing" needs to be used.
+!unquoted procedure _PUMLACreateReqObject($alias)
+object $r.alias {
+|= type | $r.type |
+|= content | $r.content |
+|= status  | $r.status |
+}
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' create the reqs trace starting with the
+' requirement with the given alias in a
+' recursive way with an iteration counter to
+' make sure we do not consider elements up the
+' trace, only down.
+!unquoted procedure _PUMLARecursivePutReqsBreakdownTraceFor($alias, $itcnt)
+!$r = null
+!$cnt = %intval($itcnt)
+
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+_PUMLACreateReqObject($r.alias)
+
+' do not go the trace up on the first element, only down
+!if %not($r.derived_from==null) && %not($cnt==0)
+$r.derived_from  <|-- $r.alias
+!endif
+!$cnt = $cnt + 1
+!if %not($r.derived_to==null)
+!foreach $dtra in $r.derived_to
+_PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt)
+!endfor
+!endif
+
+!endif
+!endfor
+
+!endprocedure
+
 
 ' ############################################
 ' ---------------------------------------------
@@ -5,24 +51,61 @@
 ' requirement with the given alias in a
 ' recursive way.
 !unquoted procedure PUMLAPutReqsBreakdownTraceFor($alias)
-!$r = null
+_PUMLARecursivePutReqsBreakdownTraceFor($alias,0)
+!endprocedure
+
+
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a given alias onto
+' the diagram
+!unquoted procedure PUMLAPutReq($alias)
 !foreach $r in $allreqs.reqs
 !if $r.alias == $alias
-object $r.alias {
-|= Type | $r.type |
-|= Content | $r.content |
-|= Status  | $r.status |
-}
-
-!if %not($r.derived_from==null)
-$r.derived_from  <|-- $r.alias
-!endif
-
-!if %not($r.derived_to==null)
-PUMLAPutReqsBreakdownTraceFor($r.derived_to)
-!endif
-
+json $r.alias $r
 !endif
 !endfor
+!endprocedure
 
+' ############################################
+' ---------------------------------------------
+' put a requirement with reduced number of
+' attributes for a given alias onto
+' the diagram
+!unquoted procedure PUMLAPutReqBrief($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+_PUMLACreateReqObject($r.alias)
+!endif
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a given alias onto
+' the diagram wrapped into a note
+!unquoted procedure PUMLAPutReqAsNote($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+    note as $r.alias #white
+    {{
+    PUMLAPutReqBrief($alias)
+    }}
+    end note
+!endif
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put all requirements with reduced number of
+' attributes and trace onto the diagram
+!unquoted procedure PUMLAPutAllReqsBrief()
+!foreach $r in $allreqs.reqs
+_PUMLACreateReqObject($r.alias)
+!if %not($r.derived_from==null)
+$r.derived_from <|-- $r.alias
+!endif
+!endfor
 !endprocedure
