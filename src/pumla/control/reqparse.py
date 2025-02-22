@@ -61,7 +61,7 @@ def updatePUMLAReqRepo(path, mrefilename):
     for f in pumlareqfiles:
         reqs = parsePUMLAReqFile(f)
         for r in reqs:
-            r.update({"derived_to": "not yet derived"})
+            r.update({"derived_to": None})
             r.update({"in_file": f})
             if not r.get("derived_from")==None:
                 derived_table.append({"from": r["derived_from"], "to":  r.get("alias")})

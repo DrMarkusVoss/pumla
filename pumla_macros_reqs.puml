@@ -1,11 +1,24 @@
+
 ' ############################################
 ' ---------------------------------------------
 ' create the reqs trace starting with the
-' requirement with the given alias
-!unquoted procedure PUMLAPutReqsTraceFor(alias)
+' requirement with the given alias in a
+' recursive way.
+!unquoted procedure PUMLAPutReqsBreakdownTraceFor($alias)
+!$r = null
 !foreach $r in $allreqs.reqs
-!if ($r.alias == alias)
-    tbd
+!if $r.alias == $alias
+object $r.alias {
+|= Type | $r.type |
+|= Content | $r.content |
+|= Status  | $r.status |
+}
+
+!if %not($r.derived_from==null)
+$r.derived_from  <|-- $r.alias
+!endif
+PUMLAPutReqsBreakdownTraceFor($r.derived_to)
 !endif
 !endfor
+
 !endprocedure

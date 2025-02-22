@@ -21,5 +21,8 @@ $r.derived_from  <|-- $r.alias
 !endif
 !endfor
 
+!$cnt = $cnt + 1
+!$cnt = $cnt + 1
+$cnt
 
 @enduml
