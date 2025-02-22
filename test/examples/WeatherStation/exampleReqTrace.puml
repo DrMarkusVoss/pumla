@@ -2,7 +2,7 @@
 !include reqsrepo_json.puml
 !include pumla_macros.puml
 
-' show has the given requirement is broken down
+' show how the given requirement is broken down
 ' into further requirements with a
 ' "realizing" trace.
 PUMLAPutReqsBreakdownTraceFor(REQ_WS1)

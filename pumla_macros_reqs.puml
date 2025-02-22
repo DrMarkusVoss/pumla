@@ -17,7 +17,11 @@ object $r.alias {
 !if %not($r.derived_from==null)
 $r.derived_from  <|-- $r.alias
 !endif
+
+!if %not($r.derived_to==null)
 PUMLAPutReqsBreakdownTraceFor($r.derived_to)
+!endif
+
 !endif
 !endfor
 

@@ -504,6 +504,11 @@ as the table cannot be shown within the port element (and would not
 make sense). This is the only way to show the tagged value table
 of a port.
 
+### `PUMLAPutReqsBreakdownTraceFor($alias)`
+Puts the requirement with the given alias onto the diagram and follows
+its "derived" breakdown and puts further requirements onto the diagram
+that the alias requirement is derived to. It connects the requirements
+with a "realization" relation.
 
 ## Diagram Filters
 
