@@ -9,4 +9,7 @@ left to right direction
 ' and show the trace among them.
 PUMLAPutAllReqsBrief()
 
+' table of all requirements
+PUMLAPutAllReqsTable()
+
 @enduml

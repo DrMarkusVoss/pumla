@@ -62,6 +62,12 @@ _PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt, $alias)
 ' requirement with the given alias in a
 ' recursive way.
 !unquoted procedure PUMLAPutReqsBreakdownTraceFor($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+!$int_suc = %true()
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
 _PUMLARecursivePutReqsBreakdownTraceFor($alias,0, $alias)
 !endprocedure
 
@@ -74,9 +80,98 @@ _PUMLARecursivePutReqsBreakdownTraceFor($alias,0, $alias)
 !unquoted procedure PUMLAPutReq($alias)
 !foreach $r in $allreqs.reqs
 !if $r.alias == $alias
+!$int_suc = %true()
 json $r.alias $r
 !endif
 !endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a count number onto
+' the diagram; count refers to the number
+' from the PUMLAPutAllReqsTable(). count
+' shall not be used as a reference, as it does
+' not qualify as a stable element ID.
+!unquoted procedure PUMLAPutReqByCount($count)
+!$cntall=0
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $count == $cntall
+!$int_suc = %true()
+json $r.alias $r
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all requirements out
+!unquoted procedure PUMLAPutAllReqs()
+!foreach $r in $allreqs.reqs
+json $r.alias $r
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all requirements out
+!unquoted procedure PUMLAPutAllReqsTable()
+!$cntall=0
+note as allreqstable
+|= count |= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+| | | | | | | |
+| $cntall | $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+!endfor
+
+A total of $cntall requirements.
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all where status=$value requirements out
+!unquoted procedure PUMLAPutAllReqsWithStatusTable($value)
+!$cntall=0
+!$cntstat=0
+note as allreqstable
+|= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $r.status==$value
+!$cntstat=$cntstat+1
+| | | | | | |
+| $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+!endif
+!endfor
+
+$cntstat out of $cntall requirements matched the request (status=$value).
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all where type=$value requirements out
+!unquoted procedure PUMLAPutAllReqsWithTypeTable($value)
+!$cntall=0
+!$cnttype=0
+note as allreqstable
+|= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $r.type==$value
+!$cnttype=$cnttype+1
+| | | | | | |
+| $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+!endif
+!endfor
+
+$cnttype out of $cntall requirements matched the request (type=$value).
+end note
 !endprocedure
 
 ' ############################################
@@ -87,9 +182,11 @@ json $r.alias $r
 !unquoted procedure PUMLAPutReqBrief($alias)
 !foreach $r in $allreqs.reqs
 !if $r.alias == $alias
+!$int_suc = %true()
 _PUMLACreateReqObject($r.alias)
 !endif
 !endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
 !endprocedure
 
 ' ############################################
@@ -99,6 +196,7 @@ _PUMLACreateReqObject($r.alias)
 !unquoted procedure PUMLAPutReqAsNote($alias)
 !foreach $r in $allreqs.reqs
 !if $r.alias == $alias
+!$int_suc = %true()
     note as $r.alias #white
     {{
     PUMLAPutReqBrief($alias)
@@ -106,6 +204,7 @@ _PUMLACreateReqObject($r.alias)
     end note
 !endif
 !endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
 !endprocedure
 
 ' ############################################

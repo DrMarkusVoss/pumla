@@ -5,7 +5,6 @@
 ' show how the given requirement is broken down
 ' into further requirements with a
 ' "realizing" trace.
-PUMLAPutReqsBreakdownTraceFor(REQ_WS4)
-
+PUMLAPutReqBrief(REQ_WS1)
 
 @enduml

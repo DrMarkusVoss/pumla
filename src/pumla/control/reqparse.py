@@ -74,6 +74,9 @@ def updatePUMLAReqRepo(path, mrefilename):
                 der_to.append(e.get("to"))
                 r.update({"derived_to": der_to})
 
+    for r in pumlareqslist:
+        if r.get("derived_from")==None:
+            r["derived_from"] = []
 
     # make it accessible from within PlantUML.
     # $allreqs is the preprocessor variable that
