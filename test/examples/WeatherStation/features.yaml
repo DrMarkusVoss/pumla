@@ -1,0 +1,7 @@
+all features:
+  - HMI:
+    - display
+    - buttons
+  - Housing:
+    - Color
+  - Measurement

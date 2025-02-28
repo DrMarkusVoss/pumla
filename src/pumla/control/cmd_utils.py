@@ -127,6 +127,7 @@ def createPumlaMacrosFile(mainpath):
         pm_comment = pm_comment + "' IN THE FOLDER OF THIS FILE HERE!\n"
         pm_include_macros = "!include " + pumla_macros_path + "pumla_macros_global.puml\n"
         pm_include_tv = "!include " + pumla_macros_path + "pumla_tagged_values.puml\n"
+        pm_include_reqs = "!include " + pumla_macros_path + "pumla_macros_reqs.puml\n"
         pm_include_project_cfg = '\n!if %file_exists("' + curpath + '/pumla_project_config.puml")\n'
         pm_include_project_cfg = pm_include_project_cfg +  "!include pumla_project_config.puml\n"
         pm_include_project_cfg = pm_include_project_cfg + "!endif\n"
@@ -142,6 +143,7 @@ def createPumlaMacrosFile(mainpath):
             fil.write(pm_include_project_cfg)
             fil.write(pm_include_macros)
             fil.write(pm_include_tv)
+            fil.write(pm_include_reqs)
             fil.write(pm_include_c4int)
         fil.close()
     else:
@@ -254,26 +256,29 @@ def isInBlacklist(path, blacklist):
             retval = True
     return retval
 
+def readBlacklist(path, pathfilename):
+    blacklist = []
+    if os.path.isfile(pathfilename):
+        # print("readBlackList: blacklist found\n")
+        file = open(pathfilename)
+        text = file.read()
+        file.close()
+        for li in text.splitlines():
+            # comments in blacklist start with the hash,
+            # they are ignored
+            if not li.startswith("#") and not li == "":
+                blacklist.append(path + li.strip("."))
+
+    return blacklist
+
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
     pumlafiles = []
     blacklist = []
 
     blacklistfilename = path + "/pumla_blacklist.txt"
-    #print(blacklistfilename)
-    if os.path.isfile(blacklistfilename):
-        #print("blacklist found\n")
-        file = open(blacklistfilename)
-        text = file.read()
-        #print(text)
-        file.close()
-        for li in text.splitlines():
-            # comments in blacklist start with the hash,
-            # they are ignored
-            if not li.startswith("#") and not li == "" :
-                blacklist.append(path + li.strip("."))
-        #print(blacklist)
 
+    blacklist = readBlacklist(path, blacklistfilename)
 
     # walk through the file and folder structure
     # and put all PUMLA files into a list

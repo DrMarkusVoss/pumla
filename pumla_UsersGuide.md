@@ -88,22 +88,26 @@ you can name these in a `pumla_blacklist.txt` file. You can also have comments i
 blacklist file using `#` as first character of the line. But comments must be
 standalone lines, you cannot put a comment behind a path or filename. 
 The .puml files found will be parsed
-and if they are pumla files, their relevant content will be extracted and stored in the 
+and if they are pumla architecture files, their relevant content will be extracted and stored in the 
 `modelrepo_json.puml` file or the given
-filename. Each call will overwrite the existing `modelrepo_json.puml`
+filename. For docs-as-code requirements files, the relevant content will be extracted and stored in the
+`reqsrepo_json.puml` file.
+Each call will overwrite the existing `modelrepo_json.puml` and `reqsrepo_json.puml`
 file, therefore they should not be modified by hand,
 because changes will get lost. These repository files are the basis for the
 PlantUML extension macros. The macros help to get data out of these repositories
 and thereby re-use the once defined model elements and diagrams in a structured 
 way.
 
-The generated `modelrepo_json.puml` should also not be checked-in into a version
+The generated `modelrepo_json.puml` as well as the `reqsrepo_json.puml`
+should also not be checked-in into a version
 control system, as it contains absolute paths that are different on every computer
 where the source code is checked out. Therefore, after a fresh checkout/clone of 
 a source code repository, first thing to do is call `pumla init` to create a link
 to the pumla macros to access the model repository JSON database, the second
 thing to do is call `pumla update` to scan the source code repository for pumla
-files and create the `modelrepo_json.puml` file. After that you can use the
+files and create the `modelrepo_json.puml` and `reqsrepo_json.puml` file.
+After that you can use the
 model repository to create diagrams and are able to use all the macro commands 
 explained in the following chapters.
 
@@ -127,11 +131,19 @@ is put to the command line output.
 Called without any other argument, pumla writes out to the console a
 list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
 (PUMLA-ModelRepo) or `'PUMLADR` (PUMLA-DiagramRepo) in the first line of the file).
+Requirements are described in YAML files (`.yaml`) and will therefore not
+be shown by this command, as they are not standalone PlantUML-compliant files.
 
 ### `pumla elements`
 Writes out to the console all `pumla` model elements and diagrams of 
 the model repository and diagram repository, with all their relevant 
-attributes.
+attributes. This does not include requirements, for that we have the
+call described next.
+
+### `pumla reqs` - not yet implemented
+Writes out to the console all `pumla` requirements elements and diagrams of 
+the model repository and diagram repository, with all their relevant 
+attributes. 
 
 ### `pumla getjson <subcommand>`
 Prints out a JSON data structure containing the request elements (by subcommand).
@@ -183,6 +195,11 @@ This comment marks the file as a re-usable asset of a dynamic behaviour
 element description. In a file marked like that, only the dynamic aspect
 should be modelled, by e.g. a sequence, state or activity diagram.
 
+### `'PUMLARR`
+This comment put into the first line of a `.yaml` file marks the file
+as `pumla` requirement element description that shall be part of the re-usable
+requirements repository.
+
 ---
 
 ## Extension Macros
@@ -190,7 +207,7 @@ The following macros (that are PlantUML unquoted functions and procedures) can b
 used within each PlantUML file by including `pumla_macros.puml`. They are the
 user "API" of `pumla`.
 
-## Creating Re-usable Elements 
+## Creating Re-usable Model Elements 
 
 ### `PUMLAReUsableAsset($name : string, $alias : string, $type : string, $stereotypes : string (optinal)) {...}`
 Creates a re-usable asset (RUA). The asset can be of any PlantUML type, like class, component, node, rectangle, ...
@@ -313,7 +330,7 @@ you manage your architecture relations and artefacts.
 Similar to previous, but instead of information about file path and file name you
 get the list of tagged values that are attached to each of the connections.
 
-## Putting Re-usable Elements onto Diagrams
+## Putting Re-usable Model Elements onto Diagrams
 
 ### `PUMLAPutElement( elem_alias )`
 This macro puts the model element with the given alias `elem_alias` onto the diagram.
@@ -504,6 +521,11 @@ as the table cannot be shown within the port element (and would not
 make sense). This is the only way to show the tagged value table
 of a port.
 
+### `PUMLAPutReqsBreakdownTraceFor($alias)`
+Puts the requirement with the given alias onto the diagram and follows
+its "derived" breakdown and puts further requirements onto the diagram
+that the alias requirement is derived to. It connects the requirements
+with a "realization" relation.
 
 ## Diagram Filters
 
@@ -571,6 +593,108 @@ Allows to filter out/not show the internals of a re-usable asset element given w
 global variable `$PUMVarShowBodyInternals` is true. With this macro, the given alias is added to the list of elements
 of which not to show the internals. In order to show internals for that element within the scope of the same diagram
 again, the "filter list" has to be resetted with the next macro.
+
+## Creating Re-usable Requirements Elements 
+
+### Creating a single re-usable docs-as-code requirement
+Requirements are stored in YAML files (`.yaml`) with a file marking `#PUMLARR`in the first line.
+Then, within the file, one or more requirements can be described. The requirements are elements
+of a YAML list with at least the following attributes:
+- alias: the unique short-ID 
+- type: describing the kind of requirement. Can be set according to needs. Could be "Requirement", "Constraint", ...
+- status: also here, the status model is not defined by PUMLA; put status values as you need and like.
+- derived_from: the alias of the (parent) requirement where this requirement is derived from.
+- content: The text content of the requirement itself.
+
+The following attributes are optional:
+- taggedvalues: a list of tag/values pairs, where values is list by itself.
+
+Requirement files can be distributed across the folders in a git repository and therefore be
+stored close to the code if wanted. The `pumla update`
+command will find each of them, considering the blacklist.
+
+Example:
+```
+File: req.yaml
+
+#PUMLARR
+- type: Requirement
+  alias: REQ_WS1
+  status: decided
+  derived_from:
+  taggedvalues:
+    - tag: "Vendor"
+      values:
+      - A Inc.
+      - C Ltd.
+    - tag: "Variant"
+      values: [SysA, SysB]
+  content:
+    This is a requirement towards my Weather Station. The Weather Station shall
+    be able to measure the temperature.
+
+- type: Requirement
+  alias: REQ_WS2
+  status: new
+  derived_from:
+  content:
+    This is another requirement. The Weather Station housing shall be blue.
+```
+
+## Overview on the Requirements Repository of Re-usable Elements
+### `PUMLAPutAllReqsTable()`
+This macro puts all requirements of the `reqsrepo_json.puml` into a table on the diagram,
+with a count of the requirements as well as the files where the requirements are stored in. It
+is similar to the `CheatSheets` of the architecture model elements.
+
+### `PUMLAPutReqByCount($count)`
+This macro is solely meant for overview purposes, allowing you to quickly step through each
+single requirement in the requirements repository by addressing it by its number (`$count`). 
+
+Hint: The `$count` shall not be used to address a requirement a certain requirement or put
+it onto a real diagram with a real purpose. The numbering in the requirements repository can 
+change by calling `pumla update`, so that the `$count` may point to another requirement. 
+In real diagram, requirements shall always be addressed by their unique short-ID, the `alias`.
+
+## Putting Re-usable Requirements Elements onto Diagrams
+### `PUMLAPutReq($alias)`
+Puts the requirement with the given alias in form of a PlantUML JSON table with all its
+attributes onto the diagram.
+
+### `PUMLAPutAllReqs()`
+Puts all the requirements of the requirements repository (`reqsrepo_json.puml`) onto the 
+diagram.
+
+### `PUMLAPutAllReqsWithStatusTable($value)`
+Puts all requirements of the requirements repository, where the status has the given `$value`,
+onto the diagram.
+
+### `PUMLAPutAllReqsWithTypeTable($value)`
+Puts all requirements of the requirements repository, where the type has the given `$value`,
+onto the diagram.
+
+### `PUMLAPutReqBrief($alias)`
+Puts the requirement with the given alias onto the diagram, focussing on a limited amount of
+attributes:
+- type
+- content
+- status
+
+### `PUMLAPutReqAsNote($alias)`
+Puts the brief requirement with the given alias wrapped into a PlantUML note onto the diagram.
+
+Hint: This macro can be useful to put the requirement onto diagrams along with classes, components or
+dynamic behaviour descriptions.
+
+### `PUMLAPutAllReqsBrief()`
+Puts all the requirements of the requirements repository (`reqsrepo_json.puml`) onto the 
+diagram, but only with the brief set of attributes (see `PUMLAPutReqBrief($alias)`).
+
+## Working with Requirements Traceability
+### `PUMLAPutReqsBreakdownTraceFor($alias)`
+Puts the trace for a requirement with given alias down on the diagram. Each requirement along the
+trace is put with its brief description. The trace is modelled with a "realizes" relation, so pointing
+from a derived requirement to a parent requirement where it was derived from.
 
 ## Working around some PlantUML limitations
 

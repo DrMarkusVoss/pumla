@@ -1,0 +1,8 @@
+@startuml
+!include reqsrepo_json.puml
+!include pumla_macros.puml
+
+' put all requirement onto a diagram
+PUMLAPutAllReqsTable()
+
+@enduml

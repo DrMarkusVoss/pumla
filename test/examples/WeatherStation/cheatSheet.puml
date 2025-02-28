@@ -1,4 +1,4 @@
-@startuml
+ @startuml
 ' the following file gets generated when you call
 ' "pumla update" in this directory
 !include modelrepo_json.puml

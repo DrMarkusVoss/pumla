@@ -1,0 +1,11 @@
+@startuml
+!include reqsrepo_json.puml
+!include pumla_macros.puml
+
+left to right direction
+'top to bottom direction
+
+' put all requirement onto a diagram
+PUMLAPutAllReqs()
+
+@enduml

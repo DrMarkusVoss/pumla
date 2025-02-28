@@ -11,7 +11,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -23,6 +23,7 @@ from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pu
 from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
 from pumla.control.cmd_utils import installPlantUMLJAR
 from pumla.control.cmd_utils import gendiagram
+from pumla.control.reqparse import updatePUMLAReqRepo
 
 parser = None
 parser_getjson = None
@@ -161,9 +162,17 @@ def cmdUpdate(args):
     """create/update/overwrite the pumla model repository"""
     identifyMe(parser)
     print("updating...")
-    (success, efn, a, b, c) = updatePUMLAMR(os.path.curdir, args.mrefilename)
-    if success:
+    (success_mr, efn, a, b, c) = updatePUMLAMR(os.path.curdir, args.mrefilename)
+    (success_rr, rfn, reqslist) = updatePUMLAReqRepo(os.path.curdir, args.rrefilename)
+
+    if success_mr:
         print("model repo file: " + efn)
+        print("done.")
+    else:
+        print("failed.")
+
+    if success_rr:
+        print("reqs repo file: " + rfn)
         print("done.")
     else:
         print("failed.")
@@ -319,13 +328,20 @@ def main():
 
     parser_update = subparsers.add_parser(
         "update",
-        help="(re-)generate `modelrepo_json.puml` with updated info from `pumla` model elements found in repository.",
+        help="(re-)generate `modelrepo_json.puml` and `reqsrepo_json.puml` "
+             "with updated info from `pumla` model elements found in repository.",
     )
     parser_update.add_argument(
         "mrefilename",
         help="filename for model repo JSON file",
         nargs="?",
         default=os.path.curdir + "/modelrepo_json.puml",
+    )
+    parser_update.add_argument(
+        "rrefilename",
+        help="filename for reqs repo JSON file",
+        nargs="?",
+        default=os.path.curdir + "/reqsrepo_json.puml",
     )
     parser_update.set_defaults(func=cmdUpdate)
 

@@ -1,0 +1,362 @@
+@startuml
+
+' ############################################
+' ---------------------------------------------
+' introduce "newline" into a List in order to
+' break it down after each colon
+!function formatListSL($text)
+    !$result = ""
+    !$index = 0
+    !$text_length = %strlen($text)
+
+    !while ($index < $text_length)
+        !$char = %substr($text, $index, 1)
+        !$index = $index + 1
+
+        !if ($char == "[")
+            !continue
+        !endif
+
+        !if ($char == "]")
+            !break
+        !endif
+
+        !$result = $result + $char
+
+        !if ($char == ",")
+            !$result = $result + "\n"
+        !endif
+    !endwhile
+
+    !return $result
+!endfunction
+
+
+
+
+' ############################################
+' ---------------------------------------------
+' introduce "newline" into a string in order to
+' break it down into several lines according
+' to a given char width of a line.
+!function _PUMLABreakLineNL($text)
+ ! $result = ""
+    ! $current_line = ""
+    ! $current_word = ""
+    ! $current_length = 0
+    ! $text_length = %strlen($text)
+    ! $index = 0
+
+    !while ($index < $text_length)
+        ! $char = %substr($text, $index, 1)
+        ! $index = $index + 1
+
+        !if ($char == " ")
+            !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+                ! $result = $result + $current_line + "%newline()"
+                ! $current_line = $current_word
+                ! $current_length = %strlen($current_word)
+            !else
+                !if ($current_length > 0)
+                    ! $current_line = $current_line + " "
+                    ! $current_length = $current_length + 1
+                !endif
+                ! $current_line = $current_line + $current_word
+                ! $current_length = $current_length + %strlen($current_word)
+            !endif
+            ! $current_word = ""
+        !else
+            ! $current_word = $current_word + $char
+        !endif
+    !endwhile
+
+    !if (%strlen($current_word) > 0)
+        !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+            ! $result = $result + $current_line + "%newline()"
+            ! $current_line = $current_word
+        !else
+            !if ($current_length > 0)
+                ! $current_line = $current_line + " "
+            !endif
+            ! $current_line = $current_line + $current_word
+        !endif
+    !endif
+
+    !return $result + $current_line
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' introduce "\\" into a string in order to
+' break it down into several lines according
+' to a given char width of a line.
+!function _PUMLABreakLineSL($text)
+ ! $result = ""
+    ! $current_line = ""
+    ! $current_word = ""
+    ! $current_length = 0
+    ! $text_length = %strlen($text)
+    ! $index = 0
+
+    !while ($index < $text_length)
+        ! $char = %substr($text, $index, 1)
+        ! $index = $index + 1
+
+        !if ($char == " ")
+            !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+                ! $result = $result + $current_line + " \n "
+                ! $current_line = $current_word
+                ! $current_length = %strlen($current_word)
+            !else
+                !if ($current_length > 0)
+                    ! $current_line = $current_line + " "
+                    ! $current_length = $current_length + 1
+                !endif
+                ! $current_line = $current_line + $current_word
+                ! $current_length = $current_length + %strlen($current_word)
+            !endif
+            ! $current_word = ""
+        !else
+            ! $current_word = $current_word + $char
+        !endif
+    !endwhile
+
+    !if (%strlen($current_word) > 0)
+        !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+            ! $result = $result + $current_line + " \n "
+            ! $current_line = $current_word
+        !else
+            !if ($current_length > 0)
+                ! $current_line = $current_line + " "
+            !endif
+            ! $current_line = $current_line + $current_word
+        !endif
+    !endif
+
+    !return $result + $current_line
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' create a req as an object with reduced number
+' of attributes.
+' Hint: objects are parts of class diagrams.
+' in order to mix them or use them on other
+' diagrams, "allowmixing" needs to be used.
+!unquoted procedure _PUMLACreateReqObject($alias)
+!$robjid=$alias+"_objid"
+!if %not(%variable_exists($robjid))
+' not sure why this is even working... addressing
+' the $r object should not be possible here...
+object $r.alias {
+|= type | $r.type |
+|= content | _PUMLABreakLineSL($r.content) |
+|= status  | $r.status |
+}
+%set_variable_value($robjid, "%true()")
+!endif
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' create the reqs trace starting with the
+' requirement with the given alias in a
+' recursive way with an iteration counter to
+' make sure we do not consider elements up the
+' trace, only down.
+!unquoted procedure _PUMLARecursivePutReqsBreakdownTraceFor($alias, $itcnt, $parentalias)
+!$r = null
+!$cnt = %intval($itcnt)
+
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+_PUMLACreateReqObject($r.alias)
+
+' do not go the trace up on the first element, only down
+!if %not($r.derived_from==null) && %not($cnt==0)
+!foreach $drfr in $r.derived_from
+!if $drfr==$parentalias
+$drfr  <|-- $r.alias
+!endif
+!endfor
+!endif
+
+!$cnt = $cnt + 1
+!if %not($r.derived_to==null)
+!foreach $dtra in $r.derived_to
+_PUMLARecursivePutReqsBreakdownTraceFor($dtra,$cnt, $alias)
+!endfor
+!endif
+
+!endif
+!endfor
+
+!endprocedure
+
+
+' ############################################
+' ---------------------------------------------
+' create the reqs trace starting with the
+' requirement with the given alias in a
+' recursive way.
+!unquoted procedure PUMLAPutReqsBreakdownTraceFor($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+!$int_suc = %true()
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+_PUMLARecursivePutReqsBreakdownTraceFor($alias,0, $alias)
+!endprocedure
+
+
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a given alias onto
+' the diagram
+!unquoted procedure PUMLAPutReq($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+!$int_suc = %true()
+json $r.alias $r
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a count number onto
+' the diagram; count refers to the number
+' from the PUMLAPutAllReqsTable(). count
+' shall not be used as a reference, as it does
+' not qualify as a stable element ID.
+!unquoted procedure PUMLAPutReqByCount($count)
+!$cntall=0
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $count == $cntall
+!$int_suc = %true()
+!$r.content = _PUMLABreakLineSL($r.content)
+json $r.alias $r
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all requirements out
+!unquoted procedure PUMLAPutAllReqs()
+!foreach $r in $allreqs.reqs
+json $r.alias $r
+!endfor
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all requirements out
+!unquoted procedure PUMLAPutAllReqsTable()
+!$cntall=0
+note as allreqstable
+|= count |= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+| | | | | | | |
+| $cntall | $r.alias | $r.type | _PUMLABreakLineSL($r.content) | $r.status | formatListSL($r.derived_from) | formatListSL($r.derived_to) | $r.in_file |
+!endfor
+
+A total of $cntall requirements.
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all where status=$value requirements out
+!unquoted procedure PUMLAPutAllReqsWithStatusTable($value)
+!$cntall=0
+!$cntstat=0
+note as allreqstable
+|= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $r.status==$value
+!$cntstat=$cntstat+1
+| | | | | | |
+| $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+!endif
+!endfor
+
+$cntstat out of $cntall requirements matched the request (status=$value).
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a list of all where type=$value requirements out
+!unquoted procedure PUMLAPutAllReqsWithTypeTable($value)
+!$cntall=0
+!$cnttype=0
+note as allreqstable
+|= alias |= type |= content |= status |= derived_from |= derived_to |= file |
+!foreach $r in $allreqs.reqs
+!$cntall=$cntall+1
+!if $r.type==$value
+!$cnttype=$cnttype+1
+| | | | | | |
+| $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+!endif
+!endfor
+
+$cnttype out of $cntall requirements matched the request (type=$value).
+end note
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with reduced number of
+' attributes for a given alias onto
+' the diagram
+!unquoted procedure PUMLAPutReqBrief($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+!$int_suc = %true()
+_PUMLACreateReqObject($r.alias)
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put a requirement with a given alias onto
+' the diagram wrapped into a note
+!unquoted procedure PUMLAPutReqAsNote($alias)
+!foreach $r in $allreqs.reqs
+!if $r.alias == $alias
+!$int_suc = %true()
+    note as $r.alias #white
+    {{
+    PUMLAPutReqBrief($alias)
+    }}
+    end note
+!endif
+!endfor
+PUMLAPutElementErrorCheck($int_suc, $alias)
+!endprocedure
+
+' ############################################
+' ---------------------------------------------
+' put all requirements with reduced number of
+' attributes and trace onto the diagram
+!unquoted procedure PUMLAPutAllReqsBrief()
+!foreach $r in $allreqs.reqs
+_PUMLACreateReqObject($r.alias)
+!if %not($r.derived_from==null)
+!foreach $drfr in $r.derived_from
+$drfr <|-- $r.alias
+!endfor
+!endif
+!endfor
+!endprocedure

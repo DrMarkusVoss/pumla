@@ -15,7 +15,7 @@ jobs:
         python-version: 3.8
     - name: install dependencies
       run: |
-        pip install flake8 pytest requests
+        pip install flake8 pytest requests pyyaml
         pip install .
     - name: run tests
       run:
