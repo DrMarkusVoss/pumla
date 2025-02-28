@@ -2,9 +2,17 @@
 !include reqsrepo_json.puml
 !include pumla_macros.puml
 
-' show how the given requirement is broken down
-' into further requirements with a
-' "realizing" trace.
-PUMLAPutReqBrief(REQ_WS1)
+top to bottom direction
+
+' show how a requirement with with full
+' description is put onto a diagram
+PUMLAPutReq(REQ_WS1)
+
+' show how a requirement with a brief
+' description is put onto a diagram
+PUMLAPutReqBrief(REQ_WS2)
+
+' enforcing layout
+REQ_WS1 --[hidden]d> REQ_WS2
 
 @enduml

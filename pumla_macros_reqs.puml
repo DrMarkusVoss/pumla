@@ -1,3 +1,141 @@
+@startuml
+
+' ############################################
+' ---------------------------------------------
+' introduce "newline" into a List in order to
+' break it down after each colon
+!function formatListSL($text)
+    !$result = ""
+    !$index = 0
+    !$text_length = %strlen($text)
+
+    !while ($index < $text_length)
+        !$char = %substr($text, $index, 1)
+        !$index = $index + 1
+
+        !if ($char == "[")
+            !continue
+        !endif
+
+        !if ($char == "]")
+            !break
+        !endif
+
+        !$result = $result + $char
+
+        !if ($char == ",")
+            !$result = $result + "\n"
+        !endif
+    !endwhile
+
+    !return $result
+!endfunction
+
+
+
+
+' ############################################
+' ---------------------------------------------
+' introduce "newline" into a string in order to
+' break it down into several lines according
+' to a given char width of a line.
+!function _PUMLABreakLineNL($text)
+ ! $result = ""
+    ! $current_line = ""
+    ! $current_word = ""
+    ! $current_length = 0
+    ! $text_length = %strlen($text)
+    ! $index = 0
+
+    !while ($index < $text_length)
+        ! $char = %substr($text, $index, 1)
+        ! $index = $index + 1
+
+        !if ($char == " ")
+            !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+                ! $result = $result + $current_line + "%newline()"
+                ! $current_line = $current_word
+                ! $current_length = %strlen($current_word)
+            !else
+                !if ($current_length > 0)
+                    ! $current_line = $current_line + " "
+                    ! $current_length = $current_length + 1
+                !endif
+                ! $current_line = $current_line + $current_word
+                ! $current_length = $current_length + %strlen($current_word)
+            !endif
+            ! $current_word = ""
+        !else
+            ! $current_word = $current_word + $char
+        !endif
+    !endwhile
+
+    !if (%strlen($current_word) > 0)
+        !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+            ! $result = $result + $current_line + "%newline()"
+            ! $current_line = $current_word
+        !else
+            !if ($current_length > 0)
+                ! $current_line = $current_line + " "
+            !endif
+            ! $current_line = $current_line + $current_word
+        !endif
+    !endif
+
+    !return $result + $current_line
+!endfunction
+
+' ############################################
+' ---------------------------------------------
+' introduce "\\" into a string in order to
+' break it down into several lines according
+' to a given char width of a line.
+!function _PUMLABreakLineSL($text)
+ ! $result = ""
+    ! $current_line = ""
+    ! $current_word = ""
+    ! $current_length = 0
+    ! $text_length = %strlen($text)
+    ! $index = 0
+
+    !while ($index < $text_length)
+        ! $char = %substr($text, $index, 1)
+        ! $index = $index + 1
+
+        !if ($char == " ")
+            !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+                ! $result = $result + $current_line + " \n "
+                ! $current_line = $current_word
+                ! $current_length = %strlen($current_word)
+            !else
+                !if ($current_length > 0)
+                    ! $current_line = $current_line + " "
+                    ! $current_length = $current_length + 1
+                !endif
+                ! $current_line = $current_line + $current_word
+                ! $current_length = $current_length + %strlen($current_word)
+            !endif
+            ! $current_word = ""
+        !else
+            ! $current_word = $current_word + $char
+        !endif
+    !endwhile
+
+    !if (%strlen($current_word) > 0)
+        !if ($current_length + %strlen($current_word) > $PUMReqContentWidth)
+            ! $result = $result + $current_line + " \n "
+            ! $current_line = $current_word
+        !else
+            !if ($current_length > 0)
+                ! $current_line = $current_line + " "
+            !endif
+            ! $current_line = $current_line + $current_word
+        !endif
+    !endif
+
+    !return $result + $current_line
+!endfunction
+
 ' ############################################
 ' ---------------------------------------------
 ' create a req as an object with reduced number
@@ -12,7 +150,7 @@
 ' the $r object should not be possible here...
 object $r.alias {
 |= type | $r.type |
-|= content | $r.content |
+|= content | _PUMLABreakLineSL($r.content) |
 |= status  | $r.status |
 }
 %set_variable_value($robjid, "%true()")
@@ -100,6 +238,7 @@ PUMLAPutElementErrorCheck($int_suc, $alias)
 !$cntall=$cntall+1
 !if $count == $cntall
 !$int_suc = %true()
+!$r.content = _PUMLABreakLineSL($r.content)
 json $r.alias $r
 !endif
 !endfor
@@ -125,7 +264,7 @@ note as allreqstable
 !foreach $r in $allreqs.reqs
 !$cntall=$cntall+1
 | | | | | | | |
-| $cntall | $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+| $cntall | $r.alias | $r.type | _PUMLABreakLineSL($r.content) | $r.status | formatListSL($r.derived_from) | formatListSL($r.derived_to) | $r.in_file |
 !endfor
 
 A total of $cntall requirements.

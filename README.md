@@ -24,6 +24,12 @@ Therefore, in order to enable systematic re-use for architecture models with Pla
 `pumla` is intended to be an extension around PlantUML to organize and enable
 this systematic re-use.
 
+Furthermore, `pumla` now also supports requirements management in a docs-as-code manner. You can
+store your requirements in YAML text files in your git repo along with code and architecture, and
+also re-use the requirements definitions on diagrams, mixing it with architecture elements to show
+which element implements which requirement, but also create PlantUML diagrams showing a traceability
+graph.
+
 ### Goals, Use Cases & Principles
 <details>
 <summary>click to expand!</summary>
@@ -40,6 +46,8 @@ this systematic re-use.
   sequence diagrams with deployment diagrams.
 - Create an arc42 architecture documentation based on common PlantUML description patterns
   with almost no effort.
+- requirements in docs-as-code style that can be used in diagram explaining how they are implemented
+  in the architecture
 
 ---
 
@@ -208,6 +216,12 @@ This is an advanced example showing how to re-use C4 model elements with `pumla`
 to an overview and description an that example:
 
 [follow this link to the C4 example](./test/examples/C4example/pumlaC4Example.md)
+
+### Examples for managing and using requirements 
+This is a set of examples showing how to use `pumla` for requirements management.
+
+[follow this link to the requirements-as-code examples](./Examples_Reqs.md)
+
 
 ### Working with the examples
 In order to play around with the previously mentioned examples, you need to initialise the examples

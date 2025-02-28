@@ -690,6 +690,12 @@ dynamic behaviour descriptions.
 Puts all the requirements of the requirements repository (`reqsrepo_json.puml`) onto the 
 diagram, but only with the brief set of attributes (see `PUMLAPutReqBrief($alias)`).
 
+## Working with Requirements Traceability
+### `PUMLAPutReqsBreakdownTraceFor($alias)`
+Puts the trace for a requirement with given alias down on the diagram. Each requirement along the
+trace is put with its brief description. The trace is modelled with a "realizes" relation, so pointing
+from a derived requirement to a parent requirement where it was derived from.
+
 ## Working around some PlantUML limitations
 
 ### `PUMLASetAsComponentDiagram()`

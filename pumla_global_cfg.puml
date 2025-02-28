@@ -33,3 +33,6 @@
 ' interaction description).
 !$PUMC4UseDynamicExt = %false()
 
+' max character width of requirements
+' conent attribute.
+!$PUMReqContentWidth = 15

@@ -81,7 +81,7 @@ def updatePUMLAReqRepo(path, mrefilename):
     # make it accessible from within PlantUML.
     # $allreqs is the preprocessor variable that
     # allows access by PlantUML pumla marcros.
-    pumlareqdict = {"reqsrepopath": path, "reqsrepofile": mrefilename, "reqs": pumlareqslist}
+    pumlareqdict = {"reqsrepopath": os.path.abspath(path), "reqsrepofile": mrefilename, "reqs": pumlareqslist}
     reqjsontxt = json.dumps(pumlareqdict)
     jsontxt = "!$allreqs = " + reqjsontxt
 
