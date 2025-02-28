@@ -66,7 +66,12 @@ purpose.
 ![](test/examples/WeatherStation/pics/exampleAllReqs.png)
 
 ### E#1.2: All requirements, brief subset of attributes, showing the trace
+In this example, all requirements are layed out on the diagram with a brief description. Furthermore,
+the trace between the requirements is exposed. All with just one `pumla` macro call.
 
+[./test/examples/WeatherStation/exampleAllReqsBrief.puml](test/examples/WeatherStation/exampleAllReqsBrief.puml)
+
+![](test/examples/WeatherStation/pics/exampleAllReqsBrief.png)
 ### E#1.3: Overview of all requirements (Cheat Sheet)
 See here, how with one `pumla` macro `PUMLAPutAllReqsTable()`  and overview table is put onto
 the diagram, counting the requirements and showing in which files they are implemented.
@@ -76,5 +81,19 @@ the diagram, counting the requirements and showing in which files they are imple
 ![](test/examples/WeatherStation/pics/exampleReqCheatSheet.png)
 
 ## E#2: Put single requirements onto a diagram
+Here is an example where two requirements are put onto a diagram, one with a reduced subset of
+attributes. 
+
+[./test/examples/WeatherStation/exampleSingleReqs.puml](test/examples/WeatherStation/exampleSingleReqs.puml)
+
+![](test/examples/WeatherStation/pics/exampleSingleReqs.png)
 
 ## E#3: Show the requirements trace 
+This example shows how for a given requirement the requirements trace is created as a diagram with just one
+`pumla` macro call. You can
+argue that the example might be bad for a requirements breakdown, but it is here to show the principle
+and possibilities of pumla, not to show examples of perfect requirements engineering.
+
+[./test/examples/WeatherStation/exampleReqTrace.puml](test/examples/WeatherStation/exampleReqTrace.puml)
+
+![](test/examples/WeatherStation/pics/exampleReqTrace.png)
