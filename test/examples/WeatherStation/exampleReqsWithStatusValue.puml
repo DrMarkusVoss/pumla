@@ -1,0 +1,11 @@
+@startuml
+!include reqsrepo_json.puml
+!include pumla_macros.puml
+
+top to bottom direction
+
+' put table overview with all reqs that
+' have a status that matches "decided"
+PUMLAPutAllReqsWithStatusTable("decided")
+
+@enduml

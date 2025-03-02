@@ -22,11 +22,11 @@ end note
 !end procedure
 
 !unquoted procedure PUMLAPutElementErrorCheck($suc, $elemalias)
-PUMLAErrorCheck($suc, $elemalias, "Could not put element with alias", "Element was not found in model repo.", "- try to update the model repo, or %newline()- check the alias for misspellings.")
+PUMLAErrorCheck($suc, $elemalias, "Could not put element with alias", "Element was not found in model/req repo.", "- try to update the model/req repo, or %newline()- check the alias for misspellings.")
 !end procedure
 
 !unquoted procedure PUMLACreateInstanceError($elemalias)
-PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alias", "The element that should be instantiated %newline()was not found in the model repo.", "- try to update the model repo, or %newline()- check the alias for misspellings.")
+PUMLAErrorCheck("0", $elemalias, "Could not create instance of element with alias", "The element that should be instantiated %newline()was not found in the model repo.", "- try to update the model/req repo, or %newline()- check the alias for misspellings.")
 !end procedure
 
 ' --------------------------------------------
