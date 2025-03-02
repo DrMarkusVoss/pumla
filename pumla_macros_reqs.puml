@@ -12,18 +12,12 @@
         !$char = %substr($text, $index, 1)
         !$index = $index + 1
 
-        !if ($char == "[")
-            !continue
+        !if %not(($char=="[") ||($char=="]") || ($char =='"'))
+            !$result = $result + $char
         !endif
-
-        !if ($char == "]")
-            !break
-        !endif
-
-        !$result = $result + $char
 
         !if ($char == ",")
-            !$result = $result + "\n"
+            !$result = $result + " \n "
         !endif
     !endwhile
 
