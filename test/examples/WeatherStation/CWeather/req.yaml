@@ -17,7 +17,6 @@
   alias: REQ_SW_CWeather2
   status: decided
   derived_from:
-    - REQ_WS4
     - REQ_WS1
     - REQ_SW_CWeather1
   taggedvalues:
