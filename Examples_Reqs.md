@@ -2,8 +2,8 @@
 These are examples from the `./test/examples/WeatherStation` section. You find the
 source code of the .puml and .yaml files that form the example model repository
 there. In order to get the example running on your computer, you need
-to run first `pumla init`, then `pumla update`" in the examples directory, 
-because the paths in the model repo file (./test/examples/WeatherStation/reqsrepo_json.puml)
+to run first `pumla init`, then `pumla update` in the examples directory, 
+because the paths in the reqs repo file (./test/examples/WeatherStation/reqsrepo_json.puml)
 need to be updated to the directory structure on your computer. Currently
 the model repo file has the paths from the structure as I have it on my
 machine. You can't run the pumla update from the main path of pumla, as
@@ -12,7 +12,7 @@ The examples section will be ignored from the top level. So you have to go
 down to the examples and call the pumla update from that directory.
 
 If you are changing the contents of the examples to play around, in order for a
-change to become alive, you need to call `pumla update` again. cd 
+change to become alive, you need to call `pumla update` again. 
 
 ## E#0: Creating Re-usable Requirements
 Other than with architecture elements, in `pumla` you write the requirements in YAML and not
@@ -73,14 +73,25 @@ the trace between the requirements is exposed. All with just one `pumla` macro c
 
 ![](test/examples/WeatherStation/pics/exampleAllReqsBrief.png)
 ### E#1.3: Overview of all requirements (Cheat Sheet)
-See here, how with one `pumla` macro `PUMLAPutAllReqsTable()`  and overview table is put onto
+See here, how with one `pumla` macro `PUMLAPutAllReqsTable()`  an overview table is put onto
 the diagram, counting the requirements and showing in which files they are implemented.
 
 [./test/examples/WeatherStation/exampleReqCheatSheet.puml](test/examples/WeatherStation/exampleReqCheatSheet.puml)
 
 ![](test/examples/WeatherStation/pics/exampleReqCheatSheet.png)
 
-## E#2: Put single requirements onto a diagram
+### E#1.4: Overview of all requirements that have a dedicated status value
+See here, how with one `pumla` macro `PUMLAPutAllReqsWithStatusTable("decided")`  an overview table is put onto
+the diagram showing only requirements with the status "decided", counting the requirements and showing in which
+files they are implemented.
+
+[./test/examples/WeatherStation/exampleReqsWithStatusValue.puml](test/examples/WeatherStation/exampleReqsWithStatusValue.puml)
+
+![](test/examples/WeatherStation/pics/exampleReqsWithStatusValue.png)
+
+A similar macro exists to create an overview selecting wrt. the "type" attribute: `PUMLAPutAllReqsWithTypeTable($value)`.
+
+## E#2: Putting single requirements onto a diagram
 Here is an example where two requirements are put onto a diagram, one with a reduced subset of
 attributes. 
 

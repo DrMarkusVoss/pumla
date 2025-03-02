@@ -1,4 +1,3 @@
-@startuml
 
 ' ############################################
 ' ---------------------------------------------
@@ -30,9 +29,6 @@
 
     !return $result
 !endfunction
-
-
-
 
 ' ############################################
 ' ---------------------------------------------
@@ -284,7 +280,7 @@ note as allreqstable
 !if $r.status==$value
 !$cntstat=$cntstat+1
 | | | | | | |
-| $r.alias | $r.type | $r.content | $r.status | $r.derived_from | $r.derived_to | $r.in_file |
+| $r.alias | $r.type | _PUMLABreakLineSL($r.content) | $r.status | formatListSL($r.derived_from) | formatListSL($r.derived_to) | $r.in_file |
 !endif
 !endfor
 
