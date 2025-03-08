@@ -362,10 +362,14 @@ you have fast previews of the `.puml` and markdown files.
   and Unix platform, as I also do not have a Windows test platform 
   at hand anymore. It is proven to run on my Macbook (Mojave)
   with Python 3.8.2 and Raspberry Pi 3 with Python 3.7.3 and pip3.
-- tested with PlantUML library v1.2022.6 (via the PyCharm Plugin 
-  "PlantUML integration" version 5.16.1)
+- tested with PlantUML library v1.2022.6 and v1.2024.7 (via the PyCharm Plugin 
+  "PlantUML integration" version 5.16.1 and version 7.11.2-IJ2023.2)
 - **needs at least the PlantUML v1.2022.2**, as now use of the %splitstr()
   preprocessor feature is made that was introduced then
+
+### Known Issues
+Here is an overview of known issues:
+[Link to pumla Known Issues documentation](./known_issues.md)
 
 ### `pumla` Architecture
 The `pumla` Architecture is also documented using `pumla`.
