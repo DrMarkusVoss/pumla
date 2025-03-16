@@ -7,5 +7,4 @@
 ' "realizing" trace.
 PUMLAPutReqsBreakdownTraceFor(REQ_WS1)
 
-
 @enduml

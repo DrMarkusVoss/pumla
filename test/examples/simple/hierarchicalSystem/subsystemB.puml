@@ -9,7 +9,7 @@
 PUMLAReUsableAsset("Subsystem B", subsystemB , component) {
     PUMLARUAInternals() {
 
-        component moduleY
+        component "mody" as moduleY
     }
 }
 

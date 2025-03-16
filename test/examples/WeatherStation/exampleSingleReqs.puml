@@ -6,7 +6,7 @@ top to bottom direction
 
 ' show how a requirement with with full
 ' description is put onto a diagram
-PUMLAPutReq(REQ_WS)
+PUMLAPutReq(REQ_WS1)
 
 ' show how a requirement with a brief
 ' description is put onto a diagram
@@ -15,4 +15,10 @@ PUMLAPutReqBrief(REQ_WS2)
 ' enforcing layout
 REQ_WS1 --[hidden]d> REQ_WS2
 
-@enduml
+' try to put a req on the diagram
+' but the alias is wrong
+' ("-" instead of "_")
+' causes a PUMLA Error Note″
+PUMLAPutReq(REQ-WS4)
+
+@enduml″

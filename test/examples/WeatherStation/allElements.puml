@@ -13,6 +13,8 @@
 !$PUMVarShowInstantiationRel = %true()
 !$PUMVarShowImplicitRels = %true()
 !$PUMTaggedValuesNoteToElementAlignment = right
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
 
 scale 0.5
 

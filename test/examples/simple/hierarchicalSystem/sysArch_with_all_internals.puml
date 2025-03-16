@@ -4,7 +4,10 @@
 
 title Overview System with all internals
 
-PUMLAPutElement(system)
+PUMLAPutElement(subsystemB)
+
+remove subsystemB_internals.moduleY
+
 
 @enduml
 

@@ -1,28 +1,21 @@
 @startuml
-!include reqsrepo_json.puml
 
-!alias = "REQ_WS1"
+set separator none
 
-!foreach $r in $allreqs.reqs
-!if $r.alias == alias
-object $r.alias {
-|= Type | $r.type |
-|= Content | $r.content |
-|= Status  | $r.status |
+rectangle "huh" as huhu {
+
+rectangle "trar" as trara {
+
+rectangle "mod" as mody {
+        }
+
+    }
 }
-!endif
-!if $r.derived_from == alias
-object $r.alias {
-|= Type | $r.type |
-|= Content | $r.content |
-|= Status  | $r.status |
-}
-$r.derived_from  <|-- $r.alias
-!endif
-!endfor
 
-!$cnt = $cnt + 1
-!$cnt = $cnt + 1
-$cnt
+' does not work
+remove huhu.trara.mody
+
+' does also not work
+remove mody
 
 @enduml

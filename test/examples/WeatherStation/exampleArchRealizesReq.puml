@@ -5,6 +5,7 @@
 
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowInterfaces = %false()
+!$PUMVarShowTaggedValues = %false()
 
 allowmixing
 

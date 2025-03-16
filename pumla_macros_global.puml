@@ -1,5 +1,5 @@
 !$PUMLAVersionNumber = "v1.1.0"
-
+set separator none
 !include pumla_internal.puml
 
 !$PUMVarShowDescr = %true()
