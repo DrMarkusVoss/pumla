@@ -16,6 +16,10 @@ https://forum.plantuml.net/19823/allowmixing-has-side-effect-on-remove
 #### affected PlantUML version:
 - v1.2024.7 and newer (possibly also older versions)
 
-#### PlantUML version without this bug:
+#### older PlantUML version without this bug:
 - v1.2022.6 (maybe also newer versions)
+
+#### allegedly fixed with PlantUML version:
+- v1.2024.8
+
 
