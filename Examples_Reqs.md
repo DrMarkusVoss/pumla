@@ -95,6 +95,9 @@ A similar macro exists to create an overview selecting wrt. the "type" attribute
 Here is an example where two requirements are put onto a diagram, one with a reduced subset of
 attributes. 
 
+Furthermore, it was tried to put one requirement onto the diagram, but the alias was misspelled, resulting
+in an error note pointing to the root cause of the problem.
+
 [./test/examples/WeatherStation/exampleSingleReqs.puml](test/examples/WeatherStation/exampleSingleReqs.puml)
 
 ![](test/examples/WeatherStation/pics/exampleSingleReqs.png)

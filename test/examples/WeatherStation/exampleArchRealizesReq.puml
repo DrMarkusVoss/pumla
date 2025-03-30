@@ -12,6 +12,9 @@ allowmixing
 PUMLAPutElement(tempSys)
 PUMLAPutReqBrief(REQ_WS1)
 
-tempSys <|-- REQ_WS1
+' manual way of expressing that
+' an architectural element contains the
+' realization of a specific requirement.
+tempSys --|> REQ_WS1
 
 @enduml
