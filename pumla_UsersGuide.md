@@ -129,7 +129,7 @@ is put to the command line output.
 
 ### `pumla files`
 Called without any other argument, pumla writes out to the console a
-list of all `.puml` files that are `pumla` files (marked with either `'PUMLAMR`
+list of all `.puml` files that are `pumla` files (marked with either e.g. `'PUMLAMR`
 (PUMLA-ModelRepo) or `'PUMLADR` (PUMLA-DiagramRepo) in the first line of the file).
 Requirements are described in YAML files (`.yaml`) and will therefore not
 be shown by this command, as they are not standalone PlantUML-compliant files.

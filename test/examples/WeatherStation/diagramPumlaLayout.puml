@@ -1,0 +1,30 @@
+'PUMLADR
+@startuml
+
+!include modelrepo_json.puml
+!include pumla_macros.puml
+!include ./../../../templates/sysml/skin.puml
+
+!$PUMVarShowDescr = %false()
+!$PUMVarShowInterfaces = %true()
+!$PUMVarShowBody = %true()
+!$PUMVarShowBodyInternals = %false()
+!$PUMVarShowBodyInternalsDyn = %false()
+!$PUMVarShowTaggedValues = %true()
+!$PUMVarShowImplicitRels = %false()
+!$PUMVarShowConnections = %true()
+
+title Layout Example 1
+
+' put the elements of interest onto the diagrams
+' by naming them by their alias.
+' Not sure what elements you want and what their
+' alias is? Use the "PUMLACheatSheet" command...
+PUMLAPutElement(tempSensorA)
+PUMLAPutElement(tempSensorBdC)
+PUMLAPutElement(wirelessUnit)
+
+
+
+
+@enduml

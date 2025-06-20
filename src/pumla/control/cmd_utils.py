@@ -274,6 +274,7 @@ def readBlacklist(path, pathfilename):
 def findAllPUMLAFiles(path):
     """" find all pumla files in given path """
     pumlafiles = []
+    pumladiagramfiles = []
     blacklist = []
 
     blacklistfilename = path + "/pumla_blacklist.txt"
@@ -294,9 +295,11 @@ def findAllPUMLAFiles(path):
                         # a PUMLA file must have that first comment line (see Modelling Guideline)
                         if line.startswith("'PUMLAMR"):
                             pumlafiles.append(fname)
+                        elif line.startswith("'PUMLADR"):
+                            pumladiagramfiles.append(fname)
 
     #return the list of PUMLA files found
-    return pumlafiles
+    return pumlafiles, pumladiagramfiles
 
 def findTaggedValuesInText(lines):
     rettvs = []
@@ -1048,7 +1051,7 @@ def updatePUMLAMR(path, mrefilename):
         with current state of the source code repository"""
     # traverse down the path and find all
     # pumla files.
-    pumlafiles = findAllPUMLAFiles(path)
+    pumlafiles, pumladiagfiles = findAllPUMLAFiles(path)
 
     # parse each pumla file and create
     # a PUMLA Elements, Connections and

@@ -11,7 +11,7 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 __maintainer__ = "Dr. Markus Voss (private person)"
 __status__ = "Development"
 
@@ -138,7 +138,7 @@ def cmdListElements(args):
     identifyMe(parser)
     print("\nPUMLA elements:\n")
     # pfls = list of PUMLA files
-    pfls = findAllPUMLAFiles(os.path.curdir)
+    pfls, diagfls = findAllPUMLAFiles(os.path.curdir)
 
     # pelems = list of PUMLA elements
     pelems = []
@@ -200,9 +200,14 @@ def cmdCheckAlias(args):
 def cmdListFiles(args):
     identifyMe(parser)
     print("all pumla files in subdirs:")
-    pfls = findAllPUMLAFiles(os.path.curdir)
+    pfls, diagfls = findAllPUMLAFiles(os.path.curdir)
+    print("elements:")
     for e in pfls:
         print(e)
+
+    print("\ndiagrams:")
+    for d in diagfls:
+        print(d)
 
 def getJSONElementsCLI(args):
     """ print out a list of all model elements of the repo to the command line """

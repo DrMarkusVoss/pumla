@@ -35,7 +35,7 @@ def test_01_findAllPUMLAFiles(examples_path):
             examples_path / "tempConv/tempConverter.puml",
         ]
     )
-    result = findAllPUMLAFiles(str(examples_path))
+    result, diagfiles = findAllPUMLAFiles(str(examples_path))
     result = sorted(map(Path, result))
 
     assert result == expected_result

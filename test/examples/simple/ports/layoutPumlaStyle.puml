@@ -1,16 +1,16 @@
+'PUMLADR
 @startuml
 !include pumla_macros.puml
 !include modelrepo_json.puml
 
-!$PUMVarShowBodyInternals = %true()
+!$PUMVarShowBodyInternals = %false()
 
 'left to right direction
+'PUMLADL direction: l-to-r
 
 'skinparam linetype ortho
 
-Title Overview Temperature System
-
-PUMLACheatSheetAllAttributes()
+title Pumla Layout example: Temperature System elements
 
 PUMLAPutElement(tempSensor)
 
