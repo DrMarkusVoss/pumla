@@ -49,7 +49,7 @@ def test_02_parsePUMLAFile(examples_path):
     exp_result_parent = "tempSys"
     exp_result_filename = "tempConverter.puml"
 
-    pels, rels, cons, tvs = parsePUMLAFile(str(filename))
+    pels, rels, cons, tvs = parsePUMLAMRFile(str(filename))
     result_elem = pels[0]
 
     assert result_elem.name == exp_result_name

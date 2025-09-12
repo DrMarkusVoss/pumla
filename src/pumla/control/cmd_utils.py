@@ -565,7 +565,7 @@ def createInstanceRelation(inst, path, fn):
     pr.setFilename(fn)
     return pr
 
-def parsePUMLAFileMarkings(lines):
+def parsePUMLAMRFileMarkings(lines):
     retdict_filemarkings = {"mr": False, "parent": "-", "instances": False, "kind": "-"}
 
     for e in lines:
@@ -740,7 +740,7 @@ def findReUsableAssetDefinition(lines):
     return success, el_name, el_alias, el_type, el_stereotypes, el_ports, el_typedifs
 
 
-def parsePUMLAFile(filename):
+def parsePUMLAMRFile(filename):
     """ parses a PUMLA file and returns a description of its content as returned PUMLA element."""
     # read contents of file at once
     file = open(filename)
@@ -759,7 +759,7 @@ def parsePUMLAFile(filename):
     cons = []
     tvs = {}
     # check if it is a PUMLA file
-    file_markings = parsePUMLAFileMarkings(lines)
+    file_markings = parsePUMLAMRFileMarkings(lines)
     #print(filename)
     #print(file_markings)
     if (file_markings["kind"] == "static"):
@@ -1068,7 +1068,7 @@ def updatePUMLAMR(path, mrefilename):
 
     # sum up information from all files in common lists
     for f in pumlafiles:
-        pels, rels, cons, tvs = parsePUMLAFile(f)
+        pels, rels, cons, tvs = parsePUMLAMRFile(f)
         for p in pels:
             pumlaelements.append(p)
         for r in rels:

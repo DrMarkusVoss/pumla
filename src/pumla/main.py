@@ -17,7 +17,7 @@ __status__ = "Development"
 
 import argparse
 import os
-from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAFile, updatePUMLAMR
+from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAMRFile, updatePUMLAMR
 from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile
 from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
 from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
@@ -153,7 +153,7 @@ def cmdListElements(args):
     # and fill PUMLA elements list
     for fn in pfls:
         # pel = PUMLA element
-        (pels, rels, cons, tvs) = parsePUMLAFile(fn)
+        (pels, rels, cons, tvs) = parsePUMLAMRFile(fn)
         for pel in pels:
             pelems.append(pel)
 
