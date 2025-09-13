@@ -45,10 +45,6 @@ def gendiagram(mainpath, inputpuml, outputname, picformat):
         print("creating diagram for: " + inputpuml)
         print("done.")
 
-def genpumladiag(mainpath, inputpuml, outputname, layoutoverride):
-    print("feature not yet implemented. sorry.")
-
-
 def installPlantUMLJAR(mainpath):
     '''downloads the PlantUML JAR file and places it into a pumla command line tool installation directory.'''
     print("downloading...")

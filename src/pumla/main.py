@@ -23,7 +23,7 @@ from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pu
 from pumla.control.cmd_utils import checkElsRelsConsForAliasExistence
 from pumla.control.cmd_utils import installPlantUMLJAR
 from pumla.control.cmd_utils import gendiagram
-from pumla.control.cmd_utils import genpumladiag
+from pumla.control.diag_handling import genpumladiag
 from pumla.control.reqparse import updatePUMLAReqRepo
 
 parser = None

@@ -1,4 +1,4 @@
-class PUMLAConnection:
+class PUMLADiagram:
     ''' store PUMLA diagram information '''
     def __init__(self, alias, title=""):
         self.alias = alias
@@ -7,3 +7,7 @@ class PUMLAConnection:
         self.filename = "-"
         self.elements = []
         self.mainlayout = {"direction": "l-to-r"}
+
+    def addElement(self, element):
+        self.elements.append(element)
+
