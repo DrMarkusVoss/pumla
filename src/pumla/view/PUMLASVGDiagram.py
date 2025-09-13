@@ -13,7 +13,7 @@ class PUMLASVGDiagram:
             self.svg_elements.append(PUMLASVGElement(e))
 
     def generateSVG(self):
-        svg_code = '<svg width="1600" height="1200"> <svg id="' + self.diagram.alias + '" width="600" height="400" xmlns="http://www.w3.org/2000/svg">\n'
+        svg_code = '<svg id="' + self.diagram.alias + '" width="' + str(len(self.svg_elements)*180) + '" height="1200" xmlns="http://www.w3.org/2000/svg">\n'
         svg_code = svg_code + '<text id="' + self.diagram.alias + '_titletxt" x="50%" y="10" dominant-baseline="middle" text-anchor="middle" font-size="20" font-family="Arial, sans-serif" fill="black">' + self.diagram.title + '</text>\n'
 
         cnt = 0
