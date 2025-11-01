@@ -109,6 +109,3 @@ def updatePUMLAReqRepo(path, mrefilename):
     return True, mrefilename, pumlareqslist
 
 
-fn = "reqsrepo_json.puml"
-
-updatePUMLAReqRepo("../../../test/examples/WeatherStation/", fn)

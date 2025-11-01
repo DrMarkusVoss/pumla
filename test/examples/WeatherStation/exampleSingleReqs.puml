@@ -18,7 +18,7 @@ REQ_WS1 --[hidden]d> REQ_WS2
 ' try to put a req on the diagram
 ' but the alias is wrong
 ' ("-" instead of "_")
-' causes a PUMLA Error Note″
+' causes a PUMLA Error Note
 PUMLAPutReq(REQ-WS4)
 
-@enduml″
+@enduml
