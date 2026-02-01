@@ -12,7 +12,7 @@ __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
 __version__ = "1.1.2"
-__maintainer__ = "Dr. Markus Voss (private person)"
+__maintainer__ = "Dr. Markus Voss (private person) "
 __status__ = "Development"
 
 import argparse
