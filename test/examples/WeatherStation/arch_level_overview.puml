@@ -6,6 +6,7 @@
 !$PUMVarShowBodyInternals = %false()
 !$PUMVarShowBodyInternalsDyn = %false()
 !$PUMVarShowInterfaces = %false()
+!$PUMVarShowTaggedValues = %true()
 
 title Architecture Levels Elements Overview
 
