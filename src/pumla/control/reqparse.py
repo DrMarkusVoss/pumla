@@ -11,6 +11,26 @@ def parsePUMLAReqFile(file):
     """ parse the PUMLA Requirements file and read it
         into a dictionary."""
     reqsdict = yaml.safe_load(Path(file).read_text())
+
+    # Historically some requirement files are represented as a list of
+    # feature blocks each containing a `REQs` list. Tests and callers in
+    # the codebase expect a flat list of requirement dicts. Normalize
+    # the returned value so callers always receive a list of requirement
+    # dicts when possible.
+    if isinstance(reqsdict, list):
+        flat = []
+        for item in reqsdict:
+            if isinstance(item, dict) and 'REQs' in item:
+                # extend with contained requirements
+                if item['REQs']:
+                    flat.extend(item['REQs'])
+            else:
+                flat.append(item)
+        return flat
+
+    if isinstance(reqsdict, dict) and 'REQs' in reqsdict:
+        return reqsdict['REQs']
+
     return reqsdict
 
 
@@ -30,11 +50,11 @@ def findAllPUMLAReqFiles(path):
             if not isInBlacklist(dirpath, blacklist):
                 #print(dirpath)
                 fname = os.path.join(dirpath, filename)
-                # a PUMLA req. file must end with '.yml' (see Modelling Guideline)
+                # a PUMLA req. file must end with '.yaml' (see Modelling Guideline)
                 if fname.endswith('.yaml'):
                     with open(fname) as myfile:
                         line = myfile.read()
-                        # a PUMLA file must have that first comment line (see Modelling Guideline)
+                        # a PUMLA req. file must have that first comment line (see Modelling Guideline)
                         if line.startswith("#PUMLARR"):
                             pumlareqfiles.append(fname)
 

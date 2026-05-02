@@ -1,0 +1,10 @@
+- feature: feature A
+  subfeatures:
+    - feature: feature A1
+      subfeatures:
+        - feature: feature A1.1
+        - feature: feature A1.2
+    - feature: feature A2
+    - feature: feature A3
+
+- feature: feature B

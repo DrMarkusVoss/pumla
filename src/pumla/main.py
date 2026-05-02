@@ -11,12 +11,13 @@ element re-usability.
 __author__ = "Dr. Markus Voss (private person)"
 __copyright__ = "(C) Copyright 2021 by Dr. Markus Voss (private person)"
 __license__ = "GPL"
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 __maintainer__ = "Dr. Markus Voss (private person) "
 __status__ = "Development"
 
 import argparse
 import os
+import subprocess
 from pumla.control.cmd_utils import findAllPUMLAFiles, parsePUMLAMRFile, updatePUMLAMR
 from pumla.control.cmd_utils import createPumlaMacrosFile, createPumlaBlacklistFile
 from pumla.control.cmd_utils import createPumlaProjectConfigFile, pumlaSetup, pumlaVersionCheck
@@ -214,6 +215,12 @@ def cmdListFiles(args):
     print("\ndiagrams:")
     for d in diagfls:
         print(d)
+
+def cmdView(args):
+    curpath = os.path.abspath(("./")) + "/"
+    mypath_main = main.__code__.co_filename.replace(os.sep, '/')
+    mypath_main = mypath_main.replace("src/pumla/main.py", "")
+    subprocess.run(["python3", mypath_main + "/src/pumla/view/PUMLAViewerGUI.py", curpath], cwd=curpath)
 
 def getJSONElementsCLI(args):
     """ print out a list of all model elements of the repo to the command line """
@@ -421,6 +428,12 @@ def main():
         default=os.path.curdir + "/modelrepo_json.puml",
     )
     parser_getjson_connections.set_defaults(func=getJSONConnectionsCLI)
+
+    parser_view = subparsers.add_parser(
+        "view",
+        help="starts a GUI to view the contents of the current model repository. (not implemented yet)",
+    )
+    parser_view.set_defaults(func=cmdView)
 
     args = parser.parse_args()
 

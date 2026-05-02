@@ -1,5 +1,8 @@
 #PUMLAMR
 
+# start modelling with simple arca language.
+@startarcasimple
+
 # include the element definitions with alias E, F and G
 # to use them in this definition
 from ./../modelrepo_json.puml include E, F, G
@@ -101,3 +104,5 @@ struct X:
 class Z:
     public:
         void callMe()
+
+@endarcasimple

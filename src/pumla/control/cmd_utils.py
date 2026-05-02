@@ -1046,6 +1046,12 @@ def addTaggedValuesToRels(tvs, rels):
 
     return rels
 
+def generatePlainJSONMR(path, jsonfilename, elems, rels, cons):
+    jsontxt = json.dumps(elems) + json.dumps(rels) + json.dumps(cons)
+    with open(jsonfilename, "w") as fil:
+        fil.write(jsontxt)
+    fil.close()
+
 def updatePUMLAMR(path, mrefilename):
     """create, update/overwrite the PUMLA model repository json file
         with current state of the source code repository"""
@@ -1137,5 +1143,9 @@ def updatePUMLAMR(path, mrefilename):
             fil.write(txtcon_lines[i] + "},\n")
         fil.write(txtcon_lines[len(txtcon_lines)-1] + "\n\n")
     fil.close()
+
+    # generate a plain JSON file with the same content for use outside of PlantUML, e.g. for further processing by other tools.
+    # first use is for the GUI Viewer, that can read the JSON file and visualize the model repository content in a GUI.
+    generatePlainJSONMR(path, "modelrepo.json", jsonelemdict, jsonreldict, jsoncondict)
 
     return True, mrefilename, jsonelemdict, jsonreldict, jsoncondict
