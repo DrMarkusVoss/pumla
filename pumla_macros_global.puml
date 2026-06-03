@@ -1054,10 +1054,14 @@ rectangle "//internals//" as $body_internals
     '!$pum_global_current_rua_internals = $body_internals_hidden
 !endif
 
-!if (($pum_global_current_rua_tvnote != "") && ($pum_global_current_rua_internals != ""))
+!if ($pum_global_current_rua_tvnote != "")
     !$tvnote = $pum_global_current_rua_tvnote
-    !$ints = $pum_global_current_rua_internals
-    $tvnote .[hidden]d. $ints
+    !if (($PUMVarShowBodyInternals) && ($pum_global_current_rua_internals != ""))
+        !$tvnote_anchor = $pum_global_current_rua_internals
+    !else
+        !$tvnote_anchor = $pum_global_current_rua_alias
+    !endif
+    $tvnote .[hidden]d. $tvnote_anchor
 !endif
 !global $pum_global_current_rua_alias = $pum_global_previous_rua_alias
 !$pum_global_previous_rua_alias = $pum_global_prev_previous_rua_alias
@@ -1137,4 +1141,3 @@ PUMLACreateInstanceError($classalias)
 !$pum_global_element_filter_out_dynamic = %false()
 !$pum_global_element_filter_in_dynamic = %false()
 !endprocedure
-

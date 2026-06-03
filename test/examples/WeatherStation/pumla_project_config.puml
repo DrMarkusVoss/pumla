@@ -36,4 +36,3 @@
 ' max character width of requirements
 ' conent attribute.
 !$PUMReqContentWidth = 50
-
